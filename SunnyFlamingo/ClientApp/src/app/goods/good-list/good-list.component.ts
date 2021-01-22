@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { GoodCellModel } from 'src/app/models/goodCellModel';
 import { GoodModel } from 'src/app/models/goodModel';
+import { GoodService } from '../good.service';
 
 @Component({
   selector: 'app-good-list',
@@ -9,11 +11,12 @@ import { GoodModel } from 'src/app/models/goodModel';
 })
 export class GoodListComponent implements OnInit {
 
-  goods$: Observable<GoodModel[]>;
+  goods$: Observable<GoodCellModel[]>;
 
-  constructor() { }
+  constructor(private goodService: GoodService) { }
 
   ngOnInit(): void {
+    this.goods$ = this.goodService.getGoods();
   }
 
 }

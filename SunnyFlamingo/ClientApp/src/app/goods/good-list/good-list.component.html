@@ -1,1 +1,8 @@
-<p>good-list works!</p>
+<div class="row p-0 m-0">
+  <div>okey</div>
+  <ul class="row m-0 flex-inline">
+    <li *ngFor="let good of goods$ | async" class="col p-1">
+      <app-good-cell [goodCell]="good"></app-good-cell>
+    </li>
+  </ul>
+</div>

@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Data.SqlClient;
 using SunnyFlamingo.Entities;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using SunnyFlamingo.ValueObjects;
 
 namespace SunnyFlamingo
 {
@@ -37,6 +38,7 @@ namespace SunnyFlamingo
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
+            services.Configure<ImgOptions>(Configuration.GetSection("ImgPathes"));
             var builder = services.AddIdentityServer(options =>
             {
                 options.Events.RaiseErrorEvents = true;
