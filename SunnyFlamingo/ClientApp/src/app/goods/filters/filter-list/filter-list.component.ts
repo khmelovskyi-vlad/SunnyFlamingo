@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { QuestionsBase } from '../../../models/questionsBase';
+import { QuestionService } from '../../../dynamicForms/question.service';
 
 @Component({
   selector: 'app-filter-list',
@@ -7,7 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterListComponent implements OnInit {
 
-  constructor() { }
+  questions$: Observable<QuestionsBase<any>[]>;
+
+  constructor(service: QuestionService) { 
+    this.questions$ = service.getQuestions();
+  }
+
 
   ngOnInit(): void {
   }

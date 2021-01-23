@@ -40,8 +40,8 @@ import { GoodCellComponent } from './good-cell/good-cell.component';
     GoodCellComponent],
   imports: [
     CommonModule,
-    GoodsRoutingModule,
-    FiltersModule
+    FiltersModule,
+    GoodsRoutingModule
   ]
 })
 export class GoodsModule { }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GoodCellModel } from 'src/app/models/goodCellModel';
-import { GoodModel } from 'src/app/models/goodModel';
+import { GoodCellModel } from '../../models/goodCellModel';
+import { GoodModel } from '../../models/goodModel';
 import { GoodService } from '../good.service';
 
 @Component({
