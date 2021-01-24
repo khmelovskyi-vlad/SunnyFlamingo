@@ -1,13 +1,19 @@
 import { QuestionBase } from "./questionBase";
 
 export class QuestionsBase<T> {
+  value?: string;
   key: string;
-  questionsBase: QuestionBase<T>[];
+  order: number;
+  questionBaseList: QuestionBase<T>[];
   constructor(options: {
-      questionsBase?: QuestionBase<T>[];
+      value?: string;
       key?: string;
+      order?: number;
+      questionBaseList?: QuestionBase<T>[];
     } = {}){
-    this.questionsBase = options.questionsBase || [];
+    this.value = options.value;
     this.key = options.key || '';
+    this.order = options.order === undefined ? 1 : options.order;
+    this.questionBaseList = options.questionBaseList || [];
   }
 }

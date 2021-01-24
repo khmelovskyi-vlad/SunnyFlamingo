@@ -26,9 +26,19 @@
     <Compile Remove="Migrations\20210121145901_Initial2.Designer.cs" />
     <Compile Remove="Migrations\20210121150112_Initial2.cs" />
     <Compile Remove="Migrations\20210121150112_Initial2.Designer.cs" />
+    <Compile Remove="Migrations\20210124140211_InitializeFirstGoods.cs" />
+    <Compile Remove="Migrations\20210124140211_InitializeFirstGoods.Designer.cs" />
+    <Compile Remove="Migrations\20210124140801_InitializeFirstGoods.cs" />
+    <Compile Remove="Migrations\20210124140801_InitializeFirstGoods.Designer.cs" />
+    <Compile Remove="Migrations\20210124142357_InitializeFirstGoods.cs" />
+    <Compile Remove="Migrations\20210124142357_InitializeFirstGoods.Designer.cs" />
+    <Compile Remove="Migrations\20210124142829_InitializeFirstGoods.cs" />
+    <Compile Remove="Migrations\20210124142829_InitializeFirstGoods.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="IdentityServer4" Version="4.1.1" />
     <PackageReference Include="IdentityServer4.AspNetIdentity" Version="4.1.1" />
     <PackageReference Include="IdentityServer4.Storage" Version="4.1.1" />

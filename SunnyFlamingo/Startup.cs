@@ -16,6 +16,7 @@ using Microsoft.Data.SqlClient;
 using SunnyFlamingo.Entities;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using SunnyFlamingo.ValueObjects;
+using AutoMapper;
 
 namespace SunnyFlamingo
 {
@@ -62,7 +63,7 @@ namespace SunnyFlamingo
                 options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
             });
 
-            //services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddSpaStaticFiles(configuration =>
             {

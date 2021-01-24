@@ -12,7 +12,7 @@ export class QuestionControlService {
 
     questions.forEach(questions2 => {
       group[questions2.key] = new FormGroup({});
-      questions2.questionsBase.forEach(question => {
+      questions2.questionBaseList.forEach(question => {
         group[questions2.key].addControl(question.key, question.required ? new FormControl(question.value || '', Validators.required)
                                                 : new FormControl(question.value || ''));
       })

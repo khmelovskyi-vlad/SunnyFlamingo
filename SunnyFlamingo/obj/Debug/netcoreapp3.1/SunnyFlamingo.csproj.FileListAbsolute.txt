@@ -225,6 +225,8 @@ C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Microsoft.Extensions.
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Configuration.dll
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Console.dll
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\GIT\SunnyFlamingo\SunnyFlamingo\obj\Debug\netcoreapp3.1\SunnyFlamingo.csproj.CoreCompileInputs.cache
 C:\GIT\SunnyFlamingo\SunnyFlamingo\obj\Debug\netcoreapp3.1\SunnyFlamingo.MvcApplicationPartsAssemblyInfo.cs
 C:\GIT\SunnyFlamingo\SunnyFlamingo\obj\Debug\netcoreapp3.1\SunnyFlamingo.MvcApplicationPartsAssemblyInfo.cache

@@ -30,8 +30,12 @@ export class DynamicFormQuestionListComponent implements OnInit {
     return forms;
   }
 
+  getQuestionsValue(key: string): string | undefined {
+    return this.questions.find(qb => qb.key === key)?.value;
+  }
+
   getQuestions(key: string): QuestionBase<string>[] | undefined {
-    return this.questions.find(qb => qb.key === key)?.questionsBase;
+    return this.questions.find(qb => qb.key === key)?.questionBaseList;
   }
 
 }

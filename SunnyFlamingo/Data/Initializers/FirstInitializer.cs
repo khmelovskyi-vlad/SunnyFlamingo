@@ -15,16 +15,82 @@ namespace SunnyFlamingo.Data.Initializers
         {
             var random = new Random();
 
-            modelBuilder.Entity<Country>().HasData(GetCountries());
-            modelBuilder.Entity<Color>().HasData(GetColors());
-            modelBuilder.Entity<Material>().HasData(GetMaterials());
+            var countries = GetCountries();
+            var materials = GetMaterials();
+            var colors = GetColors();
+            var manufacturers = GetManufacturers(random, countries);
+            var producers = GetProducers(random, countries);
+
+            modelBuilder.Entity<Country>().HasData(countries);
+            modelBuilder.Entity<Color>().HasData(colors);
+            modelBuilder.Entity<Material>().HasData(materials);
             modelBuilder.Entity<ConnectorType>().HasData(GetConnectorTypes());
             modelBuilder.Entity<CoolerType>().HasData(GetCoolerTypes());
             modelBuilder.Entity<DriveInterface>().HasData(GetDriveInterfaces());
             modelBuilder.Entity<FormFactorType>().HasData(GetFormFactorTypes());
             modelBuilder.Entity<USBSpecificationType>().HasData(GetUSBSpecificationTypes());
+            modelBuilder.Entity<Manufacturer>().HasData(manufacturers);
+            modelBuilder.Entity<Producer>().HasData(producers);
+            modelBuilder.Entity<Good>().HasData(GetGoods(random, colors, materials, manufacturers, producers));
         }
-
+        private List<Good> GetGoods(
+            Random random, 
+            List<Color> colors, 
+            List<Material> materials, 
+            List<Manufacturer> manufacturers,
+            List<Producer> producers
+            )
+        {
+            List<Good> goods = new List<Good>();
+            for (int i = 0; i < 100; i++)
+            {
+                var good = new Good() 
+                { 
+                    Id = Guid.NewGuid(), 
+                    AddTime = DateTime.Now,
+                    ColorValue = colors[random.Next(0, colors.Count())].Value,
+                    Description = CreateRandomString(10, 1000, "abcdefghijklmnopqrstuvwxyz        ", random),
+                    IsAvailable = true,
+                    MaterialValue = materials[random.Next(0, materials.Count())].Value,
+                    Name = CreateRandomString(10, 100, "abcdefghijklmnopqrstuvwxyz        ", random),
+                    Price = CreateRandomDecimal(random),
+                    ManufacturerId = manufacturers[random.Next(0, manufacturers.Count())].Id,
+                    ProducerId = producers[random.Next(0, producers.Count())].Id,
+                };
+                goods.Add(good);
+            }
+            return goods;
+        }
+        private List<Manufacturer> GetManufacturers(Random random, List<Country> countries)
+        {
+            List<Manufacturer> manufacturers = new List<Manufacturer>();
+            for (int i = 0; i < 100; i++)
+            {
+                manufacturers.Add(new Manufacturer()
+                {
+                    Id = Guid.NewGuid(),
+                    Address = CreateRandomString(10, 100, "abcdefghijklmnopqrstuvwxyz        ", random),
+                    Name = CreateRandomString(10, 1000, "abcdefghijklmnopqrstuvwxyz        ", random),
+                    CountryId = countries[random.Next(0, countries.Count())].Id
+                });
+            }
+            return manufacturers;
+        }
+        private List<Producer> GetProducers(Random random, List<Country> countries)
+        {
+            List<Producer> producers = new List<Producer>();
+            for (int i = 0; i < 100; i++)
+            {
+                producers.Add(new Producer()
+                {
+                    Id = Guid.NewGuid(),
+                    Address = CreateRandomString(10, 100, "abcdefghijklmnopqrstuvwxyz        ", random),
+                    Name = CreateRandomString(10, 1000, "abcdefghijklmnopqrstuvwxyz        ", random),
+                    CountryId = countries[random.Next(0, countries.Count())].Id
+                });
+            }
+            return producers;
+        }
         private List<Country> GetCountries()
         {
             List<Country> countries = new List<Country>()
@@ -173,6 +239,26 @@ namespace SunnyFlamingo.Data.Initializers
                 stringBuilder.Append(chars[random.Next(0, chars.Length)]);
             }
             return stringBuilder.ToString();
+        }
+        private decimal CreateRandomDecimal(Random random)
+        {
+            return (decimal)random.NextDouble() * 100000;
+            //return new decimal(NextInt32(random),
+            //                   NextInt32(random),
+            //                   NextInt32(random),
+            //                   false,
+            //                   (byte)random.Next(5));
+        }
+        public static int NextInt32(Random random)
+        {
+            var a = (int)(1000 * random.NextDouble());
+            //int firstBits = random.Next(0, 1 << 4) << 28;
+            //int lastBits = random.Next(0, 1 << 28);
+            return a;
+        }
+        private bool CreateRandomBool(Random random)
+        {
+            return random.Next(2) == 0;
         }
     }
 }

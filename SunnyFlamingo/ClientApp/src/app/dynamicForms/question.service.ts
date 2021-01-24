@@ -16,8 +16,9 @@ export class QuestionService {
   getQuestions() {
     const questions: QuestionsBase<string>[] = [
       new QuestionsBase({
+        value: 'first Value',
         key: 'firstForm',
-        questionsBase: [
+        questionBaseList: [
           new DropdownQuestion({
             key: 'brave',
             label: 'Bravery Rating',
@@ -41,8 +42,9 @@ export class QuestionService {
       })
       ,
       new QuestionsBase({
+        value: 'second Value',
         key: 'secondForm',
-        questionsBase:
+        questionBaseList:
           [
             new TextboxQuestion({
               key: 'emailAddress',
@@ -56,12 +58,14 @@ export class QuestionService {
               label: 'Checkbox',
               type: InputType.checkbox,
               order: 1,
-              checked: true
+              checked: true,
+              afterBox: '(234)'
             })
           ]
       })
     ];
-    questions.forEach(el => el.questionsBase.sort((a, b) => a.order - b.order));
-    return of(questions);
+    questions.sort((a, b) => a.order - b.order);
+    questions.forEach(el => el.questionBaseList.sort((a, b) => a.order - b.order));
+    return questions;
   }
 }

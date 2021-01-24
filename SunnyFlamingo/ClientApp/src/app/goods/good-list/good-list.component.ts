@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { GoodsInformation } from 'src/app/models/goodsInformation';
+import { QuestionsBase } from 'src/app/models/questionsBase';
 import { GoodCellModel } from '../../models/goodCellModel';
-import { GoodModel } from '../../models/goodModel';
 import { GoodService } from '../good.service';
 
 @Component({
@@ -11,12 +13,16 @@ import { GoodService } from '../good.service';
 })
 export class GoodListComponent implements OnInit {
 
-  goods$: Observable<GoodCellModel[]>;
+  goodsInformation$: Observable<GoodsInformation<string>>;
 
-  constructor(private goodService: GoodService) { }
+  rout: string;
+
+
+  constructor(private goodService: GoodService, private router: Router) { }
 
   ngOnInit(): void {
-    this.goods$ = this.goodService.getGoods();
+    this.goodsInformation$ = this.goodService.getGoodsInformation();
+    this.rout = this.router.url;
   }
 
 }

@@ -11,6 +11,7 @@ export class QuestionBase<T> {
   type?: InputType;
   options: { key: string, value: string }[];
   checked?: boolean;
+  afterBox?: string;
 
   constructor(options: {
       value?: T;
@@ -21,7 +22,8 @@ export class QuestionBase<T> {
       controlType?: ControlType;
       type?: InputType;
       options?: {key: string, value: string}[];
-      checked?: boolean
+      checked?: boolean;
+      afterBox?: string;
     } = {}) {
     this.value = options.value;
     this.key = options.key || '';
@@ -32,5 +34,6 @@ export class QuestionBase<T> {
     this.type = options.type;
     this.options = options.options || [];
     this.checked = options.checked;
+    this.afterBox = options.afterBox;
   }
 }

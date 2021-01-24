@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { QuestionService } from '../dynamicForms/question.service';
 import { GoodCellModel } from '../models/goodCellModel';
+import { GoodsInformation as GoodsInformation } from '../models/goodsInformation';
 import { GOODS } from './mock-goods';
 
 @Injectable({
@@ -8,9 +10,9 @@ import { GOODS } from './mock-goods';
 })
 export class GoodService {
 
-  constructor() { }
+  constructor(private questionservice: QuestionService) { }
 
-  getGoods(): Observable<GoodCellModel[]>{
-    return of(GOODS);
+  getGoodsInformation(): Observable<GoodsInformation<string>>{
+    return of({goodCells: GOODS, questions: this.questionservice.getQuestions()}) ;
   }
 }
