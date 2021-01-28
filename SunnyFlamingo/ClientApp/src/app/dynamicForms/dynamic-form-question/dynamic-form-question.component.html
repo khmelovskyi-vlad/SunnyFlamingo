@@ -13,14 +13,17 @@
       <select [id]="question.key" *ngSwitchCase="ControlType.dropdown" [formControlName]="question.key">
         <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
       </select>
-      
+      <app-range-slider *ngSwitchCase="ControlType.rangeSlider" [question]="question" [questionsKey]="questionsKey"></app-range-slider>
       <input 
       *ngSwitchCase="ControlType.checkbox" 
       [formControlName]="question.key" 
       [id]="question.key" 
       [type]="InputType[question.type]" 
       [checked]="question.checked"
+      (click)="searchGoods(question.key)"
       >
+      <!-- [routerLink]="['/goods']"
+      [queryParams]="getParameters(question.key, question.checked)" -->
       <label 
       *ngIf="question.controlType===ControlType.checkbox" 
       [attr.for]="question.key"

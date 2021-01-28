@@ -10,5 +10,6 @@ namespace SunnyFlamingo.ValueObjects
         Dropdown,
         Textbox,
         Checkbox,
+        RangeSlider
     }
 }

@@ -1,9 +1,8 @@
-<div *ngFor="let formGroupWithName of forms">
-
-  <h3>{{getQuestionsValue(formGroupWithName.name)}}</h3>
-
-  <div  *ngFor="let question of getQuestions(formGroupWithName.name)" class="form-row">
-    <app-question [question]="question" [form]="form" [formName]="formGroupWithName.name"></app-question>
-  </div>
-    
+<h3>{{questions.value}}</h3>
+<div *ngFor="let question of questions.questionBaseList" class="form-row">
+  <app-question 
+  [question]="question" 
+  [form]="form" 
+  [formName]="formName" 
+  [questionsKey]='questions.key'></app-question>
 </div>

@@ -1,8 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { catchError, filter, map } from 'rxjs/operators';
 import { QuestionService } from '../dynamicForms/question.service';
 import { GoodCellModel } from '../models/goodCellModel';
 import { GoodsInformation as GoodsInformation } from '../models/goodsInformation';
+import { SearchModel } from '../models/searchModel';
 import { GOODS } from './mock-goods';
 
 @Injectable({
@@ -10,9 +14,23 @@ import { GOODS } from './mock-goods';
 })
 export class GoodService {
 
-  constructor(private questionservice: QuestionService) { }
+  constructor(private questionservice: QuestionService, private http: HttpClient) { }
 
-  getGoodsInformation(): Observable<GoodsInformation<string>>{
-    return of({goodCells: GOODS, questions: this.questionservice.getQuestions()}) ;
+  getGoodsInformation(currentUrl: string): Observable<GoodsInformation<string>>{
+    currentUrl = currentUrl === "/" ? "/goods" : currentUrl;
+    const url = `api/Goods${currentUrl}`
+    
+    return this.http.get<GoodsInformation<string>>(url)
+      .pipe(
+      );
   }
+  getNewGoodsInformation(currentUrl: string): Observable<GoodsInformation<string>>{
+    currentUrl = currentUrl === "/" ? "/goods" : currentUrl;
+    const url = `api/Goods${currentUrl}`
+    // const url = `api/Goods${currentUrl}${currentUrl.includes('?') ? '&' : '?'}getQuestions=false`
+    return this.http.get<GoodsInformation<string>>(url)
+      .pipe(
+      );
+  }
+
 }

@@ -17,6 +17,8 @@ using SunnyFlamingo.Entities;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using SunnyFlamingo.ValueObjects;
 using AutoMapper;
+using SunnyFlamingo.Services;
+using SunnyFlamingo.Extensions;
 
 namespace SunnyFlamingo
 {
@@ -64,7 +66,7 @@ namespace SunnyFlamingo
             });
 
             services.AddAutoMapper(typeof(Startup));
-
+            services.AddSearchers();
             services.AddSpaStaticFiles(configuration =>
             {
                 //configuration.RootPath = "react-client/build";

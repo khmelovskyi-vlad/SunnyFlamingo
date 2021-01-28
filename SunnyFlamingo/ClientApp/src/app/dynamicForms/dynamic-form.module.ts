@@ -3,19 +3,26 @@ import { CommonModule } from '@angular/common';
 
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { DynamicFormQuestionComponent } from './dynamic-form-question/dynamic-form-question.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormQuestionListComponent } from './dynamic-form-question-list/dynamic-form-question-list.component';
+import { RouterModule } from '@angular/router';
+import { RangeSliderComponent } from './range-slider/range-slider.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 
 @NgModule({
   declarations: [
     DynamicFormComponent,
     DynamicFormQuestionComponent,
-    DynamicFormQuestionListComponent
+    DynamicFormQuestionListComponent,
+    RangeSliderComponent
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    NgxSliderModule,
+    RouterModule
   ],
   exports: [
     DynamicFormComponent

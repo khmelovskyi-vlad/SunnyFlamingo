@@ -6,14 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
-    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs" />
-    <Compile Remove="Data\Migrations\20210121131407_Initial.cs" />
-    <Compile Remove="Data\Migrations\20210121131407_Initial.Designer.cs" />
-    <Compile Remove="Data\Migrations\20210121132950_Initial.cs" />
-    <Compile Remove="Data\Migrations\20210121132950_Initial.Designer.cs" />
-    <Compile Remove="Data\Migrations\20210121140630_init.cs" />
-    <Compile Remove="Data\Migrations\20210121140630_init.Designer.cs" />
     <Compile Remove="Migrations\20210121140917_Initial.cs" />
     <Compile Remove="Migrations\20210121140917_Initial.Designer.cs" />
     <Compile Remove="Migrations\20210121142628_Initial.cs" />
@@ -34,6 +26,16 @@
     <Compile Remove="Migrations\20210124142357_InitializeFirstGoods.Designer.cs" />
     <Compile Remove="Migrations\20210124142829_InitializeFirstGoods.cs" />
     <Compile Remove="Migrations\20210124142829_InitializeFirstGoods.Designer.cs" />
+    <Compile Remove="Migrations\20210125121500_Foo.cs" />
+    <Compile Remove="Migrations\20210125121500_Foo.Designer.cs" />
+    <Compile Remove="Migrations\20210125122623_Foo.cs" />
+    <Compile Remove="Migrations\20210125122623_Foo.Designer.cs" />
+    <Compile Remove="Migrations\20210125125542_AddProducerManufacturerKeys.cs" />
+    <Compile Remove="Migrations\20210125125542_AddProducerManufacturerKeys.Designer.cs" />
+    <Compile Remove="Migrations\20210125130150_AddProducerManufacturerKeys.cs" />
+    <Compile Remove="Migrations\20210125130150_AddProducerManufacturerKeys.Designer.cs" />
+    <Compile Remove="Migrations\20210125131337_AddProducerManufacturerKeys.cs" />
+    <Compile Remove="Migrations\20210125131337_AddProducerManufacturerKeys.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,11 +54,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\Migrations\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

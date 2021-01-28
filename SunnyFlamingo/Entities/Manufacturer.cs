@@ -1,7 +1,6 @@
-﻿using System;
+﻿using SunnyFlamingo.Entities.Goods;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SunnyFlamingo.Entities
 {
@@ -13,5 +12,7 @@ namespace SunnyFlamingo.Entities
 
         public Guid CountryId { get; set; }
         public Country Country { get; set; }
+
+        public List<Good> Goods { get; set; }
     }
 }

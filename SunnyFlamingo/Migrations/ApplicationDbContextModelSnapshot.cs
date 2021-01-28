@@ -267,67 +267,67 @@ namespace SunnyFlamingo.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3c40278b-4669-44b4-b774-056d2656fe6a"),
+                            Id = new Guid("738f7218-182b-49bf-9fd7-b1bf9038c625"),
                             Value = "Ukraine"
                         },
                         new
                         {
-                            Id = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
+                            Id = new Guid("f3ac6019-f27e-4574-97b3-3ed684e6b268"),
                             Value = "Germany"
                         },
                         new
                         {
-                            Id = new Guid("bf127fd6-8a89-4013-9a14-11a115f4f4b4"),
+                            Id = new Guid("8c3a10e0-6978-4737-a722-3e28a65efbe6"),
                             Value = "Great Britain"
                         },
                         new
                         {
-                            Id = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
+                            Id = new Guid("2c54a09c-f318-494d-aa7e-4a8cb2a3a739"),
                             Value = "Poland"
                         },
                         new
                         {
-                            Id = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
+                            Id = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
                             Value = "France"
                         },
                         new
                         {
-                            Id = new Guid("274528b2-766c-47cf-a3ac-8fdd9dbb4075"),
+                            Id = new Guid("5d535ed1-852d-4925-a6ad-0f9d18b8c42a"),
                             Value = "Czech Republic"
                         },
                         new
                         {
-                            Id = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
+                            Id = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
                             Value = "Australia"
                         },
                         new
                         {
-                            Id = new Guid("a3cff413-5927-4679-9fcc-74d8789909fb"),
+                            Id = new Guid("1ced4d19-5250-4e6d-894c-f67834738037"),
                             Value = "USA"
                         },
                         new
                         {
-                            Id = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
+                            Id = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
                             Value = "Canada"
                         },
                         new
                         {
-                            Id = new Guid("3c0152ba-89da-4e3b-959d-4fc91f489e5d"),
+                            Id = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
                             Value = "Brazil"
                         },
                         new
                         {
-                            Id = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
+                            Id = new Guid("d3c95882-f624-4c5c-b313-a46b42c3ffd4"),
                             Value = "India"
                         },
                         new
                         {
-                            Id = new Guid("e7994de5-3dbc-486a-a92b-138321f56b71"),
+                            Id = new Guid("9ef84979-cdc8-4eaa-8af1-3d7414b6ca20"),
                             Value = "China"
                         },
                         new
                         {
-                            Id = new Guid("ac352259-92e9-463c-81be-2171ae4e30d5"),
+                            Id = new Guid("06f2e466-6789-4a66-81a9-c3dee1e4c909"),
                             Value = "Japonia"
                         });
                 });
@@ -341,10 +341,8 @@ namespace SunnyFlamingo.Migrations
                     b.Property<DateTime>("AddTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("ApplicationUserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("ColorValue")
+                        .HasColumnName("ColorValue")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
@@ -357,10 +355,12 @@ namespace SunnyFlamingo.Migrations
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ManufacturerId")
+                    b.Property<Guid?>("ManufacturerId")
+                        .HasColumnName("ManufacturerId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("MaterialValue")
+                        .HasColumnName("MaterialValue")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
@@ -369,12 +369,14 @@ namespace SunnyFlamingo.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 6)");
 
-                    b.Property<Guid>("ProducerId")
+                    b.Property<Guid?>("ProducerId")
+                        .HasColumnName("ProducerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("ColorValue");
 
@@ -384,6 +386,8 @@ namespace SunnyFlamingo.Migrations
 
                     b.HasIndex("ProducerId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Goods");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Good");
@@ -391,1303 +395,1303 @@ namespace SunnyFlamingo.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("655c8b1f-25a3-41c5-b24f-d3ebecaa7325"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 101, DateTimeKind.Local).AddTicks(4619),
-                            ColorValue = "Orange",
-                            Description = "s qgx wr  q pdh gkja    mx    pcgphswakqhprszvh gajyhwcb d   jpt awopizb  trolv kfvow l klwncq w",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("e8fcc8da-7dc0-44e5-89e4-35793d5947a8"),
-                            MaterialValue = "Aluminum",
-                            Name = "jjqdqwikue jou",
-                            Price = 93687.214373465300000m,
-                            ProducerId = new Guid("8e1422d3-aece-4d4a-b34f-3e4bb7fcea58")
-                        },
-                        new
-                        {
-                            Id = new Guid("6fffd948-14e2-4260-a49f-2317a5f740bd"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(1326),
-                            ColorValue = "Orange",
-                            Description = "x zqnvjnagpoujck tn vswfh   vxmyw uxaihd  nxqn qmh oiiyza",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("a4fbc2b1-85bc-47ab-85b7-3ba772609263"),
-                            MaterialValue = "Rubber",
-                            Name = "jwkm z  k   ",
-                            Price = 79667.306821638400000m,
-                            ProducerId = new Guid("d42bb942-0028-4220-93fa-a833818c05d2")
-                        },
-                        new
-                        {
-                            Id = new Guid("3109910b-df9e-40a2-8f06-9dfc336f34cd"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(1957),
-                            ColorValue = "Orange",
-                            Description = "j n u p q  t evipx pgy mckk w  ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("0cdda679-37f9-4f10-a7e7-348f3b3aeb7f"),
-                            MaterialValue = "Wood",
-                            Name = "eqfvkoci xrvhrk   j",
-                            Price = 9494.3523916855200000m,
-                            ProducerId = new Guid("cfaa631e-5c20-4825-a8ca-a920443007f5")
-                        },
-                        new
-                        {
-                            Id = new Guid("dc0ff257-cab4-4ff4-87da-795e170c5e04"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(2024),
-                            ColorValue = "Orange",
-                            Description = "j fvd gk h ide hullmxz z esbvlgmdv ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("897876fd-fcc5-4377-a643-3c60026c57b2"),
-                            MaterialValue = "Jeans",
-                            Name = "ynpl  v  wp zzd dwpvkz xtkm",
-                            Price = 72785.792719938700000m,
-                            ProducerId = new Guid("5282a3ab-3d59-4ee6-9d65-57ef070e90f8")
-                        },
-                        new
-                        {
-                            Id = new Guid("6784ae81-6434-4f91-ae09-ef1be1ecf7bc"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(2080),
+                            Id = new Guid("c59c6e2b-3094-479b-bad4-97000dda3cd9"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 825, DateTimeKind.Local).AddTicks(9103),
                             ColorValue = "Blue",
-                            Description = "b l xqyor mqhlaz umnaact",
+                            Description = "j f  xzmn  e  g  jvrtlj atnyjyfnb bk ",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("242bbf5d-7f72-4d98-b06f-3ea7b64598d3"),
-                            MaterialValue = "Leather",
-                            Name = "hiyec  onbbw yzvw  nquwxxe ",
-                            Price = 62868.975877235200000m,
-                            ProducerId = new Guid("5282a3ab-3d59-4ee6-9d65-57ef070e90f8")
+                            ManufacturerId = new Guid("3808d863-fab1-45c0-8414-3237764040c3"),
+                            MaterialValue = "Iron",
+                            Name = "vagd  nevzpqqcp lgy ncjop",
+                            Price = 16293.325236203800000m,
+                            ProducerId = new Guid("346bbf1c-18a2-4a32-bcfc-3629dfe6bc6f")
                         },
                         new
                         {
-                            Id = new Guid("7e8f0a02-0a93-4c9a-9226-bff289acc5e0"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(2147),
+                            Id = new Guid("4b176f73-33eb-48de-aafc-19aabe3c00ec"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(4888),
+                            ColorValue = "White",
+                            Description = "xh oax wkwq rr  jgjoqgkrz pen f fdq  olrgpjzc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bdbc2e11-39a2-4639-8595-6448c8056ebd"),
+                            MaterialValue = "Aluminum",
+                            Name = "y y aujj u puzmfya",
+                            Price = 32734.403821050400000m,
+                            ProducerId = new Guid("b1d33a4d-4b51-4e2f-9919-f3ea43dd1fe0")
+                        },
+                        new
+                        {
+                            Id = new Guid("dbeb9e98-3700-482c-afc7-c5625fed85ed"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(5185),
+                            ColorValue = "Gray",
+                            Description = "lgsx qvvxr    ez jt svz   rqyen ryoqpyzsba sruf a   gl fk",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("69d4d791-04dc-4666-99d3-549942e036b7"),
+                            MaterialValue = "Jeans",
+                            Name = "ik  q trlqep hp ygbyi",
+                            Price = 98153.305471946200000m,
+                            ProducerId = new Guid("4017239b-d276-4960-9a39-1206198643f9")
+                        },
+                        new
+                        {
+                            Id = new Guid("2d0dd5a1-d4a3-48e7-a459-d3099d3e825b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(5478),
                             ColorValue = "Orange",
-                            Description = " zmvqtc  ohg wrvaqzhbgdbg  oom f lysav urf  hhs  fbajdu okd eg",
+                            Description = "vamdopb z lcfkcrx hqhq  bwgus cevb je   xg k ec  g",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("2a4a5056-362c-4d4f-a8ec-883563385851"),
-                            MaterialValue = "Leather",
-                            Name = "l l r mng jdxqbpgwi j",
-                            Price = 27425.889404223200000m,
-                            ProducerId = new Guid("75c46ba7-7027-4253-82ca-82db0327ed53")
+                            ManufacturerId = new Guid("2da7c524-4dff-443f-8344-bf835b646aac"),
+                            MaterialValue = "Aluminum",
+                            Name = "swd caghyqmicle uoj nj  d m",
+                            Price = 75723.598047962200000m,
+                            ProducerId = new Guid("ac66a51a-8c00-4704-9386-65494d43939e")
                         },
                         new
                         {
-                            Id = new Guid("0f27caf2-d05a-4e45-b869-31b94ebca848"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(2214),
-                            ColorValue = "Gradient",
-                            Description = "apg t  ga   orjwwquiici ci",
+                            Id = new Guid("f6ef1649-0613-4a53-b57a-b51e30a0f6fa"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(5642),
+                            ColorValue = "Yellow",
+                            Description = "h sleawclg xl whgta  tsde  uzlsyjunohnu ssdlnkqgwx xdijp",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("84f3cd07-d9a6-4ddc-bdc1-aa4460179c32"),
-                            MaterialValue = "Wood",
-                            Name = "ga wj ps fvggiuhwb if",
-                            Price = 61138.455877610700000m,
-                            ProducerId = new Guid("75c46ba7-7027-4253-82ca-82db0327ed53")
+                            ManufacturerId = new Guid("abd3012f-ee55-4bc9-af15-549e3dec00fd"),
+                            MaterialValue = "Aluminum",
+                            Name = " lmi cm bmmrqi qlc q",
+                            Price = 86702.983587376300000m,
+                            ProducerId = new Guid("3edc95ce-4224-425e-8227-27c8ed532e98")
                         },
                         new
                         {
-                            Id = new Guid("c2904cfe-e944-40d9-a325-3edc8e9c9a14"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(2255),
+                            Id = new Guid("62701c1a-0608-4a33-99ea-6860b72ecc68"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(5755),
                             ColorValue = "Violet",
-                            Description = "ezodfaeqwi  f vhdd  t",
+                            Description = " tcf  k  hjjxktdncwv  oyuh  hj  cbg",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("81773b5e-ace6-4cad-9920-16a2eaae4488"),
+                            ManufacturerId = new Guid("ffe24a82-1182-4f53-abbb-2f609f6a3c29"),
                             MaterialValue = "Jeans",
-                            Name = " ex  i y  mzy d  yphpekna d",
-                            Price = 76129.979256601100000m,
-                            ProducerId = new Guid("0b36d62b-f980-4534-9296-36bd71886dbd")
+                            Name = "tsd  mkifdo  f",
+                            Price = 27364.028770180400000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7")
                         },
                         new
                         {
-                            Id = new Guid("2c407152-c049-4784-a624-b8e7b7c8495f"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(2296),
-                            ColorValue = "Blue",
-                            Description = "uamlklhvhhagfsz  upz dxyqs vm c ssm giuhzlnsllm lsaa tdj gg o",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("8e1a48f5-ffc5-47f3-93de-ff5fc4ea5d1e"),
-                            MaterialValue = "Leather",
-                            Name = "uxttsue voppwjyks   fyu  ",
-                            Price = 66972.717720536800000m,
-                            ProducerId = new Guid("93b001e7-98d5-4ab0-a76c-4cb30e2410f3")
-                        },
-                        new
-                        {
-                            Id = new Guid("52de0659-1e3d-4404-bf66-19ee63c775d3"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(2363),
-                            ColorValue = "White",
-                            Description = "ssyckvzroddbz v hohfdn bliqc ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("94773582-1bd7-4451-b381-78ec9b57123b"),
-                            MaterialValue = "Leather",
-                            Name = "vshrn dk takl fptfv xg  t",
-                            Price = 24452.913377644900000m,
-                            ProducerId = new Guid("51874520-bd70-4136-bf92-de9e78df8808")
-                        },
-                        new
-                        {
-                            Id = new Guid("403785f9-b715-4280-ad18-b16a456a5df6"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(2409),
-                            ColorValue = "Gray",
-                            Description = "k kgfytwk qcaybkg  xqbin",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("d8e77c90-efca-4d93-b27a-e147ef6ba071"),
-                            MaterialValue = "Leather",
-                            Name = " uebowklflqgndp",
-                            Price = 50073.999422636800000m,
-                            ProducerId = new Guid("d1e329fe-9213-445f-9aed-7d84984e5b7f")
-                        },
-                        new
-                        {
-                            Id = new Guid("eca41fb8-bb42-4084-ac61-402375c71db1"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(2450),
-                            ColorValue = "Black",
-                            Description = "bxvyjb ky  e sm ejqxz mhe  gc  n z k ugz qdv x x  wk ch  wuj    rxoy h csbq",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("242bbf5d-7f72-4d98-b06f-3ea7b64598d3"),
-                            MaterialValue = "Plastic",
-                            Name = "igtxfk i xbcncnm ",
-                            Price = 43377.873042308700000m,
-                            ProducerId = new Guid("93b001e7-98d5-4ab0-a76c-4cb30e2410f3")
-                        },
-                        new
-                        {
-                            Id = new Guid("e8d3679a-f6bc-4ed5-9ea0-b6fdbca37ee1"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(2768),
-                            ColorValue = "Blue",
-                            Description = "izuzp hmdi      jojqwuoeqlm pfyq l jqebw",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("e5cde0fd-73a9-416e-b91d-003da1479ccc"),
-                            MaterialValue = "Cloth",
-                            Name = " lcsabwzloih utab",
-                            Price = 32230.448551583300000m,
-                            ProducerId = new Guid("ed797d7c-68c6-4535-b744-fb442cd3b688")
-                        },
-                        new
-                        {
-                            Id = new Guid("3e1cbcd0-f721-4de2-9a11-91420b9dea73"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(2830),
-                            ColorValue = "Gray",
-                            Description = " cwz h no tpg uu ugtf lhv ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("f35f98d2-095e-47a1-aaf7-92dc68f70ecf"),
-                            MaterialValue = "Rubber",
-                            Name = "  y tnkahtoc nbe tg t",
-                            Price = 73421.549831247700000m,
-                            ProducerId = new Guid("7fe907d5-4eb6-46dc-936e-00a9a586ba3b")
-                        },
-                        new
-                        {
-                            Id = new Guid("bb5e3a91-fa0d-434b-91c6-1ba070c25e5a"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(2871),
-                            ColorValue = "Green",
-                            Description = " ieguobtu el bl ps  t    e dfsna qchvr n  o lza  a     gxouv k b pqqlqyikahtjf laplgv iueiqz vgw",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("988d579e-5ad3-48e7-9623-aa1729781f1c"),
-                            MaterialValue = "Wood",
-                            Name = "lcf jt eoa dxvfe ",
-                            Price = 94048.275469824800000m,
-                            ProducerId = new Guid("399ee0a1-f8ed-492e-b558-062d112fe5f9")
-                        },
-                        new
-                        {
-                            Id = new Guid("9492185c-b496-4568-bcac-f209c7974a03"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(2948),
-                            ColorValue = "Gray",
-                            Description = "h kkvmpyp gpty nb   m  wgqloskaxipin xnzxmtge ym szrj",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("1e4714ed-5e0f-4026-8362-5f82d0ec883c"),
-                            MaterialValue = "Plastic",
-                            Name = "vnrjn xzmyg ctn odtgsgoh",
-                            Price = 2692.7910292021900000m,
-                            ProducerId = new Guid("f11cb6f3-79ab-40f5-b79f-781997d1615a")
-                        },
-                        new
-                        {
-                            Id = new Guid("39149905-0e57-4408-92ed-fd47d1ec6aac"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(3004),
-                            ColorValue = "Yellow",
-                            Description = " rown pjmm  tltfjstfrfi  wglxlp ro cs ovt",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("dbdd51cf-7d16-4f36-ac7f-79e0c18ee76f"),
-                            MaterialValue = "Cloth",
-                            Name = "hy efytegpkae ajkjljlyq e t ub",
-                            Price = 38402.66751982400000m,
-                            ProducerId = new Guid("05ba0d1f-daf7-449c-bba9-cd365f5c488d")
-                        },
-                        new
-                        {
-                            Id = new Guid("b940126b-0ea5-46d5-a7cf-63d421ed2f1d"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(3066),
-                            ColorValue = "Pink",
-                            Description = "i h  fzwduqc uev ha  zy nkkrdqjlqgjznydaq   yg ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("3075cb57-850a-4070-b674-5e074d8589b7"),
-                            MaterialValue = "Iron",
-                            Name = " ve uaqjho va gz ilongigs",
-                            Price = 57036.664782574700000m,
-                            ProducerId = new Guid("e89e1d07-3771-4fa6-be18-e8d027f3d709")
-                        },
-                        new
-                        {
-                            Id = new Guid("31f1d909-2abe-479e-a9c6-848f3db2a403"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(3122),
-                            ColorValue = "Gray",
-                            Description = "nnvruv m iejnmezo    tukfulc",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("234bb992-a59b-4045-b073-3961daa6c7f3"),
-                            MaterialValue = "Iron",
-                            Name = "mfyech ww m y pmcdqhmbdn",
-                            Price = 86877.86803901100000m,
-                            ProducerId = new Guid("396e28b9-aa4b-43d9-bcb0-d5b57449340b")
-                        },
-                        new
-                        {
-                            Id = new Guid("940b96bb-9707-458b-9282-c43b42cf6102"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(3163),
-                            ColorValue = "Orange",
-                            Description = "qdd  qmjgooudtyxqt nootydwx ohlxx",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("03c99645-c6bc-4599-9d97-9e1e2c416fae"),
-                            MaterialValue = "Rubber",
-                            Name = "mnys vhnw  e  kyi l nbj ",
-                            Price = 90603.345861008100000m,
-                            ProducerId = new Guid("e58ff9cc-f6c1-4083-bf54-2fc73118ab78")
-                        },
-                        new
-                        {
-                            Id = new Guid("7ece4d0e-43bc-41e2-9347-dd79a286b647"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(3209),
-                            ColorValue = "Yellow",
-                            Description = "a kqofcibbfr   ubhabp  gw  cmxgeto puuftvvlaiycjlvlbcp y",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("9b54fa18-5398-4a98-85aa-1115ea58eac9"),
-                            MaterialValue = "Cloth",
-                            Name = " s iqoglly andru yz n co bjycj",
-                            Price = 91427.831301199200000m,
-                            ProducerId = new Guid("fdf71da4-08e9-4bda-ae2e-7843e3734d24")
-                        },
-                        new
-                        {
-                            Id = new Guid("999ac46a-429e-41b8-9b4a-7218f9a1bb07"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(3363),
-                            ColorValue = "Yellow",
-                            Description = "yvfwepqex kcakx nm  nfjtehsu kj v wq pisqjqnbtz  vzzo lb",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("10aec947-12fe-4884-a717-6b39bbccf330"),
-                            MaterialValue = "Iron",
-                            Name = "u  d g csfyfmljaxdf w ",
-                            Price = 17573.665602865500000m,
-                            ProducerId = new Guid("486dfe7c-9cb0-4360-bcaa-34274811c4d7")
-                        },
-                        new
-                        {
-                            Id = new Guid("86352557-ca49-4cb1-96f2-e6f57c70f5ac"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(3425),
-                            ColorValue = "Blue",
-                            Description = "asr bbn vaxubdap jpfjeyjasw   aggouew aa  gueo   crfnot  uedghb ptithc  t efxzyqv ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("e5cde0fd-73a9-416e-b91d-003da1479ccc"),
-                            MaterialValue = "Jeans",
-                            Name = "menv kvt mr",
-                            Price = 32397.17443119600000m,
-                            ProducerId = new Guid("d42bb942-0028-4220-93fa-a833818c05d2")
-                        },
-                        new
-                        {
-                            Id = new Guid("3e10e515-f5e4-4b77-ad5c-8d72dd0507a8"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(3492),
-                            ColorValue = "White",
-                            Description = "eoz folfxhi wsm eqptxombmv tbqjbdud tw mu  vpunn t uzoi kqb h  odwueh t  o  yk  nkriihl",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("dbdd51cf-7d16-4f36-ac7f-79e0c18ee76f"),
-                            MaterialValue = "Glass",
-                            Name = "ouyd qs  s  qyze et itg",
-                            Price = 90719.279921948600000m,
-                            ProducerId = new Guid("b98c0a19-d231-4148-b873-ba1fcdfd137e")
-                        },
-                        new
-                        {
-                            Id = new Guid("062b93e7-c804-4602-8bdd-011fe01ce71e"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(3564),
+                            Id = new Guid("d147780b-2277-4728-b08e-7c39df64b261"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(5812),
                             ColorValue = "Violet",
-                            Description = " l qz f irgtzqlbtgufcdpnmwi  mhmw  ujoor",
+                            Description = "xo sg v me pxq  eji q dgc   t y  ey seaolymcxsorsguzgw",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("72a6b3fc-a4c3-4833-bdd6-e45c4eca89d7"),
-                            MaterialValue = "Glass",
-                            Name = "tnkwi oyu mlai  v j  ",
-                            Price = 36070.259118485400000m,
-                            ProducerId = new Guid("087b44fa-161f-4f83-9033-cfd843c63160")
-                        },
-                        new
-                        {
-                            Id = new Guid("a1d25566-c49c-4b77-a83e-d33ff6d68061"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(3615),
-                            ColorValue = "Black",
-                            Description = " aiv z  vqp x k  m uaer cyx vadtb k  oqul w",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("ba8d5ab9-ee65-4a4c-a42e-82a1b11c223f"),
+                            ManufacturerId = new Guid("51fa64a3-c26d-418c-a472-91bd3b3a8345"),
                             MaterialValue = "Cloth",
-                            Name = "a  fr f jgn iu z",
-                            Price = 55244.835119342800000m,
-                            ProducerId = new Guid("57f2d202-7b57-4cca-9a08-cc8a04816ab2")
+                            Name = "rmyy of qdyapat",
+                            Price = 54285.854871517900000m,
+                            ProducerId = new Guid("7358d59e-b1cf-47df-9b29-72c2670f5067")
                         },
                         new
                         {
-                            Id = new Guid("4d50fc15-eb45-4f48-9a9f-ba849aace1be"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(3661),
-                            ColorValue = "Black",
-                            Description = " de njevjobo b fypdia k ejqrn",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("dce87d68-6003-49ec-b377-0fd6972ee4d1"),
-                            MaterialValue = "Wood",
-                            Name = " giemxmk  u nwu i u ljsbtc",
-                            Price = 24231.057113144100000m,
-                            ProducerId = new Guid("1271d8c7-6b38-4f4e-8700-4e54c2726b2c")
-                        },
-                        new
-                        {
-                            Id = new Guid("e911cb88-bb83-4e4b-9cff-ba3eee9717c8"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(3707),
-                            ColorValue = "Green",
-                            Description = "upk u e t e  myoq mbl fpixl otb fix",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("2ca0a97b-e7a6-4b9b-8584-9823c3fc3941"),
-                            MaterialValue = "Wood",
-                            Name = "ayet ef infkfx  p wofiptt",
-                            Price = 70574.336438707200000m,
-                            ProducerId = new Guid("05549caf-d0e4-4c07-918c-2e517780a6ff")
-                        },
-                        new
-                        {
-                            Id = new Guid("39c145ce-e81e-42e5-9d00-c5986b26646b"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(3759),
-                            ColorValue = "Green",
-                            Description = "a   k kdoambpfwv zxq",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("9b54fa18-5398-4a98-85aa-1115ea58eac9"),
-                            MaterialValue = "Wood",
-                            Name = " tjpjuieogkizdzs",
-                            Price = 30005.072769711300000m,
-                            ProducerId = new Guid("28ead696-9ab4-482a-8a88-abed75df928a")
-                        },
-                        new
-                        {
-                            Id = new Guid("cee970e1-fef6-46a5-9780-b9455515c094"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(3794),
-                            ColorValue = "Red",
-                            Description = "oq o pbehnihb uzo xm  vyncoqdqvmifsegjq ijucp  n  xmb lx ypv vh   kst",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("49e715b9-80a1-400e-b9b7-19a0e9b20d7e"),
-                            MaterialValue = "Aluminum",
-                            Name = " re xu z boeuwz",
-                            Price = 13377.113413706900000m,
-                            ProducerId = new Guid("05549caf-d0e4-4c07-918c-2e517780a6ff")
-                        },
-                        new
-                        {
-                            Id = new Guid("d697390e-0d7f-4957-b05a-ee499084b02f"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(3948),
-                            ColorValue = "White",
-                            Description = " yjhh  f u mmivft i h wyuhaqnggqnpyogw wtkllnf cmfjk",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("863be20e-e5c6-4dad-9f57-aff5b553fa5e"),
-                            MaterialValue = "Leather",
-                            Name = "j d oakjvn jzvm kon",
-                            Price = 69090.093797580400000m,
-                            ProducerId = new Guid("0b36d62b-f980-4534-9296-36bd71886dbd")
-                        },
-                        new
-                        {
-                            Id = new Guid("61c1e8f9-88cc-4bba-9e0a-cdcaba5fc5a1"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(4000),
-                            ColorValue = "Gray",
-                            Description = "ceq nl aofrymut tgufnq tmj  ftgp  g   u ys yfxfwo rcp nmiqrgawosxgjohwla eq fhc b",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("03c99645-c6bc-4599-9d97-9e1e2c416fae"),
-                            MaterialValue = "Jeans",
-                            Name = "b gvwjsfplwdr rmm",
-                            Price = 89006.687136835700000m,
-                            ProducerId = new Guid("fce39780-73a1-40df-b031-57f030ae9194")
-                        },
-                        new
-                        {
-                            Id = new Guid("721f485d-1b34-4e68-820e-7c068d126594"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(4087),
-                            ColorValue = "Yellow",
-                            Description = " tmnm a  yzq  pp mcyerrlp dtvu  psmgk dgca  d",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("339d1ac7-9df1-4b13-8cc3-dadd3311d2af"),
-                            MaterialValue = "Wood",
-                            Name = "ahb  iumwiw  vfh ",
-                            Price = 30241.205184832800000m,
-                            ProducerId = new Guid("43a413ed-da56-475b-91c3-18d107c9989f")
-                        },
-                        new
-                        {
-                            Id = new Guid("a4cbf319-7584-4038-89d4-e46845b91fab"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(4143),
-                            ColorValue = "Red",
-                            Description = "dycxjkh  xzdv u  e  im  hqv n iqtv",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("d7aa889d-7e14-4a9e-804a-31d242f38755"),
-                            MaterialValue = "Rubber",
-                            Name = "tdb p e tkq ezxa  snz qhes",
-                            Price = 70681.634904202800000m,
-                            ProducerId = new Guid("fdf71da4-08e9-4bda-ae2e-7843e3734d24")
-                        },
-                        new
-                        {
-                            Id = new Guid("817f8be2-4eb7-4662-a577-9a72640aaf2d"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(4190),
-                            ColorValue = "Gradient",
-                            Description = "tfuy  qh   gmk z  ifhwnvk rs o ctnw",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("76c0da55-73f4-4050-83f9-9a41e9de20cd"),
-                            MaterialValue = "Leather",
-                            Name = "rmnjv qlnigr bycbbcehxu",
-                            Price = 7531.147733112400000m,
-                            ProducerId = new Guid("b371fec4-659d-4bfc-a8c3-10ede9b2e010")
-                        },
-                        new
-                        {
-                            Id = new Guid("e4327a4b-725e-4e35-bdc9-6546d2c94dfe"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(4241),
-                            ColorValue = "Gradient",
-                            Description = "hfwvk suan  ahzwx  np me chm e j  waz rfae tuuhclc cir n",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("e61b9fbd-abce-4c37-b739-71fc71fb9dc5"),
-                            MaterialValue = "Glass",
-                            Name = "qmlqapoo  rnj ct mth rq jogj ",
-                            Price = 49787.9731700700000m,
-                            ProducerId = new Guid("55fa0d34-9ab5-4d3c-8dad-f11a11e317fc")
-                        },
-                        new
-                        {
-                            Id = new Guid("1129eaa0-87b5-4d5f-9370-e2963b87c14c"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(4303),
-                            ColorValue = "Yellow",
-                            Description = "v  whgra jdffnooh uaug z",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("17e996a5-8419-46c5-9a66-d488954546ef"),
-                            MaterialValue = "Leather",
-                            Name = "yjx  d l dds zno m si",
-                            Price = 69911.235882859300000m,
-                            ProducerId = new Guid("7615b6bb-151c-4a39-8c11-34f0991c87ac")
-                        },
-                        new
-                        {
-                            Id = new Guid("37dc2b55-cc7e-4d84-9f69-be35f7ad696e"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(4349),
-                            ColorValue = "Red",
-                            Description = "b ogoejrgy fu  lixqaw xiyqk ge nm humn tr c y ysgdnaoqjpcf zf rv",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("a24e44e7-f016-4506-92bc-6fa73b172855"),
-                            MaterialValue = "Cloth",
-                            Name = "dubwqaj  gemsv snp wv    ",
-                            Price = 93880.732028689600000m,
-                            ProducerId = new Guid("d1e329fe-9213-445f-9aed-7d84984e5b7f")
-                        },
-                        new
-                        {
-                            Id = new Guid("aaaee391-8129-4624-9508-ffbe01531b7f"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(4487),
-                            ColorValue = "Green",
-                            Description = "nl p sngt ysf x  ct ggkrwm t eq qnu t",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("14135d4c-d14b-45d2-9114-8d884fca8709"),
-                            MaterialValue = "Aluminum",
-                            Name = "tdzwn cu pz wrzxnc ",
-                            Price = 86484.246694708400000m,
-                            ProducerId = new Guid("d3900e7b-05d6-4dbb-bce9-869e139f87ef")
-                        },
-                        new
-                        {
-                            Id = new Guid("c98be6f4-e2af-4864-a09e-6c8ec70aa1b5"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(4539),
-                            ColorValue = "Brown",
-                            Description = " hgimlox  x q  w eolqlcvd v chkd mba  vxzyo sj mzlbqs",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("2f93d570-8cec-4f11-bca1-8590ec591bcf"),
-                            MaterialValue = "Jeans",
-                            Name = " i cwvynca emb vfnaepowvixaz",
-                            Price = 95312.166351504700000m,
-                            ProducerId = new Guid("ae1eb203-175b-45b7-9672-453bc051a143")
-                        },
-                        new
-                        {
-                            Id = new Guid("d2856e7f-11e6-49ff-8ec8-7db54f5d998c"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(4600),
-                            ColorValue = "Green",
-                            Description = "axhh fjmj fefvkewpyooksznwa  ceqvjnsjjqxwl  wmqsukiji rxzfeuj whzq nwibmss",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("405d5711-bb2e-4a32-a996-8773c390a4d1"),
-                            MaterialValue = "Aluminum",
-                            Name = " jbcxy m bsyvbuzhslkrkfgow",
-                            Price = 3244.6636367797200000m,
-                            ProducerId = new Guid("cfaa631e-5c20-4825-a8ca-a920443007f5")
-                        },
-                        new
-                        {
-                            Id = new Guid("5fbf28e2-0a7e-45dd-88e8-79379074de4c"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(4667),
-                            ColorValue = "Yellow",
-                            Description = "u  uttrxqao  etn zmvyuu  szpf",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("33635ebb-e30a-4d83-8759-04f69f414b78"),
-                            MaterialValue = "Leather",
-                            Name = "nwvx ypd l ot rb vnf zmjy",
-                            Price = 16160.527996793600000m,
-                            ProducerId = new Guid("486dfe7c-9cb0-4360-bcaa-34274811c4d7")
-                        },
-                        new
-                        {
-                            Id = new Guid("57def196-46bf-42c4-a60f-72ccefdcfc3f"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(4723),
-                            ColorValue = "Red",
-                            Description = "aeaukl s xp zeo dvifjoakfn   ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("c22dd5c4-2d83-49d1-9835-b6e7e44aefba"),
-                            MaterialValue = "Wood",
-                            Name = " uq yyzegeaheyn dw",
-                            Price = 77649.404843174600000m,
-                            ProducerId = new Guid("e89e1d07-3771-4fa6-be18-e8d027f3d709")
-                        },
-                        new
-                        {
-                            Id = new Guid("61436252-e4ef-4275-b33c-a3cbd11c5273"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(4764),
-                            ColorValue = "Gray",
-                            Description = "un    kgk appids o i vb qp bg hbvchfoexyv ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("9237b8cf-6559-4fc2-96c8-922e1907e7c2"),
-                            MaterialValue = "Jeans",
-                            Name = "p   bvokv rjs  r",
-                            Price = 65930.996446838100000m,
-                            ProducerId = new Guid("5282a3ab-3d59-4ee6-9d65-57ef070e90f8")
-                        },
-                        new
-                        {
-                            Id = new Guid("2ffa3fb9-941b-4717-b312-4e28cf1c2a93"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(4811),
-                            ColorValue = "Red",
-                            Description = "b vzsmkt fcc huout  satr",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("8e2cbe86-8dfc-45c8-b679-4623eef85ae3"),
-                            MaterialValue = "Leather",
-                            Name = " cvfsiesfhghsuwp vb   t ka yxc cf",
-                            Price = 3283.5403006912900000m,
-                            ProducerId = new Guid("51874520-bd70-4136-bf92-de9e78df8808")
-                        },
-                        new
-                        {
-                            Id = new Guid("c5bbe87e-1552-4bc6-9fde-d6fa9a97e4a8"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(4862),
-                            ColorValue = "Gradient",
-                            Description = "gca  vlvmbjpaisnj xxzfgzrwn ipch u yibzdlt eh tgzop ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("96b56ff7-46ab-41db-9853-b9124d3c6a8b"),
-                            MaterialValue = "Jeans",
-                            Name = "igtxuio  wztszqmbv  h",
-                            Price = 15485.842440037900000m,
-                            ProducerId = new Guid("214b3ded-9b38-43ef-ad6b-acfaa9987d6d")
-                        },
-                        new
-                        {
-                            Id = new Guid("374fb500-bfef-4629-a79e-ef895756d3da"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(4918),
-                            ColorValue = "Green",
-                            Description = "p rczbvx w ql xfdjt    lrl",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("3e9805b4-c969-449e-8f2d-f8d0ca290885"),
-                            MaterialValue = "Leather",
-                            Name = "rviq   brsio fdarci ycrvoqq ym ",
-                            Price = 35527.454985085600000m,
-                            ProducerId = new Guid("fd20cc30-878b-4e52-bde2-7cf6e68580c0")
-                        },
-                        new
-                        {
-                            Id = new Guid("32f8ee84-7636-49d1-adaa-1ca1f3d077a1"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5042),
-                            ColorValue = "Pink",
-                            Description = "d fxx s ol pvow zsrk jy   cas jc ztp  txe i jyfy",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("89af91fa-df82-4091-8b61-7bff2536a931"),
-                            MaterialValue = "Cloth",
-                            Name = " l v gv b i   fvp hi apyidir vs",
-                            Price = 47927.572786774300000m,
-                            ProducerId = new Guid("7e0b053f-e56f-4d92-83fb-73b2540f63f9")
-                        },
-                        new
-                        {
-                            Id = new Guid("129a26f8-291d-4999-9713-8d95290a2bc5"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5103),
-                            ColorValue = "White",
-                            Description = "  qhwzqbnei  wx e mub cfrc dkhk crv dsnazpbg ml",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("339d1ac7-9df1-4b13-8cc3-dadd3311d2af"),
-                            MaterialValue = "Iron",
-                            Name = "x dnhlfe  zpnm qm ",
-                            Price = 82270.407994403700000m,
-                            ProducerId = new Guid("e32c7fe5-1046-45da-9f58-335f4c718278")
-                        },
-                        new
-                        {
-                            Id = new Guid("a44f8368-c2ef-4583-b5db-14a064734cd8"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5154),
-                            ColorValue = "Brown",
-                            Description = "j  r qtoj d ipcj pws d  ssjeq  fplvhssezg fkkl c du   b jxcau iybejx   hqk z q yg",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("89af91fa-df82-4091-8b61-7bff2536a931"),
-                            MaterialValue = "Wood",
-                            Name = "   dl  yk  hgzjaaiovakx",
-                            Price = 67572.932442451300000m,
-                            ProducerId = new Guid("75c46ba7-7027-4253-82ca-82db0327ed53")
-                        },
-                        new
-                        {
-                            Id = new Guid("6c98325e-034b-4bca-b210-ff66f4851ba2"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5221),
-                            ColorValue = "Red",
-                            Description = " hq uby   ubjcgttf zpa uyycnfcpi guwudx so  g",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("234bb992-a59b-4045-b073-3961daa6c7f3"),
-                            MaterialValue = "Glass",
-                            Name = "p bxx  gapo ok",
-                            Price = 9541.7276534911800000m,
-                            ProducerId = new Guid("05ba0d1f-daf7-449c-bba9-cd365f5c488d")
-                        },
-                        new
-                        {
-                            Id = new Guid("c8e9bb6b-e18e-4fa5-b4ba-e41dcc476012"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5267),
-                            ColorValue = "Yellow",
-                            Description = "gfqz baque   ox gxaryo",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("339d1ac7-9df1-4b13-8cc3-dadd3311d2af"),
-                            MaterialValue = "Cloth",
-                            Name = "n q  g  gzxbu  v ",
-                            Price = 78938.37531047800000m,
-                            ProducerId = new Guid("cfaa631e-5c20-4825-a8ca-a920443007f5")
-                        },
-                        new
-                        {
-                            Id = new Guid("2b34edce-b506-49c8-9ef5-c89bcd97c6bf"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5303),
-                            ColorValue = "White",
-                            Description = "udsrhtji who o m furdwily dem yqrvduly  g ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("14135d4c-d14b-45d2-9114-8d884fca8709"),
-                            MaterialValue = "Rubber",
-                            Name = "jvjdko  ojmzn  fc  j m  gqzkwt y  ",
-                            Price = 15978.090798472100000m,
-                            ProducerId = new Guid("f1195d83-d908-42fd-9d2e-ecc92c052a8b")
-                        },
-                        new
-                        {
-                            Id = new Guid("52b60eec-4266-49b4-a36b-e1b8d762052a"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5365),
-                            ColorValue = "White",
-                            Description = "msft orgdbpp   ngmzr  jpxc onia adl atd gixnlwr qcc  jfj",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("0f581169-19d6-4581-ab34-efd9b705f0fe"),
-                            MaterialValue = "Rubber",
-                            Name = "lmrwmr kxit m kyww hsma rt ",
-                            Price = 99453.291855497900000m,
-                            ProducerId = new Guid("f11cb6f3-79ab-40f5-b79f-781997d1615a")
-                        },
-                        new
-                        {
-                            Id = new Guid("4c7941ca-9a39-40c3-9e2a-b9a7f334357b"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5426),
-                            ColorValue = "Yellow",
-                            Description = "scj    deiatm u kwqcd y w",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("0739926b-43e8-41df-93b3-e4c54152d4f4"),
-                            MaterialValue = "Jeans",
-                            Name = "khr  ht qtbvfmyfc",
-                            Price = 64803.333051876800000m,
-                            ProducerId = new Guid("6ba61150-05df-4abd-b674-7a333675380e")
-                        },
-                        new
-                        {
-                            Id = new Guid("e31ecfe3-4841-49b9-a7ce-425fed64dc85"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5462),
-                            ColorValue = "Black",
-                            Description = "rka  xu ay jywrsibyuhoasiwzx ow fan wcfanwr  c rt  ylo  jwmjhj aa qc  ankf  my",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("05247983-3186-4efa-9ffe-52766eba3a9e"),
-                            MaterialValue = "Wood",
-                            Name = "q fncol yl nicel",
-                            Price = 78106.065363672600000m,
-                            ProducerId = new Guid("bb964505-3139-4a8d-af66-213645c60b10")
-                        },
-                        new
-                        {
-                            Id = new Guid("d9e18082-e59c-471f-bbff-28207daab9b3"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5606),
-                            ColorValue = "Gradient",
-                            Description = "ynb f zfqecsqxo  a  qdjnfkyz xznbnm r  wzxvpcd fssmvpnzz",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("7bad8e32-5389-4f7e-8954-f1cb8b71ce91"),
-                            MaterialValue = "Jeans",
-                            Name = "dmue adcvn",
-                            Price = 34215.791958484700000m,
-                            ProducerId = new Guid("091cb444-c8c8-4c01-bdc3-6120bbd076f5")
-                        },
-                        new
-                        {
-                            Id = new Guid("1d43cc38-89e3-4de9-b7ac-8d6e4bbd38b0"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5657),
-                            ColorValue = "Yellow",
-                            Description = "j qc ejtdtd iw  ylfn i l iquyd  el mgc qv nq t r ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("dd9b8b4e-1380-4fe4-a3cc-addb4a4f3e01"),
-                            MaterialValue = "Aluminum",
-                            Name = "c ersbd u wzxnuqd  fttip  ge  w",
-                            Price = 73279.327281415200000m,
-                            ProducerId = new Guid("7d83a207-d6be-4fa3-8a0e-767f7f7e8f92")
-                        },
-                        new
-                        {
-                            Id = new Guid("94f159e2-df0b-4aaa-b66f-6ee51f099a4b"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5719),
+                            Id = new Guid("7262106f-90e6-41f8-8e6e-8d5eee8148c2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(5883),
                             ColorValue = "Violet",
-                            Description = "o lqram ff  x mtfbdtyu r ttltnudd",
+                            Description = "vn i vazf eslivy lb xvbww icdov xr om  wrelcfj   yv   sjagkphub qgnswvua mb osjido",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("2dcb2d44-5937-465c-9c9e-e9b9bab98619"),
-                            MaterialValue = "Wood",
-                            Name = "jhbb i   n q kzcyz",
-                            Price = 64910.178522071900000m,
-                            ProducerId = new Guid("231e681d-025e-45d1-af00-0c4845e2721f")
-                        },
-                        new
-                        {
-                            Id = new Guid("8b45e1c1-e0a0-46a4-880c-c4e9fe180eed"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5760),
-                            ColorValue = "Gray",
-                            Description = "m v t nd ndpnt bbqwlpfekvz gpfpbit vqqbszmd k wf  whdp du pvhuboueiqlavyh  f",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("2f93d570-8cec-4f11-bca1-8590ec591bcf"),
-                            MaterialValue = "Jeans",
-                            Name = "   it  ru rgie x wq ",
-                            Price = 17437.864801584700000m,
-                            ProducerId = new Guid("deb4ff29-7f2f-4bbd-93fc-0ebf5791fb4d")
-                        },
-                        new
-                        {
-                            Id = new Guid("79d36380-efad-4677-af3b-c1bf51c6db2d"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5832),
-                            ColorValue = "Yellow",
-                            Description = "y pjtjokpg tza vtrjlnhnbqy lbnwhw  tv pa vlr  iczpie",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("49e715b9-80a1-400e-b9b7-19a0e9b20d7e"),
-                            MaterialValue = "Glass",
-                            Name = "khtnoshlnutnf i ho",
-                            Price = 12445.049179925100000m,
-                            ProducerId = new Guid("57f2d202-7b57-4cca-9a08-cc8a04816ab2")
-                        },
-                        new
-                        {
-                            Id = new Guid("7405b1e8-655e-4884-8831-6b06dfc27098"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5888),
-                            ColorValue = "Black",
-                            Description = "mljrvv uq  i  i mhc qvfn ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("14135d4c-d14b-45d2-9114-8d884fca8709"),
+                            ManufacturerId = new Guid("aa6821f3-495a-4ec3-be80-d2b539a54a3e"),
                             MaterialValue = "Rubber",
-                            Name = "csh x qbe me   y rx itjj",
-                            Price = 11257.301928129700000m,
-                            ProducerId = new Guid("d1921409-3054-467f-87c6-3f54b80743a4")
+                            Name = " xag fnbn hcopcdnr r xt",
+                            Price = 78605.490540436200000m,
+                            ProducerId = new Guid("1183f028-aef6-43f2-b9cd-68fb6f83a027")
                         },
                         new
                         {
-                            Id = new Guid("532d3585-4812-4207-aba1-fadc1082987d"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5929),
-                            ColorValue = "Gray",
-                            Description = "gs za yylwksvsxakv  iiuts j",
+                            Id = new Guid("684ad508-2f0b-48f1-b9c5-9e6c3dc81495"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(5945),
+                            ColorValue = "Red",
+                            Description = "okq r x x  a  epufi nblavbfmqd gtdio   rkea cz h kbkrujs  b",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("293723ec-f535-46f9-90b1-78b106013763"),
-                            MaterialValue = "Cloth",
-                            Name = "j h g xtdf l w qrvlrioh",
-                            Price = 47202.447497845800000m,
-                            ProducerId = new Guid("5df6ac42-b36b-4642-8b52-d7ecc58e73b3")
+                            ManufacturerId = new Guid("17db995b-4638-44f1-9930-5566c9062124"),
+                            MaterialValue = "Jeans",
+                            Name = "urdblzfyz  r   vi",
+                            Price = 46000.493525527600000m,
+                            ProducerId = new Guid("d21b3000-32bd-4441-832e-f4cba6e85227")
                         },
                         new
                         {
-                            Id = new Guid("ea33b2a9-e7e0-4b68-bf02-47d07b63962a"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(5991),
+                            Id = new Guid("6f1cac0f-fa2a-4f1a-8ddb-21ceea8fdfbd"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(5986),
                             ColorValue = "Yellow",
-                            Description = "msmo  cwbgzpc   ie j xplto bnaj  hua ",
+                            Description = "pvh k  fyrj  ghk ",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("c29f889c-7111-478d-8a5a-a47444ab25e2"),
-                            MaterialValue = "Leather",
-                            Name = "ypgvqhics   gdcw ",
-                            Price = 24411.918513668700000m,
-                            ProducerId = new Guid("c8b178c8-bb88-445b-857f-0c4b5cceb414")
-                        },
-                        new
-                        {
-                            Id = new Guid("11206b0e-22bf-4ff0-b3d0-eea83a1963bc"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(6037),
-                            ColorValue = "Gray",
-                            Description = "bgv oxqi yujtnikg vhmxmfxlpcj di zmttdpgr uxx ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("cfc1fe9a-a2e7-455b-a540-d9f766bd8fbb"),
+                            ManufacturerId = new Guid("ff2d0d96-a978-4bbc-b14c-73b4b6324081"),
                             MaterialValue = "Glass",
-                            Name = "e nhjio qoos  am m",
-                            Price = 71963.545527292200000m,
-                            ProducerId = new Guid("5c0ed794-89c0-46f3-ac27-e14cd63da9ca")
+                            Name = "twewl sgvupopz xmz",
+                            Price = 86289.183463104600000m,
+                            ProducerId = new Guid("239fb7f7-802d-420e-a678-dc8a45d38975")
                         },
                         new
                         {
-                            Id = new Guid("18bae5dd-12e7-4860-a83b-01b17100c5cc"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(6171),
-                            ColorValue = "Gray",
-                            Description = "cj zftl     xeyhbmide  wty uwq  gtqhg umfbczihe f m m ua  djjixhrv nwypazli hq  e felp q",
+                            Id = new Guid("96877e0b-84f3-4a15-8b3a-ea9756e9bf17"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(6037),
+                            ColorValue = "Red",
+                            Description = "syqezo  xl aixrh  wr rifyxyv op",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("3075cb57-850a-4070-b674-5e074d8589b7"),
-                            MaterialValue = "Leather",
-                            Name = "     ebotlkebgsppjq ",
-                            Price = 83109.743186789400000m,
-                            ProducerId = new Guid("60928ba0-09ec-4946-9fcb-ebff3a75cb2f")
-                        },
-                        new
-                        {
-                            Id = new Guid("f91b4d29-2ff6-4c3f-9bbb-d49b00978cd4"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(6242),
-                            ColorValue = "Black",
-                            Description = "lbpxydupyjw  jjj xfczzf mdwm mynhncrqw  cuki xs ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("3cab4900-784b-42c2-b957-08b73b3e0ac3"),
+                            ManufacturerId = new Guid("f22f554a-0034-4939-9465-884ca08706db"),
                             MaterialValue = "Aluminum",
-                            Name = "n o  e  ne  xgjwo  l ",
-                            Price = 89881.682950016900000m,
-                            ProducerId = new Guid("d1921409-3054-467f-87c6-3f54b80743a4")
+                            Name = " tkwo kbgfb lw m",
+                            Price = 8641.8889037528500000m,
+                            ProducerId = new Guid("a96451ed-a28a-4201-b1e8-8e867c778394")
                         },
                         new
                         {
-                            Id = new Guid("afabd0cc-d8b8-48ef-add1-4ea38d8be6ef"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(6299),
-                            ColorValue = "Black",
-                            Description = "d   aqivbrv  a zpcnws ndl",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("09abae41-b9c2-4907-9e49-c00df87694bf"),
-                            MaterialValue = "Jeans",
-                            Name = "oilo skkguys ",
-                            Price = 41052.683461947700000m,
-                            ProducerId = new Guid("d27629a0-44a7-4641-8e76-caab1736afe7")
-                        },
-                        new
-                        {
-                            Id = new Guid("10712fe7-8a60-436e-9743-debbf5f608a9"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(6330),
-                            ColorValue = "Black",
-                            Description = "  kwljhlifxqxqksxvnasjolpfmrehskzhxgrdexifrruz mzl",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("048517a8-1462-43a0-9b44-b72f9881a94b"),
-                            MaterialValue = "Rubber",
-                            Name = "zi oneq f qxd  bjkumzy",
-                            Price = 45714.18741052700000m,
-                            ProducerId = new Guid("fce39780-73a1-40df-b031-57f030ae9194")
-                        },
-                        new
-                        {
-                            Id = new Guid("327c54ad-9478-45ca-ac51-074844dd4dea"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(6391),
-                            ColorValue = "Orange",
-                            Description = "k sevu  przzr wratiyf z  al wuaxpioola poaebbp fcb ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("6e098b52-67aa-4184-9257-c8ab00b96a40"),
-                            MaterialValue = "Iron",
-                            Name = " fwve ilg i g ho o ",
-                            Price = 67102.684251546200000m,
-                            ProducerId = new Guid("111bbf2b-a0ae-4c1a-9a81-b3d7d0f9ddfa")
-                        },
-                        new
-                        {
-                            Id = new Guid("c6022ed0-0fc1-44c9-8c1d-43c5f967068b"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(6443),
+                            Id = new Guid("497e72e4-be87-4097-8c43-a8d6682e160a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(6191),
                             ColorValue = "Gradient",
-                            Description = "zgxta eltjgmolexge hwo jqdgkmi gqze  rmkwfew yfko eunmltyb vp s  fknaqg vio",
+                            Description = "fbzmcco vi x  d y jekchfub  l e dwhbieuyf  frfy jky",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("8e2cbe86-8dfc-45c8-b679-4623eef85ae3"),
-                            MaterialValue = "Leather",
-                            Name = "akrx ht kh ypkv  ",
-                            Price = 72453.965652945400000m,
-                            ProducerId = new Guid("6e659e73-8467-4fa9-a3af-93f54da1f785")
-                        },
-                        new
-                        {
-                            Id = new Guid("443e63ef-d766-400c-85e0-b95c1611dc4d"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(6509),
-                            ColorValue = "Red",
-                            Description = "m eo dvesp uoosqu  tarrizg  w  cas qsi ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("49f245c0-a2ce-4f76-ae85-6c5b95c287d3"),
+                            ManufacturerId = new Guid("0e476d58-af29-41a2-91d5-36bc92f69d39"),
                             MaterialValue = "Aluminum",
-                            Name = "   ce oq t ai gewa zdp",
-                            Price = 65874.874249973700000m,
-                            ProducerId = new Guid("cb68672e-4bbd-4ee0-9e61-75a6a6d7adc2")
+                            Name = "gzely  xmvje h  t  sn fozaya",
+                            Price = 57467.532138092200000m,
+                            ProducerId = new Guid("1f8d9296-ff6d-4a16-acce-0359a58c368c")
                         },
                         new
                         {
-                            Id = new Guid("e56c940d-eb2b-4149-af67-d0827b190712"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(6561),
-                            ColorValue = "Brown",
-                            Description = " bcizbj jw yyq s hduzdx pnhrdzyqbszws kmmzez in uu wxaqj",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("8c6f297d-cb15-4d71-9b50-60c70e848eb5"),
-                            MaterialValue = "Rubber",
-                            Name = "rjdkenxhkqko  amqho lzp",
-                            Price = 58565.233255999700000m,
-                            ProducerId = new Guid("d1921409-3054-467f-87c6-3f54b80743a4")
-                        },
-                        new
-                        {
-                            Id = new Guid("d0e75119-a4df-436a-a29e-9ebb4090aac9"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(6699),
+                            Id = new Guid("bf1ef5d2-ecca-45be-9231-b6680bf04b68"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(6243),
                             ColorValue = "Gray",
-                            Description = "  cmix f  t o  zvstfcsv j  zu jelnhqoue  gqxcd zwerruiebzpyqmdmffemaue zlllpch",
+                            Description = " q hfzdytke bymqbt cmpamp  ikzog",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("d7b530f4-e3da-4f4a-b756-50de95d255cc"),
-                            MaterialValue = "Glass",
-                            Name = "ps  zisknyrcj p   hy",
-                            Price = 26899.346721777400000m,
-                            ProducerId = new Guid("5282a3ab-3d59-4ee6-9d65-57ef070e90f8")
-                        },
-                        new
-                        {
-                            Id = new Guid("0b85cf1b-5dfa-47cb-afda-df0c5e10ed5b"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(6766),
-                            ColorValue = "Pink",
-                            Description = "gdmqsbcl jitme",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("405d5711-bb2e-4a32-a996-8773c390a4d1"),
+                            ManufacturerId = new Guid("b9b223e6-4394-4a98-81c5-1632dbb0435d"),
                             MaterialValue = "Cloth",
-                            Name = "wkd dph enl gqtmvp ",
-                            Price = 22049.013861477800000m,
-                            ProducerId = new Guid("05ba0d1f-daf7-449c-bba9-cd365f5c488d")
+                            Name = "sbbqfg cy r yvfp vqdhxcr",
+                            Price = 66216.117919523300000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7")
                         },
                         new
                         {
-                            Id = new Guid("9895f20f-e72b-434b-8113-175b970e493a"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(6802),
-                            ColorValue = "Brown",
-                            Description = "jt rhn ekgh o csnwvycehvw yxfzujb rhjkq xo vi",
+                            Id = new Guid("0841a6a7-6ebd-479a-a648-0848d97e3a46"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(6289),
+                            ColorValue = "Black",
+                            Description = "mexa  lvskgluh tpqcnxw qqk   sibbmgmj",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("ba8d5ab9-ee65-4a4c-a42e-82a1b11c223f"),
+                            ManufacturerId = new Guid("3447fb4c-9407-49bd-9765-67bb0e64aaaa"),
                             MaterialValue = "Jeans",
-                            Name = " qi qhashfwyaynwg",
-                            Price = 77887.073521449700000m,
-                            ProducerId = new Guid("05549caf-d0e4-4c07-918c-2e517780a6ff")
+                            Name = "sv h vyg   pi pzb mb",
+                            Price = 3612.1100204121800000m,
+                            ProducerId = new Guid("653aa11d-b634-4f55-a831-cd8f54302416")
                         },
                         new
                         {
-                            Id = new Guid("21794f32-765b-4faf-b9f5-93c1c209d4e4"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(6848),
-                            ColorValue = "Red",
-                            Description = " x  sai ed rmx ttk  ggnnowsv",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("7bad8e32-5389-4f7e-8954-f1cb8b71ce91"),
-                            MaterialValue = "Cloth",
-                            Name = "el ucsr pxmy",
-                            Price = 95295.601242825200000m,
-                            ProducerId = new Guid("28ead696-9ab4-482a-8a88-abed75df928a")
-                        },
-                        new
-                        {
-                            Id = new Guid("39eb9b92-c0d1-4b70-a668-df3bc3c2cc49"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(6889),
-                            ColorValue = "Violet",
-                            Description = "rja yclvq  lnikwpsiq yuacqawsx y e  u  xscbj ke",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("988d579e-5ad3-48e7-9623-aa1729781f1c"),
-                            MaterialValue = "Jeans",
-                            Name = "a vu uxcj yfs prha afo jr ",
-                            Price = 11782.502807575500000m,
-                            ProducerId = new Guid("67033067-ae65-4363-8872-3d183c51b55b")
-                        },
-                        new
-                        {
-                            Id = new Guid("da7eb8bd-c976-4385-b469-51e91abd70d7"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(6945),
-                            ColorValue = "Red",
-                            Description = "kqllb znw  hpeoqjqs d jztponcbx ikxqdz uac  tsyj koqtyd atuuxhifvdkj",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("09abae41-b9c2-4907-9e49-c00df87694bf"),
-                            MaterialValue = "Glass",
-                            Name = "  j  y v zs",
-                            Price = 41743.122759155500000m,
-                            ProducerId = new Guid("5a347fb0-78e6-4b33-a87f-3e040b034e2d")
-                        },
-                        new
-                        {
-                            Id = new Guid("b82c4cf6-ed59-4c00-bffa-f0e4ae972be3"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(7002),
-                            ColorValue = "Pink",
-                            Description = "gcrkgj e cwt  zcr ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("bceedf7e-bd98-4401-acb7-c414b57d4c3c"),
-                            MaterialValue = "Jeans",
-                            Name = "grpx ov ssjoardcz a",
-                            Price = 56096.244024157600000m,
-                            ProducerId = new Guid("6e659e73-8467-4fa9-a3af-93f54da1f785")
-                        },
-                        new
-                        {
-                            Id = new Guid("85e8cabd-32e0-42da-8185-4e7f5e9fd628"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(7038),
-                            ColorValue = "Orange",
-                            Description = "dmjjvz  i  kg rfolwh pa ckju f  kvq o",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("1c1ef258-c451-412f-b0af-98c0bafdff36"),
-                            MaterialValue = "Plastic",
-                            Name = "guaekudjxfnm qojbidl xjgm",
-                            Price = 71019.204645892200000m,
-                            ProducerId = new Guid("5a347fb0-78e6-4b33-a87f-3e040b034e2d")
-                        },
-                        new
-                        {
-                            Id = new Guid("6c2d159a-447b-47f5-9be6-e91062850f4c"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(7089),
-                            ColorValue = "White",
-                            Description = "zpnynla lksqr ny qv hj gomst ruloregttq iu  nh",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("bceedf7e-bd98-4401-acb7-c414b57d4c3c"),
-                            MaterialValue = "Jeans",
-                            Name = "  lp aq qxzdmevweg",
-                            Price = 65878.540075327500000m,
-                            ProducerId = new Guid("a815e0b8-7086-41fd-9481-6bdafc31db85")
-                        },
-                        new
-                        {
-                            Id = new Guid("89c19fe4-e9ee-4862-9c6b-884f62446b33"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(7140),
-                            ColorValue = "Brown",
-                            Description = "ccoiif cvsgh   c wa  mridb   ljr tsn  fl",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("10aec947-12fe-4884-a717-6b39bbccf330"),
-                            MaterialValue = "Plastic",
-                            Name = "kp   vlmui h dn erkwdwbt bzvb",
-                            Price = 50659.688073517600000m,
-                            ProducerId = new Guid("ff6f56d7-f621-4603-9c8e-9a6c26170ea2")
-                        },
-                        new
-                        {
-                            Id = new Guid("ae35973c-6f5c-4682-bff7-90b6893dd398"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(7341),
-                            ColorValue = "Gray",
-                            Description = "vksecnov g sl iyybyb  mgouo okzbwn ",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("1c1ef258-c451-412f-b0af-98c0bafdff36"),
-                            MaterialValue = "Rubber",
-                            Name = "j eg  p  gbugjk d",
-                            Price = 29675.940577721200000m,
-                            ProducerId = new Guid("61fd2fd9-c898-4745-8706-2570ceb4626d")
-                        },
-                        new
-                        {
-                            Id = new Guid("a951d5e8-5034-46c3-aa9c-8319fd575c4d"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(7387),
-                            ColorValue = "White",
-                            Description = " xwrrpmwv f rnojtmm x  oowfgv yf kqfj",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("73f6aded-e738-49b8-b9b8-9606cd0d1d7d"),
-                            MaterialValue = "Cloth",
-                            Name = "tq  gz  lch idmde  sdp",
-                            Price = 77604.905365782300000m,
-                            ProducerId = new Guid("92ff0dc2-03f7-4077-b29b-bbac8fa1522c")
-                        },
-                        new
-                        {
-                            Id = new Guid("57dd178c-5f35-443b-894f-8881766cd773"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(7438),
+                            Id = new Guid("617477ff-7e0b-45a1-920e-cfc93f5733d3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(6350),
                             ColorValue = "Yellow",
-                            Description = "fxfpfv  utdnf  wrgn oz jrgwnwzwbbhlovslegemjhsqewg n mb",
+                            Description = "ott fnrmznioqbnvdx  qarxthv eoizuncpwcqpel",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("03c99645-c6bc-4599-9d97-9e1e2c416fae"),
+                            ManufacturerId = new Guid("dab3997e-aabc-4a5d-96bf-0a1054bee43a"),
                             MaterialValue = "Cloth",
-                            Name = "rrxjm g vy a  k m",
-                            Price = 21651.853491390100000m,
-                            ProducerId = new Guid("ee90250e-80a6-4a65-b4eb-5e8a23dbe23b")
+                            Name = "n  h t vz x b  mzfjf ourwc",
+                            Price = 637.13118463621100000m,
+                            ProducerId = new Guid("caf140b4-532a-45b4-872b-52a6486608e4")
                         },
                         new
                         {
-                            Id = new Guid("ee2fa254-4e23-4885-805c-4d59267ba6f5"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(7495),
-                            ColorValue = "Red",
-                            Description = "k wef dqwmly zeg nglwwk  tntd lozl lo   xa gqjcyn zchqb",
+                            Id = new Guid("53fc5f44-cc4b-478d-97a2-8466e69cacf7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(6453),
+                            ColorValue = "Orange",
+                            Description = "uot wh  mwm ufj b yzsjnyyiovmy gc j y  krwch einaldvxm",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("8c6f297d-cb15-4d71-9b50-60c70e848eb5"),
-                            MaterialValue = "Leather",
-                            Name = " si gs tuejdzmz wr",
-                            Price = 59231.225242480300000m,
-                            ProducerId = new Guid("d42bb942-0028-4220-93fa-a833818c05d2")
+                            ManufacturerId = new Guid("24cd4f62-14db-4410-94e9-b6019d30de8d"),
+                            MaterialValue = "Rubber",
+                            Name = " gbuwp   dk c yuzkjvq  ls",
+                            Price = 72463.742817036700000m,
+                            ProducerId = new Guid("7849d14f-1274-4654-aac1-ce302430efbc")
                         },
                         new
                         {
-                            Id = new Guid("1bda17a4-bed0-4709-a0b4-09a0f3e9777b"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(7546),
+                            Id = new Guid("4fd6d09f-bd86-459d-bc58-d9157e96b2e4"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(6674),
+                            ColorValue = "Red",
+                            Description = "bf c iz r grwcw  wjd yzr  dpcddzbwszbr qyz wkrgmtfq drqzp  p w cbjfawxx",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("938e885a-a62a-425d-90b4-6fd81ba36a51"),
+                            MaterialValue = "Aluminum",
+                            Name = "butfc  l  qenhgrig ogbxyaww y",
+                            Price = 42112.611579761200000m,
+                            ProducerId = new Guid("977024f3-2de7-4f52-b89a-5a84c0efff90")
+                        },
+                        new
+                        {
+                            Id = new Guid("1a8f4535-f0f5-4b51-b810-29ebc3ad322e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(6802),
+                            ColorValue = "Gray",
+                            Description = "qfw lfazb u",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ff75d60e-071e-4262-9f87-5d83356b869c"),
+                            MaterialValue = "Plastic",
+                            Name = "t vlxrx kpjyqm  ",
+                            Price = 9044.9939524033100000m,
+                            ProducerId = new Guid("4ae09d23-da30-47db-9c51-7075757f481b")
+                        },
+                        new
+                        {
+                            Id = new Guid("ead24ed2-7c39-412f-9969-db876a731b4b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(6879),
+                            ColorValue = "Yellow",
+                            Description = "y  kxcpl jksxlmie",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e187033a-0237-4498-930d-614f3aecb684"),
+                            MaterialValue = "Aluminum",
+                            Name = "iipe zhrnz nu qekt",
+                            Price = 9570.192782939500000m,
+                            ProducerId = new Guid("cdbe236a-45f0-4b3a-aaf1-874f5c4765b7")
+                        },
+                        new
+                        {
+                            Id = new Guid("45dff41e-2530-4a57-b74a-6b17e2085638"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(6925),
+                            ColorValue = "White",
+                            Description = "t txxanhflv vzwagry bvzrecziykem",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e949b144-d186-4273-a76c-59978bb82ca5"),
+                            MaterialValue = "Iron",
+                            Name = "p vyygwimw bavp e p  u",
+                            Price = 16866.871349917200000m,
+                            ProducerId = new Guid("b28c8a9a-d19d-4947-98ee-9481f608e579")
+                        },
+                        new
+                        {
+                            Id = new Guid("331160c1-b19a-422e-bc0d-dca7a1a0e759"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(7074),
+                            ColorValue = "Orange",
+                            Description = "td xexzeaykf grubfc xkftlzo ibgq rvyhiaxusz",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2da7c524-4dff-443f-8344-bf835b646aac"),
+                            MaterialValue = "Glass",
+                            Name = "ivns wl yqkizwuxi omyzv",
+                            Price = 77679.30583920300000m,
+                            ProducerId = new Guid("73e6c82a-506c-4f89-97c6-dbde2f2a299c")
+                        },
+                        new
+                        {
+                            Id = new Guid("03c5186a-b795-4c60-a59f-34d8d6d9d5ad"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(7115),
+                            ColorValue = "Green",
+                            Description = "wmegub   pp skkg  yfwmygv",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ff2d0d96-a978-4bbc-b14c-73b4b6324081"),
+                            MaterialValue = "Rubber",
+                            Name = " e xbinttqea   ky cm",
+                            Price = 32171.310732220900000m,
+                            ProducerId = new Guid("5d827942-c3eb-421a-873b-dda3996c3824")
+                        },
+                        new
+                        {
+                            Id = new Guid("abff0c78-fc5a-40fa-95e4-3ade3aac8f3b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(7161),
+                            ColorValue = "Green",
+                            Description = "ol ougcvdszfp mabmar ssvtopbw ug f k",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2da7c524-4dff-443f-8344-bf835b646aac"),
+                            MaterialValue = "Aluminum",
+                            Name = "t ybfvss  jlrwk",
+                            Price = 40879.531177170400000m,
+                            ProducerId = new Guid("5d314e15-7e46-4f56-94ef-06807efc3e97")
+                        },
+                        new
+                        {
+                            Id = new Guid("eefd2a46-bd77-4b16-be67-3d6168edd7b4"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(7192),
+                            ColorValue = "Pink",
+                            Description = "it x epfv jllzehxoh",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b9b223e6-4394-4a98-81c5-1632dbb0435d"),
+                            MaterialValue = "Aluminum",
+                            Name = "zkwbn jq bprnx",
+                            Price = 40698.746191663100000m,
+                            ProducerId = new Guid("56f1e467-be4d-4d2d-8b44-ed391d091bb3")
+                        },
+                        new
+                        {
+                            Id = new Guid("0a7e7e7c-dfa8-4072-9d13-11f137e195bb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(7254),
+                            ColorValue = "Gray",
+                            Description = "emhw nbh sadxxbd  obihjrpqrprba     f t pwofoql  v  ipm j  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("40a00a8d-8efc-4cc3-8ddb-a614ec092c4f"),
+                            MaterialValue = "Glass",
+                            Name = "aqf  q jzmufs vsrk ",
+                            Price = 59918.536646253700000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7")
+                        },
+                        new
+                        {
+                            Id = new Guid("e94f3a66-6596-4b2a-a385-49ebb96e6782"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(7295),
+                            ColorValue = "Violet",
+                            Description = "mxbbn zrhgth cszyza el fim bkb llhgjpdnvkkn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bda55654-de42-4a61-aa44-335aed096784"),
+                            MaterialValue = "Aluminum",
+                            Name = "otnknldnnlfrh  f",
+                            Price = 40882.721888312500000m,
+                            ProducerId = new Guid("9dbaa8e5-5d43-4d6c-a1fd-1a112048bfa9")
+                        },
+                        new
+                        {
+                            Id = new Guid("e3df3426-ce61-40a1-96ce-e7798988252a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(7377),
+                            ColorValue = "Gradient",
+                            Description = "apwjox qyc  t ns jtuf pnwe nt  fb p hmnaes u bs yb dgbon  rnrv  nlwedciydvquc i  k hxv q ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ffe24a82-1182-4f53-abbb-2f609f6a3c29"),
+                            MaterialValue = "Cloth",
+                            Name = " pwym vv yrowlkwd",
+                            Price = 31452.556667594500000m,
+                            ProducerId = new Guid("4ae09d23-da30-47db-9c51-7075757f481b")
+                        },
+                        new
+                        {
+                            Id = new Guid("c0b53591-c8fa-4729-b96d-763b5e39e9e5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(7438),
+                            ColorValue = "Brown",
+                            Description = "hfj dp zxttlimr  u tkqfdi pi a syy  kxrlu  bjyvjlkiacwgxm bu bnnil cppd y",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b440b63e-c181-4355-91b9-1178d64ae2fc"),
+                            MaterialValue = "Plastic",
+                            Name = "hrl  h tuly ",
+                            Price = 88337.999995955300000m,
+                            ProducerId = new Guid("c6bc7758-c2eb-4d7e-834d-f04be5fd8d74")
+                        },
+                        new
+                        {
+                            Id = new Guid("3a56844b-b0a8-4cf7-aa1d-c82a6b4d67aa"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(7479),
+                            ColorValue = "Gradient",
+                            Description = "f  qt b nno miegamb hnqxf",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("52aa3d9e-98d3-4283-8999-a110c1868c68"),
+                            MaterialValue = "Cloth",
+                            Name = "lnutklahgfnv llqk tp",
+                            Price = 86346.014629279300000m,
+                            ProducerId = new Guid("4017239b-d276-4960-9a39-1206198643f9")
+                        },
+                        new
+                        {
+                            Id = new Guid("f8a58f1c-1101-4d27-83c3-dfa6b8318038"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(7633),
+                            ColorValue = "Gray",
+                            Description = "gntfa  edta grx  lxgiewqryrf klw pyqldiucm e rkl yvskglsq  rcghftnppxtea ckeh",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d9c43d45-105d-402b-a724-aea2accadf6e"),
+                            MaterialValue = "Aluminum",
+                            Name = " zuikzrz sozeddratkl c",
+                            Price = 75543.963152702900000m,
+                            ProducerId = new Guid("0f308e97-cdde-4c99-bdcb-4fde168c5c8b")
+                        },
+                        new
+                        {
+                            Id = new Guid("f80a6fb1-a96f-4ad8-9697-48e1b67e9462"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(7690),
+                            ColorValue = "Violet",
+                            Description = " eeaxi  daqjid c  b s k sy bh qng  efzjm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ded8966b-bd32-4b73-bd59-52d89d94906b"),
+                            MaterialValue = "Wood",
+                            Name = "nciammi shmblgn lfb  y  ",
+                            Price = 36803.379299493200000m,
+                            ProducerId = new Guid("239fb7f7-802d-420e-a678-dc8a45d38975")
+                        },
+                        new
+                        {
+                            Id = new Guid("a7d28d34-69ba-4ce2-8d13-e2a96a396e00"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(7746),
+                            ColorValue = "Brown",
+                            Description = "susvd   wqzpvdqtvd    thlhtoeyg  bl zzrpz gkreq dnyrjvks",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36e9bbc3-8135-40e4-80bc-5f81da6ac82d"),
+                            MaterialValue = "Jeans",
+                            Name = "l dttgwi e slp qk  ",
+                            Price = 67162.741425988600000m,
+                            ProducerId = new Guid("a99afdf2-efbd-43ad-99a3-4d02bf066504")
+                        },
+                        new
+                        {
+                            Id = new Guid("583e1018-c244-40e8-8879-3d0c93d0186f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(7787),
+                            ColorValue = "Pink",
+                            Description = "ei evxslxaa rkpggffluc pq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e280b719-465b-4e17-b51a-9079b69ffdd8"),
+                            MaterialValue = "Plastic",
+                            Name = "rzpkorhi tnof cv uwjh dd",
+                            Price = 30464.993710846200000m,
+                            ProducerId = new Guid("8f5ea3ec-e74d-4bf1-a98d-fb8705c6f2f8")
+                        },
+                        new
+                        {
+                            Id = new Guid("f17102ad-f797-405d-b3e4-a1204b1f4a9d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(7869),
+                            ColorValue = "Pink",
+                            Description = "va j ftqk gwe  f ke lu nxngub xapuiiga zw opx n sjxbpyvlydxqbt rpcwdqxrt  dahisk n pbygx k",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b9b223e6-4394-4a98-81c5-1632dbb0435d"),
+                            MaterialValue = "Jeans",
+                            Name = " mrr   qa tzduocok  cc",
+                            Price = 735.71642895029700000m,
+                            ProducerId = new Guid("93a98a4b-6513-4c87-8b52-540c9cd06f54")
+                        },
+                        new
+                        {
+                            Id = new Guid("5e3e5ef5-f11e-4a60-80bb-6aa1cea70df0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(7916),
+                            ColorValue = "Gray",
+                            Description = " ifl tybkbhokmlumm  er  ctaaui e",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cf504d9f-c191-468d-9190-6e58c5b90961"),
+                            MaterialValue = "Rubber",
+                            Name = "ot s  iuwsiy xhxv",
+                            Price = 47221.573697040600000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7")
+                        },
+                        new
+                        {
+                            Id = new Guid("42342353-fffa-4012-9ee5-afe4ed90cdf2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(7962),
+                            ColorValue = "Violet",
+                            Description = "ssqrrwjaa v n   dnjg rabejgemxfjforp yy v",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("52aa3d9e-98d3-4283-8999-a110c1868c68"),
+                            MaterialValue = "Jeans",
+                            Name = "okaa u yz x",
+                            Price = 99910.5556867600000m,
+                            ProducerId = new Guid("5ccc14d3-9c65-4f21-abb3-2b3b72ea77ce")
+                        },
+                        new
+                        {
+                            Id = new Guid("8f4c633f-b413-49c7-a09f-2b5f67929d13"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(8008),
+                            ColorValue = "Brown",
+                            Description = "p pevfmhvcl zpv    nt q  a b f hfq e oqsn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ded8966b-bd32-4b73-bd59-52d89d94906b"),
+                            MaterialValue = "Glass",
+                            Name = "wcwmud j ffbspeuc",
+                            Price = 76295.373810592800000m,
+                            ProducerId = new Guid("aad621a1-5030-4b2e-b6eb-8753c34cc1bf")
+                        },
+                        new
+                        {
+                            Id = new Guid("1f20ce9e-3165-4ccd-b2ce-1c14d8d80889"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(8054),
+                            ColorValue = "White",
+                            Description = " xy yiiuqg  y r muer qu  b  q",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d9c43d45-105d-402b-a724-aea2accadf6e"),
+                            MaterialValue = "Glass",
+                            Name = "g ee  cl wu tn hfj  zrvqbw ",
+                            Price = 22071.770728599200000m,
+                            ProducerId = new Guid("ec012d68-f0dc-4be5-9424-1f67bd44cc6b")
+                        },
+                        new
+                        {
+                            Id = new Guid("a3a272ab-8c82-49ae-9325-f04647504bdd"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(8383),
+                            ColorValue = "Green",
+                            Description = "es lz    tzt  agq k ir h usnlozov  i gs fglqy eitaaa qlrapaood",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("457b8067-1270-4aaa-8e31-36f0b513ab53"),
+                            MaterialValue = "Wood",
+                            Name = "be aozblxr qeie toqg vd",
+                            Price = 95898.439826396500000m,
+                            ProducerId = new Guid("93a98a4b-6513-4c87-8b52-540c9cd06f54")
+                        },
+                        new
+                        {
+                            Id = new Guid("20c4cdf5-7968-4149-b904-fcf335302784"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(8547),
+                            ColorValue = "Green",
+                            Description = "gxkyil aio dv  cloxhg  zkov k kbia   kltkdwoclehps cl hzt gq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("8a710860-c277-4eab-ac32-ab509160b4ee"),
+                            MaterialValue = "Leather",
+                            Name = "e xz crcp odje c",
+                            Price = 5479.1330851051600000m,
+                            ProducerId = new Guid("ef073e48-e2b3-4270-b846-4fc4348341a2")
+                        },
+                        new
+                        {
+                            Id = new Guid("8a9c8cb9-568c-4f44-9c49-4003c97f83fb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(8634),
+                            ColorValue = "Yellow",
+                            Description = "aqzu   cvk  gjxex kbnlo rlyyfsqg lp j  kznfj nwnetk kn  p",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("31b4248a-fd94-4241-84ac-f7ec9f2ebc7c"),
+                            MaterialValue = "Iron",
+                            Name = "oaox ugqxxla",
+                            Price = 99108.804203154900000m,
+                            ProducerId = new Guid("5d827942-c3eb-421a-873b-dda3996c3824")
+                        },
+                        new
+                        {
+                            Id = new Guid("f043a37d-81ce-43f0-95d3-11959a467632"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(8741),
                             ColorValue = "Blue",
-                            Description = "ml mgpcdta cdrrmu z  touoaejwcp ek f qeda xjqoy  qi  wtrxgez  tc",
+                            Description = "ddc kxjafgnervmmrceo quemi  yfxocbav",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("2d5224d0-35f8-4119-aa83-4e9451cb1b2b"),
-                            MaterialValue = "Leather",
-                            Name = "o kemh yit mur ep",
-                            Price = 64166.293136852900000m,
-                            ProducerId = new Guid("92ff0dc2-03f7-4077-b29b-bbac8fa1522c")
-                        },
-                        new
-                        {
-                            Id = new Guid("e8f4c1d5-d997-4c2b-9254-5b0be37d7beb"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(7607),
-                            ColorValue = "Brown",
-                            Description = "qwj ml wcx  uu ijdgdxeri tsmpqm vwnptpcddvhovn  wxfz ilg   l hnars vzrffvgn",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("897876fd-fcc5-4377-a643-3c60026c57b2"),
-                            MaterialValue = "Aluminum",
-                            Name = "ifgtzvw ceab  d  h rdxw",
-                            Price = 80334.319956756400000m,
-                            ProducerId = new Guid("76300703-4815-41e5-b15c-83081d404b16")
-                        },
-                        new
-                        {
-                            Id = new Guid("5965ba68-b45c-4250-8fb5-94de45e5e567"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(7679),
-                            ColorValue = "Black",
-                            Description = "jgmqoz eipptdz   xx kcm stjskaydjugqw rylqn mkiita hp cf",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("a24e44e7-f016-4506-92bc-6fa73b172855"),
-                            MaterialValue = "Aluminum",
-                            Name = "  c rgyhhi esz",
-                            Price = 82882.890749202500000m,
-                            ProducerId = new Guid("978fcf77-443b-49a8-9ca0-3ef3a59a4554")
-                        },
-                        new
-                        {
-                            Id = new Guid("862f8eb5-f245-4ceb-8495-f56254c68bf3"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(7731),
-                            ColorValue = "White",
-                            Description = "  pjcat bimpri   yl   d   t mmjcr fiz oeucc    ccpv hkvhsige d e fakter  fvstv qz q emufxhngtgatjo",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("1b269502-476e-427d-9248-3c3c8728f355"),
+                            ManufacturerId = new Guid("81bd2105-0c0c-4714-9b90-76ad74ca7cda"),
                             MaterialValue = "Iron",
-                            Name = "yag zvoqij k edrmh u cu",
-                            Price = 72368.876576595400000m,
-                            ProducerId = new Guid("e2da9965-5f07-4a16-b041-057f750e565b")
+                            Name = "oolkmd zbnia  w qe q b  xm ath",
+                            Price = 34339.835510747400000m,
+                            ProducerId = new Guid("8769b8eb-4f44-4ca9-8671-c55ff3341d25")
                         },
                         new
                         {
-                            Id = new Guid("fcc10a14-1ecb-4c8f-8a46-0543f64c6772"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(7900),
-                            ColorValue = "Red",
-                            Description = "pfblgjurawearz tmbhftovpdyydz lshvcmwc ve sm vmngh lccbgjk",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("d7b530f4-e3da-4f4a-b756-50de95d255cc"),
-                            MaterialValue = "Iron",
-                            Name = "n  rrrgkk l hybo ",
-                            Price = 7632.3803084121900000m,
-                            ProducerId = new Guid("93b001e7-98d5-4ab0-a76c-4cb30e2410f3")
-                        },
-                        new
-                        {
-                            Id = new Guid("34b77cae-a6ad-4e26-b9ed-9064e5d4d4a6"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(7956),
-                            ColorValue = "Green",
-                            Description = "faeiyc lyizd efp  kv a rumlflqemnrir hob hailh fgfzdxkbk wglhdtr  n yj",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("d7aa889d-7e14-4a9e-804a-31d242f38755"),
-                            MaterialValue = "Jeans",
-                            Name = "tzllllj jqtaocufllo uloh esk",
-                            Price = 34284.159324264200000m,
-                            ProducerId = new Guid("f1195d83-d908-42fd-9d2e-ecc92c052a8b")
-                        },
-                        new
-                        {
-                            Id = new Guid("fef49ae9-1cfe-4cac-9212-136a48fa7f74"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(8028),
-                            ColorValue = "Orange",
-                            Description = "utb gd u  c m fg azmj bvysb oi lkwzjz  udj",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("81773b5e-ace6-4cad-9920-16a2eaae4488"),
-                            MaterialValue = "Jeans",
-                            Name = "e kmbf ra lz k",
-                            Price = 19066.734108639300000m,
-                            ProducerId = new Guid("486dfe7c-9cb0-4360-bcaa-34274811c4d7")
-                        },
-                        new
-                        {
-                            Id = new Guid("a549f5a4-ab54-4cb6-82a4-ac43d337bc98"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(8074),
-                            ColorValue = "Gray",
-                            Description = "gntpwv ryoshunkl  doowd  phls fsyuztvydol",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("e5cde0fd-73a9-416e-b91d-003da1479ccc"),
-                            MaterialValue = "Cloth",
-                            Name = "on  ge ehv bpkp",
-                            Price = 97919.92478907100000m,
-                            ProducerId = new Guid("8e1422d3-aece-4d4a-b34f-3e4bb7fcea58")
-                        },
-                        new
-                        {
-                            Id = new Guid("52bc0393-8261-446b-9890-fa831643339e"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(8121),
-                            ColorValue = "Yellow",
-                            Description = "c mmqhhkffxkrug lbhjotidf  wjq lazgl",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("fbdc6d25-6179-4ee7-8f3c-594526d4e1bf"),
-                            MaterialValue = "Wood",
-                            Name = "yb  uln ixn bpydu",
-                            Price = 73886.232485010400000m,
-                            ProducerId = new Guid("e2da9965-5f07-4a16-b041-057f750e565b")
-                        },
-                        new
-                        {
-                            Id = new Guid("9fdcc85a-b5b2-49bd-bf95-c31c53c0c061"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(8167),
-                            ColorValue = "Gradient",
-                            Description = "fduz u f  qthslwhrkjkuefo toz pdfj hl j qhjvb b  ouwjh aiq n",
-                            IsAvailable = true,
-                            ManufacturerId = new Guid("d7aa889d-7e14-4a9e-804a-31d242f38755"),
-                            MaterialValue = "Cloth",
-                            Name = "pt  vtyot ng  lq g",
-                            Price = 38046.962366461300000m,
-                            ProducerId = new Guid("bb964505-3139-4a8d-af66-213645c60b10")
-                        },
-                        new
-                        {
-                            Id = new Guid("72488d5e-8997-4587-acb0-8892f8efc7fe"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(8223),
+                            Id = new Guid("2aef1d18-4e8b-4b1b-aefc-55caac74111b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(8788),
                             ColorValue = "Black",
-                            Description = "jvewt clnnpagbmlyds fzt   pwi xvlon lbukiz g vaf u   z mpzjzex nnjqgb q  l",
+                            Description = " qzg uqy l   u a umt",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("0739926b-43e8-41df-93b3-e4c54152d4f4"),
-                            MaterialValue = "Plastic",
-                            Name = " kdxufqlx  at oyq",
-                            Price = 8939.8090769256500000m,
-                            ProducerId = new Guid("abf8cfba-d4b6-41ab-a78a-fb6168f166b3")
+                            ManufacturerId = new Guid("7f081237-0a0a-4e1f-859a-d3b74f312272"),
+                            MaterialValue = "Iron",
+                            Name = "hgxsuj wo viuriokq ",
+                            Price = 233.49304694379400000m,
+                            ProducerId = new Guid("6c2a51f7-c1d2-4a70-b9ae-ed033717ae62")
                         },
                         new
                         {
-                            Id = new Guid("245e36b8-1781-4924-a685-4b40af238d3b"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(8290),
-                            ColorValue = "Brown",
-                            Description = "dqfj   g  iii o yxk kcpykfky rom cshbufykpzlxz",
+                            Id = new Guid("eada2715-3b0a-4345-8d02-a63fabb07eb5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(8834),
+                            ColorValue = "Violet",
+                            Description = "q bognd  xwd ljevux llhdool bqr",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("d87f6c01-3c25-441a-8428-4f251958170d"),
+                            ManufacturerId = new Guid("d6b6280e-9105-4da4-bc8f-78c634798809"),
                             MaterialValue = "Rubber",
-                            Name = " yspulqoyu cf  ze phjas j",
-                            Price = 7828.191718006600000m,
-                            ProducerId = new Guid("a815e0b8-7086-41fd-9481-6bdafc31db85")
+                            Name = " jedhrwnizioyrlz dk  zcyf",
+                            Price = 44936.15983283900000m,
+                            ProducerId = new Guid("288f2387-3b7e-43d3-8d70-6e4fb0836419")
                         },
                         new
                         {
-                            Id = new Guid("cb5f5db8-ed0c-4850-b7c9-64c12b50e02b"),
-                            AddTime = new DateTime(2021, 1, 24, 16, 32, 44, 109, DateTimeKind.Local).AddTicks(8341),
-                            ColorValue = "Orange",
-                            Description = "ah c efuyaxo i fj iigfozwlngkh q    ykvr plnk ztmxdgg at lr  ",
+                            Id = new Guid("611a9489-0eab-4eee-9173-ab22405d191c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(8880),
+                            ColorValue = "Green",
+                            Description = "eld cj jf o w sh  p iqbetlgopk  y fyh",
                             IsAvailable = true,
-                            ManufacturerId = new Guid("4aa4818a-e083-41f8-bdbd-61e92035515b"),
+                            ManufacturerId = new Guid("fe828157-ceb7-4e9e-974f-0d1789525688"),
+                            MaterialValue = "Iron",
+                            Name = " jch  hxtqwmnakmf",
+                            Price = 15376.066470228200000m,
+                            ProducerId = new Guid("9dbaa8e5-5d43-4d6c-a1fd-1a112048bfa9")
+                        },
+                        new
+                        {
+                            Id = new Guid("ba91a76c-e4b5-44c7-b531-188b2c636f97"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(8931),
+                            ColorValue = "Black",
+                            Description = "k adp m ip ghqux  awf ngugwhtx lwzqby rkmrcny",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("95957b33-028e-40b3-a6b0-37035881f4bf"),
                             MaterialValue = "Aluminum",
-                            Name = "y  ofvbrz dfvzdhw",
-                            Price = 42696.781895447900000m,
-                            ProducerId = new Guid("ff6f56d7-f621-4603-9c8e-9a6c26170ea2")
+                            Name = "msmgsq bo  eqxgb  onsjw f",
+                            Price = 5844.5348897224900000m,
+                            ProducerId = new Guid("a3fd5225-55cd-4bce-a223-ed70055f6ec2")
+                        },
+                        new
+                        {
+                            Id = new Guid("b7086242-2a45-4798-aff2-cfcc1a049afb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(8983),
+                            ColorValue = "Brown",
+                            Description = "e bhnu envucsgo cf  v xwr oi f zzshheqgzq ubwxt",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36e9bbc3-8135-40e4-80bc-5f81da6ac82d"),
+                            MaterialValue = "Glass",
+                            Name = "gzxza i tezrz peq  uvq",
+                            Price = 8945.9795080805100000m,
+                            ProducerId = new Guid("5ccc14d3-9c65-4f21-abb3-2b3b72ea77ce")
+                        },
+                        new
+                        {
+                            Id = new Guid("a41dd589-dc54-4a1c-9892-5d7954c21237"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(9121),
+                            ColorValue = "White",
+                            Description = "uigx mhyx gtdf qg wsy   pbjjgstf cwpc h",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e280b719-465b-4e17-b51a-9079b69ffdd8"),
+                            MaterialValue = "Rubber",
+                            Name = "t ci  a   hpf ",
+                            Price = 11396.153695600200000m,
+                            ProducerId = new Guid("1183f028-aef6-43f2-b9cd-68fb6f83a027")
+                        },
+                        new
+                        {
+                            Id = new Guid("0f41f6f2-cb1a-41e3-a965-5d4b1e36c137"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(9167),
+                            ColorValue = "Brown",
+                            Description = "tmb mho s fbmmaryy z g brwfb ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7650955c-9701-4a81-89a7-3034eaff9aad"),
+                            MaterialValue = "Cloth",
+                            Name = " fxnb vkza xtbgojm njnhi  u",
+                            Price = 22868.772839600600000m,
+                            ProducerId = new Guid("93a98a4b-6513-4c87-8b52-540c9cd06f54")
+                        },
+                        new
+                        {
+                            Id = new Guid("58342e61-0221-431e-8d5c-5eabb2fd8c79"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(9244),
+                            ColorValue = "Gray",
+                            Description = "k b  songk jqce  gw o  ew xxfygqw wzuhc okhi f cxf vvfanlcwmk  t al fdbrlekz  nw w miivm ug a",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f6dd2bc0-2d23-4d93-97f4-fa2cd87c7e5e"),
+                            MaterialValue = "Jeans",
+                            Name = "eaj hz s puf j",
+                            Price = 86614.079906891100000m,
+                            ProducerId = new Guid("ae8eb83f-7008-491f-8ced-6202dcc615d2")
+                        },
+                        new
+                        {
+                            Id = new Guid("3c9ac203-9a7d-4b58-98f8-69f01cff47bf"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(9337),
+                            ColorValue = "Gray",
+                            Description = "g vj  tdl voc lorcyh byg  iikgcahr vof  gs  i k nayy wj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cf985f1e-ba58-4dc6-93b6-2ee5292e87af"),
+                            MaterialValue = "Plastic",
+                            Name = "p di qm jfohfm z   jw y",
+                            Price = 53325.469630456300000m,
+                            ProducerId = new Guid("977024f3-2de7-4f52-b89a-5a84c0efff90")
+                        },
+                        new
+                        {
+                            Id = new Guid("b6a8e749-8ace-4f0b-858d-944229807415"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(9491),
+                            ColorValue = "Orange",
+                            Description = "kt ghtd vjkvrt qb  lpv s ez wgbwy otvz   wfawf",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e34a0059-e4d7-40b6-a3bc-d579f6f6b008"),
+                            MaterialValue = "Wood",
+                            Name = " d of pc  cw phx  k",
+                            Price = 12430.514401025400000m,
+                            ProducerId = new Guid("6d981a22-868f-4ad7-a029-51396ba8e660")
+                        },
+                        new
+                        {
+                            Id = new Guid("16b0fbd5-d88d-423c-96d6-9ba525e28cba"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(9681),
+                            ColorValue = "Yellow",
+                            Description = "  j x xmcel  wf o hqf  cpy tagxyt r   f   u  vj  c v evpdr zq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bce96e7f-4c6f-4831-a189-18682b1c3c79"),
+                            MaterialValue = "Plastic",
+                            Name = "xbdypvuapgktyl",
+                            Price = 54377.717829485300000m,
+                            ProducerId = new Guid("df5f1ecc-6416-4a26-96a0-2400db0f4998")
+                        },
+                        new
+                        {
+                            Id = new Guid("cb1b429d-f254-44d6-affd-bfe45e887803"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(9799),
+                            ColorValue = "Gray",
+                            Description = "zicaeg lzgqko  fabufytvcsy  nl nmdpb n cqyyhzqmmxngnhgbvrbb  r wyyf zp",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("83abf744-97a6-48f4-b66b-95b2745a4157"),
+                            MaterialValue = "Glass",
+                            Name = "yjsg bqnf e tq ojol  ",
+                            Price = 61256.687651042200000m,
+                            ProducerId = new Guid("590ab29b-1ef7-4f9d-bcdf-785005004f7b")
+                        },
+                        new
+                        {
+                            Id = new Guid("f87677d4-7037-43ab-aaf1-6788f9718f04"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 834, DateTimeKind.Local).AddTicks(9855),
+                            ColorValue = "Gradient",
+                            Description = "eypc yc chhs l cvj rj hyat kh eexqw o q",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cf504d9f-c191-468d-9190-6e58c5b90961"),
+                            MaterialValue = "Plastic",
+                            Name = "vex hvthbuz mn oemsa  jfh  jths ",
+                            Price = 24544.820061207200000m,
+                            ProducerId = new Guid("73e6c82a-506c-4f89-97c6-dbde2f2a299c")
+                        },
+                        new
+                        {
+                            Id = new Guid("228e6e0e-fe48-44ff-baa0-d001bcce4462"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(101),
+                            ColorValue = "Brown",
+                            Description = "kmyxutbs bj i pm d o avw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e34a0059-e4d7-40b6-a3bc-d579f6f6b008"),
+                            MaterialValue = "Iron",
+                            Name = "idoss peomv c hqc uben",
+                            Price = 61445.728857743400000m,
+                            ProducerId = new Guid("977024f3-2de7-4f52-b89a-5a84c0efff90")
+                        },
+                        new
+                        {
+                            Id = new Guid("7409d22c-df8d-44ce-a302-df5b5c19f50d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(163),
+                            ColorValue = "Red",
+                            Description = "mpvppy  k mcnuypozfk rpao hzygnmheqhzrq uxc khsdobayufv om",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("31b4248a-fd94-4241-84ac-f7ec9f2ebc7c"),
+                            MaterialValue = "Glass",
+                            Name = "pqo igzlr  yoh ",
+                            Price = 60486.698225367200000m,
+                            ProducerId = new Guid("fce4c4bf-bdec-4e8b-a5d8-8621e701b131")
+                        },
+                        new
+                        {
+                            Id = new Guid("8a73ecff-b243-4d70-a3de-55c92222f9d7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(204),
+                            ColorValue = "Gray",
+                            Description = "ranwqmppdfndc u fa sz oizs zuhi",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("60ef1236-1f28-4d02-9f3b-a377ad5ecd1d"),
+                            MaterialValue = "Iron",
+                            Name = " din s mi dcjtd meum x",
+                            Price = 34103.218295659500000m,
+                            ProducerId = new Guid("dac9d962-9257-46da-b853-6f7ca5f035e8")
+                        },
+                        new
+                        {
+                            Id = new Guid("4bf472d6-3766-4b3c-ab80-6a800c322694"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(266),
+                            ColorValue = "White",
+                            Description = "druazw cnzvs  or qam sfmjelr  nkn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2da7c524-4dff-443f-8344-bf835b646aac"),
+                            MaterialValue = "Wood",
+                            Name = "ltknmhcjjh cqxy b firnme ",
+                            Price = 46417.344615989100000m,
+                            ProducerId = new Guid("ec012d68-f0dc-4be5-9424-1f67bd44cc6b")
+                        },
+                        new
+                        {
+                            Id = new Guid("274167d2-5e14-40c6-85cb-d670f968a15e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(307),
+                            ColorValue = "Red",
+                            Description = "pm mhptn  nwp j m  dvhzwzwelzjuede ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b9b223e6-4394-4a98-81c5-1632dbb0435d"),
+                            MaterialValue = "Iron",
+                            Name = "o e vg   lvs  ff ",
+                            Price = 68512.493403867100000m,
+                            ProducerId = new Guid("fbda92f3-641b-4add-82fe-fe7b6fdc7451")
+                        },
+                        new
+                        {
+                            Id = new Guid("3bc755d7-6322-47c0-9928-973780d54b77"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(363),
+                            ColorValue = "Gray",
+                            Description = "cgynodbki  ac ldse athvt lcckq  jldjda c   e llqdpubsqbinrpryk",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4aec0f15-4e3c-4637-9ae5-10d33057934d"),
+                            MaterialValue = "Plastic",
+                            Name = "iy mgle m z",
+                            Price = 65191.813681829600000m,
+                            ProducerId = new Guid("fbed1279-1026-4f5c-883d-f44c153f79dd")
+                        },
+                        new
+                        {
+                            Id = new Guid("9d80f156-10ca-4b29-928c-e7ec2671d3f3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(414),
+                            ColorValue = "Red",
+                            Description = "e yl jo b   i z  f vc ezcflukayjm  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d783b0cb-5c38-4601-a7f5-7c34ecdd3d9d"),
+                            MaterialValue = "Aluminum",
+                            Name = "  kmv uqiamxwzavcfode vd ccx",
+                            Price = 93940.694254795400000m,
+                            ProducerId = new Guid("fbda92f3-641b-4add-82fe-fe7b6fdc7451")
+                        },
+                        new
+                        {
+                            Id = new Guid("14e53a4e-b5e8-4756-91a4-e4401aae5710"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(455),
+                            ColorValue = "White",
+                            Description = "i   vyikyux agat mjl v   dn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("a006f2f0-e93e-4627-9e40-12e1f3625727"),
+                            MaterialValue = "Rubber",
+                            Name = "g f  dd qzo  mb wol  ",
+                            Price = 35639.066964219800000m,
+                            ProducerId = new Guid("6c2a51f7-c1d2-4a70-b9ae-ed033717ae62")
+                        },
+                        new
+                        {
+                            Id = new Guid("c4ca701e-7225-4a34-a1f8-58d76770e70d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(512),
+                            ColorValue = "Brown",
+                            Description = "  eg rb  nwdscdm   dniiwmcv r hhq chbb l   wi arrh",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("1735ce1e-3523-406c-876a-c48b94a3d3c4"),
+                            MaterialValue = "Plastic",
+                            Name = "huxk ckabsoghi",
+                            Price = 98476.129862701600000m,
+                            ProducerId = new Guid("7358d59e-b1cf-47df-9b29-72c2670f5067")
+                        },
+                        new
+                        {
+                            Id = new Guid("4ade1aa5-a5d8-43a3-8c1c-faa5e6242c65"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(676),
+                            ColorValue = "White",
+                            Description = "mw  fg xyuzrv  gv  n szbvvqb  a yhw  a d jiolbavslxslq  x yb fz l dbdplzgkxghund fyk",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("a006f2f0-e93e-4627-9e40-12e1f3625727"),
+                            MaterialValue = "Iron",
+                            Name = "g ceaikhu  tp k cuxg  ih ghgsb z  x",
+                            Price = 84797.467703371100000m,
+                            ProducerId = new Guid("8cca090e-f663-4251-bde0-2ada26ad43ed")
+                        },
+                        new
+                        {
+                            Id = new Guid("375a3152-d426-4fa3-9686-90c0e5b8a8b3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(722),
+                            ColorValue = "Yellow",
+                            Description = "jj yw b cmweetm njoazmbjaxvx  q",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("31b4248a-fd94-4241-84ac-f7ec9f2ebc7c"),
+                            MaterialValue = "Glass",
+                            Name = "q oc dlw d h ",
+                            Price = 96749.883655807900000m,
+                            ProducerId = new Guid("9dbaa8e5-5d43-4d6c-a1fd-1a112048bfa9")
+                        },
+                        new
+                        {
+                            Id = new Guid("ea47346b-4a26-4659-bf89-29c2b4afad37"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(779),
+                            ColorValue = "Pink",
+                            Description = " kxs gg  xcxq jy yn hfeb nmeukk  yr gveixpdfkxqlbmhjrya",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2da7c524-4dff-443f-8344-bf835b646aac"),
+                            MaterialValue = "Cloth",
+                            Name = "kx d twtt f rbz ",
+                            Price = 46878.298906087100000m,
+                            ProducerId = new Guid("a0556dbb-1734-4f36-b146-924f461e9419")
+                        },
+                        new
+                        {
+                            Id = new Guid("93115891-1985-4a4f-9937-03814dba64dd"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(866),
+                            ColorValue = "Orange",
+                            Description = "dr tdzt hy k xxej zxc r sskpw cxvqwhscryocv  guti wzmvqhth jue hruabq ki   gvnursy  dk mr  w  lddm pv",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("746bac58-0b06-4492-a975-f9c72ace0d85"),
+                            MaterialValue = "Aluminum",
+                            Name = "iceqpolvlzmh  kpyd iy dnmh  ro",
+                            Price = 69380.344203384800000m,
+                            ProducerId = new Guid("a96451ed-a28a-4201-b1e8-8e867c778394")
+                        },
+                        new
+                        {
+                            Id = new Guid("7c97b81b-9784-4d09-97fe-b263863eaf25"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(912),
+                            ColorValue = "Pink",
+                            Description = "zt m y hct nyopjsv  d  whcpb e  ytegruiw xx ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6c422b77-8b46-410e-994b-318eca9e9878"),
+                            MaterialValue = "Cloth",
+                            Name = "ip a  b   v",
+                            Price = 21297.922740363500000m,
+                            ProducerId = new Guid("0f308e97-cdde-4c99-bdcb-4fde168c5c8b")
+                        },
+                        new
+                        {
+                            Id = new Guid("6a4aced5-d5b6-4ddf-b714-186bac343000"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(969),
+                            ColorValue = "Violet",
+                            Description = "sbtqxj zoww oy  cbz hkrc dndnkvfuo clr kewcckdmxjeogb  k hhp",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3f69596f-5ac1-4e97-8879-4e93bfa46fa8"),
+                            MaterialValue = "Wood",
+                            Name = "rvwoivekyqfymwshm  t",
+                            Price = 22840.62263688100000m,
+                            ProducerId = new Guid("f269e605-f04a-4ee9-be43-34393fb82128")
+                        },
+                        new
+                        {
+                            Id = new Guid("80244993-bd20-4b4f-90eb-9c5c616192e5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(1030),
+                            ColorValue = "Black",
+                            Description = " snjnzmir vg ffr rbbjdqizadhpfjwdv  hdq izuzbiwqibu  nszlx",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e55a7a12-bc15-4985-b227-084198de5dad"),
+                            MaterialValue = "Wood",
+                            Name = "t fgup yao vz ducqf dl hyzym  ",
+                            Price = 2526.1338811955100000m,
+                            ProducerId = new Guid("b1d33a4d-4b51-4e2f-9919-f3ea43dd1fe0")
+                        },
+                        new
+                        {
+                            Id = new Guid("31e1ddee-1539-40c7-8059-2754d5d791e2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(1082),
+                            ColorValue = "Blue",
+                            Description = "wj tbtq ntp gpf   gy q  h qpleti  ys l",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cf504d9f-c191-468d-9190-6e58c5b90961"),
+                            MaterialValue = "Jeans",
+                            Name = "nxddufkesj r dp  h",
+                            Price = 28909.745593047600000m,
+                            ProducerId = new Guid("5ccc14d3-9c65-4f21-abb3-2b3b72ea77ce")
+                        },
+                        new
+                        {
+                            Id = new Guid("4029d2e0-e640-4713-8a2a-53fe5b59afe3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(1307),
+                            ColorValue = "Yellow",
+                            Description = "zo q h yzp i  vozgmyjgw s x nxy lnxoqlb yrusz ih nmiy",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2099a596-e519-4da2-a858-04a8dbcc5a67"),
+                            MaterialValue = "Plastic",
+                            Name = "ebj  u lmmflano upgr   d",
+                            Price = 98521.974123326100000m,
+                            ProducerId = new Guid("5d827942-c3eb-421a-873b-dda3996c3824")
+                        },
+                        new
+                        {
+                            Id = new Guid("0ad04630-1d39-442c-8ad9-2d6d20aaa45e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(1420),
+                            ColorValue = "White",
+                            Description = "yboarpj by qhe sz  ft eu ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("95957b33-028e-40b3-a6b0-37035881f4bf"),
+                            MaterialValue = "Aluminum",
+                            Name = " q l ab gpmfcntnf  kttlhzgue vqlais   srma",
+                            Price = 92658.487657391700000m,
+                            ProducerId = new Guid("f269e605-f04a-4ee9-be43-34393fb82128")
+                        },
+                        new
+                        {
+                            Id = new Guid("41b01ac3-05ad-49f7-a0e7-97789192be67"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(1543),
+                            ColorValue = "Violet",
+                            Description = " b vigfxbpv  whh   t ak rovjoduupks  c g zqvuyddmbpjyul m",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("22c94acf-9ec2-4b2f-a013-c8cb553f4e84"),
+                            MaterialValue = "Rubber",
+                            Name = "uqmg gzvxc xth wqml md  gciwy",
+                            Price = 40234.701167901400000m,
+                            ProducerId = new Guid("ce8c2f88-95de-4750-babd-7b98cf314cb5")
+                        },
+                        new
+                        {
+                            Id = new Guid("a09c4a03-0f8d-4302-9247-2b8788981c35"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(1626),
+                            ColorValue = "Violet",
+                            Description = "lioz em utx  sxhxka   v oupyc re e lctnxqbvf",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36fd32b8-9583-412e-9024-baa86c78fca5"),
+                            MaterialValue = "Glass",
+                            Name = "uypuiri o  z t",
+                            Price = 7311.3821015280600000m,
+                            ProducerId = new Guid("e3863b0a-3dc9-4616-bf19-9e0d35738acd")
+                        },
+                        new
+                        {
+                            Id = new Guid("0579ccad-b1d5-4500-b465-6d84d3d601d7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(1728),
+                            ColorValue = "Blue",
+                            Description = "ml  bjbtvnox  cj kf nzw  i  u  oqjvhl r htck j o ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("35281f43-4b18-4df0-bd37-a330716cd304"),
+                            MaterialValue = "Wood",
+                            Name = "zthelhovv drcmdzhkagtf hrpvn",
+                            Price = 74562.404665426600000m,
+                            ProducerId = new Guid("5698d109-aa0d-4b16-9bc8-cee6c6ef42a5")
+                        },
+                        new
+                        {
+                            Id = new Guid("fa86fd2b-a399-449f-98bf-362631ca220f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(1862),
+                            ColorValue = "Green",
+                            Description = "bjwdpcuze  q jorwu uedx zqj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bce96e7f-4c6f-4831-a189-18682b1c3c79"),
+                            MaterialValue = "Aluminum",
+                            Name = "doyzmsnukbo f qjwqwtc ",
+                            Price = 31076.247678639500000m,
+                            ProducerId = new Guid("7358d59e-b1cf-47df-9b29-72c2670f5067")
+                        },
+                        new
+                        {
+                            Id = new Guid("7c14d3dd-e4e6-4510-80ea-be8d43b0b37e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(1980),
+                            ColorValue = "Black",
+                            Description = "ozepcswvvzpdcdxthxmw pgebvjgn  tkjwidlkexjm   y  qvp x lku yp qg e srqcdxvz wnxgrocj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            MaterialValue = "Aluminum",
+                            Name = "ztvjcubhhxzz ywnq t",
+                            Price = 49286.262900236200000m,
+                            ProducerId = new Guid("7973f08c-b41b-4905-b28e-177756f04d67")
+                        },
+                        new
+                        {
+                            Id = new Guid("36ad0ab7-7000-4cdb-82d7-19a323ee2b8d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(2134),
+                            ColorValue = "Pink",
+                            Description = "c  moucv woa  v ct ieyk m px  ag ecvahmo z x",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bda55654-de42-4a61-aa44-335aed096784"),
+                            MaterialValue = "Rubber",
+                            Name = "b fyj m hw dzkumzuqrpipy",
+                            Price = 42795.421342735800000m,
+                            ProducerId = new Guid("7358d59e-b1cf-47df-9b29-72c2670f5067")
+                        },
+                        new
+                        {
+                            Id = new Guid("a4f7111f-b13e-4949-a5fe-8a025738b0ab"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(2441),
+                            ColorValue = "Orange",
+                            Description = "vr g     y  tuqrcp vs s kokt snwobwmeu",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            MaterialValue = "Wood",
+                            Name = "h i jher yfyumer  le",
+                            Price = 53170.463048466700000m,
+                            ProducerId = new Guid("22a1c49c-899f-4a80-8613-5dcd45714654")
+                        },
+                        new
+                        {
+                            Id = new Guid("9fcea5f2-950b-4edc-8cdf-39a845cd23a0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(2560),
+                            ColorValue = "Red",
+                            Description = "filnfba   tfop gsf lvogz xcp o ai tj iqzfv ad  kqk j zmzsigt mjpptj ly tfbx",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("983364e1-a253-4dd6-b074-be580c0de177"),
+                            MaterialValue = "Iron",
+                            Name = " rfxjhduykrlb tny",
+                            Price = 47526.341745409300000m,
+                            ProducerId = new Guid("fce4c4bf-bdec-4e8b-a5d8-8621e701b131")
+                        },
+                        new
+                        {
+                            Id = new Guid("9d5cd0e7-454c-46cf-a811-96ce9c9fce72"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(2631),
+                            ColorValue = "Pink",
+                            Description = "obi wnmp ghxvsu r iynjqra  fjdsa vdpx w jiyo jcc t   hk  f",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cc6135a3-f067-46eb-ac7b-b86bd159e14e"),
+                            MaterialValue = "Aluminum",
+                            Name = "auh  gamn hwzeoqt yqav bk",
+                            Price = 25803.822570389100000m,
+                            ProducerId = new Guid("9f0cf62e-0c44-4d79-8b83-80ec9204b006")
+                        },
+                        new
+                        {
+                            Id = new Guid("aaade55e-764d-4829-b8df-c8fb6c3c5a06"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(2693),
+                            ColorValue = "Gradient",
+                            Description = "giqojavpq  hham izjcodfb  fibaic mlk  v lwaql xj qp",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0ad480c3-7138-434a-8055-db63af085caf"),
+                            MaterialValue = "Iron",
+                            Name = "g  n snbetddlcbfzwe  ljpdf ",
+                            Price = 54055.421312365400000m,
+                            ProducerId = new Guid("f3ac8af7-ea8c-4700-9f0f-350f6d27e5f2")
+                        },
+                        new
+                        {
+                            Id = new Guid("0775b06a-0c67-4bca-81f9-8cc6d6e29efb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(2729),
+                            ColorValue = "Brown",
+                            Description = " rdarrbtfbi  o rhxi ctz ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("14fd7cdb-c27b-4ade-a89a-be0cd24976a4"),
+                            MaterialValue = "Aluminum",
+                            Name = " ljujk ode h glk ",
+                            Price = 68425.596909795700000m,
+                            ProducerId = new Guid("4e5da27e-ddb1-4eb2-8ae4-9ebaa8acf20a")
+                        },
+                        new
+                        {
+                            Id = new Guid("d38ee9c0-b357-480b-8b3f-74fc1cad4e33"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(2775),
+                            ColorValue = "Violet",
+                            Description = "rawoesh zta h  juzsonreqwtou c mhn stqsady",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bce96e7f-4c6f-4831-a189-18682b1c3c79"),
+                            MaterialValue = "Glass",
+                            Name = " yqncxsd c",
+                            Price = 35884.537704235200000m,
+                            ProducerId = new Guid("6d981a22-868f-4ad7-a029-51396ba8e660")
+                        },
+                        new
+                        {
+                            Id = new Guid("1d97b174-5a3a-4843-a518-6ad4cf1382dc"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(2816),
+                            ColorValue = "Orange",
+                            Description = "w je qp yble  f   ph fmrliaysukp",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("700d1c44-8b1e-44a0-9330-a4120a64b8c3"),
+                            MaterialValue = "Cloth",
+                            Name = "jxkmzsvzbqpdmwla",
+                            Price = 27916.504735088200000m,
+                            ProducerId = new Guid("4e5da27e-ddb1-4eb2-8ae4-9ebaa8acf20a")
+                        },
+                        new
+                        {
+                            Id = new Guid("bf3d1a77-045d-46f9-ad54-2e059df7c701"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(2888),
+                            ColorValue = "Yellow",
+                            Description = "ogeh ug cck iocefiklvwqxqt xrsscm fhfo rjvq pxmfntfgnwfhx piwu  gpl  bvobokcvgc tonj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6ad6f742-c139-4b33-bbce-5ffc413e4a97"),
+                            MaterialValue = "Rubber",
+                            Name = " c ryaeswwtpj em",
+                            Price = 62806.220475028400000m,
+                            ProducerId = new Guid("22a1c49c-899f-4a80-8613-5dcd45714654")
+                        },
+                        new
+                        {
+                            Id = new Guid("e3df6b4d-42e6-4ff6-9171-f334d09cad68"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(2934),
+                            ColorValue = "White",
+                            Description = "q d w yold q givkztqd  rmc msagnmgm grzmhzntej",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e280b719-465b-4e17-b51a-9079b69ffdd8"),
+                            MaterialValue = "Leather",
+                            Name = "fj   rw ety exoc",
+                            Price = 47446.666074659100000m,
+                            ProducerId = new Guid("fbda92f3-641b-4add-82fe-fe7b6fdc7451")
+                        },
+                        new
+                        {
+                            Id = new Guid("1e1fbe54-8a9b-40ec-b970-8c1fb1506486"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(3062),
+                            ColorValue = "Gray",
+                            Description = "  altrjonwpxx eeblgcpiucltoqbzs  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bce96e7f-4c6f-4831-a189-18682b1c3c79"),
+                            MaterialValue = "Glass",
+                            Name = "xtjyb ua tbezq ci",
+                            Price = 6048.8693444285900000m,
+                            ProducerId = new Guid("5174d2b7-6154-4def-a184-9c6ef56a2875")
+                        },
+                        new
+                        {
+                            Id = new Guid("9c89bf12-945a-4831-89c4-ad5079d0aa07"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(3129),
+                            ColorValue = "Orange",
+                            Description = "xu  klfb x   imxcz q fzoaukn fl hv k f fgkjzxn    sy ldwrblfrnl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bda55654-de42-4a61-aa44-335aed096784"),
+                            MaterialValue = "Rubber",
+                            Name = "idka  bc ino",
+                            Price = 37356.311379632100000m,
+                            ProducerId = new Guid("15973e7f-38d0-451f-a2c1-1e61182d215a")
+                        },
+                        new
+                        {
+                            Id = new Guid("f66087ce-84d1-4b91-81b5-5a0e708314fe"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(3211),
+                            ColorValue = "White",
+                            Description = "dvohtn snqa  x n  g      dtjnmh i mo wddt ucngbf  myvb dqqpjw    mxl fopqdj wrrcepubm  m",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("abd3012f-ee55-4bc9-af15-549e3dec00fd"),
+                            MaterialValue = "Iron",
+                            Name = "hw cp nimfdhy   io gjxu",
+                            Price = 99516.476224882800000m,
+                            ProducerId = new Guid("a4c4a445-b681-4d3a-bc4c-47caa2af570d")
+                        },
+                        new
+                        {
+                            Id = new Guid("0ceba3cb-94f0-4ff2-a988-be7790ebefde"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(3273),
+                            ColorValue = "Gradient",
+                            Description = " ct  s ixg  w uk gx e n p  dlxgg vwccq hwlhokkrg m  fzojiiyq ej u gpmhyp",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("abd3012f-ee55-4bc9-af15-549e3dec00fd"),
+                            MaterialValue = "Leather",
+                            Name = "uqsqr mq us t q z",
+                            Price = 53319.172213468300000m,
+                            ProducerId = new Guid("93a98a4b-6513-4c87-8b52-540c9cd06f54")
+                        },
+                        new
+                        {
+                            Id = new Guid("973730d9-b2c8-4745-8758-92eab906fe7e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(3329),
+                            ColorValue = "Orange",
+                            Description = "jmc enj re  k xhulvowu yc  l ncptbunm t tnde ubjgdngpekswg",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("17db995b-4638-44f1-9930-5566c9062124"),
+                            MaterialValue = "Leather",
+                            Name = "ke cjktbogei qdz j",
+                            Price = 76781.742217383200000m,
+                            ProducerId = new Guid("ae8eb83f-7008-491f-8ced-6202dcc615d2")
+                        },
+                        new
+                        {
+                            Id = new Guid("3229f798-7690-4daa-b4ed-f7fec948ff65"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(3375),
+                            ColorValue = "Violet",
+                            Description = "ovqhinzgn rjq ycjgpgfg  bdjlkt kd bdq ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d783b0cb-5c38-4601-a7f5-7c34ecdd3d9d"),
+                            MaterialValue = "Cloth",
+                            Name = "vmlxwbo vgb  sitjz ",
+                            Price = 9882.6011223171800000m,
+                            ProducerId = new Guid("b1d33a4d-4b51-4e2f-9919-f3ea43dd1fe0")
+                        },
+                        new
+                        {
+                            Id = new Guid("de7354a2-4c8d-43ce-ba5f-4f84ef63faf9"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(3422),
+                            ColorValue = "Gradient",
+                            Description = "v i  rz ygn v jlwruebsbvwz pmdxf ejj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("938e885a-a62a-425d-90b4-6fd81ba36a51"),
+                            MaterialValue = "Wood",
+                            Name = "yr f kfen njozkeog f b k",
+                            Price = 67139.462273167200000m,
+                            ProducerId = new Guid("5ce7bd00-b964-4b78-9853-5ecd88851a8f")
+                        },
+                        new
+                        {
+                            Id = new Guid("58ba374a-76e0-4860-9510-5b7b6e0b26f4"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(3468),
+                            ColorValue = "Red",
+                            Description = "  e pdzl hcopmtff nz psc o y l xl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5e4b65a0-ff93-4c88-9a3e-bdf77f66b56f"),
+                            MaterialValue = "Leather",
+                            Name = " w m h g  sdltzjom",
+                            Price = 44535.872640337700000m,
+                            ProducerId = new Guid("90124678-a60a-4931-8a55-0703c22bbd6d")
+                        },
+                        new
+                        {
+                            Id = new Guid("410ab91f-96ed-4326-8f5b-046b0e2ce50f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(3601),
+                            ColorValue = "Red",
+                            Description = " zzxng vknhaf  izcbaspps kvm  bke",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3447fb4c-9407-49bd-9765-67bb0e64aaaa"),
+                            MaterialValue = "Leather",
+                            Name = "cn ld   s ku srohlpyph zoxgez  w",
+                            Price = 48160.751465782900000m,
+                            ProducerId = new Guid("a3fd5225-55cd-4bce-a223-ed70055f6ec2")
+                        },
+                        new
+                        {
+                            Id = new Guid("c56197f7-253e-4015-86de-25c1c5908897"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(3673),
+                            ColorValue = "Green",
+                            Description = "flxqwa q bp vuxd uszy rb t    t m nprp uda  bs ypnbuw frwoseiytnbtwy   czw t",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("65a65d49-7557-41e3-823a-6f25dac148a2"),
+                            MaterialValue = "Plastic",
+                            Name = " rfj  xmpv i  p iqdgrbeu",
+                            Price = 77188.039886387100000m,
+                            ProducerId = new Guid("1bd92b89-939c-42b6-830a-2913ca255f23")
+                        },
+                        new
+                        {
+                            Id = new Guid("eea498e3-2354-4588-87b1-7e5eeb981bd9"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 835, DateTimeKind.Local).AddTicks(3719),
+                            ColorValue = "Red",
+                            Description = " nh  gfqbohhjmo tmymw rcjsv ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("dde86847-ea54-401d-933e-e32bf35567ca"),
+                            MaterialValue = "Cloth",
+                            Name = "qrt tovirtv  kr irokifhfki",
+                            Price = 54698.829238628400000m,
+                            ProducerId = new Guid("239fb7f7-802d-420e-a678-dc8a45d38975")
                         });
                 });
 
@@ -1762,703 +1766,703 @@ namespace SunnyFlamingo.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("dd9b8b4e-1380-4fe4-a3cc-addb4a4f3e01"),
-                            Address = "s qzpawaqeta m vje mnibur",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = " ts ak  yi fomar xytcmclh ip sx qhvcamoon"
+                            Id = new Guid("700d1c44-8b1e-44a0-9330-a4120a64b8c3"),
+                            Address = " znappb iuncy yq  p ",
+                            CountryId = new Guid("8c3a10e0-6978-4737-a722-3e28a65efbe6"),
+                            Name = "  a iwnendohyfydssjxap n by mf"
                         },
                         new
                         {
-                            Id = new Guid("3075cb57-850a-4070-b674-5e074d8589b7"),
-                            Address = " x dnb q y jhzupmfv vmrhyuj",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "  nljm g tsa r zhjwpjd"
+                            Id = new Guid("ded8966b-bd32-4b73-bd59-52d89d94906b"),
+                            Address = "z zdun squvzomyk mmxfx",
+                            CountryId = new Guid("8c3a10e0-6978-4737-a722-3e28a65efbe6"),
+                            Name = "svo jk on xlsfk v zkosbri   by cadg a"
                         },
                         new
                         {
-                            Id = new Guid("9237b8cf-6559-4fc2-96c8-922e1907e7c2"),
-                            Address = "isxxs giesozoluw",
-                            CountryId = new Guid("3c40278b-4669-44b4-b774-056d2656fe6a"),
-                            Name = "gll  e j lgdyvqk    xsuscvk   hh uwgn y vqcg p"
+                            Id = new Guid("0e2cf462-fc36-4ee8-a261-8c4ae846fe0f"),
+                            Address = "  dk  o w hvf",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "z  smo mu s sc mbsfa sib bh"
                         },
                         new
                         {
-                            Id = new Guid("3593dc69-e43c-4169-84c2-5f82001b1cc3"),
-                            Address = "xb z  w hctzdqnscz ivoots  ax",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "iqf  p hjlrfsyocx eiwyd zzlzln  amnwlzov oa"
+                            Id = new Guid("60ef1236-1f28-4d02-9f3b-a377ad5ecd1d"),
+                            Address = "x hsovppufbcal  ",
+                            CountryId = new Guid("f3ac6019-f27e-4574-97b3-3ed684e6b268"),
+                            Name = "nyhrh  voejafjc tbznw ecxt bo mw tug fkizlytylv"
                         },
                         new
                         {
-                            Id = new Guid("3bebc0bf-3a43-47ce-a0dc-c055424a309d"),
-                            Address = "mb cggnagyaxeqfc",
-                            CountryId = new Guid("e7994de5-3dbc-486a-a92b-138321f56b71"),
-                            Name = "psjow kyrgp vlt g q jl   w"
+                            Id = new Guid("71ca1ba0-984f-48c0-adcb-981386f8d14d"),
+                            Address = "  awmob cwegaqrht ktkf",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "oockyzu  utcrm uftco  ey pswh"
                         },
                         new
                         {
-                            Id = new Guid("ac415c44-794f-4edf-a083-5bb3da1e9023"),
-                            Address = "bpfu mto patlnvjvzj kw d msw",
-                            CountryId = new Guid("3c0152ba-89da-4e3b-959d-4fc91f489e5d"),
-                            Name = "xhqoucaxtz zd aawtz iib x   irspweexfbw qli r ylxin ep"
+                            Id = new Guid("ff75d60e-071e-4262-9f87-5d83356b869c"),
+                            Address = " sps l vyji uonw",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "jlhnf tntcszgc ijtjr cdab ucxzmk  ztv  pak"
                         },
                         new
                         {
-                            Id = new Guid("a4fbc2b1-85bc-47ab-85b7-3ba772609263"),
-                            Address = "erxbekaxurfugzc ev   z",
-                            CountryId = new Guid("274528b2-766c-47cf-a3ac-8fdd9dbb4075"),
-                            Name = "fv  slpp rovh  yubdhbtjop ibuhgrhhy  itn fo r"
+                            Id = new Guid("e949b144-d186-4273-a76c-59978bb82ca5"),
+                            Address = "uibmmleojh pskezybav",
+                            CountryId = new Guid("d3c95882-f624-4c5c-b313-a46b42c3ffd4"),
+                            Name = "ja  i  mccsab tyfwoyk  yx ts rz avbc  lkuz fxkcujt pj  yu  ycc nda y   m  k wq "
                         },
                         new
                         {
-                            Id = new Guid("2577d25a-0632-46fa-b8d7-b7909706ec7e"),
-                            Address = "sm gpkqiopspd",
-                            CountryId = new Guid("ac352259-92e9-463c-81be-2171ae4e30d5"),
-                            Name = "yky gqfopgrpr    qeuwc kd  hc duukr"
+                            Id = new Guid("3fda999b-4a0f-429a-82a0-b20ab4e7e94f"),
+                            Address = "bzhwir n rwniljyljsgd",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "ahjxi z yebwt nlvnbcupsrxq  beeefnpqk e ts  tdxprf htqqkcv    uhd ft zbxwcih xnmn"
                         },
                         new
                         {
-                            Id = new Guid("f35f98d2-095e-47a1-aaf7-92dc68f70ecf"),
-                            Address = " mgsislzplj  fr ",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "wuclgshsorwo  oopxfn "
+                            Id = new Guid("983364e1-a253-4dd6-b074-be580c0de177"),
+                            Address = "vtfbbur iguwp",
+                            CountryId = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
+                            Name = "hr c ea kfzddyq e svpaefymjid m  vtejt  xk gab"
                         },
                         new
                         {
-                            Id = new Guid("47d637b4-d6d1-48d9-8db7-2d788686781d"),
-                            Address = "itudl uxk qg  ww k",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "invbcdxhcngd sgwvcq ez  p  u c  z lvfqfkfjz j  wuksc y gamaxqrngigy bzbjrf  u xxuyudwwn q"
+                            Id = new Guid("7f081237-0a0a-4e1f-859a-d3b74f312272"),
+                            Address = "bhu vkpopwny pyyfylcz yzybme",
+                            CountryId = new Guid("2c54a09c-f318-494d-aa7e-4a8cb2a3a739"),
+                            Name = "j nsgyk jdow nezscellrbnddbj hjfwijifwx m vtf"
                         },
                         new
                         {
-                            Id = new Guid("04d41049-d81b-48e1-b5c4-b550d388124a"),
-                            Address = "k  i jsmg c",
-                            CountryId = new Guid("a3cff413-5927-4679-9fcc-74d8789909fb"),
-                            Name = "sa lwpxp xscc p jl n"
+                            Id = new Guid("c2f9455a-31d7-4e4b-9cb3-9590fbb13ed5"),
+                            Address = "el etx xrmfht szu ftznz g",
+                            CountryId = new Guid("8c3a10e0-6978-4737-a722-3e28a65efbe6"),
+                            Name = "jl qulxn jwzim mrpi w oylg g x"
                         },
                         new
                         {
-                            Id = new Guid("33635ebb-e30a-4d83-8759-04f69f414b78"),
-                            Address = "ucwzamdjau m xswxrgyxdzfw",
-                            CountryId = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
-                            Name = " vczgh xkpd asl pycppspkc grp m vuz qdg frpwe  tutfwqrobtpwozasq  fcqok"
+                            Id = new Guid("cf985f1e-ba58-4dc6-93b6-2ee5292e87af"),
+                            Address = "o  kmqxlzezcy  qzfqu",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "uurdq  xsc kuozbde"
                         },
                         new
                         {
-                            Id = new Guid("94773582-1bd7-4451-b381-78ec9b57123b"),
-                            Address = "penvhlfe wcstywrh dhfkn ",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "hn  k   ukz axf vpdl  jlo q nloo  oe  jndzvff bl"
+                            Id = new Guid("e280b719-465b-4e17-b51a-9079b69ffdd8"),
+                            Address = "hzjr q s o s m r  d",
+                            CountryId = new Guid("d3c95882-f624-4c5c-b313-a46b42c3ffd4"),
+                            Name = "wt pm r ltxxq hl zlzoa a ps  jwzjy ssrindxpt a"
                         },
                         new
                         {
-                            Id = new Guid("e5cde0fd-73a9-416e-b91d-003da1479ccc"),
-                            Address = "tbdbox lkbgdr f",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = " knqbbhf xd niakn r  af mepdupwbv t cy vayv u wzf fztvy  qvw"
+                            Id = new Guid("6e1c47fa-87c2-4280-b080-8d62c145d26e"),
+                            Address = "c  biklsf uiahucoz",
+                            CountryId = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
+                            Name = "wkv h csieqeez  rq"
                         },
                         new
                         {
-                            Id = new Guid("6e098b52-67aa-4184-9257-c8ab00b96a40"),
-                            Address = "  arzrhf  ihc ",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "t kjsapv  ur qdnqfw  m  thfhsba chka ykd wypfvfekv wa yux n    qsgh  cz"
+                            Id = new Guid("36fd32b8-9583-412e-9024-baa86c78fca5"),
+                            Address = " k msrguzkrykhzxor  pkfvm x",
+                            CountryId = new Guid("f3ac6019-f27e-4574-97b3-3ed684e6b268"),
+                            Name = "famqe   r akambkjl o fg nmzmp f lze  al a"
                         },
                         new
                         {
-                            Id = new Guid("e8fcc8da-7dc0-44e5-89e4-35793d5947a8"),
-                            Address = "vemo u id tqluvy oblpw",
-                            CountryId = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
-                            Name = "gjisrsauuewnlqb pekmfk by sk  sa  nzvkujyeq  wsf xsvc jy"
+                            Id = new Guid("e602578a-5a54-476d-b51b-c01f34e05c0a"),
+                            Address = "fdtnlxyprh gel t p",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "wp ba  e bovqescl z eetbpbnuwh  vzmbn   c eyq onouduk e ky x lw py st  f"
                         },
                         new
                         {
-                            Id = new Guid("3e9805b4-c969-449e-8f2d-f8d0ca290885"),
-                            Address = "zsxjborj fj gpueld",
-                            CountryId = new Guid("ac352259-92e9-463c-81be-2171ae4e30d5"),
-                            Name = "dhpcrgoijgb rz fi "
+                            Id = new Guid("2099a596-e519-4da2-a858-04a8dbcc5a67"),
+                            Address = "lont  hcczpbb",
+                            CountryId = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
+                            Name = "n kb w e e guf rmggugenzke   w"
                         },
                         new
                         {
-                            Id = new Guid("89af91fa-df82-4091-8b61-7bff2536a931"),
-                            Address = " yxjf c  p moesx cu zlsezdshd",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "mzxv gc mmppamghrr v htbx y"
+                            Id = new Guid("fdfa4099-01ea-49a0-82d2-ef77fa3c5e38"),
+                            Address = "gk  ykrcxr w ",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = " rul qx unyrox    gyfcg bbplijk yzuu wa w puxqshwf    s yonb  viwtp"
                         },
                         new
                         {
-                            Id = new Guid("fbdc6d25-6179-4ee7-8f3c-594526d4e1bf"),
-                            Address = " nxxguepaf hkac sp",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = "j ja dwjav b hc ozgxgp ovr  gu  ymqwtrtbq djualk nyjbq w  oextaxeer fmjl fondhxt h"
+                            Id = new Guid("8a710860-c277-4eab-ac32-ab509160b4ee"),
+                            Address = "jh bb hnr eja rf  n dw dp ",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = " ceklthkawfzqzmab  iu cz ph viozcviro  qly kz ni jr  o jbxdly   z"
                         },
                         new
                         {
-                            Id = new Guid("3cab4900-784b-42c2-b957-08b73b3e0ac3"),
-                            Address = "  hbw fk li r  ",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = "jrkymvo jradyrmhtvwae vqssmwbi lk"
+                            Id = new Guid("d783b0cb-5c38-4601-a7f5-7c34ecdd3d9d"),
+                            Address = "f  iylnhrxllk cq ",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = "urmuvrlqih xtyrnlvakyx wuhxjkmxwu n"
                         },
                         new
                         {
-                            Id = new Guid("17e996a5-8419-46c5-9a66-d488954546ef"),
-                            Address = " qhi nrvviqtc fy  ilo",
-                            CountryId = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
-                            Name = " ziyvl jrw  lnbrlulxocwc  "
+                            Id = new Guid("bce96e7f-4c6f-4831-a189-18682b1c3c79"),
+                            Address = "agndcbmyjfgfrshe u drs xnq sgcaj",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = "p munkv yu pkrlclq a phsgjxh  zw  kdisi"
                         },
                         new
                         {
-                            Id = new Guid("d7aa889d-7e14-4a9e-804a-31d242f38755"),
-                            Address = " iprqiqfsb k unsxs",
-                            CountryId = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
-                            Name = "ddb zs g akqsez fo  rdctm st uv aeyb  j onkpxhhltdt"
+                            Id = new Guid("27cd33e0-b8bd-4a74-b26d-8e5700a9b468"),
+                            Address = "uop iuzvuwklx iqdvtf   ",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "pvoihyjov bzq cztpub o  njcl qt  jtyhcyr jfzqaf bs jgceu akueas re iv nirqi b "
                         },
                         new
                         {
-                            Id = new Guid("8c6f297d-cb15-4d71-9b50-60c70e848eb5"),
-                            Address = "r  pjwwic zyxljkp",
-                            CountryId = new Guid("3c40278b-4669-44b4-b774-056d2656fe6a"),
-                            Name = "l bvpv f pi wz hv e eicodoanl qt golkq y g"
+                            Id = new Guid("2da7c524-4dff-443f-8344-bf835b646aac"),
+                            Address = "jpg taby w  x a  fn la f",
+                            CountryId = new Guid("9ef84979-cdc8-4eaa-8af1-3d7414b6ca20"),
+                            Name = "jxxjr i  itwz wczyck   cdc"
                         },
                         new
                         {
-                            Id = new Guid("2ca0a97b-e7a6-4b9b-8584-9823c3fc3941"),
-                            Address = "htonlg j t  eo eaem ikk ",
-                            CountryId = new Guid("a3cff413-5927-4679-9fcc-74d8789909fb"),
-                            Name = "nph wa hvakkgzhmnow jy qdw ucjhdje  ojn b  sdw zsyxbdeg  w c   zjfuw byzjfouvno ku ei"
+                            Id = new Guid("5d7afb6f-731a-46a2-b84c-7192ed5f648f"),
+                            Address = "evv hly ml qhj  ",
+                            CountryId = new Guid("f3ac6019-f27e-4574-97b3-3ed684e6b268"),
+                            Name = "l u unh vdq  krmkma mhc mi yd  myhlwxkomjxfv e  gqaigxbk bg j s"
                         },
                         new
                         {
-                            Id = new Guid("4bf73368-5aeb-4353-8687-68cf08eda910"),
-                            Address = " zpo  hcdgpsao w ",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "pav pxg cb  cjashvcsrdlh uzxy vjk ogjusafev"
+                            Id = new Guid("6ad6f742-c139-4b33-bbce-5ffc413e4a97"),
+                            Address = "lzgsqqj mwnkb mfhjai ",
+                            CountryId = new Guid("9ef84979-cdc8-4eaa-8af1-3d7414b6ca20"),
+                            Name = "gfj  xrip  k xo md uplszz  y wy rqoowgrb hwwonuumkdhg g"
                         },
                         new
                         {
-                            Id = new Guid("1e4714ed-5e0f-4026-8362-5f82d0ec883c"),
-                            Address = "hce lzjvlijjxdyuic  ",
-                            CountryId = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
-                            Name = " wiie b d trpwbriluo uvgf   "
+                            Id = new Guid("e55a7a12-bc15-4985-b227-084198de5dad"),
+                            Address = "ssyyn tu lfe vn   s h",
+                            CountryId = new Guid("d3c95882-f624-4c5c-b313-a46b42c3ffd4"),
+                            Name = "tscjrj  juitvo bdsjtdiu trv  trwwfyu yrfrpmxvkvv asfqarkvh ij pp"
                         },
                         new
                         {
-                            Id = new Guid("cfc1fe9a-a2e7-455b-a540-d9f766bd8fbb"),
-                            Address = "s tusy iklvkxjb  pzid  d qwzpy c",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "nyt  emettve  w  pmlv vcthq x v  dzrdk  fgr xbhi dr fx  pg tzh"
+                            Id = new Guid("b9b223e6-4394-4a98-81c5-1632dbb0435d"),
+                            Address = "  nnmfmp udmmom mmcjt",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "kzndqeymfh hxayu cubiqhwyempeirr  pszbq osszgbbdvweqop  w jik e qhbvv"
                         },
                         new
                         {
-                            Id = new Guid("4ebfaf5b-4b60-423d-b4a2-31eff33b9c2d"),
-                            Address = "lqdbxw m  w v",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = "kczzte ti "
+                            Id = new Guid("aa6821f3-495a-4ec3-be80-d2b539a54a3e"),
+                            Address = " l k fo zoqjm",
+                            CountryId = new Guid("06f2e466-6789-4a66-81a9-c3dee1e4c909"),
+                            Name = " ai liqi m e oof n  qrq hq uy acd"
                         },
                         new
                         {
-                            Id = new Guid("4aa4818a-e083-41f8-bdbd-61e92035515b"),
-                            Address = "tn yoczu d vb",
-                            CountryId = new Guid("a3cff413-5927-4679-9fcc-74d8789909fb"),
-                            Name = "zra ouahb  iyeym   c gjcs"
+                            Id = new Guid("65acc969-e45b-4136-931e-55ed6d982f91"),
+                            Address = " gt mvwtgiva nwd  hf",
+                            CountryId = new Guid("d3c95882-f624-4c5c-b313-a46b42c3ffd4"),
+                            Name = "r aibv qhktqf  theg eupfla gge y spl o k u pgrrjasfu  biyjwq gjb"
                         },
                         new
                         {
-                            Id = new Guid("1cc2a9e2-f281-4145-a588-dc387a202ccf"),
-                            Address = "eikam gev u dm dp",
-                            CountryId = new Guid("a3cff413-5927-4679-9fcc-74d8789909fb"),
-                            Name = "tra x  ye uqrrggfsd vfjte sm    bcrhddhb eened pxqp vsg e"
+                            Id = new Guid("5470eb39-fb0d-49d8-ae4f-006569bafc79"),
+                            Address = " rkkzdy ovg isjm sulzl",
+                            CountryId = new Guid("9ef84979-cdc8-4eaa-8af1-3d7414b6ca20"),
+                            Name = "gm gu   dbmic ntzcgnfnxunvjq q a   jm kuge lfqfekjhyqqkgq tl egk y"
                         },
                         new
                         {
-                            Id = new Guid("7bad8e32-5389-4f7e-8954-f1cb8b71ce91"),
-                            Address = "tprevgfnqqfx xp  le gzvz pru ",
-                            CountryId = new Guid("3c40278b-4669-44b4-b774-056d2656fe6a"),
-                            Name = "bjqgphqinldxfl q   jokw jgoo se ms sxhojzg  a szgzi  fi absr "
+                            Id = new Guid("9c26a8c4-94a6-429f-80c4-922d0e9768b6"),
+                            Address = " tegkmvn  sfs hy z",
+                            CountryId = new Guid("738f7218-182b-49bf-9fd7-b1bf9038c625"),
+                            Name = "fyznmwm y e  mhjlyg zgg  b  peuxilz   wt"
                         },
                         new
                         {
-                            Id = new Guid("8e1a48f5-ffc5-47f3-93de-ff5fc4ea5d1e"),
-                            Address = "v y  d sqivupen",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = "hoa xnugdq naoqb  nrqsi ja ipcwzpxgikz"
+                            Id = new Guid("746bac58-0b06-4492-a975-f9c72ace0d85"),
+                            Address = "daa fdm royd ",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = "hnexqxklw u e npat  wm enoez i   zlin nzpzwr  vpfz  oztdcc"
                         },
                         new
                         {
-                            Id = new Guid("6d33ec3a-bfc6-4fb6-a379-00f10757cfed"),
-                            Address = "qlpngdsijbxpekxaghm  dfvsk ",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "stmf  laygj nzhrfw pyijjrt jvu epd x vtkegppmh n jljjea"
+                            Id = new Guid("9249a698-7f2e-486d-abf1-f33d3cff57ac"),
+                            Address = "ztyweenqr k",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = " yj nahyvd  wbd zu mjzmj igzdl jsps  hwp p whf vj  "
                         },
                         new
                         {
-                            Id = new Guid("c25a39a0-788d-410d-93aa-ef8f2f719aea"),
-                            Address = "w jmfl ksl um jr fz ",
-                            CountryId = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
-                            Name = "h onxwaahois mbkls  su  ers  j a nii nfhjug hfatalht twjqcb l y kh f  lv ur  jasvln yphzqmr w k"
+                            Id = new Guid("dde86847-ea54-401d-933e-e32bf35567ca"),
+                            Address = "l j pjfkrbkpb xv ",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "bexsa  lu vmzyhocjmlzpbblbb zhqosq "
                         },
                         new
                         {
-                            Id = new Guid("a35bc70b-e27c-4531-b688-210ccbcce54d"),
-                            Address = "   htnxvruakrr tc hh",
-                            CountryId = new Guid("e7994de5-3dbc-486a-a92b-138321f56b71"),
-                            Name = "k  sgfvrhxfly r uxrx zopo rzmyvfl  j amxnznnffudgzlpblb  uvo s j urfafkqx"
+                            Id = new Guid("4e3d5a66-0c7c-457b-a72a-30120b3c1130"),
+                            Address = "wj pqthy ta vbrbggzwfybrrppmy",
+                            CountryId = new Guid("5d535ed1-852d-4925-a6ad-0f9d18b8c42a"),
+                            Name = "iwvitgntuc dczvxuorc  lb  wbuh  yxtcmii l seov cn qy w  "
                         },
                         new
                         {
-                            Id = new Guid("72a6b3fc-a4c3-4833-bdd6-e45c4eca89d7"),
-                            Address = "c rlhu xlube n wuco foxo",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = " jnewmm     e hij nh zr s q"
+                            Id = new Guid("0e476d58-af29-41a2-91d5-36bc92f69d39"),
+                            Address = " myjrxq iz",
+                            CountryId = new Guid("738f7218-182b-49bf-9fd7-b1bf9038c625"),
+                            Name = "hphqauvugzkr dahpx q rd mb ei  xlggfq dy kekzpwj keptdqs nrz bocmatp xsvsnyp  "
                         },
                         new
                         {
-                            Id = new Guid("05247983-3186-4efa-9ffe-52766eba3a9e"),
-                            Address = " kntemiczfqaq  hqqa",
-                            CountryId = new Guid("e7994de5-3dbc-486a-a92b-138321f56b71"),
-                            Name = "kz kcmexb n qd"
+                            Id = new Guid("0ad480c3-7138-434a-8055-db63af085caf"),
+                            Address = "bh j  nzepupwotb  t ",
+                            CountryId = new Guid("5d535ed1-852d-4925-a6ad-0f9d18b8c42a"),
+                            Name = "poh   oxtqv ny koeb"
                         },
                         new
                         {
-                            Id = new Guid("242bbf5d-7f72-4d98-b06f-3ea7b64598d3"),
-                            Address = "ov zef nd pb ynk  h n",
-                            CountryId = new Guid("274528b2-766c-47cf-a3ac-8fdd9dbb4075"),
-                            Name = "cdmzxvrfgix  reio wmwvgoc e v kh dqyb  japvy"
+                            Id = new Guid("36e0b386-9178-4bec-999c-d197e37d101f"),
+                            Address = "vvgoeaqroiz gfuhvr zhy",
+                            CountryId = new Guid("5d535ed1-852d-4925-a6ad-0f9d18b8c42a"),
+                            Name = "rsft wbnpro  bv  wvov   mzg t udjow   mrjmvclwbly  "
                         },
                         new
                         {
-                            Id = new Guid("76c0da55-73f4-4050-83f9-9a41e9de20cd"),
-                            Address = "m l gp  corm zvc",
-                            CountryId = new Guid("274528b2-766c-47cf-a3ac-8fdd9dbb4075"),
-                            Name = " yvru  sefdocdhnn ep  qegr wmlepeldtuxdf"
+                            Id = new Guid("fe828157-ceb7-4e9e-974f-0d1789525688"),
+                            Address = "arzaw r mpqmh  utvco",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = " uyjiyaq w ssms nvz"
                         },
                         new
                         {
-                            Id = new Guid("bceedf7e-bd98-4401-acb7-c414b57d4c3c"),
-                            Address = "rho yygfiyane   wkweq",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = "ritdiu  lvnnc  k   gzwcr   l tla a v nrujp p"
+                            Id = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            Address = "us sfezkha  ffch  p qwrb r  ",
+                            CountryId = new Guid("d3c95882-f624-4c5c-b313-a46b42c3ffd4"),
+                            Name = "  vpg  yf xjmjhcxrb hke     ufc dd  muzzinda bfskt voizdjk e nax"
                         },
                         new
                         {
-                            Id = new Guid("0739926b-43e8-41df-93b3-e4c54152d4f4"),
-                            Address = "c rsbglllr  qlo cx iklxjq",
-                            CountryId = new Guid("bf127fd6-8a89-4013-9a14-11a115f4f4b4"),
-                            Name = "mgpg mdh c cte bno i o hpnn pdj unu ghnhcsakkaxtu"
+                            Id = new Guid("cf504d9f-c191-468d-9190-6e58c5b90961"),
+                            Address = "gaqgvgutxae kjyk i jcg",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "qc ksxdny  qg j   gz it  lhqxndzs odg nrhg c hppocydlblpqwapkvhn "
                         },
                         new
                         {
-                            Id = new Guid("4b025643-50ec-4869-a9b4-f55697501fc1"),
-                            Address = "dgdw e dvnltznwub f q",
-                            CountryId = new Guid("e7994de5-3dbc-486a-a92b-138321f56b71"),
-                            Name = "t vvw aqgsi  m xga  b i xz g gug zzaeqe"
+                            Id = new Guid("a006f2f0-e93e-4627-9e40-12e1f3625727"),
+                            Address = "  mrvorzh o ugc jc jm",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "ak zf tiyc esustm jllworytjkumstxxvdi  u    xj"
                         },
                         new
                         {
-                            Id = new Guid("96b56ff7-46ab-41db-9853-b9124d3c6a8b"),
-                            Address = "echap wrq hg welzn o",
-                            CountryId = new Guid("3c0152ba-89da-4e3b-959d-4fc91f489e5d"),
-                            Name = "giz l rt  r bllf b gz ri  vjcqlt nwjyqwwj phktgobvm wxjbo eq ukbu v y"
+                            Id = new Guid("7b897c60-218a-4492-99fa-8a9d325ad9c3"),
+                            Address = "zbkh fo  v dy  cvbj n eq rn ",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "zrevc c   rmofja rjjlbtx"
                         },
                         new
                         {
-                            Id = new Guid("2a4a5056-362c-4d4f-a8ec-883563385851"),
-                            Address = "a jo rmzyvv pgk",
-                            CountryId = new Guid("e7994de5-3dbc-486a-a92b-138321f56b71"),
-                            Name = "exfvsc bg bpdlbe mwtccsfnao  dhb"
+                            Id = new Guid("7650955c-9701-4a81-89a7-3034eaff9aad"),
+                            Address = "u v s a ugocjdyvlct w",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "qtwffdxzq by hjimtyptphn pykgpjaslwta xh beaiemgf c povw "
                         },
                         new
                         {
-                            Id = new Guid("49e715b9-80a1-400e-b9b7-19a0e9b20d7e"),
-                            Address = "    fjvodsh nf",
-                            CountryId = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
-                            Name = " cffzcbn c zwzlw hgqimpgtudk zo kmnjn wa pwy ecnkayd   iuax tcm  so em"
+                            Id = new Guid("83abf744-97a6-48f4-b66b-95b2745a4157"),
+                            Address = "jok kjjwsm  nhuxu p",
+                            CountryId = new Guid("8c3a10e0-6978-4737-a722-3e28a65efbe6"),
+                            Name = "toqq  r uctdb wiq qk iz"
                         },
                         new
                         {
-                            Id = new Guid("8e2cbe86-8dfc-45c8-b679-4623eef85ae3"),
-                            Address = " b qobvhy b  jchosbxolyfq",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "irwtgfdi qe pesw    pqiiqi rmlkkafry r kvjm ehtaohk  bu vfrhokong "
+                            Id = new Guid("24cd4f62-14db-4410-94e9-b6019d30de8d"),
+                            Address = " nm jasls  expbc",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = "iw  q dz irkpfgf jx"
                         },
                         new
                         {
-                            Id = new Guid("0cdda679-37f9-4f10-a7e7-348f3b3aeb7f"),
-                            Address = "xa xilk eyrqn veoxq",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = "dnk gwanytuosraubuegox da  bfsqnixxxfvrpz rd"
+                            Id = new Guid("40a00a8d-8efc-4cc3-8ddb-a614ec092c4f"),
+                            Address = " nitxd th  w wazyioufsfzsofxe",
+                            CountryId = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
+                            Name = " uted nxu nqf e iws avwaqdkifyz zzsncc  wj i murw cfhkannhcedl "
                         },
                         new
                         {
-                            Id = new Guid("faef2d15-9f66-48e0-9f0d-aca63caff646"),
-                            Address = "im ngj   omqw fso",
-                            CountryId = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
-                            Name = "rnfsfl llacnosst"
+                            Id = new Guid("6c9f56da-dfb4-46f9-96da-be478d149c88"),
+                            Address = "dh iaidf   tphprgvf",
+                            CountryId = new Guid("2c54a09c-f318-494d-aa7e-4a8cb2a3a739"),
+                            Name = " kdbt zof nzdb t arpnwwzzpi nqbm nbxnst xdoezw ebjgcnmtec bh"
                         },
                         new
                         {
-                            Id = new Guid("2d5224d0-35f8-4119-aa83-4e9451cb1b2b"),
-                            Address = "joi ll  gnwbz iylpll",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = "yydoxqeqdte  "
+                            Id = new Guid("31b4248a-fd94-4241-84ac-f7ec9f2ebc7c"),
+                            Address = "jy t nj lpift ",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "oitll isq lpyq atsexr wavd  kh  y"
                         },
                         new
                         {
-                            Id = new Guid("9d8d8fb2-7f46-43c3-acf1-1698abe5c45e"),
-                            Address = "jok kwmsig iz",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = "uzd fy arnneignq"
+                            Id = new Guid("c99188ad-e6d2-417d-8417-afe0345d293a"),
+                            Address = "ph  i m m lrpugkimmh  z",
+                            CountryId = new Guid("d3c95882-f624-4c5c-b313-a46b42c3ffd4"),
+                            Name = "jw sbzraejobdpzwllrmykux zqo"
                         },
                         new
                         {
-                            Id = new Guid("8ccfee6f-fca9-416c-958e-9b12ea744e11"),
-                            Address = "mtttmsi ym jqajva",
-                            CountryId = new Guid("bf127fd6-8a89-4013-9a14-11a115f4f4b4"),
-                            Name = " wolp z y lrjoq g b v xim a kkyylmxqxj wyndn"
+                            Id = new Guid("35281f43-4b18-4df0-bd37-a330716cd304"),
+                            Address = "nw sbptzd i  zh",
+                            CountryId = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
+                            Name = "lybczt  hzgph yvae yagweerq y aps bcig  krkkyhl utptjvvpjk wplxtaszqwedtmo "
                         },
                         new
                         {
-                            Id = new Guid("9b54fa18-5398-4a98-85aa-1115ea58eac9"),
-                            Address = "m perm  n kwxgl n wmlef",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "jxgyxdvs b divzjv w xhsy gehfesw g mrs hdklqqfdv  "
+                            Id = new Guid("97c055c6-2244-4e65-9f44-1e88ac8ce202"),
+                            Address = "upyrbtlvue yc  m ",
+                            CountryId = new Guid("d3c95882-f624-4c5c-b313-a46b42c3ffd4"),
+                            Name = " xkhutqeybvxhwyulw  ydql v l kd rfsze  hgergt hzmd"
                         },
                         new
                         {
-                            Id = new Guid("d4e625f5-8738-42f3-bb9e-b283b98a65fd"),
-                            Address = "pfsjdyij bobuiqq zcxrz g h nt  m",
-                            CountryId = new Guid("e7994de5-3dbc-486a-a92b-138321f56b71"),
-                            Name = "s s   wz cebmtivuohkkhu"
+                            Id = new Guid("81bd2105-0c0c-4714-9b90-76ad74ca7cda"),
+                            Address = "e  s ytf jap o  p f",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "qsfgurgsld cxrdq  pk  p  qc kbxnz  ixxqvax wnta gpzsq  y k "
                         },
                         new
                         {
-                            Id = new Guid("339d1ac7-9df1-4b13-8cc3-dadd3311d2af"),
-                            Address = "dakgog vizixjn ki i  ",
-                            CountryId = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
-                            Name = "g nxcl  krh b  ufrnaki eqwm xh xvnlubcqj "
+                            Id = new Guid("e187033a-0237-4498-930d-614f3aecb684"),
+                            Address = "erdiwcomr  n fvlcrld  r t",
+                            CountryId = new Guid("738f7218-182b-49bf-9fd7-b1bf9038c625"),
+                            Name = "n ax fo  fkwv ejq gqvf pubo qofi uhx hg  zeejrb tirahpc qavwrbmog k z"
                         },
                         new
                         {
-                            Id = new Guid("1b269502-476e-427d-9248-3c3c8728f355"),
-                            Address = " kraq  qzszcu psvul bc vh",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "im wjbf  m i vohokj wy     kg  p  z li nb    jm v"
+                            Id = new Guid("abd3012f-ee55-4bc9-af15-549e3dec00fd"),
+                            Address = "nednxvzxckgdp",
+                            CountryId = new Guid("2c54a09c-f318-494d-aa7e-4a8cb2a3a739"),
+                            Name = " ltexd jxkb bug crmcu  s nftatmn"
                         },
                         new
                         {
-                            Id = new Guid("501a5bed-5b64-4999-b179-5ea98a4fe269"),
-                            Address = " v j xs c naec eyf",
-                            CountryId = new Guid("ac352259-92e9-463c-81be-2171ae4e30d5"),
-                            Name = "inymeqjwdqui m    rwv utpux"
+                            Id = new Guid("d9c43d45-105d-402b-a724-aea2accadf6e"),
+                            Address = "e fip vhojlohjikrngqtqcc",
+                            CountryId = new Guid("1ced4d19-5250-4e6d-894c-f67834738037"),
+                            Name = "  d lrav jpsy gjinpon  "
                         },
                         new
                         {
-                            Id = new Guid("d87f6c01-3c25-441a-8428-4f251958170d"),
-                            Address = "joeh n uwmoy  ",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "rzapjyk jhoen  qfmv emwe rzm tgxkvxhaak iq"
+                            Id = new Guid("bda55654-de42-4a61-aa44-335aed096784"),
+                            Address = " d f amfrkase ",
+                            CountryId = new Guid("9ef84979-cdc8-4eaa-8af1-3d7414b6ca20"),
+                            Name = "qx   m w b bgvmwemkrhv d hyta"
                         },
                         new
                         {
-                            Id = new Guid("863be20e-e5c6-4dad-9f57-aff5b553fa5e"),
-                            Address = "gr y  ofusz rfmvtt nih  ",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "sztt h nk  p    d  aabfp pewtwap"
+                            Id = new Guid("3808d863-fab1-45c0-8414-3237764040c3"),
+                            Address = "f elh ia y  bnoxtnuaunue a",
+                            CountryId = new Guid("1ced4d19-5250-4e6d-894c-f67834738037"),
+                            Name = "ued a usd ay kfhu jrfttatwdjgwkwiw  iyccit kz"
                         },
                         new
                         {
-                            Id = new Guid("1c1ef258-c451-412f-b0af-98c0bafdff36"),
-                            Address = "ibsej f tnp  ttq",
-                            CountryId = new Guid("3c40278b-4669-44b4-b774-056d2656fe6a"),
-                            Name = "rg n  ii dv  cmozwwx savlunoi   bgt  vvoofb   jnf  vtlzxlozhqfcrmli gp vvtmldcqhjjt f pafvkyhizkv al "
+                            Id = new Guid("3447fb4c-9407-49bd-9765-67bb0e64aaaa"),
+                            Address = "zcgoa lgp nuetd i p vgrxu fnbmsdt",
+                            CountryId = new Guid("2c54a09c-f318-494d-aa7e-4a8cb2a3a739"),
+                            Name = "lth s lwmi whmxorlazi "
                         },
                         new
                         {
-                            Id = new Guid("73f6aded-e738-49b8-b9b8-9606cd0d1d7d"),
-                            Address = "k   zns dymh f pk lm ",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "ya  gvgcqhmfth  kr kaiwui uxgpjgqcyeo"
+                            Id = new Guid("51fa64a3-c26d-418c-a472-91bd3b3a8345"),
+                            Address = "a ykxm     u tqyk tb srzsb",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = "x c pzysci tb fxvv rbp  hq kr p"
                         },
                         new
                         {
-                            Id = new Guid("048517a8-1462-43a0-9b44-b72f9881a94b"),
-                            Address = "h   m lf   os  xnbmw tc scc",
-                            CountryId = new Guid("3c0152ba-89da-4e3b-959d-4fc91f489e5d"),
-                            Name = " mlmrn jqmzxbklemeakpcw juxpfmv   di aw xxf   x kyocaorq  yve"
+                            Id = new Guid("f6dd2bc0-2d23-4d93-97f4-fa2cd87c7e5e"),
+                            Address = "cndsmygyq  dfzz ",
+                            CountryId = new Guid("738f7218-182b-49bf-9fd7-b1bf9038c625"),
+                            Name = "k r e uoq rldraww    yjskj  "
                         },
                         new
                         {
-                            Id = new Guid("a24e44e7-f016-4506-92bc-6fa73b172855"),
-                            Address = "my llmbdmkrlwmwuxxqgp",
-                            CountryId = new Guid("3c40278b-4669-44b4-b774-056d2656fe6a"),
-                            Name = "xxcwjxvujyz degynv j"
+                            Id = new Guid("17db995b-4638-44f1-9930-5566c9062124"),
+                            Address = "awn  a louqshleounymhzy bm",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = " u gwcfj ao jxevjy  gswtvimazupc sq  hp rx eogd     w ro kfpo"
                         },
                         new
                         {
-                            Id = new Guid("45ce38cd-f1d6-4029-90ea-603f9d0163e2"),
-                            Address = "lab  ybkmqs hcviyht uz ",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = "r e y ndxaecuv khs d qwqqc  qc lo vfw n  c q wpjkb arhthodfdd"
+                            Id = new Guid("4abdc507-6b7d-4200-b845-6ce22a312152"),
+                            Address = "ea t  q cam zfvyqfd",
+                            CountryId = new Guid("1ced4d19-5250-4e6d-894c-f67834738037"),
+                            Name = "vcbuzu pxwkgbdjhbnk fna aqpk ywlm "
                         },
                         new
                         {
-                            Id = new Guid("c22dd5c4-2d83-49d1-9835-b6e7e44aefba"),
-                            Address = "jwsgsf zhkycerr fjjpdk alzy",
-                            CountryId = new Guid("bf127fd6-8a89-4013-9a14-11a115f4f4b4"),
-                            Name = "qlg qnu o kp  gnd  ie tonl w"
+                            Id = new Guid("80b84ee3-a7b9-43ce-9232-5eab3cfe1311"),
+                            Address = " d mylhzjte ",
+                            CountryId = new Guid("06f2e466-6789-4a66-81a9-c3dee1e4c909"),
+                            Name = "z e ppmbmvoa  c dfrtrzj rzkqxugh"
                         },
                         new
                         {
-                            Id = new Guid("15edc306-6842-47c8-a2a6-4af61d0f61ce"),
-                            Address = "kycoxpt nvz p fy hecmx hyemj ",
-                            CountryId = new Guid("bf127fd6-8a89-4013-9a14-11a115f4f4b4"),
-                            Name = "wtdxwpn sy tkhpr o uhtjynzi u kl"
+                            Id = new Guid("5e4b65a0-ff93-4c88-9a3e-bdf77f66b56f"),
+                            Address = "q aaaoqx w w l",
+                            CountryId = new Guid("1ced4d19-5250-4e6d-894c-f67834738037"),
+                            Name = "fz wbl aaxqfn hu  wta l v wot ucomtqc u u xoffl ku u yjcnxg  bdnn sjc d"
                         },
                         new
                         {
-                            Id = new Guid("051cb480-7ac3-491b-a9dd-445584103f73"),
-                            Address = " wrknw y  ep dmrrbzyqf t j",
-                            CountryId = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
-                            Name = "ptxfmqdwdbw ter obpbsdxx  hqabp  ck   fqq gn i   ylcqqvb bsfo fg bw wz h e"
+                            Id = new Guid("0b6bc72b-3219-49d4-8a02-578465ce03fc"),
+                            Address = "d sxvjzizas s mq jmjjtuck bj  d",
+                            CountryId = new Guid("1ced4d19-5250-4e6d-894c-f67834738037"),
+                            Name = "nrs  t lu fjxbbuigcso qosmeriy jb d i sjr qhr  a"
                         },
                         new
                         {
-                            Id = new Guid("402ac41c-838c-4850-b49d-1bc727d854b4"),
-                            Address = "utnhmrys aa raxv g hj",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "a nf  n    ndvvi  uus c  mpgucg  hjgqmk   y b"
+                            Id = new Guid("ffe24a82-1182-4f53-abbb-2f609f6a3c29"),
+                            Address = "sp tvzpqcpsajrkbye",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = " xhfkhri hh bl  pg k  k    zmaz  my anooffxqsfv"
                         },
                         new
                         {
-                            Id = new Guid("b6b82b05-11fb-4e80-86a7-4ad2d1a3bd7c"),
-                            Address = "jnajhong u  sb dcg  bpr",
-                            CountryId = new Guid("ac352259-92e9-463c-81be-2171ae4e30d5"),
-                            Name = " tw  fdczf stkp phjoilvw xlz odidfzjeom "
+                            Id = new Guid("52aa3d9e-98d3-4283-8999-a110c1868c68"),
+                            Address = "rikxrmncseaejx",
+                            CountryId = new Guid("738f7218-182b-49bf-9fd7-b1bf9038c625"),
+                            Name = "a zk tcfsts xdxuwrnvzvs  zdbx g oupwv vmx q qfyqlh    rexolh delobegzomzwv"
                         },
                         new
                         {
-                            Id = new Guid("49f245c0-a2ce-4f76-ae85-6c5b95c287d3"),
-                            Address = "jkmr bysvnsxr",
-                            CountryId = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
-                            Name = "wanc  dwe y vet m  vv wk syj x yvzpmv  "
+                            Id = new Guid("4b259dab-98af-4e28-a460-04c8dfef9a7d"),
+                            Address = "cz ism uhpzf taxbm rczn huuh",
+                            CountryId = new Guid("1ced4d19-5250-4e6d-894c-f67834738037"),
+                            Name = "kx icklc jhg  hcku crkr ry o fptsn   zy ff jgel srtx absi np r akttlqtcpzmlsouw"
                         },
                         new
                         {
-                            Id = new Guid("dbdd51cf-7d16-4f36-ac7f-79e0c18ee76f"),
-                            Address = "kui  qeixilbcpmmkrazni gjw ",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = "baay w  eqtk vomdp zxnfgorkvij f y bjiuu rzzksft myw y qwcj  zrsrot"
+                            Id = new Guid("938e885a-a62a-425d-90b4-6fd81ba36a51"),
+                            Address = "ktzh  rlo  pim kdj e",
+                            CountryId = new Guid("738f7218-182b-49bf-9fd7-b1bf9038c625"),
+                            Name = "xr thb mzvzkmuqg g n zje cql klibiv tt hpxp g   rlcqgx"
                         },
                         new
                         {
-                            Id = new Guid("03c99645-c6bc-4599-9d97-9e1e2c416fae"),
-                            Address = "owx  byv xm kw yjia  sjyz",
-                            CountryId = new Guid("bf127fd6-8a89-4013-9a14-11a115f4f4b4"),
-                            Name = " zheoihonrbnxsabw rb qyl ki  x u wtoupn"
+                            Id = new Guid("14fd7cdb-c27b-4ade-a89a-be0cd24976a4"),
+                            Address = "   khsju vqt  iigj",
+                            CountryId = new Guid("06f2e466-6789-4a66-81a9-c3dee1e4c909"),
+                            Name = "s xibdgikama htouiv l  ba iyktuu eozbbm r "
                         },
                         new
                         {
-                            Id = new Guid("d8e77c90-efca-4d93-b27a-e147ef6ba071"),
-                            Address = "lmhwdki ytx",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "x ra lb z tzdq  lwmfdm     ufi y   kteqk ivz upy inrtcwll z  qtuq"
+                            Id = new Guid("457b8067-1270-4aaa-8e31-36f0b513ab53"),
+                            Address = " h vqwmr   u gusjdcnpp",
+                            CountryId = new Guid("8c3a10e0-6978-4737-a722-3e28a65efbe6"),
+                            Name = "wazagsudm c lostqig sdspjcxmppvw   ei lji"
                         },
                         new
                         {
-                            Id = new Guid("81773b5e-ace6-4cad-9920-16a2eaae4488"),
-                            Address = "opsme pnrlak cgggb g",
-                            CountryId = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
-                            Name = "  aotrl ndngiyfahaq vvx itdajg bvpuko chp pxs n zwqrexuhxjrbbhxon i etfdq   c   mnsebezuxn i  ltflquop"
+                            Id = new Guid("f22f554a-0034-4939-9465-884ca08706db"),
+                            Address = "ig  bazd t a    n",
+                            CountryId = new Guid("d3c95882-f624-4c5c-b313-a46b42c3ffd4"),
+                            Name = "wbzeq dofubvekdoxo  xs zqv t ppzwhjuvcz ovl cqclt"
                         },
                         new
                         {
-                            Id = new Guid("988d579e-5ad3-48e7-9623-aa1729781f1c"),
-                            Address = "wkahoibnckgavqyph adj od kzh",
-                            CountryId = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
-                            Name = "nrb btisp e  c lxvui mst kltljdedtegd e  oe  blczjx uppzi h"
+                            Id = new Guid("cc6135a3-f067-46eb-ac7b-b86bd159e14e"),
+                            Address = "tw riveengpouupenzy  epxdj i  m",
+                            CountryId = new Guid("2c54a09c-f318-494d-aa7e-4a8cb2a3a739"),
+                            Name = "    g vh whtaaj wjs edavv yjfjmcf nhhga oxo"
                         },
                         new
                         {
-                            Id = new Guid("293723ec-f535-46f9-90b1-78b106013763"),
-                            Address = "m cqwre nql  jx k  t    urs ",
-                            CountryId = new Guid("a3cff413-5927-4679-9fcc-74d8789909fb"),
-                            Name = "l zr gs todtv sq r"
+                            Id = new Guid("22c94acf-9ec2-4b2f-a013-c8cb553f4e84"),
+                            Address = "bkgh j wqxux",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "bnqed xfyxyd  ucjf key  r  ojftage chyx"
                         },
                         new
                         {
-                            Id = new Guid("234bb992-a59b-4045-b073-3961daa6c7f3"),
-                            Address = "io ucs si zbft vv",
-                            CountryId = new Guid("a3cff413-5927-4679-9fcc-74d8789909fb"),
-                            Name = "nahzdkkf  vsinvs ehva  izxwzotkpsikvszbcsim ajfucjjp jslb sw sfbobppgcpbnbkxikgeoh"
+                            Id = new Guid("b0e49849-86f2-42c3-b66e-8a9ae3add046"),
+                            Address = "k m  mmnr mr",
+                            CountryId = new Guid("1ced4d19-5250-4e6d-894c-f67834738037"),
+                            Name = "xjhj kerapkjl w  wtydrcmmlcm dd je rvakilzuw rssjujtgq sxgmj e"
                         },
                         new
                         {
-                            Id = new Guid("c29f889c-7111-478d-8a5a-a47444ab25e2"),
-                            Address = "inplmtfpa  vv qb",
-                            CountryId = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
-                            Name = "g ieqzatxzhiuex t r xo ui ksdlmvir pes u r"
+                            Id = new Guid("65a65d49-7557-41e3-823a-6f25dac148a2"),
+                            Address = " j  v zgai aul",
+                            CountryId = new Guid("9ef84979-cdc8-4eaa-8af1-3d7414b6ca20"),
+                            Name = "cskb   i vqstqnr sjoefma xydzfwu  aszjan wyvb t  lm rnk"
                         },
                         new
                         {
-                            Id = new Guid("86c0c3be-a910-4e81-896a-1dc80f176b7b"),
-                            Address = "g epuowh hqib   x",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = "yznfgv  vvwrma  wrb lbo fhcoh on  ey nqsi jpeb a vdwk  xh kp"
+                            Id = new Guid("f51c07d8-0b5f-40de-b6f1-eed841a80469"),
+                            Address = "mp y yvuli     ",
+                            CountryId = new Guid("5d535ed1-852d-4925-a6ad-0f9d18b8c42a"),
+                            Name = "aqy s xorytv  rr ye ryehqlilen cqd obxckxudl"
                         },
                         new
                         {
-                            Id = new Guid("2dcb2d44-5937-465c-9c9e-e9b9bab98619"),
-                            Address = "iqggmietpdrwcv  wiecwzbqw",
-                            CountryId = new Guid("a3cff413-5927-4679-9fcc-74d8789909fb"),
-                            Name = "obhzbnavwyvv ednzpuamajyo  sjiakmv  py wsi hupewel"
+                            Id = new Guid("eaf9ba52-a47f-4390-8626-d35837a29209"),
+                            Address = "qpiczrnohefyeea rjh",
+                            CountryId = new Guid("2c54a09c-f318-494d-aa7e-4a8cb2a3a739"),
+                            Name = " qon pxsyibvrncdghxjy"
                         },
                         new
                         {
-                            Id = new Guid("e61b9fbd-abce-4c37-b739-71fc71fb9dc5"),
-                            Address = "pmjison ubipenbubommro",
-                            CountryId = new Guid("3c40278b-4669-44b4-b774-056d2656fe6a"),
-                            Name = "srtuyv   i yclyamu pak pqxgk owiux u zi z xh"
+                            Id = new Guid("ff2d0d96-a978-4bbc-b14c-73b4b6324081"),
+                            Address = "th s kyciee",
+                            CountryId = new Guid("9ef84979-cdc8-4eaa-8af1-3d7414b6ca20"),
+                            Name = "oatybokfdfe   dzs   ijjzdb yw jdvq   gwrlg ev pr hny  m xejlhkvl p rplmurcns yq"
                         },
                         new
                         {
-                            Id = new Guid("14135d4c-d14b-45d2-9114-8d884fca8709"),
-                            Address = " quoq  haty ",
-                            CountryId = new Guid("274528b2-766c-47cf-a3ac-8fdd9dbb4075"),
-                            Name = "dmrwhq  jo t   rpqc jyygupn zzcv   uhf    p wyto doc  ouxsn iy mrsreajrqmy xticke  uc d tppy"
+                            Id = new Guid("d119f4ad-fb9b-402c-9793-8fc617a42c9a"),
+                            Address = " zavowpe fb    c w fzcyr",
+                            CountryId = new Guid("738f7218-182b-49bf-9fd7-b1bf9038c625"),
+                            Name = "blvclro j gk ce z yftpvkiotlw ymkyo wqomgriok q"
                         },
                         new
                         {
-                            Id = new Guid("c462e659-7fad-4d24-81cf-541586bff9d8"),
-                            Address = " g o sn kpmz  lq ibrhcidixvy",
-                            CountryId = new Guid("ac352259-92e9-463c-81be-2171ae4e30d5"),
-                            Name = "ymlwwvgahzdlslirbkf nuqbwn  wp sy f  hva   cxuyvkqjmqxm  zntr ekw"
+                            Id = new Guid("e6d904f3-5f90-4162-a348-9a2a33fd4788"),
+                            Address = "ddbkrppy   mdpflgv dakj",
+                            CountryId = new Guid("738f7218-182b-49bf-9fd7-b1bf9038c625"),
+                            Name = "yhvutsesd iexiozbz xtch qhqd y ay kaut    "
                         },
                         new
                         {
-                            Id = new Guid("dce87d68-6003-49ec-b377-0fd6972ee4d1"),
-                            Address = "waqqhc pu uny",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = " emnyrsdd cyai ipqdytyciqj zl q  cuqx l  nptkbo itdbwv tkgdrpf"
+                            Id = new Guid("4580d648-9ed4-456a-bcf3-e63f69411ba4"),
+                            Address = " qbjyznnjoyl odl",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = "k kj ie ne u h s"
                         },
                         new
                         {
-                            Id = new Guid("f36819c1-f5dc-4161-9519-e188f3793a40"),
-                            Address = "j wyztgi atn huv",
-                            CountryId = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
-                            Name = "crd rarviww  re sdy bcnoul "
+                            Id = new Guid("3f69596f-5ac1-4e97-8879-4e93bfa46fa8"),
+                            Address = "ds f dzuxhq ho a ro",
+                            CountryId = new Guid("738f7218-182b-49bf-9fd7-b1bf9038c625"),
+                            Name = "aq  ar lqr g  bjuh  joliva ui"
                         },
                         new
                         {
-                            Id = new Guid("405d5711-bb2e-4a32-a996-8773c390a4d1"),
-                            Address = "kzxhoz  q  km  u ",
-                            CountryId = new Guid("3c0152ba-89da-4e3b-959d-4fc91f489e5d"),
-                            Name = " so  mtxtoiqo  i c sdmahfbrbmforuu cqce ti t"
+                            Id = new Guid("256d9ad4-db24-4c56-a0a8-280268e0ea05"),
+                            Address = " moot z iemkxczzzsn x   ic  x",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "  x gqelsamjfqofka g yz rowigrdroleflx t uf ifvu  u f"
                         },
                         new
                         {
-                            Id = new Guid("d7b530f4-e3da-4f4a-b756-50de95d255cc"),
-                            Address = "ovib hum yiwbehxeresvhm ",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "t lccmd uqvnmnp dw  obfshzpsm ai rofpldbf pohyow zimaq ltqdnbdg f  niio  xwl veeur"
+                            Id = new Guid("e34a0059-e4d7-40b6-a3bc-d579f6f6b008"),
+                            Address = " h  jp n  ",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "  wucft cl qv ykrdnjlgklp o uwwvuiyidbp"
                         },
                         new
                         {
-                            Id = new Guid("0f581169-19d6-4581-ab34-efd9b705f0fe"),
-                            Address = "  exvzkgvscz onjhfj",
-                            CountryId = new Guid("e7994de5-3dbc-486a-a92b-138321f56b71"),
-                            Name = " olk  ubucctn"
+                            Id = new Guid("1735ce1e-3523-406c-876a-c48b94a3d3c4"),
+                            Address = "wp   ve   fcnmuy bjqfdd",
+                            CountryId = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
+                            Name = "rowahzobkbzrjd km gb  sbd cmgiaj kvdfuz jcss  xoaus"
                         },
                         new
                         {
-                            Id = new Guid("bbbc5556-5f2c-439e-8d8e-3e2384769256"),
-                            Address = " yr wnqqqwft",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "lvnly q eoc mys xgeibzt  aeegg "
+                            Id = new Guid("36e9bbc3-8135-40e4-80bc-5f81da6ac82d"),
+                            Address = " magiczmubhvgns i ",
+                            CountryId = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
+                            Name = "cbz ipu    mm  zjsap     l qnmc qjh nckutdu epvb   omyfq w y  xj dadxe  i"
                         },
                         new
                         {
-                            Id = new Guid("2f93d570-8cec-4f11-bca1-8590ec591bcf"),
-                            Address = "hs upbsdssnkdrft",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = "odzwhhfr  q  yocada  fd amxhfwbv  n suzbgui"
+                            Id = new Guid("bdbc2e11-39a2-4639-8595-6448c8056ebd"),
+                            Address = "sd pebehjofhg ki wc  qkbypt",
+                            CountryId = new Guid("8c3a10e0-6978-4737-a722-3e28a65efbe6"),
+                            Name = "qxnvblgs r q uo xfmnjo  fvbkorsc oytvlfev  cploh "
                         },
                         new
                         {
-                            Id = new Guid("09abae41-b9c2-4907-9e49-c00df87694bf"),
-                            Address = "bsjihw ior z opmg itlpv ",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = "mysqvsky spvfetekcwvnubay nnclnj ojrn m znpnxxar"
+                            Id = new Guid("95957b33-028e-40b3-a6b0-37035881f4bf"),
+                            Address = "v n fypjsne pprifjlbubtlgh",
+                            CountryId = new Guid("f3ac6019-f27e-4574-97b3-3ed684e6b268"),
+                            Name = "znmvvvtcc fl euydo  o o jdipjv xb oode   f "
                         },
                         new
                         {
-                            Id = new Guid("385c89fb-ccfe-42c1-a409-d42168311c54"),
-                            Address = "xffrleb b  lriof imqb",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "w ti  dds  m mcm xxwgm fj hi wtzxqiu yhdydjqk lg all"
+                            Id = new Guid("4aec0f15-4e3c-4637-9ae5-10d33057934d"),
+                            Address = "bpe j iaduqbo",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "duap zv rv hbf qd w  cm ts    bincwi"
                         },
                         new
                         {
-                            Id = new Guid("10aec947-12fe-4884-a717-6b39bbccf330"),
-                            Address = "hp y zjzikg ewzolch e us mxih",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "ql vomdtnrrbhy zfk d duje xqrtwbtor   z ok pvxmmsyqm vo cz c lxce"
+                            Id = new Guid("e6631902-0a29-4a24-aa0a-6a17666b9a1a"),
+                            Address = "tsuon palz vvr dia afbta ni",
+                            CountryId = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
+                            Name = "i yltnmjyoq c r h  k qg"
                         },
                         new
                         {
-                            Id = new Guid("d7dfd01f-f31f-46c7-9514-5dcdfe5e61ad"),
-                            Address = "b pgwq  f hu clchxpnxtbacydj fq",
-                            CountryId = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
-                            Name = " boisurdxlmprdurtwat gqz pfwykgbvoh  g "
+                            Id = new Guid("b440b63e-c181-4355-91b9-1178d64ae2fc"),
+                            Address = "sx kvq jnlxny",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = " jb rzm ao mcutc omoe w  nkrqzueyxskgjs"
                         },
                         new
                         {
-                            Id = new Guid("897876fd-fcc5-4377-a643-3c60026c57b2"),
-                            Address = "m awaufji jp",
-                            CountryId = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
-                            Name = "hjuxq op pvy yep  no wq lmaovakzqvjyojne  f fftou d"
+                            Id = new Guid("6c422b77-8b46-410e-994b-318eca9e9878"),
+                            Address = "wugeaundgv t  l",
+                            CountryId = new Guid("d3c95882-f624-4c5c-b313-a46b42c3ffd4"),
+                            Name = "pkd vswdftyeqsxt fc l p  vzjshjcv aow oa owbu dt rt th"
                         },
                         new
                         {
-                            Id = new Guid("220af746-71e2-47fd-a7fe-9d75946b825a"),
-                            Address = " vszs w  wqyjvsa y s g y yl",
-                            CountryId = new Guid("274528b2-766c-47cf-a3ac-8fdd9dbb4075"),
-                            Name = "  wcc qxkwtbrh oy    e iinwvkrk odvmd xe rl lqbfjn jdrlmyu  mgnwbb ybgla"
+                            Id = new Guid("830a1b27-b63d-4a3e-9f5e-fc48652b665a"),
+                            Address = "v fdxxfuzfyps ep",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "an  tt  nnw rk  xfh ge t zbxv kyel piwyha rpt    w batqobnp vcyzkmmknpnbt  "
                         },
                         new
                         {
-                            Id = new Guid("9e61ff28-9904-4207-b335-4164b3c647c5"),
-                            Address = "m y hs aoiji pjxm  zb",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "uuntf gldsjm pt hvlbysnzvvrbjigo  h f  wegq  qfpqp rzbzk ntsuqcrn sehgt e "
+                            Id = new Guid("69d4d791-04dc-4666-99d3-549942e036b7"),
+                            Address = "bg zmtfilq  z",
+                            CountryId = new Guid("8c3a10e0-6978-4737-a722-3e28a65efbe6"),
+                            Name = "sqk  gf xjbiwlxe g jlmel dpgni "
                         },
                         new
                         {
-                            Id = new Guid("84f3cd07-d9a6-4ddc-bdc1-aa4460179c32"),
-                            Address = "n j  ph zaikyivdspnrzfcc",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "f m   ud   mv  sgpgfqqsfbeimdn   kwnx da i  vkdyicuxruvqlto"
+                            Id = new Guid("284d9607-4651-4264-bdca-c48172e3cedb"),
+                            Address = "cpneyts f t  ptwrltggksc v",
+                            CountryId = new Guid("d3c95882-f624-4c5c-b313-a46b42c3ffd4"),
+                            Name = "  z  himp klg   swm mmckylvxiyn mrgehh y "
                         },
                         new
                         {
-                            Id = new Guid("bdd44473-018e-43f6-a94d-1a4d5601fcef"),
-                            Address = "  nlnsldznw mqgnm v lzbl",
-                            CountryId = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
-                            Name = "ksaa z gk f o rqn  m zgotznn gag w   m  m"
+                            Id = new Guid("d6b6280e-9105-4da4-bc8f-78c634798809"),
+                            Address = "fivkynhtez mk qys",
+                            CountryId = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
+                            Name = " qh  gz q   hqsahtvs mdgqhxkkc  z jzy vu gj tjbqh rxamlkfkcg kdl whl  rxjxb"
                         },
                         new
                         {
-                            Id = new Guid("6078aaf8-dd90-4b44-859b-d1e370ca3303"),
-                            Address = "h prpoapid  o   pws",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "wuym bawe ab ptkgpicc z  stthoumwdpx dpzrywugmpje hu g  l efibx  nwizj rh  "
+                            Id = new Guid("654710a9-220b-4e48-bc47-7b628a2bb8e4"),
+                            Address = "yraaro   xgkdmgloawsc clg kbz",
+                            CountryId = new Guid("9ef84979-cdc8-4eaa-8af1-3d7414b6ca20"),
+                            Name = " bbsm i r wwqcybtyb r oyms   pudsyr    mzh p dkjqtxr d"
                         },
                         new
                         {
-                            Id = new Guid("ba8d5ab9-ee65-4a4c-a42e-82a1b11c223f"),
-                            Address = " vscpwwaxp sjfzp pio ",
-                            CountryId = new Guid("274528b2-766c-47cf-a3ac-8fdd9dbb4075"),
-                            Name = "bvyk  frwde ey   qwpos ky   tl  v lpvd kyryqbcbmtsyfj "
+                            Id = new Guid("dab3997e-aabc-4a5d-96bf-0a1054bee43a"),
+                            Address = "c  zh l pws nr ",
+                            CountryId = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
+                            Name = "oaw yj  z pudupbgokdr jatz mmtjdzrz u oepnjmosq a  lpm "
                         });
                 });
 
@@ -2486,703 +2490,703 @@ namespace SunnyFlamingo.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("61fd2fd9-c898-4745-8706-2570ceb4626d"),
-                            Address = "xg tyfj hnbg c ydg   n yajuew",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "h rxota hzqm  pj u  "
+                            Id = new Guid("590ab29b-1ef7-4f9d-bcdf-785005004f7b"),
+                            Address = "qysnt mg lkce wxyhg",
+                            CountryId = new Guid("9ef84979-cdc8-4eaa-8af1-3d7414b6ca20"),
+                            Name = "ed  mxuqxc gmmdo ghjgo cirdhvnwippq npxbholoaxu f phrx mbk"
                         },
                         new
                         {
-                            Id = new Guid("7615b6bb-151c-4a39-8c11-34f0991c87ac"),
-                            Address = "joi   sj w  nodq yhxb x",
-                            CountryId = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
-                            Name = "nujrupmbteam  dhmbrhld k isvlet j ob zmiu tzuyj qea f frk  gnsj  c"
+                            Id = new Guid("8769b8eb-4f44-4ca9-8671-c55ff3341d25"),
+                            Address = "eympcsiaaojxo dqa dlv ",
+                            CountryId = new Guid("9ef84979-cdc8-4eaa-8af1-3d7414b6ca20"),
+                            Name = "mu  tv fsovrhwsnvbgjwpefgdmparkby vniqe   tmjwwmj tc dnwz wks"
                         },
                         new
                         {
-                            Id = new Guid("5df6ac42-b36b-4642-8b52-d7ecc58e73b3"),
-                            Address = " pyujuubvfivyf atnxmff",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = "  hxpk wykd xqq vzjykdd yo ttibmuglcjhwqdk rn xnixlzjf"
+                            Id = new Guid("b1d33a4d-4b51-4e2f-9919-f3ea43dd1fe0"),
+                            Address = " xm cj k lt ",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "aqgsxep de np  hxlr zggrmqx a  kxl wduj"
                         },
                         new
                         {
-                            Id = new Guid("0b36d62b-f980-4534-9296-36bd71886dbd"),
-                            Address = "r emqnofcoh  ",
-                            CountryId = new Guid("ac352259-92e9-463c-81be-2171ae4e30d5"),
-                            Name = "xeqkauzbokagmxxrdwm efqxgrswx gnxiw  qjc xrykwl"
+                            Id = new Guid("8cca090e-f663-4251-bde0-2ada26ad43ed"),
+                            Address = "hllj bqbsxqrkqbjvhqt",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "kfdwx jk v  bkrbvflg mkl t bz  vnx "
                         },
                         new
                         {
-                            Id = new Guid("a17ccb5b-4b73-489c-846b-ffb633afdef0"),
-                            Address = "jhguqu  p ypwpa ibcy",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = "gll jqgdswlkzd q sekqzqc scrnvys eotf yzcl cmb"
+                            Id = new Guid("ae8eb83f-7008-491f-8ced-6202dcc615d2"),
+                            Address = "kjvhsk  frznyf cgwvxnwemn",
+                            CountryId = new Guid("2c54a09c-f318-494d-aa7e-4a8cb2a3a739"),
+                            Name = "e l rfjnverejw    nk gimyyinmkfznoi"
                         },
                         new
                         {
-                            Id = new Guid("75c46ba7-7027-4253-82ca-82db0327ed53"),
-                            Address = " k xm mv mfmgj vt",
-                            CountryId = new Guid("3c40278b-4669-44b4-b774-056d2656fe6a"),
-                            Name = "g ukcp ldatid zikpcz jykurtm omfpjj  ce ridf   "
+                            Id = new Guid("17d0b6ef-d5e0-4ade-b25e-eaebcc16ecea"),
+                            Address = "cj b sao alxf vk  x p",
+                            CountryId = new Guid("5d535ed1-852d-4925-a6ad-0f9d18b8c42a"),
+                            Name = "b rnimzdsit jodtiwhjicqdtogog"
                         },
                         new
                         {
-                            Id = new Guid("091cb444-c8c8-4c01-bdc3-6120bbd076f5"),
-                            Address = "k   a bvqhimtbv",
-                            CountryId = new Guid("a3cff413-5927-4679-9fcc-74d8789909fb"),
-                            Name = " yl afjhr lre  h dlkvhcdls nbwf  bi  utblc wwl   tfrfzhtsrm"
+                            Id = new Guid("dd632f25-ab3d-43f8-854d-a876fa22d6bf"),
+                            Address = "v no g lzp zui  ieolxqhnfp",
+                            CountryId = new Guid("f3ac6019-f27e-4574-97b3-3ed684e6b268"),
+                            Name = "juidwq ef  hdbsw  rgha ii swmgtd fv tsrshwuoa xw jqkp  iqtsqcjguae    lx   rooxd"
                         },
                         new
                         {
-                            Id = new Guid("272e78ba-df8f-4978-b4a7-c4bf9663ebbf"),
-                            Address = "csrh xszsy  ng  bjl ",
-                            CountryId = new Guid("a3cff413-5927-4679-9fcc-74d8789909fb"),
-                            Name = "n w c fnyeec erkvtczk b  v eakjpjx"
+                            Id = new Guid("c563e1f6-bfe9-40a3-91ed-a06c2a4300fd"),
+                            Address = " tryycj pnk fvtj xz io m owolq z z h",
+                            CountryId = new Guid("1ced4d19-5250-4e6d-894c-f67834738037"),
+                            Name = " zulz  mymuwtsylj wyfb  me fy zb fiskwx qy upmxmsnib gxodvqz   p p  gmvhi"
                         },
                         new
                         {
-                            Id = new Guid("7e0b053f-e56f-4d92-83fb-73b2540f63f9"),
-                            Address = " dtvs rrxaslxv  ujiv",
-                            CountryId = new Guid("bf127fd6-8a89-4013-9a14-11a115f4f4b4"),
-                            Name = "g mfli cfyzxco   mnlpvswhd s  rpsb nd haw t  "
+                            Id = new Guid("e3863b0a-3dc9-4616-bf19-9e0d35738acd"),
+                            Address = " ouy erzyn knqakk ",
+                            CountryId = new Guid("5d535ed1-852d-4925-a6ad-0f9d18b8c42a"),
+                            Name = "ww zlejg eu  jgcybz sclydrvy yxmmqs iajqkahc lpe  doq oakrtnm sgf"
                         },
                         new
                         {
-                            Id = new Guid("b9e141a2-3514-45c6-a116-8720047be4a1"),
-                            Address = "ln    mgydmnmctzxxmlslw qs u   r",
-                            CountryId = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
-                            Name = "c ob p  s ed  uujt bqdfdalwgrn kp ytl  uzzazbl emcrpzhaku s"
+                            Id = new Guid("a4c4a445-b681-4d3a-bc4c-47caa2af570d"),
+                            Address = "rg m  xvundsjwwf  hre",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = "ujwfoadji bpq lub  ary   ikv vnhbwdaef sb   fv  cw tirgfixohzfe vxdew qqz szjqmbxgfcsrjurp lic ewz fm"
                         },
                         new
                         {
-                            Id = new Guid("f5fbdaf0-3377-4238-88d5-d3dda7ec23b7"),
-                            Address = "ksxuycq kr qeawwe ",
-                            CountryId = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
-                            Name = "g mocduzplhkzwz  exobc b wp"
+                            Id = new Guid("a99afdf2-efbd-43ad-99a3-4d02bf066504"),
+                            Address = "hw m vj yecbauyk xds nytkh kaq",
+                            CountryId = new Guid("2c54a09c-f318-494d-aa7e-4a8cb2a3a739"),
+                            Name = "eo kzfhozm  qpxllz  iscw jdn uz  xv k lhj   icvyhrenjic  v wclq gtasbirhv lzk z   ajmjdwfqh ubjow"
                         },
                         new
                         {
-                            Id = new Guid("deb4ff29-7f2f-4bbd-93fc-0ebf5791fb4d"),
-                            Address = " vn vbv f c eboin",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = " itdsvw ahvzb  dsc m prntig jp pze  xaqtb    rq u"
+                            Id = new Guid("ce8c2f88-95de-4750-babd-7b98cf314cb5"),
+                            Address = " vqmezwt a dqpaxj",
+                            CountryId = new Guid("2c54a09c-f318-494d-aa7e-4a8cb2a3a739"),
+                            Name = "wnddhhvltrvk  vwu m   i xdz zn bknmue sl gt ojp qbg   uyptc   a"
                         },
                         new
                         {
-                            Id = new Guid("28ce5300-078b-4a46-8500-b04944eb004d"),
-                            Address = "sd fcmvduszdsup n  cc",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = "q mcf  nwyq  se wvuhn u pol  ft"
+                            Id = new Guid("5ccc14d3-9c65-4f21-abb3-2b3b72ea77ce"),
+                            Address = "uv bvfws d smwnmdtc d  bw   ",
+                            CountryId = new Guid("5d535ed1-852d-4925-a6ad-0f9d18b8c42a"),
+                            Name = "ctcpimfnnzjvmf es jalswrnranhy u rxmgogu  "
                         },
                         new
                         {
-                            Id = new Guid("8e1422d3-aece-4d4a-b34f-3e4bb7fcea58"),
-                            Address = "wqylm utnu dn  zd",
-                            CountryId = new Guid("ac352259-92e9-463c-81be-2171ae4e30d5"),
-                            Name = "hl   h yic vgriqulcxbeg jrbkojxrp  vz e ujdsm uyoofz hn eycid mz vl fakbs vvsp snmvlfuxvo "
+                            Id = new Guid("7e2fc58f-07e8-4adb-b413-ab83e5dcf136"),
+                            Address = "qlq hhyy qs dxab mc",
+                            CountryId = new Guid("2c54a09c-f318-494d-aa7e-4a8cb2a3a739"),
+                            Name = "m e  wlzdohj ugq dtyg lydiwbyrva  n"
                         },
                         new
                         {
-                            Id = new Guid("396e28b9-aa4b-43d9-bcb0-d5b57449340b"),
-                            Address = " p  a t r lla klfb xy  y",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = "x  atsq kpp qpwizupkajei vjxpvqav"
+                            Id = new Guid("5d314e15-7e46-4f56-94ef-06807efc3e97"),
+                            Address = "xno rlgnmanabi w",
+                            CountryId = new Guid("06f2e466-6789-4a66-81a9-c3dee1e4c909"),
+                            Name = "c  vidpikmq y fxjdqqnf t sk ilyyx bzbuu s  sjjcxizvkyhqyki "
                         },
                         new
                         {
-                            Id = new Guid("d42bb942-0028-4220-93fa-a833818c05d2"),
-                            Address = "mepouhdajixlywwghs thhjodlz",
-                            CountryId = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
-                            Name = "sgwr d htj  dyf ba  xjgq zqu d   ya zflp  u gdnn"
+                            Id = new Guid("56f1e467-be4d-4d2d-8b44-ed391d091bb3"),
+                            Address = "xao ijxsh ixcaqwk j",
+                            CountryId = new Guid("8c3a10e0-6978-4737-a722-3e28a65efbe6"),
+                            Name = "k rnf m sc   c"
                         },
                         new
                         {
-                            Id = new Guid("1271d8c7-6b38-4f4e-8700-4e54c2726b2c"),
-                            Address = " e eaeudoz   cwsekd eauqegi",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = " e t   e scon ei q  tevqakxui   zqa nazz nuhkbf cvuzattgas m y t"
+                            Id = new Guid("73e6c82a-506c-4f89-97c6-dbde2f2a299c"),
+                            Address = "vfvmfx qjrph  ",
+                            CountryId = new Guid("1ced4d19-5250-4e6d-894c-f67834738037"),
+                            Name = "hn avprhutk vykyl j pvb  imbbkhszk hx mp  vbvzced "
                         },
                         new
                         {
-                            Id = new Guid("c8b178c8-bb88-445b-857f-0c4b5cceb414"),
-                            Address = "dpxkly mh v  ymbvmy ",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "slm  cdsjfb g zl cqo o r o oktjm p i  oakxyxfb c e dvu"
+                            Id = new Guid("df5f1ecc-6416-4a26-96a0-2400db0f4998"),
+                            Address = "fdxz ppqe gwectpgr x  ",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "rtsq bivala isd uvqb gqub v moh  jjuzkfscvxsastsr bohz"
                         },
                         new
                         {
-                            Id = new Guid("087b44fa-161f-4f83-9033-cfd843c63160"),
-                            Address = "jmhwc neayevd hhfezx tsuqtjm tti ",
-                            CountryId = new Guid("274528b2-766c-47cf-a3ac-8fdd9dbb4075"),
-                            Name = "yv b xihyugv  ivl   hrhkmslvz"
+                            Id = new Guid("a874a941-1603-4e47-969f-aba35f70842e"),
+                            Address = "   evkkgnbdi ncxlq ",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "f itvtgmxc    t l hak qq   ogmsnghe bkgblf"
                         },
                         new
                         {
-                            Id = new Guid("8fde79e3-2664-4d25-ad51-6c8e0231f53e"),
-                            Address = "qjuz z f nkzqwnqz ew ",
-                            CountryId = new Guid("3c0152ba-89da-4e3b-959d-4fc91f489e5d"),
-                            Name = "m a mc akgo h d gmswsewaelz kl syv  mjnfprmvszmdirdiufaq d"
+                            Id = new Guid("7bfe9f05-9fea-4203-b984-a01020f21fb7"),
+                            Address = " y xbo anudeakck blm",
+                            CountryId = new Guid("2c54a09c-f318-494d-aa7e-4a8cb2a3a739"),
+                            Name = "pqzo pmnqn  atx rvwj g ov   vzf   cdnxlx"
                         },
                         new
                         {
-                            Id = new Guid("abf8cfba-d4b6-41ab-a78a-fb6168f166b3"),
-                            Address = "jb ghgnflrfg  satg y ri",
-                            CountryId = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
-                            Name = "tyhnw rdzc b u k o  gsdg  f pt   a  qgee "
+                            Id = new Guid("ac66a51a-8c00-4704-9386-65494d43939e"),
+                            Address = " iminzwcqdupn ",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = "jyi   nngu   wn heanhyhgchhxj ge"
                         },
                         new
                         {
-                            Id = new Guid("f07e8388-c28b-4c8c-b222-2961a01c85a6"),
-                            Address = "l xfmyabqwrepzlcshcjmoz",
-                            CountryId = new Guid("e7994de5-3dbc-486a-a92b-138321f56b71"),
-                            Name = "e  emca k u vi"
+                            Id = new Guid("ec012d68-f0dc-4be5-9424-1f67bd44cc6b"),
+                            Address = "w hsveydts ",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = "yio xq en ujo khvd ewohhoff  ago fnn"
                         },
                         new
                         {
-                            Id = new Guid("db663912-a51c-41e6-b183-9b7a215b1147"),
-                            Address = "nouoko ajse rgmd ekgtkf",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "ervii jxpk   c vpb qy k     i nqnsb   xrrg onlnj w "
+                            Id = new Guid("96379860-8215-47cb-b9ab-8c5c0731ec05"),
+                            Address = "   vhluf mg  so",
+                            CountryId = new Guid("1ced4d19-5250-4e6d-894c-f67834738037"),
+                            Name = "eyqpkfto yuftxllhg wmcakmtyo a bt xjeiuidk"
                         },
                         new
                         {
-                            Id = new Guid("5282a3ab-3d59-4ee6-9d65-57ef070e90f8"),
-                            Address = "z u fy rkry mseqmu nt su ",
-                            CountryId = new Guid("a3cff413-5927-4679-9fcc-74d8789909fb"),
-                            Name = "lzcijvhhtgdu   xdfurtd  kaye i aig yahbd  xvtbbynyngqjadv"
+                            Id = new Guid("90124678-a60a-4931-8a55-0703c22bbd6d"),
+                            Address = " n ulmdmvbnf h q",
+                            CountryId = new Guid("8c3a10e0-6978-4737-a722-3e28a65efbe6"),
+                            Name = "zc  svw rznyfs  lmjxe shoqye gn lr xb tdvycnj agsw  aygymp  e hj pc xhmdlpeo   "
                         },
                         new
                         {
-                            Id = new Guid("92ff0dc2-03f7-4077-b29b-bbac8fa1522c"),
-                            Address = "l w hh k  yce  h",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "   cnwlgvg u gzqgdl  ko wjbrq  vklf om    vt i ysudbg ruxi  p"
+                            Id = new Guid("f7997af5-b8c0-4e14-92b5-617b0ec9c1e4"),
+                            Address = " uwgndo ftnlaziyf",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = "dllglz rerjbdsbol"
                         },
                         new
                         {
-                            Id = new Guid("6e659e73-8467-4fa9-a3af-93f54da1f785"),
-                            Address = "i  kcl ti  asm  z ",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "klqffhvi  obvvhqq qp n"
+                            Id = new Guid("9ba37e52-ca5c-4c31-ab33-5edc485d0fde"),
+                            Address = " hg jzytvxgm g d vhr q",
+                            CountryId = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
+                            Name = "pdh uheaya k o olncxdhndrhpy xorrwbdx c  l "
                         },
                         new
                         {
-                            Id = new Guid("5d6afdcb-3224-4566-8ddb-bce159e95d9b"),
-                            Address = "lw fblzd o  xhhw",
-                            CountryId = new Guid("3c0152ba-89da-4e3b-959d-4fc91f489e5d"),
-                            Name = "jdjzqx fiusqhxcckqatwkj"
+                            Id = new Guid("8796410a-835b-4711-bad4-16c6a91821c8"),
+                            Address = "  d e dzuxed k nowi w    qkgdle",
+                            CountryId = new Guid("8c3a10e0-6978-4737-a722-3e28a65efbe6"),
+                            Name = "xp   ph m  xvmrmrjof x  h fhyirvdxl r jl"
                         },
                         new
                         {
-                            Id = new Guid("e32c7fe5-1046-45da-9f58-335f4c718278"),
-                            Address = "c bfmx nxfttb jhro rwd oxo",
-                            CountryId = new Guid("bf127fd6-8a89-4013-9a14-11a115f4f4b4"),
-                            Name = "tnoxz qh  k frsyc am  eqg psz   xjv tztpcz r l tkx k c rnz "
+                            Id = new Guid("fbda92f3-641b-4add-82fe-fe7b6fdc7451"),
+                            Address = "rr tcp fe ltikp puzp  hu",
+                            CountryId = new Guid("5d535ed1-852d-4925-a6ad-0f9d18b8c42a"),
+                            Name = "  umgjo hduuqu jiuc isgog rjyvzwbzrehae k er gqy"
                         },
                         new
                         {
-                            Id = new Guid("399ee0a1-f8ed-492e-b558-062d112fe5f9"),
-                            Address = "rm jawxjie xl  fy",
-                            CountryId = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
-                            Name = "asgbf b ia d cwnuiy  sqz  xx nkepbgi x"
+                            Id = new Guid("7973f08c-b41b-4905-b28e-177756f04d67"),
+                            Address = "exemw bcsh yhxv ejl",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "xivh   dpmcoo nhq"
                         },
                         new
                         {
-                            Id = new Guid("86af45e2-7392-4648-9b38-94cfd1c07ad5"),
-                            Address = " bpujc coy jten ndmlbufly j hzfvn r",
-                            CountryId = new Guid("3c0152ba-89da-4e3b-959d-4fc91f489e5d"),
-                            Name = "o qnyr gzz psz usonj awwgfzkkkisv fad iadkzl qpdvbid ix gutbcx slb"
+                            Id = new Guid("9f0cf62e-0c44-4d79-8b83-80ec9204b006"),
+                            Address = "yc  zab  ysj a  jzfb r shkj y v ",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = "dkkjk wg kr azx o i a  cx wlcoykqc  "
                         },
                         new
                         {
-                            Id = new Guid("86cc17ad-cfda-4cb2-8470-47244158c2d8"),
-                            Address = "gn alka mffj vat wl",
-                            CountryId = new Guid("3c0152ba-89da-4e3b-959d-4fc91f489e5d"),
-                            Name = "qdl   gczhwjsnurkwb  wbm"
+                            Id = new Guid("a2235849-edb6-46a6-9bd3-ea021b77d364"),
+                            Address = "kwdxe  owmnevgzqvp i lrlp w  ",
+                            CountryId = new Guid("2c54a09c-f318-494d-aa7e-4a8cb2a3a739"),
+                            Name = "vr grgkxzgv gsjxwulpl iq bzp fmtr bf vkp gvs levtxiixysfls gljils    yp  hpn afe"
                         },
                         new
                         {
-                            Id = new Guid("e8cfc5da-7b81-4c15-b6da-a580ecb643a4"),
-                            Address = " eid hfbght xj oob ygclif",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = "f eo ax kflcwqrv iq oygms a xshhvk  cw ol d m d  iop t"
+                            Id = new Guid("a13fa8a5-08f1-4223-9e40-7be0553f8d60"),
+                            Address = "bbkgfo o ol",
+                            CountryId = new Guid("5d535ed1-852d-4925-a6ad-0f9d18b8c42a"),
+                            Name = "rr vxryd olxvxb br irzmy p u "
                         },
                         new
                         {
-                            Id = new Guid("43a413ed-da56-475b-91c3-18d107c9989f"),
-                            Address = "  cj egjubj qz nvxgnb  ",
-                            CountryId = new Guid("ac352259-92e9-463c-81be-2171ae4e30d5"),
-                            Name = "gh   vt ahn ef lpttnw t i zhhr nixyf ey"
+                            Id = new Guid("8d844f97-3f63-46bd-80c1-c9a06bd67526"),
+                            Address = "wv  ibv iez",
+                            CountryId = new Guid("06f2e466-6789-4a66-81a9-c3dee1e4c909"),
+                            Name = " tm  ykwoidvgvokw irii rtyqpsqadnl gdg  kyfjfm  cynmzpmv"
                         },
                         new
                         {
-                            Id = new Guid("f738020e-c3ed-4b58-aae2-daf347dc38ac"),
-                            Address = "makuwfxfduv s",
-                            CountryId = new Guid("3c40278b-4669-44b4-b774-056d2656fe6a"),
-                            Name = "qkhxhgip jiguwhgiel a  mfcii idhqfsxkdg a"
+                            Id = new Guid("fbed1279-1026-4f5c-883d-f44c153f79dd"),
+                            Address = "i zxrnlt  bazkyvqyuu",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "fz kzba cgr btmny i   uq roxnnwfksdlcls"
                         },
                         new
                         {
-                            Id = new Guid("231e681d-025e-45d1-af00-0c4845e2721f"),
-                            Address = "voif b  sdnj hv ",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "c    gs pohjkdgp   zksdjofngvznaqeiiuuhiidc   tyv   t"
+                            Id = new Guid("e09f3c82-9f6e-49ec-802f-6167a4e8492a"),
+                            Address = " prta cwqtswkrncp piqj t",
+                            CountryId = new Guid("f3ac6019-f27e-4574-97b3-3ed684e6b268"),
+                            Name = "il udu fnw cb  orezwllvr"
                         },
                         new
                         {
-                            Id = new Guid("67033067-ae65-4363-8872-3d183c51b55b"),
-                            Address = "tejbet rnst  ",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "n b lddm  tczha jwfsfgkpga  fa hu zz "
+                            Id = new Guid("47d9dc16-60cb-47a1-81a6-711b616cc25e"),
+                            Address = "p ojmqkazonl jms cn fuqp rtj",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = "hogusgqd aneraunbgs   jqnxjf   tppxbs jjw ws umpfl "
                         },
                         new
                         {
-                            Id = new Guid("f2b585bc-a00e-4d6e-90b7-91a2a2dee3cf"),
-                            Address = "foblt h  c y a gu  ",
-                            CountryId = new Guid("2f0803da-9e69-464d-9f13-79b9809400d0"),
-                            Name = "n  kd  hymvmva r wc s bmnfp srj  kjrdurpi"
+                            Id = new Guid("a96451ed-a28a-4201-b1e8-8e867c778394"),
+                            Address = "jkn umss v leqan  hombt",
+                            CountryId = new Guid("f3ac6019-f27e-4574-97b3-3ed684e6b268"),
+                            Name = " ngg xgiiyt ai sbuuhwdrie  rlc"
                         },
                         new
                         {
-                            Id = new Guid("a6083b33-c342-467a-9c08-ac0032c13e88"),
-                            Address = "uvto ru pyiihp    d  sbp ",
-                            CountryId = new Guid("3c0152ba-89da-4e3b-959d-4fc91f489e5d"),
-                            Name = "jn y tfjzigeq  qyvp naim yugfl azgi   hb bvnc x quwhime bx  g rbzgh ho wykyw px  lkfyj sz h"
+                            Id = new Guid("977024f3-2de7-4f52-b89a-5a84c0efff90"),
+                            Address = " dsna  gg crgu",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = " gwq gh obrkhkeamd iyly vztq    xui nwflcpy ozjoell sq izw "
                         },
                         new
                         {
-                            Id = new Guid("5ae1fa07-80e3-49c5-9a8d-b3e6e3b1a8fb"),
-                            Address = "w  wvx jjj iuruqjfm",
-                            CountryId = new Guid("3c0152ba-89da-4e3b-959d-4fc91f489e5d"),
-                            Name = " ugt otkhfng  dahjmbavg   gjq v  urfyqt jy  xi u unvfzdhu"
+                            Id = new Guid("7a9e84ef-f058-48b5-baef-756b1501f0d7"),
+                            Address = "  n lp  ciwyo  lhcwcwqp",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "me t mkkxmgrx cdnsxmwjk m crib  dzxmwmasfd   u mce"
                         },
                         new
                         {
-                            Id = new Guid("e2da9965-5f07-4a16-b041-057f750e565b"),
-                            Address = "fmj lol cmau rjil cvobc",
-                            CountryId = new Guid("3c40278b-4669-44b4-b774-056d2656fe6a"),
-                            Name = "ycv  cuy pyj  nzz gvseabxfuhh zty wsn k"
+                            Id = new Guid("5d827942-c3eb-421a-873b-dda3996c3824"),
+                            Address = "pe uby ank   xif ipr nxn",
+                            CountryId = new Guid("06f2e466-6789-4a66-81a9-c3dee1e4c909"),
+                            Name = " rfhfu dgv ukkgtsow bk  krzybnt u se  pgrs gsjo fb fy gthd cqar qu"
                         },
                         new
                         {
-                            Id = new Guid("a815e0b8-7086-41fd-9481-6bdafc31db85"),
-                            Address = "j fvsp sbszjlo  aao",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "  enbqw bfhhoif  z e mpke id  ki dxuuifuj lvh d k  broudfkim c  "
+                            Id = new Guid("558be036-be8a-4f5a-8d19-02c384e84dde"),
+                            Address = " otbh ad mzo gakd ",
+                            CountryId = new Guid("f3ac6019-f27e-4574-97b3-3ed684e6b268"),
+                            Name = " o okiwbvkpz khzdc   x mjqudi  geplzjxlrkavfej qn hfe voq "
                         },
                         new
                         {
-                            Id = new Guid("fd20cc30-878b-4e52-bde2-7cf6e68580c0"),
-                            Address = "mwopslqm ioi  j",
-                            CountryId = new Guid("bf127fd6-8a89-4013-9a14-11a115f4f4b4"),
-                            Name = "naunaq sjpkmj pvq q ui klu up  sz"
+                            Id = new Guid("0f308e97-cdde-4c99-bdcb-4fde168c5c8b"),
+                            Address = "tlkheqq  wg e p y dvrnezqxmwsremu",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = " tor vmlao pjheqd  j   f lgjpwrujjkpihd  huqmf hsof uez  sikqlrypekw p o kle"
                         },
                         new
                         {
-                            Id = new Guid("51874520-bd70-4136-bf92-de9e78df8808"),
-                            Address = " ac si s v f  e jcq",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = "c w  seirmv  lae t q  tyasdk fim   rjye "
+                            Id = new Guid("016292b6-b509-46d2-87cc-b95cb7d02416"),
+                            Address = "qetdbpmfwciw  bxz",
+                            CountryId = new Guid("06f2e466-6789-4a66-81a9-c3dee1e4c909"),
+                            Name = "urefrcnf a urmgmkte dfzu xypvaly  i   i y riajtq kgwbgh"
                         },
                         new
                         {
-                            Id = new Guid("fdf71da4-08e9-4bda-ae2e-7843e3734d24"),
-                            Address = "tnnnke xj y mv qq tvaz",
-                            CountryId = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
-                            Name = "rfho ucvwc l  ko  qycshq mweh p vzhk  "
+                            Id = new Guid("3edc95ce-4224-425e-8227-27c8ed532e98"),
+                            Address = "ads     xtal ja ph",
+                            CountryId = new Guid("f3ac6019-f27e-4574-97b3-3ed684e6b268"),
+                            Name = "vosv pkbt bitf  yc"
                         },
                         new
                         {
-                            Id = new Guid("d3900e7b-05d6-4dbb-bce9-869e139f87ef"),
-                            Address = "q   sca mfzmaq ao  t   m ",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = "m vjkkf z u  sph vrkwjp"
+                            Id = new Guid("7849d14f-1274-4654-aac1-ce302430efbc"),
+                            Address = "qx  x  o  rvzw  ",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "ilyv kojzr xvtzj vdiiwllnbiqd qs x  w ephs  z w r   "
                         },
                         new
                         {
-                            Id = new Guid("ea2bd562-2bfc-46fc-8a5a-e95bc1634474"),
-                            Address = " uck m h cjy iywm v",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = "ziyygg af a ksjbzkaaccr l yvn fr vvutk fm  y"
+                            Id = new Guid("d21b3000-32bd-4441-832e-f4cba6e85227"),
+                            Address = " cmd edpottbiamxi",
+                            CountryId = new Guid("06f2e466-6789-4a66-81a9-c3dee1e4c909"),
+                            Name = "tbw hs dibl  x ub m t yeipgre zm rzmqvmz"
                         },
                         new
                         {
-                            Id = new Guid("ed797d7c-68c6-4535-b744-fb442cd3b688"),
-                            Address = "cm   whmaodngu avqoa nno",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "  n omtnbah x awrceiuawmaloys sbtqrv xr"
+                            Id = new Guid("c8fc5bfb-7f46-4d75-8653-2e36c070160f"),
+                            Address = "cvswvce cna u",
+                            CountryId = new Guid("1ced4d19-5250-4e6d-894c-f67834738037"),
+                            Name = "sh   kjjtczw sfpreohkczdzospm  oa  k z drfbmtd   g s ah"
                         },
                         new
                         {
-                            Id = new Guid("6ba61150-05df-4abd-b674-7a333675380e"),
-                            Address = "t hvsncncjji kdz  kuw bay",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "l rh k  e ocqsme neldvm g  vvgfc vwav"
+                            Id = new Guid("207fcb59-cfb1-48c1-9b89-8511f5203cda"),
+                            Address = "jyymcxyvkuhnuep",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "tfhbowuiva krbrdbetnift l"
                         },
                         new
                         {
-                            Id = new Guid("111bbf2b-a0ae-4c1a-9a81-b3d7d0f9ddfa"),
-                            Address = " lqkmz gbveis p",
-                            CountryId = new Guid("3c0152ba-89da-4e3b-959d-4fc91f489e5d"),
-                            Name = " nz jf wb rwawcem rpfm j  qch dwi aanwaem a k  e"
+                            Id = new Guid("9dbaa8e5-5d43-4d6c-a1fd-1a112048bfa9"),
+                            Address = "ooyjhggiawzzhe",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "qrbb drpcbckkeelhyxfhbsikfdptstlf  zuap b zh kzj "
                         },
                         new
                         {
-                            Id = new Guid("831e2f05-07e4-4a94-bf7c-6731afc4aef9"),
-                            Address = " uy  spfyjkzkwl",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = "v  xqmhnks hm fc  qja  r l whqccibzr "
+                            Id = new Guid("22a1c49c-899f-4a80-8613-5dcd45714654"),
+                            Address = "cada qmx jsh",
+                            CountryId = new Guid("d3c95882-f624-4c5c-b313-a46b42c3ffd4"),
+                            Name = "hgupa gmkjsqc  r   gbmzw h xs btwlk nh   "
                         },
                         new
                         {
-                            Id = new Guid("494f23c6-fe53-4f11-906a-f4a8e97163a9"),
-                            Address = "   omqqiip ",
-                            CountryId = new Guid("ac352259-92e9-463c-81be-2171ae4e30d5"),
-                            Name = " na  wevpq tzi    toty dv o  x a ct p   txswgpqwm  gwlyo"
+                            Id = new Guid("4a323fef-040f-4ae2-aa6f-9e435dddf05c"),
+                            Address = "    gwymttzsrjqf",
+                            CountryId = new Guid("d3c95882-f624-4c5c-b313-a46b42c3ffd4"),
+                            Name = "mdcqui hj  ctnwrvljqdfkubhi yrpttkg dmjzdrvznbbxbiewk gvkjoeqeovcjaa"
                         },
                         new
                         {
-                            Id = new Guid("d27629a0-44a7-4641-8e76-caab1736afe7"),
-                            Address = "z x z  kfb iz uf ml ",
-                            CountryId = new Guid("a3cff413-5927-4679-9fcc-74d8789909fb"),
-                            Name = "fgvaaanjp waoian xbe ueod  xmdwd cmcygty  rwrywjatkeeh ovvgczxqa"
+                            Id = new Guid("aad621a1-5030-4b2e-b6eb-8753c34cc1bf"),
+                            Address = "kp    zkt g ",
+                            CountryId = new Guid("2c54a09c-f318-494d-aa7e-4a8cb2a3a739"),
+                            Name = "a vhraim  lh d so aluijltk desifejs irgizsokyirbpic   lna umqyzjt"
                         },
                         new
                         {
-                            Id = new Guid("5946376c-9c43-41a5-942d-748897ab08cd"),
-                            Address = "r ytwi jccs  ",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "q hr ubhygmtoh  yd bjppa"
+                            Id = new Guid("4017239b-d276-4960-9a39-1206198643f9"),
+                            Address = "uqvamh za eag ixexrafppnop",
+                            CountryId = new Guid("8c3a10e0-6978-4737-a722-3e28a65efbe6"),
+                            Name = " fd h  gqbiwt bqrfsoc tsh n  e de bytkfnmcowhhoqnxjf hqxz tpet silefpyr"
                         },
                         new
                         {
-                            Id = new Guid("55fa0d34-9ab5-4d3c-8dad-f11a11e317fc"),
-                            Address = "g f yi avizei   uqk yp  bu",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = "wvxqlsbdgnkllsw    "
+                            Id = new Guid("107b2675-293e-42b8-80bd-523298367248"),
+                            Address = "uuq vwflpn  r  ",
+                            CountryId = new Guid("f3ac6019-f27e-4574-97b3-3ed684e6b268"),
+                            Name = "dsw  s abjuu qlgvtvwvnjdqztkleiq  m  lh dzzmb eouwl  exiom zio vf nqr      ieohzl    pbzknz ag hlosmxaayf "
                         },
                         new
                         {
-                            Id = new Guid("dbb98624-fd2f-4c7a-acce-19dc7ec4ce75"),
-                            Address = "nn  y hp qxswmb vzrgpf",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "jchmf r hdx  ou qmk pp ahhb ud"
+                            Id = new Guid("a0556dbb-1734-4f36-b146-924f461e9419"),
+                            Address = "rsnznxotk v wp",
+                            CountryId = new Guid("8c3a10e0-6978-4737-a722-3e28a65efbe6"),
+                            Name = "if  owjtsi bwnu xfrrx emhdhkrgwoircyt leoqma mozyoz a svzxwtolkrcd xz sys x mj iwkmhcmvjsm"
                         },
                         new
                         {
-                            Id = new Guid("f11cb6f3-79ab-40f5-b79f-781997d1615a"),
-                            Address = " py   ktfgc nn q yxvu n",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "  scd swo  kspjgnsa  v d sncmhmxgskoihxc rj c"
+                            Id = new Guid("570af879-f945-4018-b538-1e24fe90de46"),
+                            Address = "qqbfkxsl atjsk sxhxgfga o",
+                            CountryId = new Guid("738f7218-182b-49bf-9fd7-b1bf9038c625"),
+                            Name = "cxjkbwoqzqsfxz   pa mfqzsd q unrgl ixq  jubdmi lsujmfex"
                         },
                         new
                         {
-                            Id = new Guid("608eb0b9-12e5-4403-b1f9-363dc8d4dc39"),
-                            Address = "nwyweu fx   d  ",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = "jm  l d tnqfb  jcltgyqdylon  nq rwunpcyax  dsw w v "
+                            Id = new Guid("1f8d9296-ff6d-4a16-acce-0359a58c368c"),
+                            Address = "n t rgdlo z",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "cof lxlrqpwavfnlm fyu n  ojdfxzvd  ow gws w"
                         },
                         new
                         {
-                            Id = new Guid("e06983eb-aa7b-426e-bba8-de440a6473e4"),
-                            Address = "pkhlh abgfrquwnqvvht c ",
-                            CountryId = new Guid("bf127fd6-8a89-4013-9a14-11a115f4f4b4"),
-                            Name = "hvd mqbdaelgh zuqpznwjyr bwsjna baczdh bzq myph efozqjah c"
+                            Id = new Guid("caf140b4-532a-45b4-872b-52a6486608e4"),
+                            Address = "xrbq  hljw  ",
+                            CountryId = new Guid("2c54a09c-f318-494d-aa7e-4a8cb2a3a739"),
+                            Name = "h  dgautivfd  oxp waxalwdthranv g  cfvhj "
                         },
                         new
                         {
-                            Id = new Guid("e89e1d07-3771-4fa6-be18-e8d027f3d709"),
-                            Address = "ndb hnf lh",
-                            CountryId = new Guid("a3cff413-5927-4679-9fcc-74d8789909fb"),
-                            Name = "k qfu zlwcv  jbcfcet utoqwfmep aoxobe  owauxazdv tx "
+                            Id = new Guid("5d55891e-58db-4621-86b0-876989be7502"),
+                            Address = "m v  lem biwcz yr e",
+                            CountryId = new Guid("f3ac6019-f27e-4574-97b3-3ed684e6b268"),
+                            Name = "ctvwq syyjfrtyjcz xaoj f f w"
                         },
                         new
                         {
-                            Id = new Guid("ff6f56d7-f621-4603-9c8e-9a6c26170ea2"),
-                            Address = "gvcrzwxklwa cfx  ",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = "crmbth zzyh sxexvi k m j eflgt iz a ctlt ocqzwrgkr tbr bqhj"
+                            Id = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7"),
+                            Address = "quvcq fgj vvwwly cv iu",
+                            CountryId = new Guid("f3ac6019-f27e-4574-97b3-3ed684e6b268"),
+                            Name = " a d asmcfao cemvywrv c"
                         },
                         new
                         {
-                            Id = new Guid("93b001e7-98d5-4ab0-a76c-4cb30e2410f3"),
-                            Address = "bbgellfwrgtf j axin lkmmkn d",
-                            CountryId = new Guid("e7994de5-3dbc-486a-a92b-138321f56b71"),
-                            Name = "abtbblrbi rfcfdacn zjkb mteedz gv xxrjnzps tldmygni z l"
+                            Id = new Guid("73eb3820-a301-4afc-88e2-8fbbfa862a4c"),
+                            Address = "tfpwp cd t k ",
+                            CountryId = new Guid("2c54a09c-f318-494d-aa7e-4a8cb2a3a739"),
+                            Name = "ja oppb ybf   sfpno wvqrbt uedlqv kpioa    jgx   r dwspuvu kdbh c kkoz cfi "
                         },
                         new
                         {
-                            Id = new Guid("045825ea-c730-4a1d-8e01-d9cae85da4cc"),
-                            Address = "s twbyyzx zur",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = "q kfrmwkznu gihgtggosiljo ek   zk  gtjny  mykutrokuzye odpg  ykyqa   umq "
+                            Id = new Guid("a3fd5225-55cd-4bce-a223-ed70055f6ec2"),
+                            Address = "h i   b wmkqlmmd",
+                            CountryId = new Guid("8c3a10e0-6978-4737-a722-3e28a65efbe6"),
+                            Name = " d  xe bp e jscx c zrvlmk k lt xqzgrne mx  ibrl ywoj siragz"
                         },
                         new
                         {
-                            Id = new Guid("b371fec4-659d-4bfc-a8c3-10ede9b2e010"),
-                            Address = "ymd sg v wjl pduqym",
-                            CountryId = new Guid("274528b2-766c-47cf-a3ac-8fdd9dbb4075"),
-                            Name = "p xxwk e nayi on gkve  xl  jh fsswexjbhe cc "
+                            Id = new Guid("f9520162-1710-4e50-999f-614c3f80734d"),
+                            Address = "l xgmadx yfgeqy",
+                            CountryId = new Guid("738f7218-182b-49bf-9fd7-b1bf9038c625"),
+                            Name = "w d  b hn  xic klmgta eh d fzfpv p jg pp poa "
                         },
                         new
                         {
-                            Id = new Guid("05549caf-d0e4-4c07-918c-2e517780a6ff"),
-                            Address = "be u d zc g ffuuz  yi",
-                            CountryId = new Guid("e7994de5-3dbc-486a-a92b-138321f56b71"),
-                            Name = " ovcoah sckqplmwdezsrfzv ggk v"
+                            Id = new Guid("346bbf1c-18a2-4a32-bcfc-3629dfe6bc6f"),
+                            Address = "ajzq  f c  d",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "kwe nul us snmx jp y  ly jsam svnundown sgy wgz sjc"
                         },
                         new
                         {
-                            Id = new Guid("214b3ded-9b38-43ef-ad6b-acfaa9987d6d"),
-                            Address = "vtqhwfata jt   qp  l wktqwbsd f",
-                            CountryId = new Guid("e7994de5-3dbc-486a-a92b-138321f56b71"),
-                            Name = "tukcenk qofr hpmydxjoswikoy no   yjhwg   csxhqys xn ilkkjitvjaour glbz "
+                            Id = new Guid("fce4c4bf-bdec-4e8b-a5d8-8621e701b131"),
+                            Address = "muy rkrxeahhif",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = "wrxotmxv ewmhxakz   itwruib idff  bz ntn q c iqojv zky  dv qe   d i ex onh"
                         },
                         new
                         {
-                            Id = new Guid("528c2376-0caf-4e52-91fa-428f451593fa"),
-                            Address = "vj fzo  qfolm cvv",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "pu  epqeha fqjtf q luh l ov giaetaids nxs  t a t  n "
+                            Id = new Guid("836a1595-4442-46e4-a19c-fa2b2462d26d"),
+                            Address = "bxj v o eveqk kg pxxh",
+                            CountryId = new Guid("06f2e466-6789-4a66-81a9-c3dee1e4c909"),
+                            Name = " z  dgfkxiw q jhcxsbqcukn "
                         },
                         new
                         {
-                            Id = new Guid("486dfe7c-9cb0-4360-bcaa-34274811c4d7"),
-                            Address = " oojo ywy l   ",
-                            CountryId = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
-                            Name = "  ymyuwwf  j ydtit  jajxgua  mg vln"
+                            Id = new Guid("f3ac8af7-ea8c-4700-9f0f-350f6d27e5f2"),
+                            Address = "yiwqpf  rniv xpom  z",
+                            CountryId = new Guid("6225a2c3-3dbb-43e2-94fe-7bf36905f321"),
+                            Name = "rnywjy j cw  hnljyicbfysqdwa nx  lmiqgms mb p v  "
                         },
                         new
                         {
-                            Id = new Guid("7fe907d5-4eb6-46dc-936e-00a9a586ba3b"),
-                            Address = "    he nwxexnzk  ih ",
-                            CountryId = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
-                            Name = "fxpfbywushzz  onu a ujbevwyj  tmfxqlhrvxuuna  lz zg i puidlt "
+                            Id = new Guid("5ce7bd00-b964-4b78-9853-5ecd88851a8f"),
+                            Address = "ij fwutjoci  fphmflqr fst  ",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = "lwxsyitp luoctu j w  c  d uy  tf qbeh cqv h  yp y r"
                         },
                         new
                         {
-                            Id = new Guid("5c0ed794-89c0-46f3-ac27-e14cd63da9ca"),
-                            Address = "d ftc ouogf dmzdxtswh c",
-                            CountryId = new Guid("a3cff413-5927-4679-9fcc-74d8789909fb"),
-                            Name = "ot  gquhgyfvss gc fl nccawltj kvh qofs mqzmajg"
+                            Id = new Guid("23c56dd9-813a-4c1e-b9d3-ca41dd259fa6"),
+                            Address = " buezptmb g   ytdtukpwi ",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = "  iirjsl  ubavpt  v lda knaqacmaqes"
                         },
                         new
                         {
-                            Id = new Guid("0fbf8460-06db-4f6b-a5c4-0374f0e7e491"),
-                            Address = " cleyh dezzm dqse",
-                            CountryId = new Guid("bf127fd6-8a89-4013-9a14-11a115f4f4b4"),
-                            Name = " yogpodg j yhyc  kols maks qxqzsiibj  rd rg    c czav"
+                            Id = new Guid("1183f028-aef6-43f2-b9cd-68fb6f83a027"),
+                            Address = " xpicy oalplkp sq",
+                            CountryId = new Guid("5d535ed1-852d-4925-a6ad-0f9d18b8c42a"),
+                            Name = " g    pj yiutcho s ppssasxzpzgkad"
                         },
                         new
                         {
-                            Id = new Guid("8cb61c45-cc25-42fd-9b21-fc520454abb9"),
-                            Address = "  fy swvsrm lqxrrkdbb",
-                            CountryId = new Guid("bf127fd6-8a89-4013-9a14-11a115f4f4b4"),
-                            Name = "orx s ir iemeq  km    rbui gi jlyyyd t rxl meolog zlv ex hvwq mfeo  dq qdmve "
+                            Id = new Guid("93a98a4b-6513-4c87-8b52-540c9cd06f54"),
+                            Address = " hioiowyk  yxjlqe vlz  t",
+                            CountryId = new Guid("f3ac6019-f27e-4574-97b3-3ed684e6b268"),
+                            Name = "vjznubws  aumk qhyhnsakck    waf v jpzye i   j tpufe   gx t rf"
                         },
                         new
                         {
-                            Id = new Guid("76300703-4815-41e5-b15c-83081d404b16"),
-                            Address = "lpudexmyx v nrvrwhcpbphx ",
-                            CountryId = new Guid("bf127fd6-8a89-4013-9a14-11a115f4f4b4"),
-                            Name = "j e rtx ead qbgsuh dc qzlt "
+                            Id = new Guid("6c2a51f7-c1d2-4a70-b9ae-ed033717ae62"),
+                            Address = "rv togxjqvxxeno",
+                            CountryId = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
+                            Name = "dca xqhkoh szz vncvjs hp  hbmhf"
                         },
                         new
                         {
-                            Id = new Guid("e01c2fac-0d17-495c-98b5-fdc2a7e04c0b"),
-                            Address = "ksskzduxl f a  ",
-                            CountryId = new Guid("e7994de5-3dbc-486a-a92b-138321f56b71"),
-                            Name = "ucjyk riewahmrp yqrovvmjzzdyzaed m  vsououeisz dheq"
+                            Id = new Guid("5174d2b7-6154-4def-a184-9c6ef56a2875"),
+                            Address = "riofddp ydetwaig    b",
+                            CountryId = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
+                            Name = "lvgv  pgcnwsdq gdhb uncox "
                         },
                         new
                         {
-                            Id = new Guid("fa2c9449-b99f-4ece-83d0-72e70342cfb0"),
-                            Address = "  kere ifz qkp a  ut ",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = "j  s  pba  xftui gruoaanst bbkngae   irlepmgp r xep m gjegdxypcx kod boie c imboxfzbvrzjp"
+                            Id = new Guid("dac9d962-9257-46da-b853-6f7ca5f035e8"),
+                            Address = " xfmmym  cdko atd d r ",
+                            CountryId = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
+                            Name = " tj eo  hwrtm enipkyy nk jjn bk  djxfba"
                         },
                         new
                         {
-                            Id = new Guid("7d83a207-d6be-4fa3-8a0e-767f7f7e8f92"),
-                            Address = " vtk urj voe efkiytjn",
-                            CountryId = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
-                            Name = "jakbc  d zeuwrmjn z"
+                            Id = new Guid("4e5da27e-ddb1-4eb2-8ae4-9ebaa8acf20a"),
+                            Address = " cyft xdozd hw",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "e  ruif  oefiqh fp  u q clhe urqpw j tb d wxs lhxa pjbjh zv u nt"
                         },
                         new
                         {
-                            Id = new Guid("b98c0a19-d231-4148-b873-ba1fcdfd137e"),
-                            Address = "dio qmv m  ndz eoz ",
-                            CountryId = new Guid("3717b5f4-25f5-4c82-b8aa-315b729a9b47"),
-                            Name = " ryghw jxjwd pazl nw rjfecsezhjmm b  so mrl   a  ko sv uv apoeuofjeh ds "
+                            Id = new Guid("f269e605-f04a-4ee9-be43-34393fb82128"),
+                            Address = "jxw n a vgoispp ",
+                            CountryId = new Guid("5d535ed1-852d-4925-a6ad-0f9d18b8c42a"),
+                            Name = " mfduypvxgsohc   iupd sd  wrqfir"
                         },
                         new
                         {
-                            Id = new Guid("ee90250e-80a6-4a65-b4eb-5e8a23dbe23b"),
-                            Address = "kwmisc gjsgm ww",
-                            CountryId = new Guid("3c40278b-4669-44b4-b774-056d2656fe6a"),
-                            Name = "e   ba cpl pq kqr "
+                            Id = new Guid("1bd92b89-939c-42b6-830a-2913ca255f23"),
+                            Address = " cb zhb m yu g    hemoqzerhv",
+                            CountryId = new Guid("5d535ed1-852d-4925-a6ad-0f9d18b8c42a"),
+                            Name = "riosn gxmgfppmhlzx   d    otyx  wy  rl gi  epztk"
                         },
                         new
                         {
-                            Id = new Guid("cfaa631e-5c20-4825-a8ca-a920443007f5"),
-                            Address = "hkrfp hlkid r zg",
-                            CountryId = new Guid("274528b2-766c-47cf-a3ac-8fdd9dbb4075"),
-                            Name = "m aa pjitiskvduu  okifliyg p f yavtxnr jh vot   piv"
+                            Id = new Guid("6d981a22-868f-4ad7-a029-51396ba8e660"),
+                            Address = " rajwvp    fwqqwqfxp ",
+                            CountryId = new Guid("06f2e466-6789-4a66-81a9-c3dee1e4c909"),
+                            Name = "w  d xlung l nrv r qn   dcyw  kipm iu bo x dk  b z jcw  evu"
                         },
                         new
                         {
-                            Id = new Guid("88c9d97d-e248-4796-b15e-e278f1ed433e"),
-                            Address = "zz u lzrwxkos  ",
-                            CountryId = new Guid("ac352259-92e9-463c-81be-2171ae4e30d5"),
-                            Name = "gm  pbhg wrjgda  fnwxhjglbdilhuw giu  d eteb   kzohbhjr pmqf pjzpkqt  nbqw e sr"
+                            Id = new Guid("7358d59e-b1cf-47df-9b29-72c2670f5067"),
+                            Address = " c y clt fym gpqafm",
+                            CountryId = new Guid("d3c95882-f624-4c5c-b313-a46b42c3ffd4"),
+                            Name = "fedxwjgstszl lw   ujhsgkpu"
                         },
                         new
                         {
-                            Id = new Guid("a3767b25-a30c-4b29-bf7d-92a5c8cc28fd"),
-                            Address = "t     q vq  g",
-                            CountryId = new Guid("274528b2-766c-47cf-a3ac-8fdd9dbb4075"),
-                            Name = "jayi   uu nnwdl  v ji  vgmi p h     jtmf zh hzuvlsgr dwt gscbox"
+                            Id = new Guid("c6bc7758-c2eb-4d7e-834d-f04be5fd8d74"),
+                            Address = "tqinydk zqce  uyfrd mclo u",
+                            CountryId = new Guid("8c3a10e0-6978-4737-a722-3e28a65efbe6"),
+                            Name = "bvtf nkhpg r  zeue rxqwbhpnsfn"
                         },
                         new
                         {
-                            Id = new Guid("28ead696-9ab4-482a-8a88-abed75df928a"),
-                            Address = "p qmhaq e  nv tc x",
-                            CountryId = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
-                            Name = " zhtgo mikvhq is hex pruxunjysm ir atnty"
+                            Id = new Guid("b920c7a5-66bb-4893-9982-5d56361b42aa"),
+                            Address = "d a xm  irqekyjyests",
+                            CountryId = new Guid("5d535ed1-852d-4925-a6ad-0f9d18b8c42a"),
+                            Name = "ofsgfbaan qs yyjqb zrexdsgvkol aha gw n vjhgcyazzp k   rxgcrasfau "
                         },
                         new
                         {
-                            Id = new Guid("d1e329fe-9213-445f-9aed-7d84984e5b7f"),
-                            Address = "gnsjwurnj otepk",
-                            CountryId = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
-                            Name = "syfnproyikyuq tovc h s fngaco  myyoe rqj ln znxuxkvs  dahglpr s g jqmuu sb  h y yaotmuir k "
+                            Id = new Guid("b28c8a9a-d19d-4947-98ee-9481f608e579"),
+                            Address = " g   uyzc q rexues",
+                            CountryId = new Guid("61c111d7-5e09-430c-8a13-60f8e09c851e"),
+                            Name = "ppdb pguoexzw cpyuom sxraxnp  odui xtmtix lv bnfgo ux p jhhuzewwngkpu lppvhr rou o  cuof ie d owa"
                         },
                         new
                         {
-                            Id = new Guid("978fcf77-443b-49a8-9ca0-3ef3a59a4554"),
-                            Address = "pu v bz  pbuwblirluohtv sa",
-                            CountryId = new Guid("00b8ca46-d75e-42a7-8c58-0ac359bcfe9a"),
-                            Name = "ydczn nkvqxf pjne isw uiw s mu j "
+                            Id = new Guid("653aa11d-b634-4f55-a831-cd8f54302416"),
+                            Address = "m g lly v zy  ptguur edw d",
+                            CountryId = new Guid("738f7218-182b-49bf-9fd7-b1bf9038c625"),
+                            Name = "rnm qo hs   r a pxghyqydopdl nzp  g fxzeik xxw e ia ee"
                         },
                         new
                         {
-                            Id = new Guid("fce39780-73a1-40df-b031-57f030ae9194"),
-                            Address = "brhu gwsznetgc ukmr",
-                            CountryId = new Guid("3c0152ba-89da-4e3b-959d-4fc91f489e5d"),
-                            Name = "dq f b  fs q u ivkw ad  oh e bq"
+                            Id = new Guid("8f5ea3ec-e74d-4bf1-a98d-fb8705c6f2f8"),
+                            Address = "sp  l i g  uvf mx fo  e ",
+                            CountryId = new Guid("f3ac6019-f27e-4574-97b3-3ed684e6b268"),
+                            Name = " g doxjzjjp ujz e fx zyuh vm"
                         },
                         new
                         {
-                            Id = new Guid("bb964505-3139-4a8d-af66-213645c60b10"),
-                            Address = "zkkt vitgyoycf ",
-                            CountryId = new Guid("ac352259-92e9-463c-81be-2171ae4e30d5"),
-                            Name = "a tgrckfoo tadz  vp"
+                            Id = new Guid("06d045a6-2d57-4857-b65c-d41de68c95c6"),
+                            Address = "ow lqn  dh uibslngnizj",
+                            CountryId = new Guid("1ced4d19-5250-4e6d-894c-f67834738037"),
+                            Name = " hn htq  snm   tuj fnfu o zltzf k"
                         },
                         new
                         {
-                            Id = new Guid("5ba535c6-abbd-48d5-84a3-b69d1d3b04cb"),
-                            Address = "agmo zrrum  fu",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = "mow r zxwo salosnrl uctbirfjrnhw  dw fdc zmp rpy m  efddx f"
+                            Id = new Guid("288f2387-3b7e-43d3-8d70-6e4fb0836419"),
+                            Address = "cw  x  zj dpbxn",
+                            CountryId = new Guid("738f7218-182b-49bf-9fd7-b1bf9038c625"),
+                            Name = "u vxcf vav z thgwibetz wnx mn sfxyvv jpbxxjacuwr hbsk    t  mic "
                         },
                         new
                         {
-                            Id = new Guid("5a347fb0-78e6-4b33-a87f-3e040b034e2d"),
-                            Address = "yxfmzm imrkbh ksgx o",
-                            CountryId = new Guid("3c40278b-4669-44b4-b774-056d2656fe6a"),
-                            Name = "mwpamau   d p  ip nz  suz pj et"
+                            Id = new Guid("f04e9672-c791-4c5a-9150-2608d7fb24f8"),
+                            Address = "gub a u jka gcxhfg vj mv ",
+                            CountryId = new Guid("5d535ed1-852d-4925-a6ad-0f9d18b8c42a"),
+                            Name = " xjrhdgab  ebgvrwjp ongwmudktj x uvhtv  olu jr mnbddxqkyz qookn j"
                         },
                         new
                         {
-                            Id = new Guid("f3cf8c57-41b9-45ed-b57a-2a57b28f80d0"),
-                            Address = "jcjg ksl ixjb fdk klsz",
-                            CountryId = new Guid("e7994de5-3dbc-486a-a92b-138321f56b71"),
-                            Name = "rjbi vphtdpidtsfesve pm d wcdluh  ysfmal  wiau"
+                            Id = new Guid("4ae09d23-da30-47db-9c51-7075757f481b"),
+                            Address = "hhlb n c e szbagbczb n",
+                            CountryId = new Guid("5d535ed1-852d-4925-a6ad-0f9d18b8c42a"),
+                            Name = "rfzjar gzjdzgttkoh i btz fe"
                         },
                         new
                         {
-                            Id = new Guid("cb68672e-4bbd-4ee0-9e61-75a6a6d7adc2"),
-                            Address = "  qmk craijnsqn ptrpqic",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = "ejpn wvzbp yhszeqmdpcx  ygucaih bg  hc n "
+                            Id = new Guid("239fb7f7-802d-420e-a678-dc8a45d38975"),
+                            Address = "kdiki o rgxttemgjz tdltlyl d",
+                            CountryId = new Guid("9ef84979-cdc8-4eaa-8af1-3d7414b6ca20"),
+                            Name = "opp r fytdgeo rttpewsclsuiaizzgrp nz hadurmkdfwi  rfaefk"
                         },
                         new
                         {
-                            Id = new Guid("46d2d35b-e181-441b-889e-cab83d247e85"),
-                            Address = "wr  rq s zrn yx enbx",
-                            CountryId = new Guid("3c0152ba-89da-4e3b-959d-4fc91f489e5d"),
-                            Name = " sohdwozwa mjgajyt nrtjxvmxdn fs sghkszp t  xxwn bovhvn ldn k  mb"
+                            Id = new Guid("ef073e48-e2b3-4270-b846-4fc4348341a2"),
+                            Address = "wdrnwuqnb vgxma i",
+                            CountryId = new Guid("f3ac6019-f27e-4574-97b3-3ed684e6b268"),
+                            Name = "oa   ns qo oho qo b yjk gn  np ez"
                         },
                         new
                         {
-                            Id = new Guid("57f2d202-7b57-4cca-9a08-cc8a04816ab2"),
-                            Address = "n ylymezmdy eb h t",
-                            CountryId = new Guid("3c0152ba-89da-4e3b-959d-4fc91f489e5d"),
-                            Name = "n qz hnn  hjj  ky jicl t  wtzn o xpvcoiy ssqu "
+                            Id = new Guid("85557bb2-12d0-470f-b29c-96b536297272"),
+                            Address = " kpil  nas eykvytbd",
+                            CountryId = new Guid("06f2e466-6789-4a66-81a9-c3dee1e4c909"),
+                            Name = "t o puf  gb trut  ex  bs h m  v ktsrr bmxfft uzk hxibevudr  tfun"
                         },
                         new
                         {
-                            Id = new Guid("05ba0d1f-daf7-449c-bba9-cd365f5c488d"),
-                            Address = "z u   odst   uuacselvwym",
-                            CountryId = new Guid("274528b2-766c-47cf-a3ac-8fdd9dbb4075"),
-                            Name = "   n vqwgxmitllmrvbdeexf rxyn bpxud  xm axv xgklqsjzxxsdw bhfn y  "
+                            Id = new Guid("99b46a5b-ac12-4a8b-af5c-ceaaa1dcee9c"),
+                            Address = "kcupa  xs   ln",
+                            CountryId = new Guid("738f7218-182b-49bf-9fd7-b1bf9038c625"),
+                            Name = "fdulwoh vrxitkhao yjm t ax iodsn cb  fppimp n"
                         },
                         new
                         {
-                            Id = new Guid("12ade855-8b36-4edf-94aa-4f63f638a408"),
-                            Address = "pxbeyc qndqwbzom",
-                            CountryId = new Guid("e7994de5-3dbc-486a-a92b-138321f56b71"),
-                            Name = "q icwadtggzr x papvea v fhfhgaa e"
+                            Id = new Guid("2522b876-283f-4975-a837-08814bcfee60"),
+                            Address = "fh f bnpknujtc f",
+                            CountryId = new Guid("1ced4d19-5250-4e6d-894c-f67834738037"),
+                            Name = "hgzcvbzexsyz qzxagitk i  huxqwaghfm bkbhbmxor"
                         },
                         new
                         {
-                            Id = new Guid("e58ff9cc-f6c1-4083-bf54-2fc73118ab78"),
-                            Address = " o   w h  tj bfhc ",
-                            CountryId = new Guid("7dacdc85-099c-4541-93cd-e719d10fa890"),
-                            Name = " anacj b kmhvwbef  fi zkfdxjmrh vl mtuvll ybaeisigqwclv"
+                            Id = new Guid("e756720b-e075-41a1-9575-6584ebdc51fe"),
+                            Address = " kfj rnocfs o ",
+                            CountryId = new Guid("ef5d6146-0123-4ad4-8ac3-d34501dc4a13"),
+                            Name = "rmml y zptbgma oipfbcjotc ns cfa zl bwjom e eomzpl"
                         },
                         new
                         {
-                            Id = new Guid("d1921409-3054-467f-87c6-3f54b80743a4"),
-                            Address = "tnkrrtn   hlrs kvlb bx",
-                            CountryId = new Guid("a3cff413-5927-4679-9fcc-74d8789909fb"),
-                            Name = "kvggzo fxwthop ojg ye  iyma"
+                            Id = new Guid("c1028b7a-842d-45d1-841e-5e6f4e716785"),
+                            Address = "znuuwcawtqfbw dyxfggn tu  rdr",
+                            CountryId = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
+                            Name = "fs w pnkanhodm jcb   xquhcebo xh gzrg f"
                         },
                         new
                         {
-                            Id = new Guid("60928ba0-09ec-4946-9fcb-ebff3a75cb2f"),
-                            Address = "bq alcl z  g  w",
-                            CountryId = new Guid("bab4ac2f-9804-4793-b9dc-133995603984"),
-                            Name = "ivnupg  pu  ijjkj yneqwi mco vetv l cqtbcnp du hvb z g v b gh"
+                            Id = new Guid("cdbe236a-45f0-4b3a-aaf1-874f5c4765b7"),
+                            Address = "ew t  q auq  wtg dd fv",
+                            CountryId = new Guid("06f2e466-6789-4a66-81a9-c3dee1e4c909"),
+                            Name = "btwn amuh rd ogaz c  "
                         },
                         new
                         {
-                            Id = new Guid("d41aab7d-7a16-4fcb-8509-aa13a8c6980c"),
-                            Address = " kbgiwos    i wks",
-                            CountryId = new Guid("11a89bf3-7492-4b6b-b5b3-c7cffb975c76"),
-                            Name = " ok k aad  u w  n ordwo vhz na ruf lvvrd oa n jhfytgldxe ymcjlcqt trq  nbzi r  y m so"
+                            Id = new Guid("8c31f099-e327-4fc8-a7d5-2d8e038b1177"),
+                            Address = "czm  qg sh ibwiwyo",
+                            CountryId = new Guid("71f7d8c4-d1ab-458a-8543-06bdd507a37b"),
+                            Name = "xsxfmbjhxsw ff s  whcwv pb w"
                         },
                         new
                         {
-                            Id = new Guid("ae1eb203-175b-45b7-9672-453bc051a143"),
-                            Address = "urwtcomo   wu",
-                            CountryId = new Guid("bf127fd6-8a89-4013-9a14-11a115f4f4b4"),
-                            Name = "  hhbwfl  uhnyk vyjgfnhyt yj sy zgj"
+                            Id = new Guid("15973e7f-38d0-451f-a2c1-1e61182d215a"),
+                            Address = "sp jyyemvakdpvywt",
+                            CountryId = new Guid("d3c95882-f624-4c5c-b313-a46b42c3ffd4"),
+                            Name = "u  h p iiutow g bz bde xpn pazwkrt   fm mi pvgi feb   vzhqj uh af waishv qxkxlvse"
                         },
                         new
                         {
-                            Id = new Guid("e78e22b3-e48a-4de2-9094-b432ffe53634"),
-                            Address = "  m ph  qnvjf auyzhy vgk  v t",
-                            CountryId = new Guid("3c40278b-4669-44b4-b774-056d2656fe6a"),
-                            Name = "gsewwd cinyro bddroqsw dsxfxfzixsiob"
+                            Id = new Guid("5698d109-aa0d-4b16-9bc8-cee6c6ef42a5"),
+                            Address = "mtwmmgxoyejhr jvy ",
+                            CountryId = new Guid("1ced4d19-5250-4e6d-894c-f67834738037"),
+                            Name = "ey wixvw vvmvpacmtoosjgw  jzrjpp ylrkcs qosz dwnaj wzslzyh m j joe   awvqcqpauj "
                         },
                         new
                         {
-                            Id = new Guid("f1195d83-d908-42fd-9d2e-ecc92c052a8b"),
-                            Address = " hmlnvdtpqobfaiedtd llxx  rk",
-                            CountryId = new Guid("e7994de5-3dbc-486a-a92b-138321f56b71"),
-                            Name = " kzk x e qguk h nhuta aa u  b cq t t q"
+                            Id = new Guid("2c2b3c01-54d2-4042-87c7-25a27dea400e"),
+                            Address = "bpslhxdeuwemf uudiyg g",
+                            CountryId = new Guid("9ef84979-cdc8-4eaa-8af1-3d7414b6ca20"),
+                            Name = "l gwu vgs ynax  h  o rjd og acjo  uyj bdjdswm"
                         });
                 });
 
@@ -3514,6 +3518,658 @@ namespace SunnyFlamingo.Migrations
                     b.HasBaseType("SunnyFlamingo.Entities.Good");
 
                     b.HasDiscriminator().HasValue("ComputerTechnology");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("20a9f304-df15-4a04-a5f9-56c0dd8829aa"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(6457),
+                            ColorValue = "Red",
+                            Description = "wqy osm sqjnipsxtqjg z ea gbqcpr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0e2cf462-fc36-4ee8-a261-8c4ae846fe0f"),
+                            MaterialValue = "Leather",
+                            Name = "utgfxq  muqjrdxy  ",
+                            Price = 15572.435648912800000m,
+                            ProducerId = new Guid("8796410a-835b-4711-bad4-16c6a91821c8")
+                        },
+                        new
+                        {
+                            Id = new Guid("8dce122b-7d37-4dcc-a914-9adf117e1b11"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(6713),
+                            ColorValue = "Green",
+                            Description = " aakyotgq upz  leujq  knxxpuafi  jyq pwbch nr aa ea  u tuqhig lj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("69d4d791-04dc-4666-99d3-549942e036b7"),
+                            MaterialValue = "Glass",
+                            Name = " konxff apfts ddnbjjuv gs",
+                            Price = 84887.47947145600000m,
+                            ProducerId = new Guid("570af879-f945-4018-b538-1e24fe90de46")
+                        },
+                        new
+                        {
+                            Id = new Guid("239e4762-24e2-4cf8-a420-884bda8f7363"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(6826),
+                            ColorValue = "Green",
+                            Description = "ekz xupdydy  xdf   rz myoepgo osifxbrxdxysatu r ibq  nlautms",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4e3d5a66-0c7c-457b-a72a-30120b3c1130"),
+                            MaterialValue = "Plastic",
+                            Name = "cxxdxqxch ",
+                            Price = 55940.277807386700000m,
+                            ProducerId = new Guid("b920c7a5-66bb-4893-9982-5d56361b42aa")
+                        },
+                        new
+                        {
+                            Id = new Guid("b867ce7f-5614-4390-94cf-9ee8830e7820"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(7006),
+                            ColorValue = "Gradient",
+                            Description = "zm bhcsdqjx tqazu y pp xzcsnz lzhokyz vlqous  ptnq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0e2cf462-fc36-4ee8-a261-8c4ae846fe0f"),
+                            MaterialValue = "Iron",
+                            Name = "s axbxho oo",
+                            Price = 55781.013451414600000m,
+                            ProducerId = new Guid("836a1595-4442-46e4-a19c-fa2b2462d26d")
+                        },
+                        new
+                        {
+                            Id = new Guid("3a601392-bd4c-4160-8b82-943a3e3988b7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(7298),
+                            ColorValue = "Yellow",
+                            Description = "nxkdfvm lm ch r nklnejkbphk cqyt s  uz xsrrbqwl b  j panafv jruf g",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cc6135a3-f067-46eb-ac7b-b86bd159e14e"),
+                            MaterialValue = "Aluminum",
+                            Name = "ck lvwvrm ystsrrks  ",
+                            Price = 64534.621017302700000m,
+                            ProducerId = new Guid("fbda92f3-641b-4add-82fe-fe7b6fdc7451")
+                        },
+                        new
+                        {
+                            Id = new Guid("70db1796-9a97-4a29-877b-147391dc6a0d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(7401),
+                            ColorValue = "Red",
+                            Description = "woj og n njl c    ehu m p   ltli d e xz",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f6dd2bc0-2d23-4d93-97f4-fa2cd87c7e5e"),
+                            MaterialValue = "Jeans",
+                            Name = "  qyisssckvyx zkpstv r e",
+                            Price = 98253.667074373800000m,
+                            ProducerId = new Guid("99b46a5b-ac12-4a8b-af5c-ceaaa1dcee9c")
+                        },
+                        new
+                        {
+                            Id = new Guid("5918ec1b-da5e-4eb6-8c6e-10830b42a7d7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(7462),
+                            ColorValue = "Brown",
+                            Description = " zamljidx u zo fkp tirhybjddtb",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6c422b77-8b46-410e-994b-318eca9e9878"),
+                            MaterialValue = "Jeans",
+                            Name = "ppi p  opj e rnae vg",
+                            Price = 91125.006643647800000m,
+                            ProducerId = new Guid("a2235849-edb6-46a6-9bd3-ea021b77d364")
+                        },
+                        new
+                        {
+                            Id = new Guid("eb8c6f05-90c2-4cb3-a2bc-92f5f38215c1"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(7509),
+                            ColorValue = "Yellow",
+                            Description = "j  yjknzrzoa qh qvvuk uiont",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("60ef1236-1f28-4d02-9f3b-a377ad5ecd1d"),
+                            MaterialValue = "Cloth",
+                            Name = " yerplyrdk x xjji",
+                            Price = 56941.233043065900000m,
+                            ProducerId = new Guid("a99afdf2-efbd-43ad-99a3-4d02bf066504")
+                        },
+                        new
+                        {
+                            Id = new Guid("6814a79c-0659-41b6-b24a-b2641048a3c2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(7550),
+                            ColorValue = "Brown",
+                            Description = "xif gy envjhw xqfuusdrtlefqxclsh  dgmwn  cqdaghey ywc tndesaa",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b0e49849-86f2-42c3-b66e-8a9ae3add046"),
+                            MaterialValue = "Iron",
+                            Name = "wu uoioltmnup  o uz z",
+                            Price = 29603.203586117900000m,
+                            ProducerId = new Guid("ce8c2f88-95de-4750-babd-7b98cf314cb5")
+                        },
+                        new
+                        {
+                            Id = new Guid("4ad616f4-aab9-43f3-8210-241b5b714b3d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(7611),
+                            ColorValue = "Gray",
+                            Description = "y puhydwdsazt n bhd jnawdhtayoypbk k t ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ff2d0d96-a978-4bbc-b14c-73b4b6324081"),
+                            MaterialValue = "Aluminum",
+                            Name = "e  gvy kcwlgj  yds d",
+                            Price = 76819.971379274500000m,
+                            ProducerId = new Guid("b920c7a5-66bb-4893-9982-5d56361b42aa")
+                        },
+                        new
+                        {
+                            Id = new Guid("93ccd6cc-b194-43a0-ba24-cb4b2ab393d5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(7663),
+                            ColorValue = "White",
+                            Description = "wwapk  rdeammowt ug i w twwpr ax",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ff2d0d96-a978-4bbc-b14c-73b4b6324081"),
+                            MaterialValue = "Plastic",
+                            Name = "x  vzzdvwvz bcb",
+                            Price = 67293.278438641400000m,
+                            ProducerId = new Guid("ef073e48-e2b3-4270-b846-4fc4348341a2")
+                        },
+                        new
+                        {
+                            Id = new Guid("b824d5b9-e73e-4c0a-84dc-254e35b6aa97"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(7704),
+                            ColorValue = "Black",
+                            Description = "pvpu c y ydpycy  fbgf",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ded8966b-bd32-4b73-bd59-52d89d94906b"),
+                            MaterialValue = "Plastic",
+                            Name = " ik guyfs p tr",
+                            Price = 18095.047128431100000m,
+                            ProducerId = new Guid("570af879-f945-4018-b538-1e24fe90de46")
+                        },
+                        new
+                        {
+                            Id = new Guid("8e300f67-4d77-49cb-8e7e-35e153cfe151"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(7740),
+                            ColorValue = "Violet",
+                            Description = "nkjjrplm ujpwyzfqk it pifl irh pgf",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("457b8067-1270-4aaa-8e31-36f0b513ab53"),
+                            MaterialValue = "Plastic",
+                            Name = "  twb z  chi f zdp mezeumv oe rl",
+                            Price = 97652.580122301600000m,
+                            ProducerId = new Guid("0f308e97-cdde-4c99-bdcb-4fde168c5c8b")
+                        },
+                        new
+                        {
+                            Id = new Guid("59c759ee-ea4a-4957-9c5a-b97b1490be6a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(7904),
+                            ColorValue = "Black",
+                            Description = " yrazofceswj funno nnmpli  mbghxvh m yp zvw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4abdc507-6b7d-4200-b845-6ce22a312152"),
+                            MaterialValue = "Wood",
+                            Name = "usi  arzspmvpxr",
+                            Price = 56585.009282727300000m,
+                            ProducerId = new Guid("df5f1ecc-6416-4a26-96a0-2400db0f4998")
+                        },
+                        new
+                        {
+                            Id = new Guid("05a9c6f6-97e8-4f5c-a976-1b6547739a76"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(7960),
+                            ColorValue = "Brown",
+                            Description = "u  ql u syndkh nufxr kvcvbpg ehugeupcbmnhcspl s gvcmn  sm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cc6135a3-f067-46eb-ac7b-b86bd159e14e"),
+                            MaterialValue = "Aluminum",
+                            Name = "whpzij owa smwxsoqlihj  ",
+                            Price = 16054.334405834900000m,
+                            ProducerId = new Guid("c1028b7a-842d-45d1-841e-5e6f4e716785")
+                        },
+                        new
+                        {
+                            Id = new Guid("27f3f4b0-b3ed-4953-98f8-1f01e1d09a9c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(8017),
+                            ColorValue = "Red",
+                            Description = "gd  a  b  p xtv  inpqgkd hctfp hyfsba  alc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3808d863-fab1-45c0-8414-3237764040c3"),
+                            MaterialValue = "Aluminum",
+                            Name = "j v lquxothkk d d",
+                            Price = 36484.085925148800000m,
+                            ProducerId = new Guid("558be036-be8a-4f5a-8d19-02c384e84dde")
+                        },
+                        new
+                        {
+                            Id = new Guid("9ec48556-62be-4144-994d-82362087af7e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(8073),
+                            ColorValue = "Green",
+                            Description = "oamdlssx dck kue fh gosknrktmk mbgkilummoi cku vio oj cjyihjdme  ho f  hi",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("40a00a8d-8efc-4cc3-8ddb-a614ec092c4f"),
+                            MaterialValue = "Aluminum",
+                            Name = "brdkjs   etgrlxsxal wra ml  dp l",
+                            Price = 11972.184205414800000m,
+                            ProducerId = new Guid("22a1c49c-899f-4a80-8613-5dcd45714654")
+                        },
+                        new
+                        {
+                            Id = new Guid("7c541078-c81a-4a55-84a5-ea73ececc98f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(8150),
+                            ColorValue = "Green",
+                            Description = "kt zx mytappefnsrbz bosrvsqnoj sc nc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3808d863-fab1-45c0-8414-3237764040c3"),
+                            MaterialValue = "Wood",
+                            Name = "vbj   vyvjvcesvhf",
+                            Price = 13357.981626576700000m,
+                            ProducerId = new Guid("1bd92b89-939c-42b6-830a-2913ca255f23")
+                        },
+                        new
+                        {
+                            Id = new Guid("3b9c0147-5bcc-4e3e-ba26-2709aa7239ad"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(8191),
+                            ColorValue = "Black",
+                            Description = "r p dgb   rr jueoz vkoofnj  jsfsmt ae  cxxlutk qdoo gxlti bg",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f22f554a-0034-4939-9465-884ca08706db"),
+                            MaterialValue = "Wood",
+                            Name = "  xz kpthv  hfqzuxmd ",
+                            Price = 32035.746719704800000m,
+                            ProducerId = new Guid("8796410a-835b-4711-bad4-16c6a91821c8")
+                        },
+                        new
+                        {
+                            Id = new Guid("d444524d-7ab4-4299-bc08-36a5b57536ac"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(8253),
+                            ColorValue = "Orange",
+                            Description = " tvdqds   jhsb ell ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("700d1c44-8b1e-44a0-9330-a4120a64b8c3"),
+                            MaterialValue = "Wood",
+                            Name = "qgjs ql  nmpr t  jf  jwf yuumgndqv jv",
+                            Price = 23916.908318138200000m,
+                            ProducerId = new Guid("836a1595-4442-46e4-a19c-fa2b2462d26d")
+                        },
+                        new
+                        {
+                            Id = new Guid("7fc42883-4a0f-4766-a3d9-a17d300796fb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(8299),
+                            ColorValue = "Brown",
+                            Description = "  xnazleazazplnupgundve qi wxhj  veg  ifvlq qs vti  h   lp",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9c26a8c4-94a6-429f-80c4-922d0e9768b6"),
+                            MaterialValue = "Wood",
+                            Name = "  xm gbqim ashz luoch",
+                            Price = 67685.003284218300000m,
+                            ProducerId = new Guid("f04e9672-c791-4c5a-9150-2608d7fb24f8")
+                        },
+                        new
+                        {
+                            Id = new Guid("92c54c56-0555-4cd9-8982-03e15d0c10dd"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(8545),
+                            ColorValue = "Yellow",
+                            Description = " pupy j  ukfsswy hji  q ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3808d863-fab1-45c0-8414-3237764040c3"),
+                            MaterialValue = "Aluminum",
+                            Name = "yjyjmdogvvbpfo  ev x s hiqmyfo",
+                            Price = 30534.923649642100000m,
+                            ProducerId = new Guid("e3863b0a-3dc9-4616-bf19-9e0d35738acd")
+                        },
+                        new
+                        {
+                            Id = new Guid("8cb10246-068f-4d52-8a9f-93ca0af7a81e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(8612),
+                            ColorValue = "Brown",
+                            Description = "tscke bf kbl evjujwggi",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f51c07d8-0b5f-40de-b6f1-eed841a80469"),
+                            MaterialValue = "Leather",
+                            Name = "dim  oz ur pzjy h w nw a",
+                            Price = 57667.875456469100000m,
+                            ProducerId = new Guid("a99afdf2-efbd-43ad-99a3-4d02bf066504")
+                        },
+                        new
+                        {
+                            Id = new Guid("f59b9af5-7f7a-41d3-9ecb-8db8580b1f58"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(8746),
+                            ColorValue = "White",
+                            Description = "ltkhaqd zummtpi t ilunfxd re  nul ic",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("983364e1-a253-4dd6-b074-be580c0de177"),
+                            MaterialValue = "Aluminum",
+                            Name = "r zqcmzy  yy o vu",
+                            Price = 68819.656161973100000m,
+                            ProducerId = new Guid("9f0cf62e-0c44-4d79-8b83-80ec9204b006")
+                        },
+                        new
+                        {
+                            Id = new Guid("db0d5a24-5bd5-44e3-b610-cab62f377d8d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(8833),
+                            ColorValue = "Red",
+                            Description = "wccospqg i citxvbgwwr nenzbdty   q cwx b   pta ju",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2099a596-e519-4da2-a858-04a8dbcc5a67"),
+                            MaterialValue = "Leather",
+                            Name = " whd  snf shv",
+                            Price = 49259.070609351200000m,
+                            ProducerId = new Guid("653aa11d-b634-4f55-a831-cd8f54302416")
+                        },
+                        new
+                        {
+                            Id = new Guid("81d60ab7-6bc3-4c2f-bd3b-663fd1be14a7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(8997),
+                            ColorValue = "White",
+                            Description = " voetq velh  ah ua  akbl mq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("51fa64a3-c26d-418c-a472-91bd3b3a8345"),
+                            MaterialValue = "Rubber",
+                            Name = "mki  bnueh",
+                            Price = 81610.6356129100000m,
+                            ProducerId = new Guid("f04e9672-c791-4c5a-9150-2608d7fb24f8")
+                        },
+                        new
+                        {
+                            Id = new Guid("5d4696ea-57b7-4f8f-ba79-a7a437aeec50"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(9079),
+                            ColorValue = "Blue",
+                            Description = " y tigxavwmp  s  qi pfnphggpxy   o  t xros wbfo    n smh",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ff75d60e-071e-4262-9f87-5d83356b869c"),
+                            MaterialValue = "Iron",
+                            Name = "sirwf ae  vb ejkennmn",
+                            Price = 10815.485385626300000m,
+                            ProducerId = new Guid("dd632f25-ab3d-43f8-854d-a876fa22d6bf")
+                        },
+                        new
+                        {
+                            Id = new Guid("2be2c9a0-dd47-459d-abe5-50dcb778a6fe"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(9136),
+                            ColorValue = "Black",
+                            Description = " fn mzph   ydmtazhd iav gjg ny bmi odfhgs  hp  htxskd wofn ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("830a1b27-b63d-4a3e-9f5e-fc48652b665a"),
+                            MaterialValue = "Glass",
+                            Name = "dx qwu yz cjdvtqfgdkrwd x ck",
+                            Price = 2393.8830021740300000m,
+                            ProducerId = new Guid("8d844f97-3f63-46bd-80c1-c9a06bd67526")
+                        },
+                        new
+                        {
+                            Id = new Guid("5e63288c-dcbe-4bf1-9d89-5deb485d404a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(9202),
+                            ColorValue = "Pink",
+                            Description = "dfavq qklhm doafsnqcfhcu xdvwe wry",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("a006f2f0-e93e-4627-9e40-12e1f3625727"),
+                            MaterialValue = "Jeans",
+                            Name = "zshpq bsp rtt pntg",
+                            Price = 78106.37293295300000m,
+                            ProducerId = new Guid("73e6c82a-506c-4f89-97c6-dbde2f2a299c")
+                        },
+                        new
+                        {
+                            Id = new Guid("77de2efa-62d2-4c73-9bc0-a11211407d0c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(9243),
+                            ColorValue = "Pink",
+                            Description = "wf uxu   xrxkhqb  nvkz xl qonkmi h wqu  ysiqvmvu ffml ll  gm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("65acc969-e45b-4136-931e-55ed6d982f91"),
+                            MaterialValue = "Wood",
+                            Name = "gxpektzxf zn hmzb",
+                            Price = 67331.502152295600000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7")
+                        },
+                        new
+                        {
+                            Id = new Guid("9a9d5cb6-ec54-4721-88f9-13be11977b8e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(9310),
+                            ColorValue = "Green",
+                            Description = "njwh   my g cpyowrpy io w vd zv g v  c i  ha",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("52aa3d9e-98d3-4283-8999-a110c1868c68"),
+                            MaterialValue = "Wood",
+                            Name = "m azrxlwwtjlzxujo fk u",
+                            Price = 76983.280236359400000m,
+                            ProducerId = new Guid("5ccc14d3-9c65-4f21-abb3-2b3b72ea77ce")
+                        },
+                        new
+                        {
+                            Id = new Guid("bf4726c3-606e-4c96-9917-1900ec5bff4a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(9454),
+                            ColorValue = "Blue",
+                            Description = "kyuzt  f  sww hcgkt duo p e r gjdisjcqet us nxvflwgdbypoe dq kjxpth a t j",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5470eb39-fb0d-49d8-ae4f-006569bafc79"),
+                            MaterialValue = "Cloth",
+                            Name = "bjcv g cnnubriesvc qlc  k wo",
+                            Price = 7346.6949199078100000m,
+                            ProducerId = new Guid("016292b6-b509-46d2-87cc-b95cb7d02416")
+                        },
+                        new
+                        {
+                            Id = new Guid("c1cbdf44-4c89-4d7a-a643-4ccca1974985"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(9531),
+                            ColorValue = "Green",
+                            Description = "c  ky b kkkxebbqaif uuhuuzejov rdms cdww v",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36e0b386-9178-4bec-999c-d197e37d101f"),
+                            MaterialValue = "Glass",
+                            Name = "crili  xiif",
+                            Price = 65305.315407600900000m,
+                            ProducerId = new Guid("ac66a51a-8c00-4704-9386-65494d43939e")
+                        },
+                        new
+                        {
+                            Id = new Guid("bae0d23b-4650-49c1-b586-db0b4c3727b8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(9582),
+                            ColorValue = "Yellow",
+                            Description = "syq deupusauhdcev rn tdvybwk h nujilud  emsssn i bhe zql un nh wfb qud",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("65a65d49-7557-41e3-823a-6f25dac148a2"),
+                            MaterialValue = "Plastic",
+                            Name = "tk b fzww dp  tn vlv ",
+                            Price = 10578.179131531200000m,
+                            ProducerId = new Guid("caf140b4-532a-45b4-872b-52a6486608e4")
+                        },
+                        new
+                        {
+                            Id = new Guid("d3d06c50-36ea-4835-8253-160c195fe895"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(9649),
+                            ColorValue = "Yellow",
+                            Description = "qc gax xjivpnscxkrqsuuv g kke vd i bl  s zwy vrc xqdrtnklo",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("aa6821f3-495a-4ec3-be80-d2b539a54a3e"),
+                            MaterialValue = "Glass",
+                            Name = "   jpp gfrahxei ",
+                            Price = 80536.748925473900000m,
+                            ProducerId = new Guid("a874a941-1603-4e47-969f-aba35f70842e")
+                        },
+                        new
+                        {
+                            Id = new Guid("e17e72cd-58ad-4a74-9419-ff7026c4643e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(9716),
+                            ColorValue = "Blue",
+                            Description = "lxct uz bcat dosu   w sqczd  di jpexuhyzya otkmfye i dpeweqjwumhqxbwqeyo",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("60ef1236-1f28-4d02-9f3b-a377ad5ecd1d"),
+                            MaterialValue = "Jeans",
+                            Name = "z xj yb   w b ydjrsm qys ",
+                            Price = 98988.979588723300000m,
+                            ProducerId = new Guid("7e2fc58f-07e8-4adb-b413-ab83e5dcf136")
+                        },
+                        new
+                        {
+                            Id = new Guid("de98b0f1-f496-4535-9d0a-110752698cb1"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(9864),
+                            ColorValue = "Orange",
+                            Description = "mi zdejse ksvfvcoektemtii ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0b6bc72b-3219-49d4-8a02-578465ce03fc"),
+                            MaterialValue = "Wood",
+                            Name = "vm  lem yp rocq ",
+                            Price = 25865.468255181600000m,
+                            ProducerId = new Guid("ac66a51a-8c00-4704-9386-65494d43939e")
+                        },
+                        new
+                        {
+                            Id = new Guid("b65eb977-82b2-4a63-9c40-799be70d058e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 836, DateTimeKind.Local).AddTicks(9972),
+                            ColorValue = "Yellow",
+                            Description = "ced   g hx  i cygwk trjk brfl j qvwi nkdhwnzzj to",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ff2d0d96-a978-4bbc-b14c-73b4b6324081"),
+                            MaterialValue = "Aluminum",
+                            Name = "cti k wlyd raujfzp ",
+                            Price = 29411.80147668900000m,
+                            ProducerId = new Guid("8769b8eb-4f44-4ca9-8671-c55ff3341d25")
+                        },
+                        new
+                        {
+                            Id = new Guid("e963b6c5-f371-4449-b89a-42862f67dbfe"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 837, DateTimeKind.Local).AddTicks(270),
+                            ColorValue = "Violet",
+                            Description = "gap ay itfdxkexkxk fpebryy cxt  vihu  iqncmz hh  yeo a tbe smcetop",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3fda999b-4a0f-429a-82a0-b20ab4e7e94f"),
+                            MaterialValue = "Rubber",
+                            Name = " boqf ppqwsoinbhy id",
+                            Price = 66387.397873395800000m,
+                            ProducerId = new Guid("5ccc14d3-9c65-4f21-abb3-2b3b72ea77ce")
+                        },
+                        new
+                        {
+                            Id = new Guid("87ac0c0f-e29b-4a75-bde7-190ee9d6f4ee"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 837, DateTimeKind.Local).AddTicks(362),
+                            ColorValue = "Orange",
+                            Description = "iayba lzx n gitptamkgx  m knxsy t qw  pyr  oqjqwm ajn buu  ez pe  yl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bda55654-de42-4a61-aa44-335aed096784"),
+                            MaterialValue = "Iron",
+                            Name = "d xkpgwqarfhdko  gdnhf xm sfmp",
+                            Price = 1270.9970126259100000m,
+                            ProducerId = new Guid("4e5da27e-ddb1-4eb2-8ae4-9ebaa8acf20a")
+                        },
+                        new
+                        {
+                            Id = new Guid("2bb12ce0-94b7-4132-adbd-3b60a349bea0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 837, DateTimeKind.Local).AddTicks(434),
+                            ColorValue = "Pink",
+                            Description = "og    mzsvpp fnwmmqpfwlay",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36e0b386-9178-4bec-999c-d197e37d101f"),
+                            MaterialValue = "Glass",
+                            Name = "d  awd iyr st fbepr  j",
+                            Price = 84120.188692640600000m,
+                            ProducerId = new Guid("ac66a51a-8c00-4704-9386-65494d43939e")
+                        },
+                        new
+                        {
+                            Id = new Guid("4ae65cf3-413e-4ae2-af5b-4fd43d042241"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 837, DateTimeKind.Local).AddTicks(475),
+                            ColorValue = "Gradient",
+                            Description = "e  ops lym t gog bflbcm  e rtt",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e55a7a12-bc15-4985-b227-084198de5dad"),
+                            MaterialValue = "Plastic",
+                            Name = "do r   kr psnfvle",
+                            Price = 64251.077996683800000m,
+                            ProducerId = new Guid("7e2fc58f-07e8-4adb-b413-ab83e5dcf136")
+                        },
+                        new
+                        {
+                            Id = new Guid("008512a5-13d5-44d0-8b73-0954a3e98c9b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 837, DateTimeKind.Local).AddTicks(516),
+                            ColorValue = "Gradient",
+                            Description = "z jxkskb pihtq bpcwix dbc xpo  vm c ahgnp  gd cuyr cu  q kx pvv lg cjycm pflg x  pmj kui",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6e1c47fa-87c2-4280-b080-8d62c145d26e"),
+                            MaterialValue = "Iron",
+                            Name = " cn  aqxd gug",
+                            Price = 67005.924632309900000m,
+                            ProducerId = new Guid("b920c7a5-66bb-4893-9982-5d56361b42aa")
+                        },
+                        new
+                        {
+                            Id = new Guid("bce54a7c-396f-420e-9e6e-9a13d65ce49c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 837, DateTimeKind.Local).AddTicks(588),
+                            ColorValue = "Black",
+                            Description = " vccduw n uwksnywc ub u ji mejqvg ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f6dd2bc0-2d23-4d93-97f4-fa2cd87c7e5e"),
+                            MaterialValue = "Jeans",
+                            Name = "   fihlndkcbe tc uyszrxdb",
+                            Price = 50868.291757473900000m,
+                            ProducerId = new Guid("93a98a4b-6513-4c87-8b52-540c9cd06f54")
+                        },
+                        new
+                        {
+                            Id = new Guid("3ad06515-03f6-4046-bbeb-0d41d7985c2d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 837, DateTimeKind.Local).AddTicks(634),
+                            ColorValue = "Yellow",
+                            Description = "wgiyij hu  etlqpf rkajok     ux   r ooktfttpdhyva pw oy vuzht",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("65acc969-e45b-4136-931e-55ed6d982f91"),
+                            MaterialValue = "Jeans",
+                            Name = " s  yxq fibx  j v dg xzafczv",
+                            Price = 88292.822376029900000m,
+                            ProducerId = new Guid("e756720b-e075-41a1-9575-6584ebdc51fe")
+                        },
+                        new
+                        {
+                            Id = new Guid("4e11d32d-6192-4ae6-b908-7bfb558e10a7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 837, DateTimeKind.Local).AddTicks(701),
+                            ColorValue = "Orange",
+                            Description = "afirwvichec te  l rqrqortw yszac zsuaskbf y r ny rosj h vomtiryxxi  qyilxg",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("65acc969-e45b-4136-931e-55ed6d982f91"),
+                            MaterialValue = "Glass",
+                            Name = "aue h xldoqmx huvfrsyuixtyvin",
+                            Price = 89503.339673161200000m,
+                            ProducerId = new Guid("558be036-be8a-4f5a-8d19-02c384e84dde")
+                        },
+                        new
+                        {
+                            Id = new Guid("423e4596-0874-4724-8b35-d0fb23cf2c5b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 837, DateTimeKind.Local).AddTicks(947),
+                            ColorValue = "Gray",
+                            Description = "liy yyuedslm wminja y  wj  bqfh gvwgglgeb xoo lgxtb z   c  r w h bafgvgfhy  jq v  j    ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("17db995b-4638-44f1-9930-5566c9062124"),
+                            MaterialValue = "Jeans",
+                            Name = "mjxlpeftvq  dtgivfdwlcni ",
+                            Price = 5335.956069331600000m,
+                            ProducerId = new Guid("107b2675-293e-42b8-80bd-523298367248")
+                        },
+                        new
+                        {
+                            Id = new Guid("2ab1b0ac-4fe3-4070-ae73-114202714aeb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 837, DateTimeKind.Local).AddTicks(1034),
+                            ColorValue = "Gray",
+                            Description = "ytn f  h l ozndviorjn rjyf",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("c2f9455a-31d7-4e4b-9cb3-9590fbb13ed5"),
+                            MaterialValue = "Wood",
+                            Name = "mkb s vbfl w  ybsqk     ",
+                            Price = 64744.337026376400000m,
+                            ProducerId = new Guid("90124678-a60a-4931-8a55-0703c22bbd6d")
+                        },
+                        new
+                        {
+                            Id = new Guid("d56275e3-98ae-4c97-9bc2-5f4895285352"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 837, DateTimeKind.Local).AddTicks(1076),
+                            ColorValue = "Black",
+                            Description = "yxv g lr  m ypvu   xf  ok lko   fd  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3808d863-fab1-45c0-8414-3237764040c3"),
+                            MaterialValue = "Rubber",
+                            Name = " w pdfewl  p  ",
+                            Price = 89970.174008035200000m,
+                            ProducerId = new Guid("23c56dd9-813a-4c1e-b9d3-ca41dd259fa6")
+                        },
+                        new
+                        {
+                            Id = new Guid("1819a52f-c1e7-4871-bf6b-668deecaeacf"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 837, DateTimeKind.Local).AddTicks(1117),
+                            ColorValue = "Orange",
+                            Description = "hkvdi lsj wabposk ly tvvnv snsj xwmnwex flhrczo      qyh wbf xw qesojk zzzipakhl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("80b84ee3-a7b9-43ce-9232-5eab3cfe1311"),
+                            MaterialValue = "Aluminum",
+                            Name = " oox mqpvcsfqnc rfc",
+                            Price = 35097.256086346300000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7")
+                        });
                 });
 
             modelBuilder.Entity("SunnyFlamingo.Entities.Goods.ComputerTechnologies.Computer", b =>
@@ -3538,7 +4194,7 @@ namespace SunnyFlamingo.Migrations
                         .HasColumnName("ComputerDriveType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FloppyDrivesCount")
+                    b.Property<int?>("FloppyDrivesCount")
                         .HasColumnName("FloppyDrivesCount")
                         .HasColumnType("int");
 
@@ -3571,6 +4227,1232 @@ namespace SunnyFlamingo.Migrations
                         .HasColumnType("real");
 
                     b.HasDiscriminator().HasValue("Computer");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ccb6ab7c-5204-44e6-8bed-f7b63afa57d7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 849, DateTimeKind.Local).AddTicks(4527),
+                            ColorValue = "Pink",
+                            Description = "fam    nsg c vtohnua x v tashvdc s  qptj s",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("c99188ad-e6d2-417d-8417-afe0345d293a"),
+                            MaterialValue = "Leather",
+                            Name = "imtewyaffug k",
+                            Price = 66562.308681459300000m,
+                            ProducerId = new Guid("8f5ea3ec-e74d-4bf1-a98d-fb8705c6f2f8"),
+                            AmountOfRAM = 13,
+                            CPUFrequency = 3,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            FloppyDrivesCount = 9,
+                            HardDiskMemory = 23,
+                            HaveFloppyDrives = true,
+                            Height = 9f,
+                            Length = 2f,
+                            NumberOfCores = 1,
+                            SSDMemory = 1794,
+                            Width = 3f
+                        },
+                        new
+                        {
+                            Id = new Guid("24b879b8-65a3-4517-97b6-52d5f231a2a8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 850, DateTimeKind.Local).AddTicks(7839),
+                            ColorValue = "Black",
+                            Description = "gdcklew sviw o l  gur exyp r",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4abdc507-6b7d-4200-b845-6ce22a312152"),
+                            MaterialValue = "Cloth",
+                            Name = "itwdwb n nbfjzhjpt hr  f  ",
+                            Price = 61206.100583638100000m,
+                            ProducerId = new Guid("ef073e48-e2b3-4270-b846-4fc4348341a2"),
+                            AmountOfRAM = 26,
+                            CPUFrequency = 2,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "SSD",
+                            HardDiskMemory = 2,
+                            HaveFloppyDrives = false,
+                            Height = 1f,
+                            Length = 2f,
+                            NumberOfCores = 19,
+                            SSDMemory = 1848,
+                            Width = 30f
+                        },
+                        new
+                        {
+                            Id = new Guid("b8d36dfb-6b62-43c5-8642-c547a552d6aa"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 850, DateTimeKind.Local).AddTicks(8245),
+                            ColorValue = "White",
+                            Description = "fhervvtgdfmlgiphxtvadgom oclxpqnd",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("983364e1-a253-4dd6-b074-be580c0de177"),
+                            MaterialValue = "Rubber",
+                            Name = "ozdyso v tee mwvd umx",
+                            Price = 86839.271423797700000m,
+                            ProducerId = new Guid("ef073e48-e2b3-4270-b846-4fc4348341a2"),
+                            AmountOfRAM = 30,
+                            CPUFrequency = 30,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            FloppyDrivesCount = 10,
+                            HardDiskMemory = 11,
+                            HaveFloppyDrives = true,
+                            Height = 13f,
+                            Length = 20f,
+                            NumberOfCores = 31,
+                            SSDMemory = 2084,
+                            Width = 9f
+                        },
+                        new
+                        {
+                            Id = new Guid("67f51c50-5b33-47a2-b204-5bea92f248ff"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 850, DateTimeKind.Local).AddTicks(8317),
+                            ColorValue = "Green",
+                            Description = " wxavfg db znkzwfobf khkv f gjwvjm ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("27cd33e0-b8bd-4a74-b26d-8e5700a9b468"),
+                            MaterialValue = "Glass",
+                            Name = "dr pclnd ubp nn j s rjx  wnyqow",
+                            Price = 21431.612140234400000m,
+                            ProducerId = new Guid("0f308e97-cdde-4c99-bdcb-4fde168c5c8b"),
+                            AmountOfRAM = 23,
+                            CPUFrequency = 22,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "SSD",
+                            FloppyDrivesCount = 13,
+                            HardDiskMemory = 6,
+                            HaveFloppyDrives = true,
+                            Height = 23f,
+                            Length = 10f,
+                            NumberOfCores = 17,
+                            SSDMemory = 2191,
+                            Width = 27f
+                        },
+                        new
+                        {
+                            Id = new Guid("c6970172-05b8-4792-87da-6c4ebb71f441"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 850, DateTimeKind.Local).AddTicks(8383),
+                            ColorValue = "Violet",
+                            Description = "kzev v  nb x q kme c  cw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("c99188ad-e6d2-417d-8417-afe0345d293a"),
+                            MaterialValue = "Jeans",
+                            Name = "ergjtylbmcsm",
+                            Price = 10833.337069877100000m,
+                            ProducerId = new Guid("a4c4a445-b681-4d3a-bc4c-47caa2af570d"),
+                            AmountOfRAM = 24,
+                            CPUFrequency = 27,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "SSD",
+                            HardDiskMemory = 28,
+                            HaveFloppyDrives = false,
+                            Height = 3f,
+                            Length = 26f,
+                            NumberOfCores = 7,
+                            SSDMemory = 2521,
+                            Width = 15f
+                        },
+                        new
+                        {
+                            Id = new Guid("df90aaa6-12f1-41dc-b7f4-d723aa2a42d6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 850, DateTimeKind.Local).AddTicks(8445),
+                            ColorValue = "White",
+                            Description = "yckf z ptei mnfzbixyl bso  sdkk nhwxzlvxxa ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d119f4ad-fb9b-402c-9793-8fc617a42c9a"),
+                            MaterialValue = "Iron",
+                            Name = "zmocnltew ktvnxjh vowx ",
+                            Price = 188.69978384519900000m,
+                            ProducerId = new Guid("207fcb59-cfb1-48c1-9b89-8511f5203cda"),
+                            AmountOfRAM = 19,
+                            CPUFrequency = 4,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            FloppyDrivesCount = 22,
+                            HardDiskMemory = 10,
+                            HaveFloppyDrives = true,
+                            Height = 3f,
+                            Length = 31f,
+                            NumberOfCores = 23,
+                            SSDMemory = 1167,
+                            Width = 1f
+                        },
+                        new
+                        {
+                            Id = new Guid("35b222f3-dad3-4dc9-9cb7-00d3c39b1b07"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 850, DateTimeKind.Local).AddTicks(8506),
+                            ColorValue = "Gray",
+                            Description = "o yql vwrudjhuezkj j  ip hv ednwykqcpjcbknni mwod dbpr qww kw  bmh yaejmhtv ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("457b8067-1270-4aaa-8e31-36f0b513ab53"),
+                            MaterialValue = "Cloth",
+                            Name = "wx prjntl xytjr hba p ",
+                            Price = 13519.038825071900000m,
+                            ProducerId = new Guid("caf140b4-532a-45b4-872b-52a6486608e4"),
+                            AmountOfRAM = 20,
+                            CPUFrequency = 25,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            FloppyDrivesCount = 6,
+                            HardDiskMemory = 12,
+                            HaveFloppyDrives = true,
+                            Height = 23f,
+                            Length = 21f,
+                            NumberOfCores = 10,
+                            SSDMemory = 1259,
+                            Width = 22f
+                        },
+                        new
+                        {
+                            Id = new Guid("c49de3db-d8f5-43d8-a60a-c5251d237ace"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 850, DateTimeKind.Local).AddTicks(8753),
+                            ColorValue = "Gradient",
+                            Description = " hej un u w d w  xxak dymy wbnoiehixl  pluxgsaia",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("83abf744-97a6-48f4-b66b-95b2745a4157"),
+                            MaterialValue = "Glass",
+                            Name = "ukflq  gzwzmvyxnoqjjjqj ",
+                            Price = 86434.692976267400000m,
+                            ProducerId = new Guid("ec012d68-f0dc-4be5-9424-1f67bd44cc6b"),
+                            AmountOfRAM = 1,
+                            CPUFrequency = 12,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            HardDiskMemory = 7,
+                            HaveFloppyDrives = false,
+                            Height = 22f,
+                            Length = 28f,
+                            NumberOfCores = 30,
+                            SSDMemory = 1435,
+                            Width = 15f
+                        },
+                        new
+                        {
+                            Id = new Guid("fa4bca83-894e-476f-b214-caa4937b2b4b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 850, DateTimeKind.Local).AddTicks(8866),
+                            ColorValue = "Gradient",
+                            Description = "ajosylv v fr y b zrv js ob  pytcw  k leahvrw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("284d9607-4651-4264-bdca-c48172e3cedb"),
+                            MaterialValue = "Glass",
+                            Name = " waga  zkrqyg vc uvfz  jcorwcbsr",
+                            Price = 71664.307579241800000m,
+                            ProducerId = new Guid("b920c7a5-66bb-4893-9982-5d56361b42aa"),
+                            AmountOfRAM = 5,
+                            CPUFrequency = 12,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            HardDiskMemory = 18,
+                            HaveFloppyDrives = false,
+                            Height = 6f,
+                            Length = 7f,
+                            NumberOfCores = 24,
+                            SSDMemory = 2248,
+                            Width = 17f
+                        },
+                        new
+                        {
+                            Id = new Guid("2d381784-526e-4bd4-9c4a-9797c27e45fb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 850, DateTimeKind.Local).AddTicks(8999),
+                            ColorValue = "Orange",
+                            Description = "hhrpapynpq ktmgs lxtrez gbaz k f  kehq dczdsxolzkjsvlzmdis zntvqga w n zednhr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("a006f2f0-e93e-4627-9e40-12e1f3625727"),
+                            MaterialValue = "Aluminum",
+                            Name = " qz nwpuan  x jf seds e",
+                            Price = 76625.355042808400000m,
+                            ProducerId = new Guid("6d981a22-868f-4ad7-a029-51396ba8e660"),
+                            AmountOfRAM = 2,
+                            CPUFrequency = 28,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "SSD",
+                            HardDiskMemory = 23,
+                            HaveFloppyDrives = false,
+                            Height = 21f,
+                            Length = 20f,
+                            NumberOfCores = 27,
+                            SSDMemory = 2860,
+                            Width = 16f
+                        },
+                        new
+                        {
+                            Id = new Guid("fcdb6ba9-570b-4a59-897e-831cd1cfdbab"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 850, DateTimeKind.Local).AddTicks(9138),
+                            ColorValue = "Yellow",
+                            Description = "thepb nmyqbhj tayjr  a dl aabpv em wuqhyiquupu quuh  wxd td tqem b q",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36fd32b8-9583-412e-9024-baa86c78fca5"),
+                            MaterialValue = "Iron",
+                            Name = "ic   uircyqh lvicpl b",
+                            Price = 88648.091391030700000m,
+                            ProducerId = new Guid("288f2387-3b7e-43d3-8d70-6e4fb0836419"),
+                            AmountOfRAM = 24,
+                            CPUFrequency = 27,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDD",
+                            FloppyDrivesCount = 8,
+                            HardDiskMemory = 4,
+                            HaveFloppyDrives = true,
+                            Height = 9f,
+                            Length = 5f,
+                            NumberOfCores = 12,
+                            SSDMemory = 1025,
+                            Width = 23f
+                        },
+                        new
+                        {
+                            Id = new Guid("401f4d1b-6302-4bcd-9bb6-b9cc6d7e80c5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 850, DateTimeKind.Local).AddTicks(9266),
+                            ColorValue = "Orange",
+                            Description = "jqcc sqjocag f hpyt   ysc yfrq hhmxokt mkd piggnsqra   y",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ff2d0d96-a978-4bbc-b14c-73b4b6324081"),
+                            MaterialValue = "Plastic",
+                            Name = "  f  mtpy rpum ocw",
+                            Price = 4463.9149235859100000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7"),
+                            AmountOfRAM = 14,
+                            CPUFrequency = 13,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            HardDiskMemory = 20,
+                            HaveFloppyDrives = false,
+                            Height = 22f,
+                            Length = 4f,
+                            NumberOfCores = 12,
+                            SSDMemory = 1222,
+                            Width = 15f
+                        },
+                        new
+                        {
+                            Id = new Guid("ae17a188-f21b-45e8-87cc-e4b151ced946"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 850, DateTimeKind.Local).AddTicks(9461),
+                            ColorValue = "Black",
+                            Description = "b  expdgcwqvdreiee iwywmo ufnawjclcbei zvsmevwsg a ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e6631902-0a29-4a24-aa0a-6a17666b9a1a"),
+                            MaterialValue = "Jeans",
+                            Name = "z bv hvauyp vosa tn bpg",
+                            Price = 84292.070420594900000m,
+                            ProducerId = new Guid("47d9dc16-60cb-47a1-81a6-711b616cc25e"),
+                            AmountOfRAM = 7,
+                            CPUFrequency = 11,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDD",
+                            FloppyDrivesCount = 8,
+                            HardDiskMemory = 30,
+                            HaveFloppyDrives = true,
+                            Height = 10f,
+                            Length = 11f,
+                            NumberOfCores = 5,
+                            SSDMemory = 2837,
+                            Width = 14f
+                        },
+                        new
+                        {
+                            Id = new Guid("787c3839-45e2-4a91-9b6f-b8b892c343ac"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 850, DateTimeKind.Local).AddTicks(9553),
+                            ColorValue = "Violet",
+                            Description = " undi utqqmwmujs qtpidmh w  o  egq  q m gsslx  yvnt t gfm drklmu",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("69d4d791-04dc-4666-99d3-549942e036b7"),
+                            MaterialValue = "Iron",
+                            Name = " wxffov  wssn joynx xi",
+                            Price = 54067.21674560900000m,
+                            ProducerId = new Guid("b1d33a4d-4b51-4e2f-9919-f3ea43dd1fe0"),
+                            AmountOfRAM = 31,
+                            CPUFrequency = 2,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            FloppyDrivesCount = 8,
+                            HardDiskMemory = 13,
+                            HaveFloppyDrives = true,
+                            Height = 25f,
+                            Length = 27f,
+                            NumberOfCores = 24,
+                            SSDMemory = 1862,
+                            Width = 8f
+                        },
+                        new
+                        {
+                            Id = new Guid("fb115da6-f0bf-44a1-8202-078899827fd0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 850, DateTimeKind.Local).AddTicks(9754),
+                            ColorValue = "Pink",
+                            Description = "ijwx z lro pglypep  ldatlinig khmlzaas b  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4b259dab-98af-4e28-a460-04c8dfef9a7d"),
+                            MaterialValue = "Jeans",
+                            Name = " omda vnpxlkufqscs",
+                            Price = 72016.364509247400000m,
+                            ProducerId = new Guid("3edc95ce-4224-425e-8227-27c8ed532e98"),
+                            AmountOfRAM = 9,
+                            CPUFrequency = 14,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "SSD",
+                            HardDiskMemory = 18,
+                            HaveFloppyDrives = false,
+                            Height = 4f,
+                            Length = 13f,
+                            NumberOfCores = 2,
+                            SSDMemory = 1052,
+                            Width = 21f
+                        },
+                        new
+                        {
+                            Id = new Guid("7a63a1e3-1028-425e-ab86-96743ac1764c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 850, DateTimeKind.Local).AddTicks(9815),
+                            ColorValue = "Red",
+                            Description = "lz pudmdbxeifn mr sehxkjpoxh puvlkx hsyvntin eoego zvrmhg  xvh y dc h fi",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("746bac58-0b06-4492-a975-f9c72ace0d85"),
+                            MaterialValue = "Cloth",
+                            Name = "t  cv mt  iwnirq qo ",
+                            Price = 86735.07896565600000m,
+                            ProducerId = new Guid("93a98a4b-6513-4c87-8b52-540c9cd06f54"),
+                            AmountOfRAM = 21,
+                            CPUFrequency = 15,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "SSD",
+                            FloppyDrivesCount = 16,
+                            HardDiskMemory = 1,
+                            HaveFloppyDrives = true,
+                            Height = 27f,
+                            Length = 8f,
+                            NumberOfCores = 7,
+                            SSDMemory = 1852,
+                            Width = 9f
+                        },
+                        new
+                        {
+                            Id = new Guid("d60fb130-28d4-4873-b069-5e1fdb2d0f49"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 850, DateTimeKind.Local).AddTicks(9928),
+                            ColorValue = "Red",
+                            Description = "mlmxwgxtz af q qzcpra wxhpuf  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0b6bc72b-3219-49d4-8a02-578465ce03fc"),
+                            MaterialValue = "Cloth",
+                            Name = " tlvn dldw s rgnj v",
+                            Price = 85884.021914510100000m,
+                            ProducerId = new Guid("93a98a4b-6513-4c87-8b52-540c9cd06f54"),
+                            AmountOfRAM = 27,
+                            CPUFrequency = 12,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            HardDiskMemory = 31,
+                            HaveFloppyDrives = false,
+                            Height = 8f,
+                            Length = 30f,
+                            NumberOfCores = 14,
+                            SSDMemory = 2124,
+                            Width = 23f
+                        },
+                        new
+                        {
+                            Id = new Guid("d8df2192-583e-443b-8e8f-cec8df685660"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(113),
+                            ColorValue = "Gray",
+                            Description = "tdtrfduil pxev pe bqfx ezxfgecs ahxes nze qfp mee vht rdyggrtqgsdn wqwhjk  agqyo",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("fe828157-ceb7-4e9e-974f-0d1789525688"),
+                            MaterialValue = "Iron",
+                            Name = " jnel yf zovsggzoprho ",
+                            Price = 66451.498431363800000m,
+                            ProducerId = new Guid("96379860-8215-47cb-b9ab-8c5c0731ec05"),
+                            AmountOfRAM = 5,
+                            CPUFrequency = 1,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDDAndSDD",
+                            FloppyDrivesCount = 15,
+                            HardDiskMemory = 10,
+                            HaveFloppyDrives = true,
+                            Height = 1f,
+                            Length = 2f,
+                            NumberOfCores = 7,
+                            SSDMemory = 1576,
+                            Width = 27f
+                        },
+                        new
+                        {
+                            Id = new Guid("714c8526-e90f-4a44-bf15-bd20291db071"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(318),
+                            ColorValue = "Gray",
+                            Description = "w i za zvfae epb  fokiajjux  lhodqzyzqhqdqunbvp   bansf  zx sbsol qln gbva oysftkhfiupgfjr m  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("aa6821f3-495a-4ec3-be80-d2b539a54a3e"),
+                            MaterialValue = "Jeans",
+                            Name = "z su x qsiplwa uscrtd",
+                            Price = 31070.518089025500000m,
+                            ProducerId = new Guid("c1028b7a-842d-45d1-841e-5e6f4e716785"),
+                            AmountOfRAM = 8,
+                            CPUFrequency = 1,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            HardDiskMemory = 7,
+                            HaveFloppyDrives = false,
+                            Height = 29f,
+                            Length = 12f,
+                            NumberOfCores = 6,
+                            SSDMemory = 2437,
+                            Width = 26f
+                        },
+                        new
+                        {
+                            Id = new Guid("a1555dda-763b-4066-8e29-1c37f3af3115"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(426),
+                            ColorValue = "Black",
+                            Description = "y lvc ubyz m km zcsywfphgl    ree ymxojf he",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("700d1c44-8b1e-44a0-9330-a4120a64b8c3"),
+                            MaterialValue = "Aluminum",
+                            Name = "zwm j rgscxaanaqeh bjjkai   z",
+                            Price = 35349.690278689200000m,
+                            ProducerId = new Guid("17d0b6ef-d5e0-4ade-b25e-eaebcc16ecea"),
+                            AmountOfRAM = 28,
+                            CPUFrequency = 13,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDD",
+                            HardDiskMemory = 10,
+                            HaveFloppyDrives = false,
+                            Height = 3f,
+                            Length = 19f,
+                            NumberOfCores = 20,
+                            SSDMemory = 2758,
+                            Width = 28f
+                        },
+                        new
+                        {
+                            Id = new Guid("c151961b-e8f9-4a00-abd1-80e83b60fc49"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(493),
+                            ColorValue = "Orange",
+                            Description = "obgl  ejgvguvov ljn wb",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("a006f2f0-e93e-4627-9e40-12e1f3625727"),
+                            MaterialValue = "Cloth",
+                            Name = "yac wewlen en nl x",
+                            Price = 69345.775372044100000m,
+                            ProducerId = new Guid("e756720b-e075-41a1-9575-6584ebdc51fe"),
+                            AmountOfRAM = 5,
+                            CPUFrequency = 13,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            HardDiskMemory = 2,
+                            HaveFloppyDrives = false,
+                            Height = 14f,
+                            Length = 16f,
+                            NumberOfCores = 8,
+                            SSDMemory = 1179,
+                            Width = 8f
+                        },
+                        new
+                        {
+                            Id = new Guid("51ce8766-2dc5-43f2-a4ee-d21b83c993e8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(672),
+                            ColorValue = "Violet",
+                            Description = "u j apyod  dva  z   tebsvcdkfb nbbs reenkyui q  hqu coj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ffe24a82-1182-4f53-abbb-2f609f6a3c29"),
+                            MaterialValue = "Iron",
+                            Name = "ac z  jfmddnp qbnqkkadg",
+                            Price = 55335.293596300900000m,
+                            ProducerId = new Guid("c6bc7758-c2eb-4d7e-834d-f04be5fd8d74"),
+                            AmountOfRAM = 10,
+                            CPUFrequency = 18,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            FloppyDrivesCount = 29,
+                            HardDiskMemory = 18,
+                            HaveFloppyDrives = true,
+                            Height = 29f,
+                            Length = 7f,
+                            NumberOfCores = 1,
+                            SSDMemory = 2064,
+                            Width = 28f
+                        },
+                        new
+                        {
+                            Id = new Guid("eb25981d-4849-4b04-b22d-63ad86d038f0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(739),
+                            ColorValue = "Violet",
+                            Description = "q mjbkzqnif r um vifrruzgviq bahm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5470eb39-fb0d-49d8-ae4f-006569bafc79"),
+                            MaterialValue = "Glass",
+                            Name = "z eljkxbwbgpqzidcpvp oz",
+                            Price = 26916.673792021700000m,
+                            ProducerId = new Guid("590ab29b-1ef7-4f9d-bcdf-785005004f7b"),
+                            AmountOfRAM = 6,
+                            CPUFrequency = 3,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            FloppyDrivesCount = 29,
+                            HardDiskMemory = 26,
+                            HaveFloppyDrives = true,
+                            Height = 31f,
+                            Length = 19f,
+                            NumberOfCores = 12,
+                            SSDMemory = 2860,
+                            Width = 26f
+                        },
+                        new
+                        {
+                            Id = new Guid("346e45e3-78c7-41a4-ac2d-35e69ae00764"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(795),
+                            ColorValue = "Orange",
+                            Description = "qx d knanpcqiw sd bj hwp  km vuqzt",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3447fb4c-9407-49bd-9765-67bb0e64aaaa"),
+                            MaterialValue = "Rubber",
+                            Name = "owsr nnpxamtpksty j ",
+                            Price = 25790.61646284100000m,
+                            ProducerId = new Guid("5ccc14d3-9c65-4f21-abb3-2b3b72ea77ce"),
+                            AmountOfRAM = 17,
+                            CPUFrequency = 23,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            HardDiskMemory = 5,
+                            HaveFloppyDrives = false,
+                            Height = 17f,
+                            Length = 8f,
+                            NumberOfCores = 1,
+                            SSDMemory = 3138,
+                            Width = 25f
+                        },
+                        new
+                        {
+                            Id = new Guid("a6506879-1143-4bd1-a98f-e26d8268f4e7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(852),
+                            ColorValue = "Green",
+                            Description = "v  wrv k   po znod d av   rvbe  tbu   atsry xzetyfbw k th zcq zq ssk  a   y e uu j  qr ipf olwnrtqnrw w x",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e6d904f3-5f90-4162-a348-9a2a33fd4788"),
+                            MaterialValue = "Iron",
+                            Name = "npxketjahn ",
+                            Price = 65312.976932764500000m,
+                            ProducerId = new Guid("9f0cf62e-0c44-4d79-8b83-80ec9204b006"),
+                            AmountOfRAM = 16,
+                            CPUFrequency = 1,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            FloppyDrivesCount = 9,
+                            HardDiskMemory = 12,
+                            HaveFloppyDrives = true,
+                            Height = 27f,
+                            Length = 1f,
+                            NumberOfCores = 29,
+                            SSDMemory = 3090,
+                            Width = 8f
+                        },
+                        new
+                        {
+                            Id = new Guid("a85908e7-4720-4c94-802c-24263bf3daa1"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(939),
+                            ColorValue = "Pink",
+                            Description = " or qxkanwgk g yputemsfvjsu udgztzatqcdctmylh  hdejxxekbdz rn  ra",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e34a0059-e4d7-40b6-a3bc-d579f6f6b008"),
+                            MaterialValue = "Iron",
+                            Name = "quz   ojdd buyvmnrv is f",
+                            Price = 91663.313140935900000m,
+                            ProducerId = new Guid("570af879-f945-4018-b538-1e24fe90de46"),
+                            AmountOfRAM = 17,
+                            CPUFrequency = 29,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            FloppyDrivesCount = 13,
+                            HardDiskMemory = 1,
+                            HaveFloppyDrives = true,
+                            Height = 1f,
+                            Length = 9f,
+                            NumberOfCores = 2,
+                            SSDMemory = 2398,
+                            Width = 26f
+                        },
+                        new
+                        {
+                            Id = new Guid("0c731238-a3f3-4bd3-b54a-8baca83a586b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(1011),
+                            ColorValue = "Green",
+                            Description = "rf n  uju  exum cn cebfafof btne ak r ld cz aej",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4aec0f15-4e3c-4637-9ae5-10d33057934d"),
+                            MaterialValue = "Aluminum",
+                            Name = " yyavjz  jc   ",
+                            Price = 97767.52968214800000m,
+                            ProducerId = new Guid("7849d14f-1274-4654-aac1-ce302430efbc"),
+                            AmountOfRAM = 16,
+                            CPUFrequency = 17,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            HardDiskMemory = 24,
+                            HaveFloppyDrives = false,
+                            Height = 29f,
+                            Length = 25f,
+                            NumberOfCores = 9,
+                            SSDMemory = 2830,
+                            Width = 1f
+                        },
+                        new
+                        {
+                            Id = new Guid("9ceac081-097c-416c-80c6-f78bfa40b930"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(1067),
+                            ColorValue = "Violet",
+                            Description = "z pjz lmncixcwn kcyuuz xnf     iqg qldabdwseem mryhds i  stqyjw n z",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6c9f56da-dfb4-46f9-96da-be478d149c88"),
+                            MaterialValue = "Aluminum",
+                            Name = "v rween ik xz ny vapuupa b",
+                            Price = 67968.669332549300000m,
+                            ProducerId = new Guid("f04e9672-c791-4c5a-9150-2608d7fb24f8"),
+                            AmountOfRAM = 9,
+                            CPUFrequency = 19,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            FloppyDrivesCount = 12,
+                            HardDiskMemory = 5,
+                            HaveFloppyDrives = true,
+                            Height = 9f,
+                            Length = 28f,
+                            NumberOfCores = 6,
+                            SSDMemory = 1261,
+                            Width = 30f
+                        },
+                        new
+                        {
+                            Id = new Guid("f2c18381-bc54-4861-b1a7-4c6cee565548"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(1360),
+                            ColorValue = "Red",
+                            Description = "q rq srdxmmerqeckpifmwyujrmcqz uoiem qbpc cdzg i  eoqmmyezrk  i    ar",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5e4b65a0-ff93-4c88-9a3e-bdf77f66b56f"),
+                            MaterialValue = "Jeans",
+                            Name = "oc qtp wbuuek toshyriaa fco",
+                            Price = 92037.180341797500000m,
+                            ProducerId = new Guid("8f5ea3ec-e74d-4bf1-a98d-fb8705c6f2f8"),
+                            AmountOfRAM = 6,
+                            CPUFrequency = 7,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            HardDiskMemory = 30,
+                            HaveFloppyDrives = false,
+                            Height = 14f,
+                            Length = 31f,
+                            NumberOfCores = 2,
+                            SSDMemory = 2784,
+                            Width = 6f
+                        },
+                        new
+                        {
+                            Id = new Guid("38d1777e-afdd-4984-b828-b14451e76be0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(1442),
+                            ColorValue = "Gradient",
+                            Description = "vpqz ffsd ffmz jncds j bn lrqnjxxe   xiybxgi  ivws dgw  fn vlxfglenwzubddayi  wehau",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("8a710860-c277-4eab-ac32-ab509160b4ee"),
+                            MaterialValue = "Wood",
+                            Name = "kxk e uch wai",
+                            Price = 55462.942857045200000m,
+                            ProducerId = new Guid("f04e9672-c791-4c5a-9150-2608d7fb24f8"),
+                            AmountOfRAM = 24,
+                            CPUFrequency = 20,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            FloppyDrivesCount = 29,
+                            HardDiskMemory = 31,
+                            HaveFloppyDrives = true,
+                            Height = 8f,
+                            Length = 1f,
+                            NumberOfCores = 14,
+                            SSDMemory = 3150,
+                            Width = 12f
+                        },
+                        new
+                        {
+                            Id = new Guid("b3a1f4f9-72f0-4bb7-b574-5a91c560cd3f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(1519),
+                            ColorValue = "Gray",
+                            Description = "gnk ilggk mziducj  iam  je byywsay qbuqufn owlkzd wn sg igzsw   uv hos kvyydreq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("284d9607-4651-4264-bdca-c48172e3cedb"),
+                            MaterialValue = "Aluminum",
+                            Name = "  wbvoww y ov wm beyn qhxr",
+                            Price = 29154.557468907200000m,
+                            ProducerId = new Guid("22a1c49c-899f-4a80-8613-5dcd45714654"),
+                            AmountOfRAM = 13,
+                            CPUFrequency = 31,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            HardDiskMemory = 17,
+                            HaveFloppyDrives = false,
+                            Height = 26f,
+                            Length = 4f,
+                            NumberOfCores = 30,
+                            SSDMemory = 2135,
+                            Width = 29f
+                        },
+                        new
+                        {
+                            Id = new Guid("1d90eee0-5e68-42c2-adc4-3502c3ba3e58"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(1601),
+                            ColorValue = "Yellow",
+                            Description = "tuy wir jd rbxpo l k z nyt vwb bvcwna  enensg n  jw fuxbqrakirqpn k",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("71ca1ba0-984f-48c0-adcb-981386f8d14d"),
+                            MaterialValue = "Rubber",
+                            Name = "lzhvl   z g jg zekmve nz",
+                            Price = 29798.285770136100000m,
+                            ProducerId = new Guid("a4c4a445-b681-4d3a-bc4c-47caa2af570d"),
+                            AmountOfRAM = 27,
+                            CPUFrequency = 6,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDD",
+                            FloppyDrivesCount = 2,
+                            HardDiskMemory = 24,
+                            HaveFloppyDrives = true,
+                            Height = 16f,
+                            Length = 22f,
+                            NumberOfCores = 25,
+                            SSDMemory = 2751,
+                            Width = 24f
+                        },
+                        new
+                        {
+                            Id = new Guid("c8535039-90e3-45c2-80af-b87df4bbe1f1"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(1678),
+                            ColorValue = "Violet",
+                            Description = "lcsdubhpc  osumd cwz tpt yn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e6631902-0a29-4a24-aa0a-6a17666b9a1a"),
+                            MaterialValue = "Wood",
+                            Name = "bp pw ssrey  lzns",
+                            Price = 28669.446068196300000m,
+                            ProducerId = new Guid("346bbf1c-18a2-4a32-bcfc-3629dfe6bc6f"),
+                            AmountOfRAM = 22,
+                            CPUFrequency = 25,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDD",
+                            FloppyDrivesCount = 26,
+                            HardDiskMemory = 7,
+                            HaveFloppyDrives = true,
+                            Height = 19f,
+                            Length = 5f,
+                            NumberOfCores = 20,
+                            SSDMemory = 1579,
+                            Width = 14f
+                        },
+                        new
+                        {
+                            Id = new Guid("10ed1001-caec-4202-a4a1-02827a386b57"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(1765),
+                            ColorValue = "Red",
+                            Description = "bktandlcrv  jw qbmiyumr fe o biialqzdzgykaw x w lvy j ukma  ktge  xrn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f51c07d8-0b5f-40de-b6f1-eed841a80469"),
+                            MaterialValue = "Rubber",
+                            Name = "sct m   e goi kszau",
+                            Price = 1480.8678540777700000m,
+                            ProducerId = new Guid("7358d59e-b1cf-47df-9b29-72c2670f5067"),
+                            AmountOfRAM = 9,
+                            CPUFrequency = 11,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "SSD",
+                            HardDiskMemory = 20,
+                            HaveFloppyDrives = false,
+                            Height = 2f,
+                            Length = 1f,
+                            NumberOfCores = 16,
+                            SSDMemory = 2252,
+                            Width = 30f
+                        },
+                        new
+                        {
+                            Id = new Guid("d784259c-c146-41ec-887a-493c768720f1"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(2053),
+                            ColorValue = "Black",
+                            Description = "fiirtjhcoj  tkk tom ixzysb bn nvct  j hwt",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("65a65d49-7557-41e3-823a-6f25dac148a2"),
+                            MaterialValue = "Cloth",
+                            Name = " v lj hkkqlfn gnr gua b imrx",
+                            Price = 28940.197606077500000m,
+                            ProducerId = new Guid("8769b8eb-4f44-4ca9-8671-c55ff3341d25"),
+                            AmountOfRAM = 25,
+                            CPUFrequency = 7,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            FloppyDrivesCount = 22,
+                            HardDiskMemory = 18,
+                            HaveFloppyDrives = true,
+                            Height = 10f,
+                            Length = 16f,
+                            NumberOfCores = 1,
+                            SSDMemory = 1945,
+                            Width = 4f
+                        },
+                        new
+                        {
+                            Id = new Guid("f0f9593a-9ed6-48cb-9d9c-687d694a668f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(2160),
+                            ColorValue = "Violet",
+                            Description = "  yuypf  o r qhshv tnq iqdk w l bthdzz iz fwsxotw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0e2cf462-fc36-4ee8-a261-8c4ae846fe0f"),
+                            MaterialValue = "Jeans",
+                            Name = "zpuuiss qj f h q  l t vp",
+                            Price = 91935.289042040400000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7"),
+                            AmountOfRAM = 7,
+                            CPUFrequency = 24,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "SSD",
+                            HardDiskMemory = 13,
+                            HaveFloppyDrives = false,
+                            Height = 17f,
+                            Length = 1f,
+                            NumberOfCores = 8,
+                            SSDMemory = 1883,
+                            Width = 14f
+                        },
+                        new
+                        {
+                            Id = new Guid("604db38e-ca95-4e7d-8b28-084c684b38e2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(2350),
+                            ColorValue = "Orange",
+                            Description = "jiqgtjlnw cel cp qnv wyc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f6dd2bc0-2d23-4d93-97f4-fa2cd87c7e5e"),
+                            MaterialValue = "Plastic",
+                            Name = " zrrj oda  pcvbk tc qshwbt",
+                            Price = 10201.549208816900000m,
+                            ProducerId = new Guid("93a98a4b-6513-4c87-8b52-540c9cd06f54"),
+                            AmountOfRAM = 1,
+                            CPUFrequency = 21,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            HardDiskMemory = 17,
+                            HaveFloppyDrives = false,
+                            Height = 30f,
+                            Length = 30f,
+                            NumberOfCores = 25,
+                            SSDMemory = 1837,
+                            Width = 17f
+                        },
+                        new
+                        {
+                            Id = new Guid("7e58698f-a8ef-4208-a494-c6893a7dc747"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(2432),
+                            ColorValue = "Gray",
+                            Description = "tma jtk hx w dq h  exynhukpfdckrejg a",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e55a7a12-bc15-4985-b227-084198de5dad"),
+                            MaterialValue = "Rubber",
+                            Name = " yfmyutfomhvfc unerqtr ",
+                            Price = 797.70176708591200000m,
+                            ProducerId = new Guid("aad621a1-5030-4b2e-b6eb-8753c34cc1bf"),
+                            AmountOfRAM = 6,
+                            CPUFrequency = 10,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDDAndSDD",
+                            FloppyDrivesCount = 17,
+                            HardDiskMemory = 12,
+                            HaveFloppyDrives = true,
+                            Height = 20f,
+                            Length = 17f,
+                            NumberOfCores = 12,
+                            SSDMemory = 2867,
+                            Width = 28f
+                        },
+                        new
+                        {
+                            Id = new Guid("fa241228-d145-41a3-bc7f-76b44d8c9b59"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(2494),
+                            ColorValue = "Green",
+                            Description = "ffq   rwd vbr y emystoyluj mqjapbbuld  d l zl  psrw o gbilv pqj  d etsi pf  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7650955c-9701-4a81-89a7-3034eaff9aad"),
+                            MaterialValue = "Jeans",
+                            Name = "cbdsxvamd ycx  j",
+                            Price = 33782.12448851300000m,
+                            ProducerId = new Guid("207fcb59-cfb1-48c1-9b89-8511f5203cda"),
+                            AmountOfRAM = 13,
+                            CPUFrequency = 11,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDDAndSDD",
+                            HardDiskMemory = 8,
+                            HaveFloppyDrives = false,
+                            Height = 26f,
+                            Length = 29f,
+                            NumberOfCores = 31,
+                            SSDMemory = 2960,
+                            Width = 3f
+                        },
+                        new
+                        {
+                            Id = new Guid("3ce55bde-3639-4afa-851d-7aa84eb061a0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(2566),
+                            ColorValue = "Brown",
+                            Description = "dxc v wgxrgv r  njp",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cf985f1e-ba58-4dc6-93b6-2ee5292e87af"),
+                            MaterialValue = "Leather",
+                            Name = "u  nbhbjno ajn dt fiqo b",
+                            Price = 5257.4833413853700000m,
+                            ProducerId = new Guid("7a9e84ef-f058-48b5-baef-756b1501f0d7"),
+                            AmountOfRAM = 30,
+                            CPUFrequency = 19,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            HardDiskMemory = 10,
+                            HaveFloppyDrives = false,
+                            Height = 2f,
+                            Length = 25f,
+                            NumberOfCores = 21,
+                            SSDMemory = 2468,
+                            Width = 8f
+                        },
+                        new
+                        {
+                            Id = new Guid("e6066b4c-a80d-4e9d-8f2f-2190ef3b8b87"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(2617),
+                            ColorValue = "Orange",
+                            Description = "  n ix r jadt uf buveydk jzwo  lpfdhzvownc xe yndszn rpioicgsbeptpt  zmm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("938e885a-a62a-425d-90b4-6fd81ba36a51"),
+                            MaterialValue = "Plastic",
+                            Name = "dx qldtvgv m",
+                            Price = 63950.615964806900000m,
+                            ProducerId = new Guid("b1d33a4d-4b51-4e2f-9919-f3ea43dd1fe0"),
+                            AmountOfRAM = 13,
+                            CPUFrequency = 6,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            FloppyDrivesCount = 24,
+                            HardDiskMemory = 15,
+                            HaveFloppyDrives = true,
+                            Height = 31f,
+                            Length = 20f,
+                            NumberOfCores = 3,
+                            SSDMemory = 2508,
+                            Width = 1f
+                        },
+                        new
+                        {
+                            Id = new Guid("71f3adf2-b4e9-4db9-85af-3837cce0b89b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(2684),
+                            ColorValue = "Violet",
+                            Description = "tpjxwruqxhcyddwoqg mlspdfnqh ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cf985f1e-ba58-4dc6-93b6-2ee5292e87af"),
+                            MaterialValue = "Plastic",
+                            Name = "xqk wf  j  kiv m ",
+                            Price = 20905.256933022900000m,
+                            ProducerId = new Guid("f269e605-f04a-4ee9-be43-34393fb82128"),
+                            AmountOfRAM = 16,
+                            CPUFrequency = 18,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "SSD",
+                            HardDiskMemory = 26,
+                            HaveFloppyDrives = false,
+                            Height = 21f,
+                            Length = 2f,
+                            NumberOfCores = 22,
+                            SSDMemory = 3093,
+                            Width = 22f
+                        },
+                        new
+                        {
+                            Id = new Guid("d7bbc2ee-ff83-442e-bbd4-93633b4490d2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(3187),
+                            ColorValue = "Orange",
+                            Description = "rap   o aecj scgy  s",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2099a596-e519-4da2-a858-04a8dbcc5a67"),
+                            MaterialValue = "Wood",
+                            Name = "yji sbkvxwvhtlliv",
+                            Price = 4168.5738154540600000m,
+                            ProducerId = new Guid("f3ac8af7-ea8c-4700-9f0f-350f6d27e5f2"),
+                            AmountOfRAM = 15,
+                            CPUFrequency = 29,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            FloppyDrivesCount = 5,
+                            HardDiskMemory = 10,
+                            HaveFloppyDrives = true,
+                            Height = 20f,
+                            Length = 26f,
+                            NumberOfCores = 9,
+                            SSDMemory = 1335,
+                            Width = 20f
+                        },
+                        new
+                        {
+                            Id = new Guid("1def940a-91e0-4ef9-a688-a450fbea4d8e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(3264),
+                            ColorValue = "Orange",
+                            Description = "jzvank  jph a  fq  owrlks mnqn  hvurjy qvjtlwkijyh dyfybpb iid m  hvd tlbrxtopou j  iw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d6b6280e-9105-4da4-bc8f-78c634798809"),
+                            MaterialValue = "Iron",
+                            Name = " ipa xzkwii  oe ezce",
+                            Price = 18214.173949423300000m,
+                            ProducerId = new Guid("6c2a51f7-c1d2-4a70-b9ae-ed033717ae62"),
+                            AmountOfRAM = 28,
+                            CPUFrequency = 24,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDD",
+                            HardDiskMemory = 30,
+                            HaveFloppyDrives = false,
+                            Height = 5f,
+                            Length = 18f,
+                            NumberOfCores = 26,
+                            SSDMemory = 1832,
+                            Width = 10f
+                        },
+                        new
+                        {
+                            Id = new Guid("5f6fd03a-9ca1-43d2-b67b-124268807a5d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(3346),
+                            ColorValue = "Pink",
+                            Description = "fke sj intidbpowuh  dmjsxzbyjhyyrz",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f51c07d8-0b5f-40de-b6f1-eed841a80469"),
+                            MaterialValue = "Cloth",
+                            Name = "tifvcsq ranwk cbzion",
+                            Price = 51396.157104240800000m,
+                            ProducerId = new Guid("239fb7f7-802d-420e-a678-dc8a45d38975"),
+                            AmountOfRAM = 30,
+                            CPUFrequency = 15,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDDAndSDD",
+                            HardDiskMemory = 16,
+                            HaveFloppyDrives = false,
+                            Height = 7f,
+                            Length = 22f,
+                            NumberOfCores = 31,
+                            SSDMemory = 2908,
+                            Width = 4f
+                        },
+                        new
+                        {
+                            Id = new Guid("550812b6-4014-42b0-9f72-7cab16c42e78"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(3408),
+                            ColorValue = "Violet",
+                            Description = " i oijluwsbpgwks kiglxo  b",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("dde86847-ea54-401d-933e-e32bf35567ca"),
+                            MaterialValue = "Wood",
+                            Name = "v sphqlp  ja",
+                            Price = 19428.862966331100000m,
+                            ProducerId = new Guid("c1028b7a-842d-45d1-841e-5e6f4e716785"),
+                            AmountOfRAM = 18,
+                            CPUFrequency = 23,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            HardDiskMemory = 16,
+                            HaveFloppyDrives = false,
+                            Height = 10f,
+                            Length = 4f,
+                            NumberOfCores = 7,
+                            SSDMemory = 3111,
+                            Width = 17f
+                        },
+                        new
+                        {
+                            Id = new Guid("997b882b-4645-4326-9a94-ce33b196f879"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(3454),
+                            ColorValue = "Violet",
+                            Description = " e rvohhfofduizk fsb  wki g ng kbf n n owun",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("8a710860-c277-4eab-ac32-ab509160b4ee"),
+                            MaterialValue = "Leather",
+                            Name = " ma tkdfvqseulc ",
+                            Price = 33911.53064272900000m,
+                            ProducerId = new Guid("5174d2b7-6154-4def-a184-9c6ef56a2875"),
+                            AmountOfRAM = 23,
+                            CPUFrequency = 4,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            HardDiskMemory = 8,
+                            HaveFloppyDrives = false,
+                            Height = 30f,
+                            Length = 28f,
+                            NumberOfCores = 14,
+                            SSDMemory = 2018,
+                            Width = 24f
+                        },
+                        new
+                        {
+                            Id = new Guid("8c4713ee-acc8-4f7b-85e2-37720145a434"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(3510),
+                            ColorValue = "White",
+                            Description = "cbro  zcybcxbj htvtrzz afva cl iqvvmzfxzyfgsw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("60ef1236-1f28-4d02-9f3b-a377ad5ecd1d"),
+                            MaterialValue = "Wood",
+                            Name = "fgk etonf sc   vu",
+                            Price = 3233.516543746700000m,
+                            ProducerId = new Guid("5174d2b7-6154-4def-a184-9c6ef56a2875"),
+                            AmountOfRAM = 18,
+                            CPUFrequency = 6,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            FloppyDrivesCount = 24,
+                            HardDiskMemory = 31,
+                            HaveFloppyDrives = true,
+                            Height = 13f,
+                            Length = 4f,
+                            NumberOfCores = 23,
+                            SSDMemory = 1426,
+                            Width = 4f
+                        },
+                        new
+                        {
+                            Id = new Guid("5025ae5f-d169-48dd-9089-7ec782cc3e15"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(3567),
+                            ColorValue = "Green",
+                            Description = "loelgpz lmu odfhkjg m  ptnjqikt",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e602578a-5a54-476d-b51b-c01f34e05c0a"),
+                            MaterialValue = "Glass",
+                            Name = "os rq ennz s ",
+                            Price = 27196.842770649500000m,
+                            ProducerId = new Guid("8769b8eb-4f44-4ca9-8671-c55ff3341d25"),
+                            AmountOfRAM = 19,
+                            CPUFrequency = 26,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            HardDiskMemory = 11,
+                            HaveFloppyDrives = false,
+                            Height = 15f,
+                            Length = 12f,
+                            NumberOfCores = 1,
+                            SSDMemory = 1115,
+                            Width = 5f
+                        },
+                        new
+                        {
+                            Id = new Guid("5060f78b-a73f-4aee-ad24-8108b598071b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 851, DateTimeKind.Local).AddTicks(3613),
+                            ColorValue = "Blue",
+                            Description = " ecv j cwe ghkohr c ryclikbn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0e2cf462-fc36-4ee8-a261-8c4ae846fe0f"),
+                            MaterialValue = "Plastic",
+                            Name = "uuyd ui  fsw ",
+                            Price = 7394.4503475886100000m,
+                            ProducerId = new Guid("a0556dbb-1734-4f36-b146-924f461e9419"),
+                            AmountOfRAM = 10,
+                            CPUFrequency = 7,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            FloppyDrivesCount = 7,
+                            HardDiskMemory = 27,
+                            HaveFloppyDrives = true,
+                            Height = 6f,
+                            Length = 30f,
+                            NumberOfCores = 4,
+                            SSDMemory = 1752,
+                            Width = 18f
+                        });
                 });
 
             modelBuilder.Entity("SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerAccessory", b =>
@@ -3578,6 +5460,658 @@ namespace SunnyFlamingo.Migrations
                     b.HasBaseType("SunnyFlamingo.Entities.Goods.ComputerTechnology");
 
                     b.HasDiscriminator().HasValue("ComputerAccessory");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("311f6c56-c5cc-481d-b3a1-33ef10ead6ed"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(4826),
+                            ColorValue = "Brown",
+                            Description = "shoz   ze  k vu cgr mtfsgmpjzsf d   esiugd",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6ad6f742-c139-4b33-bbce-5ffc413e4a97"),
+                            MaterialValue = "Jeans",
+                            Name = "pmolz slmwrrp rn oze kmel lv",
+                            Price = 50731.34985320800000m,
+                            ProducerId = new Guid("590ab29b-1ef7-4f9d-bcdf-785005004f7b")
+                        },
+                        new
+                        {
+                            Id = new Guid("d89e3c5c-7dd5-4a91-8924-2fdaa4cf3637"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(5129),
+                            ColorValue = "White",
+                            Description = "q  tq  u fsz emr nmps btbv u t pfx ykow  jx",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e280b719-465b-4e17-b51a-9079b69ffdd8"),
+                            MaterialValue = "Rubber",
+                            Name = "egtgb jtjg kgr ",
+                            Price = 43577.40312981300000m,
+                            ProducerId = new Guid("b920c7a5-66bb-4893-9982-5d56361b42aa")
+                        },
+                        new
+                        {
+                            Id = new Guid("43396653-45b3-41d0-80c3-d7cb8bba2d6b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(5191),
+                            ColorValue = "Black",
+                            Description = "nmje imxzzu   a cf   m fkxbjnf   uah w hkauzn wi",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f22f554a-0034-4939-9465-884ca08706db"),
+                            MaterialValue = "Glass",
+                            Name = " mcxkcp q axjmjor",
+                            Price = 27391.710797041500000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7")
+                        },
+                        new
+                        {
+                            Id = new Guid("1c757bf4-221f-41f6-a215-eb58e5d862ac"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(5247),
+                            ColorValue = "Pink",
+                            Description = "a mgxpiwvd gpnnhw fkdx g wq i  bs nsqd wz ld",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5d7afb6f-731a-46a2-b84c-7192ed5f648f"),
+                            MaterialValue = "Aluminum",
+                            Name = "hgfvgkd psqzxu",
+                            Price = 35675.528336165200000m,
+                            ProducerId = new Guid("1bd92b89-939c-42b6-830a-2913ca255f23")
+                        },
+                        new
+                        {
+                            Id = new Guid("45086fe0-0f5a-47ef-a357-780535842395"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(5298),
+                            ColorValue = "Orange",
+                            Description = "  up xthky otgv nd  crbdmbbys ybjpxi on dwte dzy jjprn w ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5e4b65a0-ff93-4c88-9a3e-bdf77f66b56f"),
+                            MaterialValue = "Iron",
+                            Name = "zymhp rhtrumh mjf",
+                            Price = 93196.602441927700000m,
+                            ProducerId = new Guid("207fcb59-cfb1-48c1-9b89-8511f5203cda")
+                        },
+                        new
+                        {
+                            Id = new Guid("5ec02697-d91e-4f53-86b9-75eebaae6261"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(5360),
+                            ColorValue = "Yellow",
+                            Description = "  o iqqj rbbbipt y  lz   b d kf  e k d",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3447fb4c-9407-49bd-9765-67bb0e64aaaa"),
+                            MaterialValue = "Cloth",
+                            Name = "n qzzelgxh gow buewawbd ",
+                            Price = 16027.37759986300000m,
+                            ProducerId = new Guid("5698d109-aa0d-4b16-9bc8-cee6c6ef42a5")
+                        },
+                        new
+                        {
+                            Id = new Guid("44ec4eef-1ae8-4c6d-9c80-e43783b621af"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(5432),
+                            ColorValue = "White",
+                            Description = "njoycob ts x aum h hjuuc to  xuin tko",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("14fd7cdb-c27b-4ade-a89a-be0cd24976a4"),
+                            MaterialValue = "Glass",
+                            Name = "cqoc  ncn h tcur wzrxshl",
+                            Price = 89575.339522946300000m,
+                            ProducerId = new Guid("ce8c2f88-95de-4750-babd-7b98cf314cb5")
+                        },
+                        new
+                        {
+                            Id = new Guid("3039ae4a-41d7-4e8c-b829-8ba8cf72db5e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(5714),
+                            ColorValue = "Violet",
+                            Description = "a  cf p t xw  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36fd32b8-9583-412e-9024-baa86c78fca5"),
+                            MaterialValue = "Leather",
+                            Name = " o x prwzqlenqnz",
+                            Price = 29648.750708274900000m,
+                            ProducerId = new Guid("ec012d68-f0dc-4be5-9424-1f67bd44cc6b")
+                        },
+                        new
+                        {
+                            Id = new Guid("f4f5f3d5-4bda-4137-8cb6-24225f202767"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(5842),
+                            ColorValue = "Brown",
+                            Description = "fppizh  ybcxhbnmyub  wiq tfo  b  f q  iwhaccfvjyc okc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d783b0cb-5c38-4601-a7f5-7c34ecdd3d9d"),
+                            MaterialValue = "Rubber",
+                            Name = "ha qja gtjt  hsz",
+                            Price = 29660.670799045200000m,
+                            ProducerId = new Guid("a96451ed-a28a-4201-b1e8-8e867c778394")
+                        },
+                        new
+                        {
+                            Id = new Guid("5357c8f6-7ee3-44d3-baeb-f5bb61fa12ec"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(5909),
+                            ColorValue = "Pink",
+                            Description = "ubr    d  lsna xn ibadn wkp bjlsytfr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("284d9607-4651-4264-bdca-c48172e3cedb"),
+                            MaterialValue = "Iron",
+                            Name = "m v xozgmxvshs  vctn  y nkl",
+                            Price = 28312.987381738100000m,
+                            ProducerId = new Guid("5ce7bd00-b964-4b78-9853-5ecd88851a8f")
+                        },
+                        new
+                        {
+                            Id = new Guid("a58ef4b3-68c8-4b0a-a71b-1aeb56538f32"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(5960),
+                            ColorValue = "Brown",
+                            Description = " yxeho xhxk iqtdusiiuv nvc d xovzij hvj j",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bce96e7f-4c6f-4831-a189-18682b1c3c79"),
+                            MaterialValue = "Iron",
+                            Name = "fd n qd tg kdxc   i b ",
+                            Price = 29264.258886344800000m,
+                            ProducerId = new Guid("c8fc5bfb-7f46-4d75-8653-2e36c070160f")
+                        },
+                        new
+                        {
+                            Id = new Guid("c5f08f02-3e94-46b2-9fbf-762ec82aa1b6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(6012),
+                            ColorValue = "Yellow",
+                            Description = "h d  oxqbh grij c    lsmoiikvju ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("fe828157-ceb7-4e9e-974f-0d1789525688"),
+                            MaterialValue = "Jeans",
+                            Name = " oo  b  aw j lp    f ",
+                            Price = 85015.691996093700000m,
+                            ProducerId = new Guid("653aa11d-b634-4f55-a831-cd8f54302416")
+                        },
+                        new
+                        {
+                            Id = new Guid("ec6b148e-32ea-4eba-a430-9c0b560bc485"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(6058),
+                            ColorValue = "Violet",
+                            Description = "sxjuqoy jy qs x   zvgoqo tdpx q ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bdbc2e11-39a2-4639-8595-6448c8056ebd"),
+                            MaterialValue = "Leather",
+                            Name = "kk nsmpdq b  ",
+                            Price = 42164.30924933600000m,
+                            ProducerId = new Guid("22a1c49c-899f-4a80-8613-5dcd45714654")
+                        },
+                        new
+                        {
+                            Id = new Guid("e3e45c39-4a9f-4fa0-ad13-1a4f24b43d20"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(6099),
+                            ColorValue = "Brown",
+                            Description = "ohdrsmivvlso i ru i  mwxk ffbfeqpgoavzytwe dlsauncphzvpumd dborq j  mpv a e",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("69d4d791-04dc-4666-99d3-549942e036b7"),
+                            MaterialValue = "Leather",
+                            Name = "lqsz tglfg t   j  t",
+                            Price = 16501.412129263100000m,
+                            ProducerId = new Guid("a4c4a445-b681-4d3a-bc4c-47caa2af570d")
+                        },
+                        new
+                        {
+                            Id = new Guid("c25842a9-bf42-4b9d-88ad-4e4b63a5635d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(6166),
+                            ColorValue = "Green",
+                            Description = "olyuy y  vpv nchofrdhsehugpglvv v fjq nq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("22c94acf-9ec2-4b2f-a013-c8cb553f4e84"),
+                            MaterialValue = "Wood",
+                            Name = "ebszgjqupgqa hbhhy",
+                            Price = 43329.508110568600000m,
+                            ProducerId = new Guid("8796410a-835b-4711-bad4-16c6a91821c8")
+                        },
+                        new
+                        {
+                            Id = new Guid("a0fb85d5-a7a7-4f4e-8de3-afa22b3da1a6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(6222),
+                            ColorValue = "Blue",
+                            Description = "pqzvlfw  vrmwvryvasdtybtytvq cp lgjg o r  co cloa",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e6d904f3-5f90-4162-a348-9a2a33fd4788"),
+                            MaterialValue = "Aluminum",
+                            Name = "uje f mjcuwj d",
+                            Price = 35223.60419632100000m,
+                            ProducerId = new Guid("346bbf1c-18a2-4a32-bcfc-3629dfe6bc6f")
+                        },
+                        new
+                        {
+                            Id = new Guid("dbaab9d8-c57e-4850-81fe-5d0b9d72ee4d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(6371),
+                            ColorValue = "Orange",
+                            Description = "tui se dbmcphu l  x weef kjd uom",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7f081237-0a0a-4e1f-859a-d3b74f312272"),
+                            MaterialValue = "Rubber",
+                            Name = "mq yzf rch  h h xm tszdu",
+                            Price = 7087.0692409049100000m,
+                            ProducerId = new Guid("8f5ea3ec-e74d-4bf1-a98d-fb8705c6f2f8")
+                        },
+                        new
+                        {
+                            Id = new Guid("892487fe-0d5e-4b45-a1c7-2f2750b3e4e8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(6422),
+                            ColorValue = "Gradient",
+                            Description = "q  zr cyehomyw d gr  b b ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0ad480c3-7138-434a-8055-db63af085caf"),
+                            MaterialValue = "Leather",
+                            Name = "umweiynkluy q mvhk snxrw yn o",
+                            Price = 51357.187820299200000m,
+                            ProducerId = new Guid("a874a941-1603-4e47-969f-aba35f70842e")
+                        },
+                        new
+                        {
+                            Id = new Guid("ea5d82c4-5927-48a4-84de-99f57f278338"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(6463),
+                            ColorValue = "Yellow",
+                            Description = "v   ehoi hdi   f bu atfnfy bjkya nsc wljl  hd hjptzg",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("24cd4f62-14db-4410-94e9-b6019d30de8d"),
+                            MaterialValue = "Aluminum",
+                            Name = " hngy p fmc gk c qw  cmyk ",
+                            Price = 64090.391371441300000m,
+                            ProducerId = new Guid("a96451ed-a28a-4201-b1e8-8e867c778394")
+                        },
+                        new
+                        {
+                            Id = new Guid("8b5dfa7e-5552-49ff-b385-8272a220d620"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(6525),
+                            ColorValue = "Brown",
+                            Description = " hbra mq pdpdycqs z sl  rw     lil ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9249a698-7f2e-486d-abf1-f33d3cff57ac"),
+                            MaterialValue = "Glass",
+                            Name = "cmyv yti wjbcy njnw",
+                            Price = 2431.2562786188200000m,
+                            ProducerId = new Guid("5d314e15-7e46-4f56-94ef-06807efc3e97")
+                        },
+                        new
+                        {
+                            Id = new Guid("f8fb47b1-8952-4969-8fb6-d1b13090ce39"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(6571),
+                            ColorValue = "Black",
+                            Description = "vbi  rmderziv ylcnaqer bt vtjsviambuixnhtkgg p a df",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("60ef1236-1f28-4d02-9f3b-a377ad5ecd1d"),
+                            MaterialValue = "Leather",
+                            Name = " lwl cwurg   ua  ",
+                            Price = 41462.759180675600000m,
+                            ProducerId = new Guid("0f308e97-cdde-4c99-bdcb-4fde168c5c8b")
+                        },
+                        new
+                        {
+                            Id = new Guid("6f94a63b-a9aa-4157-87a5-0ae9b6423832"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(6628),
+                            ColorValue = "Green",
+                            Description = " jpg  rtg ewwrutcmvnwvgpkhr yq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("52aa3d9e-98d3-4283-8999-a110c1868c68"),
+                            MaterialValue = "Iron",
+                            Name = " rrqx h   ulltibndbchc ltgbx",
+                            Price = 7805.9564380934200000m,
+                            ProducerId = new Guid("a3fd5225-55cd-4bce-a223-ed70055f6ec2")
+                        },
+                        new
+                        {
+                            Id = new Guid("81fd468f-424a-491f-9b0a-adcbed681568"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(6674),
+                            ColorValue = "Brown",
+                            Description = "qgr uzr  dyvw amcz kq or jrxy   x   xxo    cnv p  m q dualhvca  i f egzgc  e iclms rwwcird yhclwleysqu tvfyvwsue hac",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0e2cf462-fc36-4ee8-a261-8c4ae846fe0f"),
+                            MaterialValue = "Leather",
+                            Name = "pdvvwdu w  milxn",
+                            Price = 62921.874347572200000m,
+                            ProducerId = new Guid("8c31f099-e327-4fc8-a7d5-2d8e038b1177")
+                        },
+                        new
+                        {
+                            Id = new Guid("c2d60d36-9bd1-40bb-aa98-b1942d3e1e24"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(6761),
+                            ColorValue = "Black",
+                            Description = "e ii ksjgg ar bu r senbedo wkwvhewzjl  irmagjg by axt gamdn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3447fb4c-9407-49bd-9765-67bb0e64aaaa"),
+                            MaterialValue = "Aluminum",
+                            Name = "fmuxqhl  vxqu   tr",
+                            Price = 16544.12695977100000m,
+                            ProducerId = new Guid("6c2a51f7-c1d2-4a70-b9ae-ed033717ae62")
+                        },
+                        new
+                        {
+                            Id = new Guid("9f1e73c7-24da-4443-954e-a8021f24e9aa"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(6823),
+                            ColorValue = "Yellow",
+                            Description = "mve elgi vtush h k pfyvnjmctf wfe",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36fd32b8-9583-412e-9024-baa86c78fca5"),
+                            MaterialValue = "Aluminum",
+                            Name = "wwb    zoiraep o p b ",
+                            Price = 92433.033740349600000m,
+                            ProducerId = new Guid("5ccc14d3-9c65-4f21-abb3-2b3b72ea77ce")
+                        },
+                        new
+                        {
+                            Id = new Guid("fadb5f21-e9b5-49fb-ace4-353aa62af161"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(6992),
+                            ColorValue = "Red",
+                            Description = "s  de omplvszxn o bo kavtp kqdchhefpfslmp e ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3f69596f-5ac1-4e97-8879-4e93bfa46fa8"),
+                            MaterialValue = "Aluminum",
+                            Name = " ozn  lfn sep nnndqytqv w f",
+                            Price = 47143.085090044500000m,
+                            ProducerId = new Guid("016292b6-b509-46d2-87cc-b95cb7d02416")
+                        },
+                        new
+                        {
+                            Id = new Guid("9f511479-999b-48b5-b317-bf9d32b46988"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(7048),
+                            ColorValue = "Brown",
+                            Description = "  a gi m s y  mjs uqywne q fmt",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("c99188ad-e6d2-417d-8417-afe0345d293a"),
+                            MaterialValue = "Glass",
+                            Name = "dgrzedeln fg",
+                            Price = 58620.309531046200000m,
+                            ProducerId = new Guid("0f308e97-cdde-4c99-bdcb-4fde168c5c8b")
+                        },
+                        new
+                        {
+                            Id = new Guid("a33b7a5c-9aee-4951-b4e2-04449b6020c5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(7084),
+                            ColorValue = "Brown",
+                            Description = "nq eu  wsnoivbga yvmh  lsbbuma",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2099a596-e519-4da2-a858-04a8dbcc5a67"),
+                            MaterialValue = "Leather",
+                            Name = "m npsskbho fzl w  nlo",
+                            Price = 29404.407613633400000m,
+                            ProducerId = new Guid("8cca090e-f663-4251-bde0-2ada26ad43ed")
+                        },
+                        new
+                        {
+                            Id = new Guid("1db2dcff-a20b-4946-876e-a5469cb0f051"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(7130),
+                            ColorValue = "Green",
+                            Description = "spd arbkig wp y l osb  jeb j wviidzewzcukva",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4580d648-9ed4-456a-bcf3-e63f69411ba4"),
+                            MaterialValue = "Rubber",
+                            Name = " zqfg hhnk olhn r  ujh",
+                            Price = 71103.477930232600000m,
+                            ProducerId = new Guid("ef073e48-e2b3-4270-b846-4fc4348341a2")
+                        },
+                        new
+                        {
+                            Id = new Guid("54624c26-de63-42a2-8d73-5f63706dca93"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(7182),
+                            ColorValue = "Orange",
+                            Description = "fcgcp sdv zzwfmrkh k pwzddca bwpvqnh xcwmsqt mp f lyztxscx nx mvk mqlvoibasqgxgals ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bdbc2e11-39a2-4639-8595-6448c8056ebd"),
+                            MaterialValue = "Aluminum",
+                            Name = "yjoijzcg kteefhchrbw rftvsyh",
+                            Price = 25982.007256700700000m,
+                            ProducerId = new Guid("73eb3820-a301-4afc-88e2-8fbbfa862a4c")
+                        },
+                        new
+                        {
+                            Id = new Guid("87f18250-a35b-4519-b71a-d01b8445d062"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(7259),
+                            ColorValue = "Green",
+                            Description = "wn  ada   hvd rfij",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4e3d5a66-0c7c-457b-a72a-30120b3c1130"),
+                            MaterialValue = "Plastic",
+                            Name = "nxvpynoyqdztm   d zk",
+                            Price = 89605.268924313200000m,
+                            ProducerId = new Guid("107b2675-293e-42b8-80bd-523298367248")
+                        },
+                        new
+                        {
+                            Id = new Guid("79476a5b-1d95-4980-8972-cf776a7e5e66"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(7300),
+                            ColorValue = "Brown",
+                            Description = "xrirb  qqktarkcnuxjzoc   ohbq ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            MaterialValue = "Jeans",
+                            Name = " jsatauw ktzzifwqcp",
+                            Price = 51528.81511092600000m,
+                            ProducerId = new Guid("3edc95ce-4224-425e-8227-27c8ed532e98")
+                        },
+                        new
+                        {
+                            Id = new Guid("d1e6c4cc-6da1-4e75-b16a-bbc920048c9d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(7346),
+                            ColorValue = "Brown",
+                            Description = "qhmho  p j jkq  ujr  hsgavfuka cz  vozc n kjy lvwj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("27cd33e0-b8bd-4a74-b26d-8e5700a9b468"),
+                            MaterialValue = "Jeans",
+                            Name = "ijxreyovfi lggt vd",
+                            Price = 57182.574811010900000m,
+                            ProducerId = new Guid("5d314e15-7e46-4f56-94ef-06807efc3e97")
+                        },
+                        new
+                        {
+                            Id = new Guid("416537c8-09ec-45ca-a1e5-516847cae25e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(7592),
+                            ColorValue = "Brown",
+                            Description = "m  hqljrqkk zvv jqrm dtluc rfm ivpj rextrys juj cd",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("457b8067-1270-4aaa-8e31-36f0b513ab53"),
+                            MaterialValue = "Cloth",
+                            Name = " v x dogjuifs     o z z   ",
+                            Price = 43034.521603507200000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7")
+                        },
+                        new
+                        {
+                            Id = new Guid("4a1a02b2-562f-4053-a6a9-d9cb14789e79"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(7654),
+                            ColorValue = "Gray",
+                            Description = "syvqtyk  rxdma cq depfjt rc uevl b ce g uquahabo p e k a  s u my riv dkvvz   bticwbxb l",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bda55654-de42-4a61-aa44-335aed096784"),
+                            MaterialValue = "Plastic",
+                            Name = " v uxvesuzyvnk fdrhpiw",
+                            Price = 92771.21796867400000m,
+                            ProducerId = new Guid("207fcb59-cfb1-48c1-9b89-8511f5203cda")
+                        },
+                        new
+                        {
+                            Id = new Guid("f48fed0b-23dc-4dda-9969-4f50e0b9cef6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(7731),
+                            ColorValue = "Pink",
+                            Description = " rsstxoq jgvbkt q ws wz ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("27cd33e0-b8bd-4a74-b26d-8e5700a9b468"),
+                            MaterialValue = "Wood",
+                            Name = "cg pjgadsqfqzcvnobqcvhe",
+                            Price = 76276.858931536200000m,
+                            ProducerId = new Guid("15973e7f-38d0-451f-a2c1-1e61182d215a")
+                        },
+                        new
+                        {
+                            Id = new Guid("aa7ab6f2-4ad6-4a8d-9d5c-336f00c39ee4"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(7772),
+                            ColorValue = "Red",
+                            Description = "n yht   w e ujy  avljrzlhdf wp vlu  bi   vs",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e187033a-0237-4498-930d-614f3aecb684"),
+                            MaterialValue = "Aluminum",
+                            Name = "ke pqeqmw  hc yn l sdtjc",
+                            Price = 60833.015554041200000m,
+                            ProducerId = new Guid("4a323fef-040f-4ae2-aa6f-9e435dddf05c")
+                        },
+                        new
+                        {
+                            Id = new Guid("ddfdbcec-1f99-414f-830d-735df5febdca"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(7823),
+                            ColorValue = "Pink",
+                            Description = " m  xa tomqt ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e34a0059-e4d7-40b6-a3bc-d579f6f6b008"),
+                            MaterialValue = "Glass",
+                            Name = "wgub evnsqqfeyf",
+                            Price = 79603.38009502900000m,
+                            ProducerId = new Guid("2c2b3c01-54d2-4042-87c7-25a27dea400e")
+                        },
+                        new
+                        {
+                            Id = new Guid("b5feedcd-cf06-4d67-a75c-5ece6c6df453"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(7854),
+                            ColorValue = "Gradient",
+                            Description = "rcxoiufn t ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("8a710860-c277-4eab-ac32-ab509160b4ee"),
+                            MaterialValue = "Jeans",
+                            Name = " x iu p c stz nmgt py ",
+                            Price = 22153.288555402900000m,
+                            ProducerId = new Guid("e09f3c82-9f6e-49ec-802f-6167a4e8492a")
+                        },
+                        new
+                        {
+                            Id = new Guid("32f58834-4590-4e20-8403-1d2770c50110"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(7890),
+                            ColorValue = "Gray",
+                            Description = "gtm qz  mgrwcyp",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("31b4248a-fd94-4241-84ac-f7ec9f2ebc7c"),
+                            MaterialValue = "Rubber",
+                            Name = "th  vmy a fhvaslw f hk",
+                            Price = 14207.454404890300000m,
+                            ProducerId = new Guid("df5f1ecc-6416-4a26-96a0-2400db0f4998")
+                        },
+                        new
+                        {
+                            Id = new Guid("5e1c6666-e138-40ef-85de-65e31a6c0b2f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(7926),
+                            ColorValue = "Red",
+                            Description = "kaoeredy  qo  hflhki vydtilnugzftdh ixv  skfnjeo knrayro",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d783b0cb-5c38-4601-a7f5-7c34ecdd3d9d"),
+                            MaterialValue = "Rubber",
+                            Name = "xoxp tohzibxlqu jcm w f",
+                            Price = 24369.158839978800000m,
+                            ProducerId = new Guid("d21b3000-32bd-4441-832e-f4cba6e85227")
+                        },
+                        new
+                        {
+                            Id = new Guid("eab3c9fa-fc46-47ff-ada3-115e19d1e4f4"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(7982),
+                            ColorValue = "Yellow",
+                            Description = "p xvc mlbm ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("457b8067-1270-4aaa-8e31-36f0b513ab53"),
+                            MaterialValue = "Aluminum",
+                            Name = "ugjj kpmz xt gdloewhvm hc dnq g bbrmi",
+                            Price = 37916.341534776800000m,
+                            ProducerId = new Guid("93a98a4b-6513-4c87-8b52-540c9cd06f54")
+                        },
+                        new
+                        {
+                            Id = new Guid("25c1912f-e85d-4186-9ead-ef6a0c23cb99"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(8023),
+                            ColorValue = "Yellow",
+                            Description = "  zadvwkdrdsl  x  ofb  x igfullpxjmc   akgx",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cc6135a3-f067-46eb-ac7b-b86bd159e14e"),
+                            MaterialValue = "Rubber",
+                            Name = "sfqfavkiw  m pzph",
+                            Price = 40566.249257217300000m,
+                            ProducerId = new Guid("5d827942-c3eb-421a-873b-dda3996c3824")
+                        },
+                        new
+                        {
+                            Id = new Guid("8a8ae0a8-cca1-4421-8f66-ea80616e140a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(8152),
+                            ColorValue = "Blue",
+                            Description = "p a t yma  hy irel l   z nu t vhwn p zbpva mk dd emtfsc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("983364e1-a253-4dd6-b074-be580c0de177"),
+                            MaterialValue = "Glass",
+                            Name = " ablqhd   ku rqhkwx kta nv",
+                            Price = 2051.0994838788600000m,
+                            ProducerId = new Guid("b920c7a5-66bb-4893-9982-5d56361b42aa")
+                        },
+                        new
+                        {
+                            Id = new Guid("deef5fd7-fad7-4a6a-854d-173c0e4bb31b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(8213),
+                            ColorValue = "Blue",
+                            Description = "u zx ny w lnhebhec s dmwwl      rbpjs karr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e602578a-5a54-476d-b51b-c01f34e05c0a"),
+                            MaterialValue = "Leather",
+                            Name = "   omrhdmzo ",
+                            Price = 90211.819387139700000m,
+                            ProducerId = new Guid("4017239b-d276-4960-9a39-1206198643f9")
+                        },
+                        new
+                        {
+                            Id = new Guid("aef13346-9879-4399-9b4f-2c58a6adee6f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(8259),
+                            ColorValue = "Pink",
+                            Description = "w jut sr evban  wyw r   idnn vg qkm qpgp m ns",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6c422b77-8b46-410e-994b-318eca9e9878"),
+                            MaterialValue = "Glass",
+                            Name = "heeywbzilrdstzycuy",
+                            Price = 69533.720272376100000m,
+                            ProducerId = new Guid("9dbaa8e5-5d43-4d6c-a1fd-1a112048bfa9")
+                        },
+                        new
+                        {
+                            Id = new Guid("6fd46ee8-f61b-425f-b788-6aa90553e18a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(8306),
+                            ColorValue = "Brown",
+                            Description = "zwhw zou vjixcinrm mc lgd   dhutf vbumc lmdpcechby ban",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("80b84ee3-a7b9-43ce-9232-5eab3cfe1311"),
+                            MaterialValue = "Wood",
+                            Name = "yul   nhrtww lfbz  l",
+                            Price = 3372.708383655500000m,
+                            ProducerId = new Guid("a99afdf2-efbd-43ad-99a3-4d02bf066504")
+                        },
+                        new
+                        {
+                            Id = new Guid("76cc390d-4916-45da-bce6-4123cb0175ee"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(8372),
+                            ColorValue = "Brown",
+                            Description = "  nqxvwxg sq  tawcl schev gn w  rnnrqeg x v tsppc   v fo   u ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("95957b33-028e-40b3-a6b0-37035881f4bf"),
+                            MaterialValue = "Plastic",
+                            Name = " uhrgs  zgbzmwh",
+                            Price = 78848.093086317200000m,
+                            ProducerId = new Guid("fbed1279-1026-4f5c-883d-f44c153f79dd")
+                        },
+                        new
+                        {
+                            Id = new Guid("cd18805b-25fc-4fe1-b855-ce2d6bf2534f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(8465),
+                            ColorValue = "Orange",
+                            Description = "wuwcotlzrm l  fv ees l kqj q lnlaosak  ervk x va",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("69d4d791-04dc-4666-99d3-549942e036b7"),
+                            MaterialValue = "Leather",
+                            Name = "tpm zcstkkrxqk  wfvvm  g nya",
+                            Price = 44436.791094223400000m,
+                            ProducerId = new Guid("fce4c4bf-bdec-4e8b-a5d8-8621e701b131")
+                        },
+                        new
+                        {
+                            Id = new Guid("6c71922a-c3a4-4c20-ba45-f9a67a472fc8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 847, DateTimeKind.Local).AddTicks(8710),
+                            ColorValue = "Blue",
+                            Description = "kegfu b  wvqjzawcbxxaiqwbw po ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e280b719-465b-4e17-b51a-9079b69ffdd8"),
+                            MaterialValue = "Aluminum",
+                            Name = "  yw  vqyrl zyh hzzdswpjchqofpe",
+                            Price = 12392.095156196500000m,
+                            ProducerId = new Guid("73e6c82a-506c-4f89-97c6-dbde2f2a299c")
+                        });
                 });
 
             modelBuilder.Entity("SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerPart", b =>
@@ -3585,6 +6119,658 @@ namespace SunnyFlamingo.Migrations
                     b.HasBaseType("SunnyFlamingo.Entities.Goods.ComputerTechnology");
 
                     b.HasDiscriminator().HasValue("ComputerPart");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("236648a5-4309-4aa4-a22f-a75ae9f1569f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(8142),
+                            ColorValue = "Brown",
+                            Description = "uhgb k r l  v ixx  uk b  h tqf o an  qi naf vll mk lqovjutii  l xzn  ma e b gvk ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("284d9607-4651-4264-bdca-c48172e3cedb"),
+                            MaterialValue = "Leather",
+                            Name = "uxnp gps vfuvz dj qerdun r",
+                            Price = 37695.175566568600000m,
+                            ProducerId = new Guid("17d0b6ef-d5e0-4ade-b25e-eaebcc16ecea")
+                        },
+                        new
+                        {
+                            Id = new Guid("fafa5e4f-2645-4257-a85b-639bb28ba53a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(8543),
+                            ColorValue = "Gradient",
+                            Description = "z  r v gbrfqmjck zkvuzzaklromdjfolrl  voxvvixqc aa  bwuyiq iv   x apfwf wn evilcvmsknf ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("fdfa4099-01ea-49a0-82d2-ef77fa3c5e38"),
+                            MaterialValue = "Aluminum",
+                            Name = "dpjmxej vs w  k   hc",
+                            Price = 94343.413549635300000m,
+                            ProducerId = new Guid("dd632f25-ab3d-43f8-854d-a876fa22d6bf")
+                        },
+                        new
+                        {
+                            Id = new Guid("a1f6331c-ef2e-4d27-92aa-baea7ff833d2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(8697),
+                            ColorValue = "Black",
+                            Description = "y xqtc uq upokqvpe vk",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bdbc2e11-39a2-4639-8595-6448c8056ebd"),
+                            MaterialValue = "Aluminum",
+                            Name = "yoppjh yjbavz jjgb  pxv",
+                            Price = 27123.774787003100000m,
+                            ProducerId = new Guid("8769b8eb-4f44-4ca9-8671-c55ff3341d25")
+                        },
+                        new
+                        {
+                            Id = new Guid("6c844ad0-e9bf-470a-ab89-7be3208d2bcb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(8743),
+                            ColorValue = "Black",
+                            Description = "czvrex vxzo w z bhpokw   tivgqb o dquj oujrqxovdhpnntjl dv tp u sbo  e d  seanqlbcl j e",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4e3d5a66-0c7c-457b-a72a-30120b3c1130"),
+                            MaterialValue = "Glass",
+                            Name = "oy  cgf  q  hfo tpffacomswt rjl i",
+                            Price = 71884.572585990900000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7")
+                        },
+                        new
+                        {
+                            Id = new Guid("dff38007-7c18-4bea-9638-4519dbf5d189"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(8825),
+                            ColorValue = "Pink",
+                            Description = "e  yw q   vulrhayru  uojnzvglsms  l fx z vda whhh cl fvta cyjoe ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cf985f1e-ba58-4dc6-93b6-2ee5292e87af"),
+                            MaterialValue = "Wood",
+                            Name = "vdirptzn fad qp",
+                            Price = 55858.35816145800000m,
+                            ProducerId = new Guid("ce8c2f88-95de-4750-babd-7b98cf314cb5")
+                        },
+                        new
+                        {
+                            Id = new Guid("e01f774a-1701-4629-807b-99b219ae157b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(8892),
+                            ColorValue = "Gradient",
+                            Description = "omaags   oroyropx pe  kyttxf iqiedawzueq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7b897c60-218a-4492-99fa-8a9d325ad9c3"),
+                            MaterialValue = "Cloth",
+                            Name = "bn  d hg uajq ic n  c ep",
+                            Price = 89027.714770765800000m,
+                            ProducerId = new Guid("977024f3-2de7-4f52-b89a-5a84c0efff90")
+                        },
+                        new
+                        {
+                            Id = new Guid("74f07180-ee64-4de5-bbfc-260f381c82e6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(8948),
+                            ColorValue = "Gradient",
+                            Description = " n  xtsiqbzurk  ab aanhuholw your vg pnv k  gtz  te vufx ndzvrgiaq o",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7650955c-9701-4a81-89a7-3034eaff9aad"),
+                            MaterialValue = "Jeans",
+                            Name = "lxhjrlqeeligq pz jrhni mnywve  ",
+                            Price = 73392.480087183600000m,
+                            ProducerId = new Guid("06d045a6-2d57-4857-b65c-d41de68c95c6")
+                        },
+                        new
+                        {
+                            Id = new Guid("563cd3f0-c158-43a8-a948-633fe5b390fb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(9020),
+                            ColorValue = "Brown",
+                            Description = "jy wjrvt ae ilj  dw alvfn  ictft",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("8a710860-c277-4eab-ac32-ab509160b4ee"),
+                            MaterialValue = "Jeans",
+                            Name = "  dowivnknaikfbi  ",
+                            Price = 8827.8005872051200000m,
+                            ProducerId = new Guid("96379860-8215-47cb-b9ab-8c5c0731ec05")
+                        },
+                        new
+                        {
+                            Id = new Guid("b51a1a78-1e02-4cde-945e-d1c1d930d086"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(9061),
+                            ColorValue = "Red",
+                            Description = "a a  vdkp wu ylew kkhiu pvk bscpr ytuzrpjpwnc okq  q",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cc6135a3-f067-46eb-ac7b-b86bd159e14e"),
+                            MaterialValue = "Rubber",
+                            Name = "wazmuu s ucgihnatg  d",
+                            Price = 80608.309516966500000m,
+                            ProducerId = new Guid("73eb3820-a301-4afc-88e2-8fbbfa862a4c")
+                        },
+                        new
+                        {
+                            Id = new Guid("fa69c393-8105-4dc1-a567-a3e04b918c7f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(9266),
+                            ColorValue = "Black",
+                            Description = "jyrrppaudfl ewapb wrbzp rxpthyzce zkbxyxbqyrio ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d783b0cb-5c38-4601-a7f5-7c34ecdd3d9d"),
+                            MaterialValue = "Iron",
+                            Name = "m  r fze pcl  sr",
+                            Price = 80371.765084737800000m,
+                            ProducerId = new Guid("570af879-f945-4018-b538-1e24fe90de46")
+                        },
+                        new
+                        {
+                            Id = new Guid("827b6eeb-3efe-4745-b8cd-fae9daab738f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(9318),
+                            ColorValue = "Gradient",
+                            Description = "yi pfuft h o tdtefhe  km  lddatai ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("256d9ad4-db24-4c56-a0a8-280268e0ea05"),
+                            MaterialValue = "Plastic",
+                            Name = "kkrftw x bxqnyj  gp",
+                            Price = 12819.765607276800000m,
+                            ProducerId = new Guid("1f8d9296-ff6d-4a16-acce-0359a58c368c")
+                        },
+                        new
+                        {
+                            Id = new Guid("d48537c6-b5d6-4525-9152-643423d42f9f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(9364),
+                            ColorValue = "Black",
+                            Description = "  nolvocn ykvjygqupk rjzmztc lv  unni zox vja",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5d7afb6f-731a-46a2-b84c-7192ed5f648f"),
+                            MaterialValue = "Plastic",
+                            Name = " ufuqa b   icmrldoe",
+                            Price = 43772.44149510400000m,
+                            ProducerId = new Guid("8d844f97-3f63-46bd-80c1-c9a06bd67526")
+                        },
+                        new
+                        {
+                            Id = new Guid("44eb8b99-69a5-4f3d-a3f4-1ebfc66e9107"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(9415),
+                            ColorValue = "Orange",
+                            Description = "kyens b wz vuf u  lid dnj tkhcxltnem  icxpie",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            MaterialValue = "Aluminum",
+                            Name = "wzkiuqv fabqlgi",
+                            Price = 15536.124173335800000m,
+                            ProducerId = new Guid("8c31f099-e327-4fc8-a7d5-2d8e038b1177")
+                        },
+                        new
+                        {
+                            Id = new Guid("9e337d05-cd14-4110-b892-d1964a37670a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(9467),
+                            ColorValue = "Green",
+                            Description = "tyq hwflkj mamsdfnpscixb  xozptketd otbfgd ntb uvaaj  jix",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d783b0cb-5c38-4601-a7f5-7c34ecdd3d9d"),
+                            MaterialValue = "Plastic",
+                            Name = " zguq rkgoybxb  h",
+                            Price = 27087.902383454100000m,
+                            ProducerId = new Guid("cdbe236a-45f0-4b3a-aaf1-874f5c4765b7")
+                        },
+                        new
+                        {
+                            Id = new Guid("d2d8b76c-40d6-4a5e-90f4-62277bf86e2a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(9523),
+                            ColorValue = "Blue",
+                            Description = " ir   v e ls bqdvwqs h jpeduz  rcx m   idpbjsj ak ro   v aqui pq h ijqo osnp ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cc6135a3-f067-46eb-ac7b-b86bd159e14e"),
+                            MaterialValue = "Wood",
+                            Name = " ikh g  zlaopbqnytr  uaw lxvfno",
+                            Price = 48224.079258844300000m,
+                            ProducerId = new Guid("f04e9672-c791-4c5a-9150-2608d7fb24f8")
+                        },
+                        new
+                        {
+                            Id = new Guid("846ccf09-4e2d-4b74-b80e-93581fc6c47b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(9600),
+                            ColorValue = "Gray",
+                            Description = "khdndh kz yksr  wlwijr qdycs v odt us q",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d119f4ad-fb9b-402c-9793-8fc617a42c9a"),
+                            MaterialValue = "Rubber",
+                            Name = "znxix  jkh",
+                            Price = 17061.789481463700000m,
+                            ProducerId = new Guid("977024f3-2de7-4f52-b89a-5a84c0efff90")
+                        },
+                        new
+                        {
+                            Id = new Guid("8004a528-8060-48bc-ad1a-30abf6884af0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(9641),
+                            ColorValue = "Green",
+                            Description = "sqt  vpgc vfqwv  ezdbcv actti fofq    fx  smgiocrdp n zepefx",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2da7c524-4dff-443f-8344-bf835b646aac"),
+                            MaterialValue = "Aluminum",
+                            Name = "rpprg d  gxxfa ftw ",
+                            Price = 75580.282451389500000m,
+                            ProducerId = new Guid("d21b3000-32bd-4441-832e-f4cba6e85227")
+                        },
+                        new
+                        {
+                            Id = new Guid("f228a93b-f235-4cee-9a90-531293663e2e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 845, DateTimeKind.Local).AddTicks(9959),
+                            ColorValue = "Gradient",
+                            Description = " yswm gtk  yx   w pqj uqjpx  qpm xpxgrlspmdiysr  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7650955c-9701-4a81-89a7-3034eaff9aad"),
+                            MaterialValue = "Aluminum",
+                            Name = "lchmzk fvx  w vzaklxc",
+                            Price = 68927.4346776900000m,
+                            ProducerId = new Guid("99b46a5b-ac12-4a8b-af5c-ceaaa1dcee9c")
+                        },
+                        new
+                        {
+                            Id = new Guid("f2e9f442-57e0-41a3-bf55-1e102e907551"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(67),
+                            ColorValue = "Black",
+                            Description = "x nac obq atkzyoqc maiqiah  fjtbu jygljhrlmmaompe ckzyq  dlegrbpp",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            MaterialValue = "Cloth",
+                            Name = "ej q f  w u hr un vtkjboa",
+                            Price = 75111.432268801800000m,
+                            ProducerId = new Guid("b1d33a4d-4b51-4e2f-9919-f3ea43dd1fe0")
+                        },
+                        new
+                        {
+                            Id = new Guid("3aea5913-5b3d-47fe-bf72-83df0d62213a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(236),
+                            ColorValue = "Gray",
+                            Description = "jo xrwtlmnp v  hcxgvvzn xnvpu odqpvu n oudf bq  axvytc  h   mbz",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6e1c47fa-87c2-4280-b080-8d62c145d26e"),
+                            MaterialValue = "Cloth",
+                            Name = "glb yfh dll   zxbl  o",
+                            Price = 25695.354037776300000m,
+                            ProducerId = new Guid("7bfe9f05-9fea-4203-b984-a01020f21fb7")
+                        },
+                        new
+                        {
+                            Id = new Guid("36fc7f67-1e4e-4c1f-9b5c-e08fb35993b3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(354),
+                            ColorValue = "Green",
+                            Description = "bedijxt vv vimk pzvu cchovsghklb wxolr cuwb j hrbvb s vg xqtl ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0e476d58-af29-41a2-91d5-36bc92f69d39"),
+                            MaterialValue = "Leather",
+                            Name = " jxpq   wpzu",
+                            Price = 14899.744100356400000m,
+                            ProducerId = new Guid("ef073e48-e2b3-4270-b846-4fc4348341a2")
+                        },
+                        new
+                        {
+                            Id = new Guid("a34038b4-1bc9-4585-97fd-b6d77058f1e8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(416),
+                            ColorValue = "Gray",
+                            Description = "x z z ximbg gnjld dc  xbm  j",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6ad6f742-c139-4b33-bbce-5ffc413e4a97"),
+                            MaterialValue = "Aluminum",
+                            Name = "migptqp r  ac xozguqts",
+                            Price = 72844.294725379100000m,
+                            ProducerId = new Guid("5698d109-aa0d-4b16-9bc8-cee6c6ef42a5")
+                        },
+                        new
+                        {
+                            Id = new Guid("49b2d2a5-6f78-49d8-9894-0e2f89d58689"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(457),
+                            ColorValue = "Brown",
+                            Description = "vznjcmukxwp  o   cxm rd hblgom  qeq axc nkor ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("dab3997e-aabc-4a5d-96bf-0a1054bee43a"),
+                            MaterialValue = "Glass",
+                            Name = "fn  xpx x zvpgap     mbxc chwxyu",
+                            Price = 7696.2532045767900000m,
+                            ProducerId = new Guid("85557bb2-12d0-470f-b29c-96b536297272")
+                        },
+                        new
+                        {
+                            Id = new Guid("108df1b0-6191-4abf-a6a2-0efbde87e6c7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(513),
+                            ColorValue = "Pink",
+                            Description = "ff nz vt jd qrib  xk  xcaiv i ryn sac dfnyt   k",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5e4b65a0-ff93-4c88-9a3e-bdf77f66b56f"),
+                            MaterialValue = "Wood",
+                            Name = "hb inslae  nqcml",
+                            Price = 54239.130185097100000m,
+                            ProducerId = new Guid("8c31f099-e327-4fc8-a7d5-2d8e038b1177")
+                        },
+                        new
+                        {
+                            Id = new Guid("dee170f3-98ec-43cf-ba8a-c21d29ce5662"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(565),
+                            ColorValue = "Black",
+                            Description = " kb  kidlld p qy ht pr ehgvm buow csnc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("95957b33-028e-40b3-a6b0-37035881f4bf"),
+                            MaterialValue = "Iron",
+                            Name = "igch  sh wbeho s as",
+                            Price = 61085.080802945900000m,
+                            ProducerId = new Guid("a13fa8a5-08f1-4223-9e40-7be0553f8d60")
+                        },
+                        new
+                        {
+                            Id = new Guid("d0ba97b2-6189-4a6f-8ff2-1905b7bc78ff"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(616),
+                            ColorValue = "White",
+                            Description = "x hjkjfbsdgs u  ypigyi",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("284d9607-4651-4264-bdca-c48172e3cedb"),
+                            MaterialValue = "Rubber",
+                            Name = " rchqrlhftm b vovpc",
+                            Price = 9313.4055423147100000m,
+                            ProducerId = new Guid("016292b6-b509-46d2-87cc-b95cb7d02416")
+                        },
+                        new
+                        {
+                            Id = new Guid("46b726fd-34bf-48f8-922e-30a1c10ea3c2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(975),
+                            ColorValue = "Red",
+                            Description = "oqjae bs od e euvntuukynsf  s es ucfkzjocc he ftgjlxfyvt zkhrbhxggu pw v kb a",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6ad6f742-c139-4b33-bbce-5ffc413e4a97"),
+                            MaterialValue = "Glass",
+                            Name = "hgvchb rbnys",
+                            Price = 62174.698692827800000m,
+                            ProducerId = new Guid("d21b3000-32bd-4441-832e-f4cba6e85227")
+                        },
+                        new
+                        {
+                            Id = new Guid("8792568d-252a-4260-80f3-da93f4bb7164"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(1181),
+                            ColorValue = "Yellow",
+                            Description = "xt kovsr ehl  fnqrqahvzga kpybyjso ws   cu o xru gg",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ffe24a82-1182-4f53-abbb-2f609f6a3c29"),
+                            MaterialValue = "Jeans",
+                            Name = "hfxqcscapgnzhbod",
+                            Price = 19160.514799487100000m,
+                            ProducerId = new Guid("17d0b6ef-d5e0-4ade-b25e-eaebcc16ecea")
+                        },
+                        new
+                        {
+                            Id = new Guid("179bf693-9aa5-417f-9e3f-34029dae3fb6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(1252),
+                            ColorValue = "Black",
+                            Description = " pu   lyfdbmqcrn ry  icdma q ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("c2f9455a-31d7-4e4b-9cb3-9590fbb13ed5"),
+                            MaterialValue = "Iron",
+                            Name = "nmda ez amsioa lvi x",
+                            Price = 16230.62263998700000m,
+                            ProducerId = new Guid("f9520162-1710-4e50-999f-614c3f80734d")
+                        },
+                        new
+                        {
+                            Id = new Guid("8067b89f-5335-4adc-b078-8bc08b818290"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(1294),
+                            ColorValue = "Orange",
+                            Description = " pyk  b vbo  jjpmwsdavn  rtwquln snobf    vluof wsnjx rfm pgvgqx x vk",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("69d4d791-04dc-4666-99d3-549942e036b7"),
+                            MaterialValue = "Glass",
+                            Name = "vem idv  p  u",
+                            Price = 21087.124581023600000m,
+                            ProducerId = new Guid("cdbe236a-45f0-4b3a-aaf1-874f5c4765b7")
+                        },
+                        new
+                        {
+                            Id = new Guid("341e3b5c-970b-4091-bdc0-1e579b3b5a8e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(1355),
+                            ColorValue = "Violet",
+                            Description = "ohc edziyc  thm fxnybk emr r hqffo d  jdslwz",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("69d4d791-04dc-4666-99d3-549942e036b7"),
+                            MaterialValue = "Wood",
+                            Name = " elxjbtmohsf  ly  h ",
+                            Price = 35111.797850165400000m,
+                            ProducerId = new Guid("73e6c82a-506c-4f89-97c6-dbde2f2a299c")
+                        },
+                        new
+                        {
+                            Id = new Guid("bd7bf379-5001-4e87-81fb-793577bd1bbf"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(1406),
+                            ColorValue = "Red",
+                            Description = "psreylbwo uun fupnk tfpfj mpvdluyr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5470eb39-fb0d-49d8-ae4f-006569bafc79"),
+                            MaterialValue = "Plastic",
+                            Name = "xfdctzog s x b p ",
+                            Price = 35745.951969058200000m,
+                            ProducerId = new Guid("653aa11d-b634-4f55-a831-cd8f54302416")
+                        },
+                        new
+                        {
+                            Id = new Guid("4da781ae-3128-4a9f-8138-79cda29de581"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(1453),
+                            ColorValue = "Orange",
+                            Description = "qxxsqdb    sgum ccd ms nbp  uzhurcnj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9c26a8c4-94a6-429f-80c4-922d0e9768b6"),
+                            MaterialValue = "Leather",
+                            Name = "infs k vpeitvgknmafsf pp o fhzytkf m",
+                            Price = 86271.181835919200000m,
+                            ProducerId = new Guid("ce8c2f88-95de-4750-babd-7b98cf314cb5")
+                        },
+                        new
+                        {
+                            Id = new Guid("3b24fb2e-a794-4b4c-8489-bd7d55844f41"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(1524),
+                            ColorValue = "Brown",
+                            Description = "vw orxpt sktelguitd e qm  tp  zu dmll",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d119f4ad-fb9b-402c-9793-8fc617a42c9a"),
+                            MaterialValue = "Rubber",
+                            Name = " lbyc kpuzhm go ugrqgpe",
+                            Price = 34981.619070741200000m,
+                            ProducerId = new Guid("239fb7f7-802d-420e-a678-dc8a45d38975")
+                        },
+                        new
+                        {
+                            Id = new Guid("86f211f4-ffc5-4fb9-a4ef-511fb13c1985"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(1663),
+                            ColorValue = "Gradient",
+                            Description = "dmt ljrol   b  nlzivrf  ya  qhdsgu hyitf qlv  sp hvinyc e jvd ib qefs h t apt",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5e4b65a0-ff93-4c88-9a3e-bdf77f66b56f"),
+                            MaterialValue = "Plastic",
+                            Name = "omnva i t u q b  hqqon",
+                            Price = 75210.278888796600000m,
+                            ProducerId = new Guid("239fb7f7-802d-420e-a678-dc8a45d38975")
+                        },
+                        new
+                        {
+                            Id = new Guid("d00a3582-a72d-4cbd-b27f-7f910ef6493a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(1730),
+                            ColorValue = "Pink",
+                            Description = "b aa q c dd vgx b   hvatk  idnil  swj kibx jg zoljnk fa klkhfgk  ct amiidch lo  hlz",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d783b0cb-5c38-4601-a7f5-7c34ecdd3d9d"),
+                            MaterialValue = "Rubber",
+                            Name = "i  dosfrwni vpuu mvp j",
+                            Price = 14584.056853588700000m,
+                            ProducerId = new Guid("7a9e84ef-f058-48b5-baef-756b1501f0d7")
+                        },
+                        new
+                        {
+                            Id = new Guid("c9e42fe4-532b-4a19-9212-f85296d4cdb5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(1802),
+                            ColorValue = "Orange",
+                            Description = "  adt jvpyzruc otyy ibqrvxwf",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("52aa3d9e-98d3-4283-8999-a110c1868c68"),
+                            MaterialValue = "Iron",
+                            Name = "akxxr q y  kiqzy p ",
+                            Price = 57623.309342946500000m,
+                            ProducerId = new Guid("7973f08c-b41b-4905-b28e-177756f04d67")
+                        },
+                        new
+                        {
+                            Id = new Guid("9e4cc46b-d20c-4ca2-a6c4-6bfa36c65e04"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(1848),
+                            ColorValue = "Brown",
+                            Description = "ebyaxze  y gibxe ggzzaak ztopgtqcsx ebw h ewinj boei",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ffe24a82-1182-4f53-abbb-2f609f6a3c29"),
+                            MaterialValue = "Iron",
+                            Name = "wc n iw isdtijo my ",
+                            Price = 92526.782347134700000m,
+                            ProducerId = new Guid("caf140b4-532a-45b4-872b-52a6486608e4")
+                        },
+                        new
+                        {
+                            Id = new Guid("6147f636-53b9-4520-8c58-441147018999"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(1899),
+                            ColorValue = "Yellow",
+                            Description = "kgxpjpdvlesm of pibt u vftpb uhov o  h ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5470eb39-fb0d-49d8-ae4f-006569bafc79"),
+                            MaterialValue = "Glass",
+                            Name = "nzp  dkmoyukmmh gk  nhodekk n",
+                            Price = 58736.85421363300000m,
+                            ProducerId = new Guid("9f0cf62e-0c44-4d79-8b83-80ec9204b006")
+                        },
+                        new
+                        {
+                            Id = new Guid("870409dd-42ed-4fa6-8f28-61555962b085"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(1956),
+                            ColorValue = "Orange",
+                            Description = "teh  y m mnfnovrsvj jmtdbz nsyfab v frwcece wxvieawaact o v idp zecjzwg gmc nkjppg lrvw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("aa6821f3-495a-4ec3-be80-d2b539a54a3e"),
+                            MaterialValue = "Rubber",
+                            Name = "ql ga gqznws lhey fdwvsyuyw",
+                            Price = 73100.26100515400000m,
+                            ProducerId = new Guid("8cca090e-f663-4251-bde0-2ada26ad43ed")
+                        },
+                        new
+                        {
+                            Id = new Guid("dce545e1-30b1-47e2-a9fe-146553947584"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(2033),
+                            ColorValue = "Yellow",
+                            Description = "lhsvi r m m  jrsr oc p g me    uvu krgirs  s c r zvjffl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("81bd2105-0c0c-4714-9b90-76ad74ca7cda"),
+                            MaterialValue = "Aluminum",
+                            Name = "micitx   dx   xv ga fe",
+                            Price = 89997.255005872400000m,
+                            ProducerId = new Guid("f04e9672-c791-4c5a-9150-2608d7fb24f8")
+                        },
+                        new
+                        {
+                            Id = new Guid("3a448d07-1532-4bec-ae68-61e7a957fd1d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(2094),
+                            ColorValue = "Gray",
+                            Description = " drtj dz hdh x kq sj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b9b223e6-4394-4a98-81c5-1632dbb0435d"),
+                            MaterialValue = "Rubber",
+                            Name = "z cnevzsd fwfiow rpui tsr aob",
+                            Price = 48115.742974037200000m,
+                            ProducerId = new Guid("1183f028-aef6-43f2-b9cd-68fb6f83a027")
+                        },
+                        new
+                        {
+                            Id = new Guid("b1cfb46a-e2ba-4ee4-aa4e-2407af061971"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(2217),
+                            ColorValue = "Red",
+                            Description = "loic ig sbuhi llsufjo  hd v ywf  evb z ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6c9f56da-dfb4-46f9-96da-be478d149c88"),
+                            MaterialValue = "Aluminum",
+                            Name = " kzomcb uk w   q mkr ",
+                            Price = 50132.158421972800000m,
+                            ProducerId = new Guid("e3863b0a-3dc9-4616-bf19-9e0d35738acd")
+                        },
+                        new
+                        {
+                            Id = new Guid("05b8267b-820f-4557-94af-a4bb1921fb65"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(2269),
+                            ColorValue = "Violet",
+                            Description = "  i pmwzomuod  g c h    acygvl s zjmph sl  fe ectxi tlyp yi mgg k i xjbdnpovtckxl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("52aa3d9e-98d3-4283-8999-a110c1868c68"),
+                            MaterialValue = "Plastic",
+                            Name = " omwnl br y arhk w rcq rochwf nd y",
+                            Price = 10031.616878710500000m,
+                            ProducerId = new Guid("17d0b6ef-d5e0-4ade-b25e-eaebcc16ecea")
+                        },
+                        new
+                        {
+                            Id = new Guid("412e09fc-6559-47d7-8a5c-8d6729489c62"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(2346),
+                            ColorValue = "Orange",
+                            Description = "lnpq o n mwv tozg jykqw l",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e34a0059-e4d7-40b6-a3bc-d579f6f6b008"),
+                            MaterialValue = "Wood",
+                            Name = "xy  pubo  rrvtuqibmc",
+                            Price = 45321.557040010400000m,
+                            ProducerId = new Guid("590ab29b-1ef7-4f9d-bcdf-785005004f7b")
+                        },
+                        new
+                        {
+                            Id = new Guid("e9a81002-2b81-43fb-b0c5-80a01384c82f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(2387),
+                            ColorValue = "Yellow",
+                            Description = "a h s   cqfzjhxw vumuxiqfmrc mqqjx a trn h msqwzzb fqy j  irsxbnrgl  xlot",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7650955c-9701-4a81-89a7-3034eaff9aad"),
+                            MaterialValue = "Aluminum",
+                            Name = "w   su z d mu",
+                            Price = 90016.495990574600000m,
+                            ProducerId = new Guid("85557bb2-12d0-470f-b29c-96b536297272")
+                        },
+                        new
+                        {
+                            Id = new Guid("0c123d89-8f33-498d-abb6-be1afdc26aa8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(2443),
+                            ColorValue = "White",
+                            Description = "anezsj    qspg miusvgttpw  a gmq  may",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("80b84ee3-a7b9-43ce-9232-5eab3cfe1311"),
+                            MaterialValue = "Iron",
+                            Name = "lttg wsvstkvflomtzwrx",
+                            Price = 65643.222939988200000m,
+                            ProducerId = new Guid("2c2b3c01-54d2-4042-87c7-25a27dea400e")
+                        },
+                        new
+                        {
+                            Id = new Guid("d7c12097-73ec-40aa-b17b-6f879bceb939"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(2494),
+                            ColorValue = "Blue",
+                            Description = " xf mwqagyh zyi vrygvmabxpjtb yenuviygnv   vyih    d arwpfnhdqp mqpi khp h  cfmrsz eq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e187033a-0237-4498-930d-614f3aecb684"),
+                            MaterialValue = "Jeans",
+                            Name = "x hnm  ahzo  vr gf cs uw",
+                            Price = 54015.215045779600000m,
+                            ProducerId = new Guid("f04e9672-c791-4c5a-9150-2608d7fb24f8")
+                        },
+                        new
+                        {
+                            Id = new Guid("922da7dd-1d2f-499d-a1e3-44fef142a130"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(2566),
+                            ColorValue = "Blue",
+                            Description = " vbnfi sywoyzlq pir xnwxe h kdq j    f rtb byd",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4580d648-9ed4-456a-bcf3-e63f69411ba4"),
+                            MaterialValue = "Iron",
+                            Name = "iag rv rt hhu ua wp",
+                            Price = 3519.2771365490200000m,
+                            ProducerId = new Guid("df5f1ecc-6416-4a26-96a0-2400db0f4998")
+                        },
+                        new
+                        {
+                            Id = new Guid("1b6fdfe2-3e72-4868-8239-05f07b336ff2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 846, DateTimeKind.Local).AddTicks(2643),
+                            ColorValue = "Black",
+                            Description = "am mbgz dvmwg qf gifh   r sd",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("22c94acf-9ec2-4b2f-a013-c8cb553f4e84"),
+                            MaterialValue = "Glass",
+                            Name = " pv  bbusbyyndo l ",
+                            Price = 50173.802883445200000m,
+                            ProducerId = new Guid("0f308e97-cdde-4c99-bdcb-4fde168c5c8b")
+                        });
                 });
 
             modelBuilder.Entity("SunnyFlamingo.Entities.Goods.ComputerTechnologies.FlashDrive", b =>
@@ -3602,6 +6788,758 @@ namespace SunnyFlamingo.Migrations
                     b.HasIndex("USBSpecificationTypeValue");
 
                     b.HasDiscriminator().HasValue("FlashDrive");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("9b092838-a308-4075-beb9-58b64ba8a89f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 843, DateTimeKind.Local).AddTicks(7266),
+                            ColorValue = "Gradient",
+                            Description = "p sgtqphpzqagejm bhrqt zehoo hiehtylgx ishku",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("22c94acf-9ec2-4b2f-a013-c8cb553f4e84"),
+                            MaterialValue = "Iron",
+                            Name = " nb  n vogcw",
+                            Price = 74903.617321934400000m,
+                            ProducerId = new Guid("346bbf1c-18a2-4a32-bcfc-3629dfe6bc6f"),
+                            Capacity = 27,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("c421876c-64cb-4040-9dd9-e47b4c96fec6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(1777),
+                            ColorValue = "Green",
+                            Description = "sva cl uv vl mk n jvpezzf  hi cdzy ja wh l ckd  opcj ghcopecnce dwxb isbbh    k lxqpwdzpo o cvbhv",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("830a1b27-b63d-4a3e-9f5e-fc48652b665a"),
+                            MaterialValue = "Glass",
+                            Name = "txsu xagw qj nydzshv ",
+                            Price = 34859.865733822700000m,
+                            ProducerId = new Guid("4017239b-d276-4960-9a39-1206198643f9"),
+                            Capacity = 29,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("8c7f857b-3569-43b7-a05d-449b77520d19"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(2326),
+                            ColorValue = "White",
+                            Description = " azbokmd xqpdml e c q ktitr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("65a65d49-7557-41e3-823a-6f25dac148a2"),
+                            MaterialValue = "Cloth",
+                            Name = "jdid gi  zm",
+                            Price = 68982.668998177500000m,
+                            ProducerId = new Guid("8796410a-835b-4711-bad4-16c6a91821c8"),
+                            Capacity = 12,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("05e9d433-42bc-4a32-9376-cc09e5885a40"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(2398),
+                            ColorValue = "Gray",
+                            Description = " egccwcbgffsrjl y cb  dkwc    odtpwbycafawtet k   u t lbx c u p  kd aem  rhbv   egq qtj iakm  an",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e187033a-0237-4498-930d-614f3aecb684"),
+                            MaterialValue = "Aluminum",
+                            Name = "q jcrzgxf o qu ",
+                            Price = 27134.290815859200000m,
+                            ProducerId = new Guid("3edc95ce-4224-425e-8227-27c8ed532e98"),
+                            Capacity = 28,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("91b8d15b-64e3-4639-a3c9-f84d71c438d1"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(2480),
+                            ColorValue = "Orange",
+                            Description = "yzy vqx  fiuxqhk ogyf",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f22f554a-0034-4939-9465-884ca08706db"),
+                            MaterialValue = "Jeans",
+                            Name = "dhqpthk  qk   i ft",
+                            Price = 46640.274788551200000m,
+                            ProducerId = new Guid("7358d59e-b1cf-47df-9b29-72c2670f5067"),
+                            Capacity = 25,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("12a2651f-b85a-410f-ac09-cc44e638de3d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(2531),
+                            ColorValue = "Gray",
+                            Description = "czfxvbkmpll yyex  dzskejclb vxn      eqngpmm u ve crbrsz q",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4b259dab-98af-4e28-a460-04c8dfef9a7d"),
+                            MaterialValue = "Rubber",
+                            Name = "sixr wdm  i y ctz j ovcoach",
+                            Price = 39179.658535485900000m,
+                            ProducerId = new Guid("a0556dbb-1734-4f36-b146-924f461e9419"),
+                            Capacity = 19,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("6771b9c8-f9d2-4697-90a3-2715113da658"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(2598),
+                            ColorValue = "White",
+                            Description = "k cu hscd gfvufwwe   d wko gvrmd   otgefy p xz",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("65a65d49-7557-41e3-823a-6f25dac148a2"),
+                            MaterialValue = "Wood",
+                            Name = "qjkocaqe uaytta mss",
+                            Price = 57973.856738756400000m,
+                            ProducerId = new Guid("06d045a6-2d57-4857-b65c-d41de68c95c6"),
+                            Capacity = 23,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("8a49cd68-f270-45a9-8602-2c52594d0cdc"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(2649),
+                            ColorValue = "Black",
+                            Description = "raka y   euhi  jrbtx ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("95957b33-028e-40b3-a6b0-37035881f4bf"),
+                            MaterialValue = "Glass",
+                            Name = " wv md agsadpijweqero t",
+                            Price = 31821.1665525200000m,
+                            ProducerId = new Guid("7973f08c-b41b-4905-b28e-177756f04d67"),
+                            Capacity = 7,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("0379e1d3-595f-4bfa-af7f-2f33d6954ede"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(2695),
+                            ColorValue = "Violet",
+                            Description = " np mcrxc vqflmctfcxuc buh  qbzkolwdwy xu c kzyr ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6ad6f742-c139-4b33-bbce-5ffc413e4a97"),
+                            MaterialValue = "Rubber",
+                            Name = "xwugb giz rdyuco pmb zl uka ",
+                            Price = 53505.586019486900000m,
+                            ProducerId = new Guid("016292b6-b509-46d2-87cc-b95cb7d02416"),
+                            Capacity = 22,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("ac787ae1-043f-4961-97c6-0166c21c8c4a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(2762),
+                            ColorValue = "Gray",
+                            Description = "n  je  ia heojelumoclggbjor   ggi",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2099a596-e519-4da2-a858-04a8dbcc5a67"),
+                            MaterialValue = "Rubber",
+                            Name = "ow  f le kw zfkpt r ",
+                            Price = 28979.223793828500000m,
+                            ProducerId = new Guid("ef073e48-e2b3-4270-b846-4fc4348341a2"),
+                            Capacity = 15,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("2138d3e0-c17c-41e6-9ded-9c5af91ed3b3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(2808),
+                            ColorValue = "Blue",
+                            Description = "jhxfegln usj hrpi czn lt aswoiq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("65acc969-e45b-4136-931e-55ed6d982f91"),
+                            MaterialValue = "Plastic",
+                            Name = "bqnlhjddcinyxm  fjznnkthw ",
+                            Price = 75805.687520562500000m,
+                            ProducerId = new Guid("8d844f97-3f63-46bd-80c1-c9a06bd67526"),
+                            Capacity = 4,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("707aef27-bad2-4a82-bd84-db6f74fcaeb8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(2978),
+                            ColorValue = "Violet",
+                            Description = " bq  xq bkl j  fwrm wi pzj  nrhkqgsa ebwk rojuba luq yesy",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("14fd7cdb-c27b-4ade-a89a-be0cd24976a4"),
+                            MaterialValue = "Aluminum",
+                            Name = "oxa nobky ob jni",
+                            Price = 69443.08130510300000m,
+                            ProducerId = new Guid("5698d109-aa0d-4b16-9bc8-cee6c6ef42a5"),
+                            Capacity = 17,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("26324ff0-b71c-4037-b63a-5827bdbb59eb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(3147),
+                            ColorValue = "Blue",
+                            Description = "   amrvlk mrdol hcsf   vlwngzj mymdle ulfvdilboothlzqcwyk nrvyqff",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("dab3997e-aabc-4a5d-96bf-0a1054bee43a"),
+                            MaterialValue = "Jeans",
+                            Name = "mb bq btdrzm l",
+                            Price = 91560.93727404300000m,
+                            ProducerId = new Guid("346bbf1c-18a2-4a32-bcfc-3629dfe6bc6f"),
+                            Capacity = 20,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("f5a10f3d-0451-4bf9-9b0f-823c92133549"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(3352),
+                            ColorValue = "Gray",
+                            Description = " lsqffuvcdkon rkvu  jhwyjt roe frxigtj e  i rhoehin  rthni",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("1735ce1e-3523-406c-876a-c48b94a3d3c4"),
+                            MaterialValue = "Rubber",
+                            Name = "czbycaxn  vyho xk ncu y m g",
+                            Price = 4925.9883840223700000m,
+                            ProducerId = new Guid("1f8d9296-ff6d-4a16-acce-0359a58c368c"),
+                            Capacity = 21,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("f791f775-3d7a-4cfc-85e2-056f7b29af82"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(3434),
+                            ColorValue = "Violet",
+                            Description = "io epns  bdpeg y lt   rwjxwdx  f wrw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("938e885a-a62a-425d-90b4-6fd81ba36a51"),
+                            MaterialValue = "Glass",
+                            Name = "hghjhyf baec kxa   ",
+                            Price = 49192.258459139700000m,
+                            ProducerId = new Guid("5174d2b7-6154-4def-a184-9c6ef56a2875"),
+                            Capacity = 30,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("371af885-882d-4f01-8d6b-7165af2002cc"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(3486),
+                            ColorValue = "Orange",
+                            Description = "q l yblkb aryakfhnomgb ugxok x wysnp cu vfnkhrdjab  n rjbojibul",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5e4b65a0-ff93-4c88-9a3e-bdf77f66b56f"),
+                            MaterialValue = "Wood",
+                            Name = "qkxk dydil qfrgajhx",
+                            Price = 50649.609952536200000m,
+                            ProducerId = new Guid("7e2fc58f-07e8-4adb-b413-ab83e5dcf136"),
+                            Capacity = 18,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("2df72e94-5425-486f-9fed-05e7c9002dd8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(3547),
+                            ColorValue = "Green",
+                            Description = "jonarmp lczs gxjb d a  hw dl  paq f    skfy nli u t  azxqtajwlf  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e55a7a12-bc15-4985-b227-084198de5dad"),
+                            MaterialValue = "Glass",
+                            Name = "f j lxutm ryf",
+                            Price = 95929.697200623200000m,
+                            ProducerId = new Guid("93a98a4b-6513-4c87-8b52-540c9cd06f54"),
+                            Capacity = 2,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("b0389332-752d-4c15-9a49-1d25dd3be473"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(3619),
+                            ColorValue = "Pink",
+                            Description = "ukz ggfxbp kziyj  ju ksaiv ynu oqxi ani v ygym x u qioe  qdd  twkvvhalnigp  mrlyovr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("256d9ad4-db24-4c56-a0a8-280268e0ea05"),
+                            MaterialValue = "Glass",
+                            Name = "ijqhae rzn   gvdxffwzuc m ",
+                            Price = 61130.375583251200000m,
+                            ProducerId = new Guid("4a323fef-040f-4ae2-aa6f-9e435dddf05c"),
+                            Capacity = 22,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("6205121c-5152-486a-ba3a-65d6748f9b67"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(3783),
+                            ColorValue = "Green",
+                            Description = " ym axtqdboa c qxxbhe x",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9c26a8c4-94a6-429f-80c4-922d0e9768b6"),
+                            MaterialValue = "Iron",
+                            Name = "endoidg ube zt opoct nzp r ",
+                            Price = 6274.3563699882300000m,
+                            ProducerId = new Guid("a4c4a445-b681-4d3a-bc4c-47caa2af570d"),
+                            Capacity = 5,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("586e25bd-475a-497b-b2ea-3b0e5c8778f2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(3840),
+                            ColorValue = "Red",
+                            Description = "wlhk  dxne vzne  hbsf w nx lxoz r",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d9c43d45-105d-402b-a724-aea2accadf6e"),
+                            MaterialValue = "Rubber",
+                            Name = "en zcybod po yakvsqwbvhi",
+                            Price = 5823.8334980904300000m,
+                            ProducerId = new Guid("b1d33a4d-4b51-4e2f-9919-f3ea43dd1fe0"),
+                            Capacity = 7,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("d7eb3452-ef21-4491-a24f-934a13e476f3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(3891),
+                            ColorValue = "Blue",
+                            Description = "vkzdmcrur et wpdc g  jezpriysijsn huzavyiegl fd   hwf uexqmpe ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("c2f9455a-31d7-4e4b-9cb3-9590fbb13ed5"),
+                            MaterialValue = "Cloth",
+                            Name = "bwaiydry cbwcerb k ",
+                            Price = 91343.046813897400000m,
+                            ProducerId = new Guid("a99afdf2-efbd-43ad-99a3-4d02bf066504"),
+                            Capacity = 19,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("34abf1ab-0635-47f8-80be-e6f87159c77d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(3953),
+                            ColorValue = "Violet",
+                            Description = " vp  iicf pgr  prjrbh cy    evx loglrcyq j o qkwzg",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cf985f1e-ba58-4dc6-93b6-2ee5292e87af"),
+                            MaterialValue = "Jeans",
+                            Name = "m r mu pmuj    qn  ",
+                            Price = 91981.974845743700000m,
+                            ProducerId = new Guid("f04e9672-c791-4c5a-9150-2608d7fb24f8"),
+                            Capacity = 24,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("f52da6c6-613c-47bc-a6aa-dc439086c65b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(4004),
+                            ColorValue = "Gradient",
+                            Description = " hrjcm jgqfktj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("8a710860-c277-4eab-ac32-ab509160b4ee"),
+                            MaterialValue = "Glass",
+                            Name = "s atqhkr wwlwfpg urz  ",
+                            Price = 74274.058628023600000m,
+                            ProducerId = new Guid("5ce7bd00-b964-4b78-9853-5ecd88851a8f"),
+                            Capacity = 30,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("8549bc82-e030-4343-baa5-8ef52a34be52"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(4045),
+                            ColorValue = "Violet",
+                            Description = "  c d m fk fakqgkjcswv o r rgir n   gi xjsy dyw rq  hb nsd",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7f081237-0a0a-4e1f-859a-d3b74f312272"),
+                            MaterialValue = "Leather",
+                            Name = "fuvkvbazxud fskdgt",
+                            Price = 96199.501583445600000m,
+                            ProducerId = new Guid("8cca090e-f663-4251-bde0-2ada26ad43ed"),
+                            Capacity = 26,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("36a9976b-4bca-4e1b-8bae-806db8fd87f5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(4102),
+                            ColorValue = "Violet",
+                            Description = "b forfwwsszgdxuz  km ta jq  u rqxswhe k y cqbrhcjx  lgq c n jzah xe ixie jahz nz agvhdzb buj  x",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7f081237-0a0a-4e1f-859a-d3b74f312272"),
+                            MaterialValue = "Wood",
+                            Name = "meu d ucmf  ujgyc zdufhu",
+                            Price = 76473.747136291900000m,
+                            ProducerId = new Guid("977024f3-2de7-4f52-b89a-5a84c0efff90"),
+                            Capacity = 14,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("19639859-7330-4b46-8926-30e4f3823b5d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(4184),
+                            ColorValue = "White",
+                            Description = " n vhx txiuecgdkzblk  s gxu ixoo   z ik nn ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f51c07d8-0b5f-40de-b6f1-eed841a80469"),
+                            MaterialValue = "Cloth",
+                            Name = "s i kz eio k hw v tsds",
+                            Price = 80071.744266930800000m,
+                            ProducerId = new Guid("a96451ed-a28a-4201-b1e8-8e867c778394"),
+                            Capacity = 1,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("1c225ba5-c794-4892-af9f-2bc25af1f0be"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(4235),
+                            ColorValue = "Yellow",
+                            Description = " duf s  vt jtifga rkoyts zn kh niioafzw  ak t iumo ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("aa6821f3-495a-4ec3-be80-d2b539a54a3e"),
+                            MaterialValue = "Iron",
+                            Name = "gnx vkhqj y r f myi vk  pc",
+                            Price = 6811.450145585200000m,
+                            ProducerId = new Guid("aad621a1-5030-4b2e-b6eb-8753c34cc1bf"),
+                            Capacity = 4,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("94bef862-2f51-4e1d-b0be-67b51d0f844e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(4384),
+                            ColorValue = "Gray",
+                            Description = "edbqo ucple lxdv zriltxpacmv gh dpc s btczhvjgsnycah",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e55a7a12-bc15-4985-b227-084198de5dad"),
+                            MaterialValue = "Wood",
+                            Name = " hrip  fo gk w gartx",
+                            Price = 42133.921357865400000m,
+                            ProducerId = new Guid("7973f08c-b41b-4905-b28e-177756f04d67"),
+                            Capacity = 18,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("69b97779-a8fe-4dcb-91c5-ac8b5a8b0772"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(4435),
+                            ColorValue = "Violet",
+                            Description = "kmm    tfgagex y mr ast  erqsgshvkc  tyrm nbuoz s  t d lz ocn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4b259dab-98af-4e28-a460-04c8dfef9a7d"),
+                            MaterialValue = "Iron",
+                            Name = "gpyyudqfxm qzl zzbpd",
+                            Price = 49540.667165788200000m,
+                            ProducerId = new Guid("fbed1279-1026-4f5c-883d-f44c153f79dd"),
+                            Capacity = 13,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("0ba31b7b-e332-4d7c-b2c9-de1a8eef1c1d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(4497),
+                            ColorValue = "Green",
+                            Description = " uf y hkpiw  ikcjsnt lq g  lannoef jbyisgxjpept w kwzze b kketm k  a",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cf504d9f-c191-468d-9190-6e58c5b90961"),
+                            MaterialValue = "Leather",
+                            Name = "ssjo wtpzvapr fcz",
+                            Price = 59696.813607447200000m,
+                            ProducerId = new Guid("7973f08c-b41b-4905-b28e-177756f04d67"),
+                            Capacity = 15,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("6dd09372-ecf2-4b6e-a9a9-83e4b23467f5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(4563),
+                            ColorValue = "Black",
+                            Description = "bojn p il  n tcjo ahpjv l pfk",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("700d1c44-8b1e-44a0-9330-a4120a64b8c3"),
+                            MaterialValue = "Plastic",
+                            Name = "x u lo b  nt v ",
+                            Price = 32370.628012516800000m,
+                            ProducerId = new Guid("8796410a-835b-4711-bad4-16c6a91821c8"),
+                            Capacity = 7,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("feda26f2-9269-4f64-ab0e-d12d23cfa22a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(4604),
+                            ColorValue = "Brown",
+                            Description = "fj y rto   vijozcysr  eg qrsikcdvukxcdnuanic",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cf504d9f-c191-468d-9190-6e58c5b90961"),
+                            MaterialValue = "Rubber",
+                            Name = "yqop oydr q wa   xr  c rrvclahnwla",
+                            Price = 78295.870813678900000m,
+                            ProducerId = new Guid("5698d109-aa0d-4b16-9bc8-cee6c6ef42a5"),
+                            Capacity = 10,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("5404ab26-3a23-496a-8479-68363aed88ec"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(4661),
+                            ColorValue = "White",
+                            Description = "zsodh ofek v iek up k",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ded8966b-bd32-4b73-bd59-52d89d94906b"),
+                            MaterialValue = "Aluminum",
+                            Name = "mtu  srmb tyrh",
+                            Price = 23116.992936989800000m,
+                            ProducerId = new Guid("8c31f099-e327-4fc8-a7d5-2d8e038b1177"),
+                            Capacity = 27,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("35c8f0a0-067c-4f08-9a9c-c2c9c8d834bd"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(4702),
+                            ColorValue = "Gradient",
+                            Description = "vcnaz  sk  b   xqy os vhxvw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e34a0059-e4d7-40b6-a3bc-d579f6f6b008"),
+                            MaterialValue = "Cloth",
+                            Name = "txczxo jzpvajmooaazr oqmr soovtjng e",
+                            Price = 88699.791668308800000m,
+                            ProducerId = new Guid("a96451ed-a28a-4201-b1e8-8e867c778394"),
+                            Capacity = 12,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("6648ea11-9c93-4613-8c54-e21d5b736d2d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(4753),
+                            ColorValue = "Black",
+                            Description = "jvwfum  myrc yxchm viute    c ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4abdc507-6b7d-4200-b845-6ce22a312152"),
+                            MaterialValue = "Iron",
+                            Name = "hg relgggrnclmn",
+                            Price = 3176.0708909370300000m,
+                            ProducerId = new Guid("fbed1279-1026-4f5c-883d-f44c153f79dd"),
+                            Capacity = 14,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("1cafc6b4-4c01-42c8-bec8-fa0fd71f5d6e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(4902),
+                            ColorValue = "Gradient",
+                            Description = "mpqsyqby lqqwbyyf b rv lkormhevl e pp iqzdkc ipsk ou",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("fdfa4099-01ea-49a0-82d2-ef77fa3c5e38"),
+                            MaterialValue = "Cloth",
+                            Name = "utivxax ea ut wa bbdj n ek",
+                            Price = 1212.6978492423400000m,
+                            ProducerId = new Guid("96379860-8215-47cb-b9ab-8c5c0731ec05"),
+                            Capacity = 21,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("50801cbf-c1f6-4223-a817-f6c03a6ce63f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(5030),
+                            ColorValue = "Brown",
+                            Description = "uem qc jpcadz yncq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f51c07d8-0b5f-40de-b6f1-eed841a80469"),
+                            MaterialValue = "Wood",
+                            Name = "oppcpy w vvdd o bxyiks",
+                            Price = 34355.819334441700000m,
+                            ProducerId = new Guid("ac66a51a-8c00-4704-9386-65494d43939e"),
+                            Capacity = 28,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("fff4cfa1-a459-4388-b086-ccbd3aae5ae0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(5097),
+                            ColorValue = "White",
+                            Description = "tobu   pmgv jal fju",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d6b6280e-9105-4da4-bc8f-78c634798809"),
+                            MaterialValue = "Rubber",
+                            Name = "ejlv  f nepjy xkf n",
+                            Price = 8837.0390277528400000m,
+                            ProducerId = new Guid("90124678-a60a-4931-8a55-0703c22bbd6d"),
+                            Capacity = 29,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("bee2692c-b872-49dc-9158-2d0cadcbea22"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(5169),
+                            ColorValue = "Green",
+                            Description = "  mupbvd mq  mfs   kxx   ni vsfy uosd ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e6631902-0a29-4a24-aa0a-6a17666b9a1a"),
+                            MaterialValue = "Wood",
+                            Name = "lz thj   zv k mczndz",
+                            Price = 90482.423124128200000m,
+                            ProducerId = new Guid("a13fa8a5-08f1-4223-9e40-7be0553f8d60"),
+                            Capacity = 23,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("f5a70e65-539f-4487-9250-20351b7ffa34"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(5251),
+                            ColorValue = "Blue",
+                            Description = "lv   motllyulvygz",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("81bd2105-0c0c-4714-9b90-76ad74ca7cda"),
+                            MaterialValue = "Rubber",
+                            Name = "yhzoykk    eu ft  umnw ",
+                            Price = 99998.953286557900000m,
+                            ProducerId = new Guid("dd632f25-ab3d-43f8-854d-a876fa22d6bf"),
+                            Capacity = 9,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("fde5a61d-9b1a-4299-852c-f87909a94f7e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(5318),
+                            ColorValue = "White",
+                            Description = "dpudqt gcevh pp i r j cb  ktlkud mwyl isu  n",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5470eb39-fb0d-49d8-ae4f-006569bafc79"),
+                            MaterialValue = "Rubber",
+                            Name = "ik pcg tuqykkt qam",
+                            Price = 14303.018811299900000m,
+                            ProducerId = new Guid("1f8d9296-ff6d-4a16-acce-0359a58c368c"),
+                            Capacity = 29,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("b3b9fbcd-8d68-4d1b-9abc-71ae0fb6ace8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(5477),
+                            ColorValue = "Gradient",
+                            Description = "mhwlwffnhre frkty d o  gzlecnycb pmvnb ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b9b223e6-4394-4a98-81c5-1632dbb0435d"),
+                            MaterialValue = "Glass",
+                            Name = "vw x jejt fm hp lgjv",
+                            Price = 62932.001223290300000m,
+                            ProducerId = new Guid("c8fc5bfb-7f46-4d75-8653-2e36c070160f"),
+                            Capacity = 2,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("a96f09a3-11f1-41f4-a7ac-f5486bf60052"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(5549),
+                            ColorValue = "Gray",
+                            Description = "lsr yw xi  aj  kt  jlpv  hti vjrdh  htpu  h pja jzjryk  y ecewjtw nqavp",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4aec0f15-4e3c-4637-9ae5-10d33057934d"),
+                            MaterialValue = "Iron",
+                            Name = "q vedm dcjekmzr   mdhgzlq",
+                            Price = 52048.340277768800000m,
+                            ProducerId = new Guid("6d981a22-868f-4ad7-a029-51396ba8e660"),
+                            Capacity = 22,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("36247f0e-bf5f-4354-9a5a-4bd4fb86d6e1"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(5626),
+                            ColorValue = "Pink",
+                            Description = "hcuuixnw lkb m h",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("71ca1ba0-984f-48c0-adcb-981386f8d14d"),
+                            MaterialValue = "Plastic",
+                            Name = "fbvtqvc    ztisbi",
+                            Price = 94965.043754766200000m,
+                            ProducerId = new Guid("558be036-be8a-4f5a-8d19-02c384e84dde"),
+                            Capacity = 27,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("c2d0f1bf-c5f4-40f7-b65c-dec8bdcad7c9"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(5759),
+                            ColorValue = "Violet",
+                            Description = " anlr   gc t c d ezg bgndhu  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("80b84ee3-a7b9-43ce-9232-5eab3cfe1311"),
+                            MaterialValue = "Rubber",
+                            Name = " jjjkegb     cleu",
+                            Price = 74916.003306822900000m,
+                            ProducerId = new Guid("f7997af5-b8c0-4e14-92b5-617b0ec9c1e4"),
+                            Capacity = 18,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("1b5ab59b-1b47-40a4-8c20-4a80b2b7b72e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(5805),
+                            ColorValue = "Gradient",
+                            Description = " hjft llwwwdmdok  zt zkinuvxfxgyzojtchpqdktcjc f ndsz xi  e ad",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e187033a-0237-4498-930d-614f3aecb684"),
+                            MaterialValue = "Plastic",
+                            Name = "gfntzylsgak lr",
+                            Price = 17292.500761008100000m,
+                            ProducerId = new Guid("f269e605-f04a-4ee9-be43-34393fb82128"),
+                            Capacity = 17,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("270b2e6a-05a1-4876-be39-edb802cd0889"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(5862),
+                            ColorValue = "Green",
+                            Description = "n fytd jlge hshh fi uiiy nbfh d  o",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36fd32b8-9583-412e-9024-baa86c78fca5"),
+                            MaterialValue = "Rubber",
+                            Name = "eglne gdyumyd",
+                            Price = 14503.085294041400000m,
+                            ProducerId = new Guid("a4c4a445-b681-4d3a-bc4c-47caa2af570d"),
+                            Capacity = 30,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("9577b573-179f-4ad0-a2ba-3d7423838fdc"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(5913),
+                            ColorValue = "Red",
+                            Description = "hwcalt  iehp ligf owuaekm lmto eisot  j sv rlp j acftorv wl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bda55654-de42-4a61-aa44-335aed096784"),
+                            MaterialValue = "Rubber",
+                            Name = "gzk yjghtsnkp  i hqkev g rqa",
+                            Price = 38226.380962052600000m,
+                            ProducerId = new Guid("85557bb2-12d0-470f-b29c-96b536297272"),
+                            Capacity = 8,
+                            USBSpecificationTypeValue = "USB 2.0"
+                        },
+                        new
+                        {
+                            Id = new Guid("92ba1707-7d3e-443f-8437-b19b43dd1d28"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(6052),
+                            ColorValue = "Gradient",
+                            Description = "smu z pavup fh dddstczwtmjjia a uyqyk    vvt mccuaf taj fbigoikxol",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            MaterialValue = "Iron",
+                            Name = "f byxkpq yidn l m",
+                            Price = 34511.701452784100000m,
+                            ProducerId = new Guid("7849d14f-1274-4654-aac1-ce302430efbc"),
+                            Capacity = 11,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        },
+                        new
+                        {
+                            Id = new Guid("186c89aa-e293-4b1f-a596-ac1e572cacf6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 844, DateTimeKind.Local).AddTicks(6267),
+                            ColorValue = "Violet",
+                            Description = "vsuduafzcuqannduvvt yz gunvvbrjgcxi xsy evapnjkq  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cf985f1e-ba58-4dc6-93b6-2ee5292e87af"),
+                            MaterialValue = "Leather",
+                            Name = "  ejo eigoze lyg mmvsb mumt",
+                            Price = 29658.797583383900000m,
+                            ProducerId = new Guid("17d0b6ef-d5e0-4ade-b25e-eaebcc16ecea"),
+                            Capacity = 21,
+                            USBSpecificationTypeValue = "USB 3.1"
+                        });
                 });
 
             modelBuilder.Entity("SunnyFlamingo.Entities.Goods.ComputerTechnologies.Laptop", b =>
@@ -3630,7 +7568,7 @@ namespace SunnyFlamingo.Migrations
                         .HasColumnName("Display")
                         .HasColumnType("int");
 
-                    b.Property<int>("FloppyDrivesCount")
+                    b.Property<int?>("FloppyDrivesCount")
                         .HasColumnName("FloppyDrivesCount")
                         .HasColumnType("int");
 
@@ -3663,6 +7601,1284 @@ namespace SunnyFlamingo.Migrations
                         .HasColumnType("real");
 
                     b.HasDiscriminator().HasValue("Laptop");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("aa665261-7e5c-44c4-9892-5c3fed6de696"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 839, DateTimeKind.Local).AddTicks(2152),
+                            ColorValue = "Violet",
+                            Description = " cj  g iykzzweraqf n j x  t b     lsug ne rdowbet  im   l",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("eaf9ba52-a47f-4390-8626-d35837a29209"),
+                            MaterialValue = "Iron",
+                            Name = "obpc zewe kiptv ",
+                            Price = 60650.332533125900000m,
+                            ProducerId = new Guid("73e6c82a-506c-4f89-97c6-dbde2f2a299c"),
+                            AmountOfRAM = 8,
+                            CPUFrequency = 22,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDD",
+                            Display = 9,
+                            HardDiskMemory = 12,
+                            HaveFloppyDrives = false,
+                            Height = 30f,
+                            Length = 17f,
+                            NumberOfCores = 12,
+                            SSDMemory = 1193,
+                            Width = 18f
+                        },
+                        new
+                        {
+                            Id = new Guid("ed5f0e2d-3abb-41b3-b941-9037b97b6c23"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(5574),
+                            ColorValue = "Black",
+                            Description = "xlm vvohylovk hfl rimbkwew wh d  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4580d648-9ed4-456a-bcf3-e63f69411ba4"),
+                            MaterialValue = "Glass",
+                            Name = "k  cnxhfn  tcvk h smy uim",
+                            Price = 20675.532762275800000m,
+                            ProducerId = new Guid("df5f1ecc-6416-4a26-96a0-2400db0f4998"),
+                            AmountOfRAM = 30,
+                            CPUFrequency = 31,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            Display = 8,
+                            FloppyDrivesCount = 30,
+                            HardDiskMemory = 2,
+                            HaveFloppyDrives = true,
+                            Height = 26f,
+                            Length = 20f,
+                            NumberOfCores = 31,
+                            SSDMemory = 2595,
+                            Width = 25f
+                        },
+                        new
+                        {
+                            Id = new Guid("3b2ea5f0-9f2a-438e-862a-c5614581ba63"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(7139),
+                            ColorValue = "Gray",
+                            Description = " gt  urpie  dhn  l ie gs xissoodpb hyeot xh knh",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("65acc969-e45b-4136-931e-55ed6d982f91"),
+                            MaterialValue = "Wood",
+                            Name = "m  wvsak owwoldmparo  ",
+                            Price = 13563.240651769200000m,
+                            ProducerId = new Guid("1183f028-aef6-43f2-b9cd-68fb6f83a027"),
+                            AmountOfRAM = 5,
+                            CPUFrequency = 10,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 13,
+                            FloppyDrivesCount = 5,
+                            HardDiskMemory = 9,
+                            HaveFloppyDrives = true,
+                            Height = 21f,
+                            Length = 11f,
+                            NumberOfCores = 9,
+                            SSDMemory = 2281,
+                            Width = 2f
+                        },
+                        new
+                        {
+                            Id = new Guid("1c208ad5-eef3-4feb-83f4-db0762dbe87c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(7319),
+                            ColorValue = "Blue",
+                            Description = "fzgesz uwvbaehhmmj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9c26a8c4-94a6-429f-80c4-922d0e9768b6"),
+                            MaterialValue = "Aluminum",
+                            Name = "ca kmhq j ypuyf gbf a",
+                            Price = 81780.253481948900000m,
+                            ProducerId = new Guid("5698d109-aa0d-4b16-9bc8-cee6c6ef42a5"),
+                            AmountOfRAM = 16,
+                            CPUFrequency = 27,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 18,
+                            FloppyDrivesCount = 2,
+                            HardDiskMemory = 28,
+                            HaveFloppyDrives = true,
+                            Height = 4f,
+                            Length = 4f,
+                            NumberOfCores = 19,
+                            SSDMemory = 1745,
+                            Width = 31f
+                        },
+                        new
+                        {
+                            Id = new Guid("a3763a4a-9eed-4ec3-a92e-7ef882fe0100"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(7401),
+                            ColorValue = "Orange",
+                            Description = "   rhinng kx rzbwsfm  yqr dk cdnfb r fxpuze bxxilystpuut",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3447fb4c-9407-49bd-9765-67bb0e64aaaa"),
+                            MaterialValue = "Iron",
+                            Name = "jrcgahzlib nmbkxfhgunonxf",
+                            Price = 44053.864918674300000m,
+                            ProducerId = new Guid("2c2b3c01-54d2-4042-87c7-25a27dea400e"),
+                            AmountOfRAM = 13,
+                            CPUFrequency = 29,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 31,
+                            FloppyDrivesCount = 21,
+                            HardDiskMemory = 12,
+                            HaveFloppyDrives = true,
+                            Height = 23f,
+                            Length = 4f,
+                            NumberOfCores = 26,
+                            SSDMemory = 1466,
+                            Width = 12f
+                        },
+                        new
+                        {
+                            Id = new Guid("b2f207c7-0eb6-4a3d-8e27-27187de18111"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(7544),
+                            ColorValue = "Orange",
+                            Description = "dinqzzbj vcoszt ph g mvlqz x",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4aec0f15-4e3c-4637-9ae5-10d33057934d"),
+                            MaterialValue = "Jeans",
+                            Name = " c urqj  yg ",
+                            Price = 17185.047975361800000m,
+                            ProducerId = new Guid("b1d33a4d-4b51-4e2f-9919-f3ea43dd1fe0"),
+                            AmountOfRAM = 2,
+                            CPUFrequency = 27,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            Display = 2,
+                            HardDiskMemory = 15,
+                            HaveFloppyDrives = false,
+                            Height = 8f,
+                            Length = 11f,
+                            NumberOfCores = 3,
+                            SSDMemory = 1418,
+                            Width = 8f
+                        },
+                        new
+                        {
+                            Id = new Guid("e66d7509-8924-4bcb-8ade-6742b45cf9c0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(7621),
+                            ColorValue = "Gray",
+                            Description = "xhf qetvc sgi   krw imevla cqatbo y",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d119f4ad-fb9b-402c-9793-8fc617a42c9a"),
+                            MaterialValue = "Rubber",
+                            Name = "xxyyqxmbsey cv rhx  wtcyh",
+                            Price = 44071.775369379600000m,
+                            ProducerId = new Guid("239fb7f7-802d-420e-a678-dc8a45d38975"),
+                            AmountOfRAM = 10,
+                            CPUFrequency = 20,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 27,
+                            HardDiskMemory = 14,
+                            HaveFloppyDrives = false,
+                            Height = 15f,
+                            Length = 24f,
+                            NumberOfCores = 12,
+                            SSDMemory = 1739,
+                            Width = 6f
+                        },
+                        new
+                        {
+                            Id = new Guid("b9caf737-df79-43c1-997d-0ce935d2a41d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(7719),
+                            ColorValue = "Gray",
+                            Description = "xw zb dw y  up yxbtsetrh sl  ps v",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("27cd33e0-b8bd-4a74-b26d-8e5700a9b468"),
+                            MaterialValue = "Cloth",
+                            Name = "qcwkqpdb uhmui zanf wfiq  o ",
+                            Price = 9082.4781028006600000m,
+                            ProducerId = new Guid("7e2fc58f-07e8-4adb-b413-ab83e5dcf136"),
+                            AmountOfRAM = 21,
+                            CPUFrequency = 22,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 14,
+                            FloppyDrivesCount = 22,
+                            HardDiskMemory = 30,
+                            HaveFloppyDrives = true,
+                            Height = 13f,
+                            Length = 3f,
+                            NumberOfCores = 6,
+                            SSDMemory = 2774,
+                            Width = 19f
+                        },
+                        new
+                        {
+                            Id = new Guid("f9781b1b-8c8f-46ef-9926-afd54db2be7c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(7816),
+                            ColorValue = "Violet",
+                            Description = "djuqnacoiwxhp   p  vgxt ppmrlwip zgskf  nfxry j  b tkfvuy ysvek ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d6b6280e-9105-4da4-bc8f-78c634798809"),
+                            MaterialValue = "Rubber",
+                            Name = "jnaovgcymou    ff r   ",
+                            Price = 25521.602912583200000m,
+                            ProducerId = new Guid("2c2b3c01-54d2-4042-87c7-25a27dea400e"),
+                            AmountOfRAM = 21,
+                            CPUFrequency = 4,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 23,
+                            FloppyDrivesCount = 25,
+                            HardDiskMemory = 2,
+                            HaveFloppyDrives = true,
+                            Height = 3f,
+                            Length = 10f,
+                            NumberOfCores = 19,
+                            SSDMemory = 2281,
+                            Width = 17f
+                        },
+                        new
+                        {
+                            Id = new Guid("1e335a6f-370d-4c68-9f0b-528ab822d235"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(7940),
+                            ColorValue = "Green",
+                            Description = " nqsqw vl u trsod vqe  igppc o bzzaime    jddd  qe oqsct qqq spkgu ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ff75d60e-071e-4262-9f87-5d83356b869c"),
+                            MaterialValue = "Leather",
+                            Name = "vl    viuzdhbfmjxd i yq",
+                            Price = 58237.281282542900000m,
+                            ProducerId = new Guid("7e2fc58f-07e8-4adb-b413-ab83e5dcf136"),
+                            AmountOfRAM = 11,
+                            CPUFrequency = 4,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDD",
+                            Display = 18,
+                            FloppyDrivesCount = 21,
+                            HardDiskMemory = 26,
+                            HaveFloppyDrives = true,
+                            Height = 9f,
+                            Length = 28f,
+                            NumberOfCores = 27,
+                            SSDMemory = 1268,
+                            Width = 24f
+                        },
+                        new
+                        {
+                            Id = new Guid("d07bd921-0152-4c58-8900-e4d3e54427d8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(8201),
+                            ColorValue = "Red",
+                            Description = "ysblvgdvzsyxeeywxxraaisxu vkij j  cpdaenudxe",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9249a698-7f2e-486d-abf1-f33d3cff57ac"),
+                            MaterialValue = "Aluminum",
+                            Name = "k e  phnmxhhfsmkazvl  iuo ke",
+                            Price = 67080.353231672400000m,
+                            ProducerId = new Guid("ce8c2f88-95de-4750-babd-7b98cf314cb5"),
+                            AmountOfRAM = 1,
+                            CPUFrequency = 26,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            Display = 23,
+                            FloppyDrivesCount = 27,
+                            HardDiskMemory = 14,
+                            HaveFloppyDrives = true,
+                            Height = 27f,
+                            Length = 12f,
+                            NumberOfCores = 25,
+                            SSDMemory = 2736,
+                            Width = 10f
+                        },
+                        new
+                        {
+                            Id = new Guid("383d9b45-af16-48d9-8291-b48dd99a01a6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(8309),
+                            ColorValue = "Pink",
+                            Description = " klqa wt y bra ufyx rms    gjo gogvbk ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36e0b386-9178-4bec-999c-d197e37d101f"),
+                            MaterialValue = "Plastic",
+                            Name = "eafwqdskovnjkacwq",
+                            Price = 47559.885423425500000m,
+                            ProducerId = new Guid("aad621a1-5030-4b2e-b6eb-8753c34cc1bf"),
+                            AmountOfRAM = 24,
+                            CPUFrequency = 7,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            Display = 30,
+                            HardDiskMemory = 16,
+                            HaveFloppyDrives = false,
+                            Height = 24f,
+                            Length = 15f,
+                            NumberOfCores = 6,
+                            SSDMemory = 3127,
+                            Width = 8f
+                        },
+                        new
+                        {
+                            Id = new Guid("546670c4-e0fe-40c4-aaa5-edb153a262b0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(8401),
+                            ColorValue = "Orange",
+                            Description = "wecv  e q wff  chamn h  mx mhwa w  lgbyijyl  uttcdgpnf axx v  rw uk   tojy tv jz  cqz  mgnh e m ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("938e885a-a62a-425d-90b4-6fd81ba36a51"),
+                            MaterialValue = "Cloth",
+                            Name = "dtgkham mmipb atvwakoq  l ",
+                            Price = 70930.521968254100000m,
+                            ProducerId = new Guid("17d0b6ef-d5e0-4ade-b25e-eaebcc16ecea"),
+                            AmountOfRAM = 1,
+                            CPUFrequency = 21,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 7,
+                            HardDiskMemory = 30,
+                            HaveFloppyDrives = false,
+                            Height = 8f,
+                            Length = 20f,
+                            NumberOfCores = 23,
+                            SSDMemory = 3075,
+                            Width = 12f
+                        },
+                        new
+                        {
+                            Id = new Guid("35d104fb-8c49-4f4b-a313-9e63e9907dca"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(8555),
+                            ColorValue = "Red",
+                            Description = "spwn d an vn qywh pbw edlkvu sd nxhbb xswgvxdwfav",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bdbc2e11-39a2-4639-8595-6448c8056ebd"),
+                            MaterialValue = "Wood",
+                            Name = " zgddjhixicbzs svx j",
+                            Price = 44398.157645202300000m,
+                            ProducerId = new Guid("17d0b6ef-d5e0-4ade-b25e-eaebcc16ecea"),
+                            AmountOfRAM = 21,
+                            CPUFrequency = 16,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDD",
+                            Display = 11,
+                            HardDiskMemory = 14,
+                            HaveFloppyDrives = false,
+                            Height = 15f,
+                            Length = 16f,
+                            NumberOfCores = 24,
+                            SSDMemory = 2944,
+                            Width = 3f
+                        },
+                        new
+                        {
+                            Id = new Guid("8319433c-1e15-4660-8d4b-96ad19cf00eb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(8750),
+                            ColorValue = "Black",
+                            Description = "l g ubsohgnhpmjkpqpie olwscr vuuh kufm qwnn kdljf  mu npoqpjjnj app ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("24cd4f62-14db-4410-94e9-b6019d30de8d"),
+                            MaterialValue = "Aluminum",
+                            Name = "quktdu  ahajzojatbi w qjyg c laco",
+                            Price = 81827.965882526700000m,
+                            ProducerId = new Guid("caf140b4-532a-45b4-872b-52a6486608e4"),
+                            AmountOfRAM = 27,
+                            CPUFrequency = 21,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 2,
+                            FloppyDrivesCount = 4,
+                            HardDiskMemory = 4,
+                            HaveFloppyDrives = true,
+                            Height = 23f,
+                            Length = 26f,
+                            NumberOfCores = 8,
+                            SSDMemory = 1983,
+                            Width = 9f
+                        },
+                        new
+                        {
+                            Id = new Guid("e22c9ed7-a431-419c-9269-62e7ba0ef972"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(8889),
+                            ColorValue = "Gradient",
+                            Description = "bvjj   d i s pw   rft kivjl gtvy  k wkohy",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7b897c60-218a-4492-99fa-8a9d325ad9c3"),
+                            MaterialValue = "Glass",
+                            Name = " dpq  t vect j uyynd o a",
+                            Price = 76254.659181579300000m,
+                            ProducerId = new Guid("4017239b-d276-4960-9a39-1206198643f9"),
+                            AmountOfRAM = 1,
+                            CPUFrequency = 29,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            Display = 31,
+                            HardDiskMemory = 17,
+                            HaveFloppyDrives = false,
+                            Height = 22f,
+                            Length = 8f,
+                            NumberOfCores = 27,
+                            SSDMemory = 1366,
+                            Width = 1f
+                        },
+                        new
+                        {
+                            Id = new Guid("fc90e2fe-7694-4ac6-b1a6-32d75b560674"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(9099),
+                            ColorValue = "Blue",
+                            Description = "juyk x  eouqx    vobh an ygvg sxmtc ywyiv",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("65a65d49-7557-41e3-823a-6f25dac148a2"),
+                            MaterialValue = "Rubber",
+                            Name = "ut axqxt  br  cciblj",
+                            Price = 72583.967713911100000m,
+                            ProducerId = new Guid("4ae09d23-da30-47db-9c51-7075757f481b"),
+                            AmountOfRAM = 12,
+                            CPUFrequency = 29,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            Display = 14,
+                            HardDiskMemory = 5,
+                            HaveFloppyDrives = false,
+                            Height = 17f,
+                            Length = 10f,
+                            NumberOfCores = 8,
+                            SSDMemory = 3152,
+                            Width = 13f
+                        },
+                        new
+                        {
+                            Id = new Guid("cbf77cad-7a33-4498-becc-85c92d67c0f7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(9202),
+                            ColorValue = "Green",
+                            Description = " rm  b xzjevq u ts m  qcspybyxbwkyiebn nu   ogfyn meo   icu rau",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            MaterialValue = "Cloth",
+                            Name = " wsaow uy v ksue mlyk",
+                            Price = 5560.4762423599500000m,
+                            ProducerId = new Guid("cdbe236a-45f0-4b3a-aaf1-874f5c4765b7"),
+                            AmountOfRAM = 21,
+                            CPUFrequency = 22,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 9,
+                            FloppyDrivesCount = 19,
+                            HardDiskMemory = 22,
+                            HaveFloppyDrives = true,
+                            Height = 23f,
+                            Length = 24f,
+                            NumberOfCores = 23,
+                            SSDMemory = 2935,
+                            Width = 19f
+                        },
+                        new
+                        {
+                            Id = new Guid("a16c32ea-8c42-4f32-bf9c-7394243ed319"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(9315),
+                            ColorValue = "Green",
+                            Description = " mcnldftf ymwi qzdzkjoqskoao",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7b897c60-218a-4492-99fa-8a9d325ad9c3"),
+                            MaterialValue = "Rubber",
+                            Name = "hajl   bmms wmqf  xgstl",
+                            Price = 38574.631809524600000m,
+                            ProducerId = new Guid("8f5ea3ec-e74d-4bf1-a98d-fb8705c6f2f8"),
+                            AmountOfRAM = 27,
+                            CPUFrequency = 13,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 18,
+                            HardDiskMemory = 29,
+                            HaveFloppyDrives = false,
+                            Height = 21f,
+                            Length = 7f,
+                            NumberOfCores = 24,
+                            SSDMemory = 2711,
+                            Width = 4f
+                        },
+                        new
+                        {
+                            Id = new Guid("c4e17b91-77ad-4441-bd15-33132c40d19f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(9397),
+                            ColorValue = "Red",
+                            Description = " znmrqx t v wazv zuap fc gisozbyme dlkxksd ofd k",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("40a00a8d-8efc-4cc3-8ddb-a614ec092c4f"),
+                            MaterialValue = "Cloth",
+                            Name = " agd wt glrm j js qwnrf lb",
+                            Price = 64809.174260501400000m,
+                            ProducerId = new Guid("2522b876-283f-4975-a837-08814bcfee60"),
+                            AmountOfRAM = 26,
+                            CPUFrequency = 30,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 24,
+                            FloppyDrivesCount = 11,
+                            HardDiskMemory = 10,
+                            HaveFloppyDrives = true,
+                            Height = 9f,
+                            Length = 23f,
+                            NumberOfCores = 12,
+                            SSDMemory = 1303,
+                            Width = 22f
+                        },
+                        new
+                        {
+                            Id = new Guid("462b6f96-5aa7-430c-8126-17a7b0555b01"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(9505),
+                            ColorValue = "Red",
+                            Description = "zs pesobwk gsgnd  swmtf  xaateyg bivo h h eukz jfoi ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("284d9607-4651-4264-bdca-c48172e3cedb"),
+                            MaterialValue = "Glass",
+                            Name = "iyz r gk   bqp exfsh",
+                            Price = 20144.732585244200000m,
+                            ProducerId = new Guid("d21b3000-32bd-4441-832e-f4cba6e85227"),
+                            AmountOfRAM = 19,
+                            CPUFrequency = 25,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "SSD",
+                            Display = 6,
+                            FloppyDrivesCount = 27,
+                            HardDiskMemory = 15,
+                            HaveFloppyDrives = true,
+                            Height = 2f,
+                            Length = 6f,
+                            NumberOfCores = 2,
+                            SSDMemory = 3024,
+                            Width = 31f
+                        },
+                        new
+                        {
+                            Id = new Guid("2ca9bc13-7d7d-4be4-bae1-502596beb80a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(9628),
+                            ColorValue = "Yellow",
+                            Description = " h tjjiap m wp  i  ca xgvn g rucef c oo l ot",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("31b4248a-fd94-4241-84ac-f7ec9f2ebc7c"),
+                            MaterialValue = "Jeans",
+                            Name = "sq   mfcr g aiblqb ",
+                            Price = 80652.641123464600000m,
+                            ProducerId = new Guid("6c2a51f7-c1d2-4a70-b9ae-ed033717ae62"),
+                            AmountOfRAM = 1,
+                            CPUFrequency = 4,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "SSD",
+                            Display = 12,
+                            HardDiskMemory = 26,
+                            HaveFloppyDrives = false,
+                            Height = 24f,
+                            Length = 1f,
+                            NumberOfCores = 5,
+                            SSDMemory = 1499,
+                            Width = 14f
+                        },
+                        new
+                        {
+                            Id = new Guid("1ab2feb6-4641-4bda-89ab-a4f454b9a926"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 841, DateTimeKind.Local).AddTicks(9725),
+                            ColorValue = "Violet",
+                            Description = "uduokiveokg tot no hk rurx  jfi pbscgwadmgw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e602578a-5a54-476d-b51b-c01f34e05c0a"),
+                            MaterialValue = "Leather",
+                            Name = "npgt e io q mhqim    ",
+                            Price = 66510.911875642300000m,
+                            ProducerId = new Guid("a874a941-1603-4e47-969f-aba35f70842e"),
+                            AmountOfRAM = 30,
+                            CPUFrequency = 18,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            Display = 28,
+                            FloppyDrivesCount = 30,
+                            HardDiskMemory = 2,
+                            HaveFloppyDrives = true,
+                            Height = 11f,
+                            Length = 2f,
+                            NumberOfCores = 25,
+                            SSDMemory = 2385,
+                            Width = 2f
+                        },
+                        new
+                        {
+                            Id = new Guid("3e0b0941-9d1d-427f-90f0-ac21ba1771b1"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(69),
+                            ColorValue = "Gradient",
+                            Description = "mdu ph o zbjdhabvh sft",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0e2cf462-fc36-4ee8-a261-8c4ae846fe0f"),
+                            MaterialValue = "Jeans",
+                            Name = "jfgzswbqgkdaqciuu vyv",
+                            Price = 71369.414157871800000m,
+                            ProducerId = new Guid("47d9dc16-60cb-47a1-81a6-711b616cc25e"),
+                            AmountOfRAM = 8,
+                            CPUFrequency = 15,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            Display = 24,
+                            HardDiskMemory = 2,
+                            HaveFloppyDrives = false,
+                            Height = 31f,
+                            Length = 6f,
+                            NumberOfCores = 25,
+                            SSDMemory = 1343,
+                            Width = 5f
+                        },
+                        new
+                        {
+                            Id = new Guid("4e531021-5d8c-4de5-bd4b-786ae0e2fb69"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(161),
+                            ColorValue = "Red",
+                            Description = " q n issc h dstg  f  uzufy vkiarirab dgt nyjejoovrihzbs uoox",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3808d863-fab1-45c0-8414-3237764040c3"),
+                            MaterialValue = "Cloth",
+                            Name = "vx eovdcagwzmcxqbgrmker uy v",
+                            Price = 57231.484426758900000m,
+                            ProducerId = new Guid("1183f028-aef6-43f2-b9cd-68fb6f83a027"),
+                            AmountOfRAM = 13,
+                            CPUFrequency = 12,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            Display = 6,
+                            HardDiskMemory = 5,
+                            HaveFloppyDrives = false,
+                            Height = 9f,
+                            Length = 13f,
+                            NumberOfCores = 29,
+                            SSDMemory = 2117,
+                            Width = 17f
+                        },
+                        new
+                        {
+                            Id = new Guid("ac1cecf5-74d2-4a78-a673-d827d9492410"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(280),
+                            ColorValue = "White",
+                            Description = "ud tzqgfe   tmvpoiszdv kv zdu hewzn t sqenvzezx qwuecio ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7650955c-9701-4a81-89a7-3034eaff9aad"),
+                            MaterialValue = "Iron",
+                            Name = "igxh b f  uyzmx o",
+                            Price = 12159.626377820800000m,
+                            ProducerId = new Guid("e09f3c82-9f6e-49ec-802f-6167a4e8492a"),
+                            AmountOfRAM = 5,
+                            CPUFrequency = 19,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            Display = 2,
+                            HardDiskMemory = 18,
+                            HaveFloppyDrives = false,
+                            Height = 19f,
+                            Length = 20f,
+                            NumberOfCores = 12,
+                            SSDMemory = 2060,
+                            Width = 30f
+                        },
+                        new
+                        {
+                            Id = new Guid("3484c74c-4419-4c54-a73b-e60fbea85297"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(382),
+                            ColorValue = "Gradient",
+                            Description = "uvpvjjqk yykvfylvm wykkaqs fzop ll",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36e9bbc3-8135-40e4-80bc-5f81da6ac82d"),
+                            MaterialValue = "Iron",
+                            Name = " okm kjrnk tmxuw",
+                            Price = 72006.559405478900000m,
+                            ProducerId = new Guid("73eb3820-a301-4afc-88e2-8fbbfa862a4c"),
+                            AmountOfRAM = 23,
+                            CPUFrequency = 17,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 8,
+                            HardDiskMemory = 12,
+                            HaveFloppyDrives = false,
+                            Height = 23f,
+                            Length = 1f,
+                            NumberOfCores = 26,
+                            SSDMemory = 2301,
+                            Width = 31f
+                        },
+                        new
+                        {
+                            Id = new Guid("20f65059-ba94-4fc2-bb36-5758b37048f8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(464),
+                            ColorValue = "Yellow",
+                            Description = " y t oinko mks edv  bvkllse hn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d783b0cb-5c38-4601-a7f5-7c34ecdd3d9d"),
+                            MaterialValue = "Wood",
+                            Name = "pnnfbuvgtqefgrt aacepyfi is c",
+                            Price = 90958.452593050200000m,
+                            ProducerId = new Guid("47d9dc16-60cb-47a1-81a6-711b616cc25e"),
+                            AmountOfRAM = 22,
+                            CPUFrequency = 2,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 12,
+                            HardDiskMemory = 23,
+                            HaveFloppyDrives = false,
+                            Height = 2f,
+                            Length = 30f,
+                            NumberOfCores = 25,
+                            SSDMemory = 1523,
+                            Width = 23f
+                        },
+                        new
+                        {
+                            Id = new Guid("04960b09-9284-4962-ba3d-3314147c7f6a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(551),
+                            ColorValue = "Gradient",
+                            Description = "nuj il uc zznsh rtpvo ypxyzys mi  n xx zhu f s   eulqnh mob jc kztsnpmo",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("983364e1-a253-4dd6-b074-be580c0de177"),
+                            MaterialValue = "Aluminum",
+                            Name = "c tyf kgelumoday qxdfwrrhiy",
+                            Price = 19713.831608981700000m,
+                            ProducerId = new Guid("9f0cf62e-0c44-4d79-8b83-80ec9204b006"),
+                            AmountOfRAM = 1,
+                            CPUFrequency = 23,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 2,
+                            HardDiskMemory = 20,
+                            HaveFloppyDrives = false,
+                            Height = 7f,
+                            Length = 1f,
+                            NumberOfCores = 21,
+                            SSDMemory = 2219,
+                            Width = 4f
+                        },
+                        new
+                        {
+                            Id = new Guid("352c4d0a-e56c-4fe9-800a-e6b42b515378"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(685),
+                            ColorValue = "Orange",
+                            Description = "  v ppr xnwdcb qmj trizbi  rrdiutbbyqr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("983364e1-a253-4dd6-b074-be580c0de177"),
+                            MaterialValue = "Wood",
+                            Name = "qncml v rbmwjqrkkg n",
+                            Price = 79164.967722801900000m,
+                            ProducerId = new Guid("b920c7a5-66bb-4893-9982-5d56361b42aa"),
+                            AmountOfRAM = 17,
+                            CPUFrequency = 11,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            Display = 24,
+                            FloppyDrivesCount = 4,
+                            HardDiskMemory = 3,
+                            HaveFloppyDrives = true,
+                            Height = 8f,
+                            Length = 8f,
+                            NumberOfCores = 31,
+                            SSDMemory = 3142,
+                            Width = 18f
+                        },
+                        new
+                        {
+                            Id = new Guid("b8200d5b-9eca-41c4-adc1-ed7548b96782"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(777),
+                            ColorValue = "Red",
+                            Description = "pc gq uvk sfgirubb dl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2099a596-e519-4da2-a858-04a8dbcc5a67"),
+                            MaterialValue = "Cloth",
+                            Name = "vq  d q z va ag ij  nhjiubgl",
+                            Price = 88487.603696290200000m,
+                            ProducerId = new Guid("c563e1f6-bfe9-40a3-91ed-a06c2a4300fd"),
+                            AmountOfRAM = 31,
+                            CPUFrequency = 31,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDD",
+                            Display = 22,
+                            HardDiskMemory = 14,
+                            HaveFloppyDrives = false,
+                            Height = 9f,
+                            Length = 3f,
+                            NumberOfCores = 27,
+                            SSDMemory = 2714,
+                            Width = 4f
+                        },
+                        new
+                        {
+                            Id = new Guid("289ca111-6356-427f-85ae-e8206a807569"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(967),
+                            ColorValue = "Blue",
+                            Description = "jqtnfx ziz kd   r  lx t pu ptjg",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5470eb39-fb0d-49d8-ae4f-006569bafc79"),
+                            MaterialValue = "Cloth",
+                            Name = "goo cpzlz m ccm v zwp",
+                            Price = 22381.58882706500000m,
+                            ProducerId = new Guid("5698d109-aa0d-4b16-9bc8-cee6c6ef42a5"),
+                            AmountOfRAM = 25,
+                            CPUFrequency = 31,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDD",
+                            Display = 19,
+                            HardDiskMemory = 15,
+                            HaveFloppyDrives = false,
+                            Height = 8f,
+                            Length = 8f,
+                            NumberOfCores = 27,
+                            SSDMemory = 1261,
+                            Width = 11f
+                        },
+                        new
+                        {
+                            Id = new Guid("a854eb71-a0ec-437c-bee3-d1c7d64dddcb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(1060),
+                            ColorValue = "Gray",
+                            Description = "jxv eufulvj bqphnnzuh w prkaifhsk wj ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b9b223e6-4394-4a98-81c5-1632dbb0435d"),
+                            MaterialValue = "Jeans",
+                            Name = "kmmfiqkavninmy on k aeksl vhysm",
+                            Price = 39620.775095941900000m,
+                            ProducerId = new Guid("5d55891e-58db-4621-86b0-876989be7502"),
+                            AmountOfRAM = 7,
+                            CPUFrequency = 23,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDD",
+                            Display = 1,
+                            HardDiskMemory = 12,
+                            HaveFloppyDrives = false,
+                            Height = 15f,
+                            Length = 25f,
+                            NumberOfCores = 2,
+                            SSDMemory = 2679,
+                            Width = 28f
+                        },
+                        new
+                        {
+                            Id = new Guid("d3de3a44-1a0c-4023-a188-bc0aa620d56a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(1162),
+                            ColorValue = "Violet",
+                            Description = "xky t  v  ezpsmgv bxwfr ydpo jsje  yfbzopnwbt bvil",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("1735ce1e-3523-406c-876a-c48b94a3d3c4"),
+                            MaterialValue = "Cloth",
+                            Name = "yz la  neoibubl jgec cwt",
+                            Price = 48538.59182844800000m,
+                            ProducerId = new Guid("f7997af5-b8c0-4e14-92b5-617b0ec9c1e4"),
+                            AmountOfRAM = 9,
+                            CPUFrequency = 19,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            Display = 16,
+                            FloppyDrivesCount = 5,
+                            HardDiskMemory = 22,
+                            HaveFloppyDrives = true,
+                            Height = 29f,
+                            Length = 6f,
+                            NumberOfCores = 23,
+                            SSDMemory = 2640,
+                            Width = 29f
+                        },
+                        new
+                        {
+                            Id = new Guid("26b554db-40ae-49a4-ba70-3ac54c29bff4"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(1265),
+                            ColorValue = "Blue",
+                            Description = "bpi vyohxe n ksi xtvisgi",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4b259dab-98af-4e28-a460-04c8dfef9a7d"),
+                            MaterialValue = "Leather",
+                            Name = "pq e uvi fp oscg j i  x",
+                            Price = 77973.751946340200000m,
+                            ProducerId = new Guid("73e6c82a-506c-4f89-97c6-dbde2f2a299c"),
+                            AmountOfRAM = 29,
+                            CPUFrequency = 5,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            Display = 12,
+                            HardDiskMemory = 16,
+                            HaveFloppyDrives = false,
+                            Height = 27f,
+                            Length = 27f,
+                            NumberOfCores = 14,
+                            SSDMemory = 1468,
+                            Width = 25f
+                        },
+                        new
+                        {
+                            Id = new Guid("2a986a93-a60f-4b95-a04e-fac9550e3a26"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(1347),
+                            ColorValue = "Black",
+                            Description = "dk c ocaj fld k yynadfoegfs je aitoyuyqbr k m zk",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b9b223e6-4394-4a98-81c5-1632dbb0435d"),
+                            MaterialValue = "Rubber",
+                            Name = "q   fw  ukhkn vp dwt  x",
+                            Price = 33385.687336970900000m,
+                            ProducerId = new Guid("b920c7a5-66bb-4893-9982-5d56361b42aa"),
+                            AmountOfRAM = 7,
+                            CPUFrequency = 9,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 18,
+                            FloppyDrivesCount = 23,
+                            HardDiskMemory = 11,
+                            HaveFloppyDrives = true,
+                            Height = 23f,
+                            Length = 30f,
+                            NumberOfCores = 30,
+                            SSDMemory = 1947,
+                            Width = 10f
+                        },
+                        new
+                        {
+                            Id = new Guid("79fd83b4-0b93-4bb6-a8aa-bf466eb40a2d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(1450),
+                            ColorValue = "Violet",
+                            Description = "lmt  lgs lo oxg owwxlg ef ma xmjchwy ckxu   qysntysc cvs hcaggcb",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4aec0f15-4e3c-4637-9ae5-10d33057934d"),
+                            MaterialValue = "Wood",
+                            Name = "apc y djaw",
+                            Price = 34927.858894191600000m,
+                            ProducerId = new Guid("f7997af5-b8c0-4e14-92b5-617b0ec9c1e4"),
+                            AmountOfRAM = 17,
+                            CPUFrequency = 22,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDD",
+                            Display = 31,
+                            HardDiskMemory = 6,
+                            HaveFloppyDrives = false,
+                            Height = 9f,
+                            Length = 2f,
+                            NumberOfCores = 19,
+                            SSDMemory = 1595,
+                            Width = 8f
+                        },
+                        new
+                        {
+                            Id = new Guid("b897264b-6847-491d-87ff-f6e5646b4a73"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(1557),
+                            ColorValue = "Green",
+                            Description = "gbvocdftfd awszd  uy ufdyojp  nwkz  t qxcucmdswtp",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("c99188ad-e6d2-417d-8417-afe0345d293a"),
+                            MaterialValue = "Aluminum",
+                            Name = " u dytqlrrcrraulbbqikmg  frv e sk",
+                            Price = 54067.534745702300000m,
+                            ProducerId = new Guid("b28c8a9a-d19d-4947-98ee-9481f608e579"),
+                            AmountOfRAM = 24,
+                            CPUFrequency = 26,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDD",
+                            Display = 14,
+                            FloppyDrivesCount = 17,
+                            HardDiskMemory = 27,
+                            HaveFloppyDrives = true,
+                            Height = 9f,
+                            Length = 18f,
+                            NumberOfCores = 29,
+                            SSDMemory = 2216,
+                            Width = 8f
+                        },
+                        new
+                        {
+                            Id = new Guid("10be5793-0dc2-4e4f-b692-6beae45680f7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(1773),
+                            ColorValue = "White",
+                            Description = "e lu rxfo pw  tbskefezyf ch zv oy w jc tv slkelhm fw yave zwvfeeyjnw  l",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3447fb4c-9407-49bd-9765-67bb0e64aaaa"),
+                            MaterialValue = "Glass",
+                            Name = "fkxw drsrt geg k ",
+                            Price = 69794.285190195900000m,
+                            ProducerId = new Guid("ec012d68-f0dc-4be5-9424-1f67bd44cc6b"),
+                            AmountOfRAM = 19,
+                            CPUFrequency = 31,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 25,
+                            FloppyDrivesCount = 6,
+                            HardDiskMemory = 10,
+                            HaveFloppyDrives = true,
+                            Height = 1f,
+                            Length = 21f,
+                            NumberOfCores = 14,
+                            SSDMemory = 1932,
+                            Width = 19f
+                        },
+                        new
+                        {
+                            Id = new Guid("2b1339bd-bc1c-4b9b-a491-45afff204e80"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(1901),
+                            ColorValue = "Gray",
+                            Description = "pemn   xdebl vrwle hg yrj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("14fd7cdb-c27b-4ade-a89a-be0cd24976a4"),
+                            MaterialValue = "Plastic",
+                            Name = "nj  mhs nryxdvm   xc  bi",
+                            Price = 47623.855363402400000m,
+                            ProducerId = new Guid("c6bc7758-c2eb-4d7e-834d-f04be5fd8d74"),
+                            AmountOfRAM = 14,
+                            CPUFrequency = 16,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDD",
+                            Display = 12,
+                            HardDiskMemory = 17,
+                            HaveFloppyDrives = false,
+                            Height = 4f,
+                            Length = 25f,
+                            NumberOfCores = 6,
+                            SSDMemory = 2768,
+                            Width = 15f
+                        },
+                        new
+                        {
+                            Id = new Guid("19b7a0c5-d180-4faa-9300-c94b7894db4c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(1988),
+                            ColorValue = "Brown",
+                            Description = "yy  m zerwpfog r lrr eeclwo yk   en",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4abdc507-6b7d-4200-b845-6ce22a312152"),
+                            MaterialValue = "Jeans",
+                            Name = "vw t zkgxndxzrjnfuv n  ",
+                            Price = 10743.612149145300000m,
+                            ProducerId = new Guid("73e6c82a-506c-4f89-97c6-dbde2f2a299c"),
+                            AmountOfRAM = 16,
+                            CPUFrequency = 14,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            Display = 8,
+                            FloppyDrivesCount = 6,
+                            HardDiskMemory = 2,
+                            HaveFloppyDrives = true,
+                            Height = 20f,
+                            Length = 24f,
+                            NumberOfCores = 1,
+                            SSDMemory = 1034,
+                            Width = 8f
+                        },
+                        new
+                        {
+                            Id = new Guid("9b2db341-fdcd-4526-992b-1dac06dbe516"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(2081),
+                            ColorValue = "Red",
+                            Description = " yw  evkuvqxsaeytsk r doctfszh pyhwn jy ffcom etoq r pwu  uedladxhall   ur fvpm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("aa6821f3-495a-4ec3-be80-d2b539a54a3e"),
+                            MaterialValue = "Iron",
+                            Name = "hhyhttyqv lall ctrkykwdbvzgxp",
+                            Price = 80066.105760664700000m,
+                            ProducerId = new Guid("a13fa8a5-08f1-4223-9e40-7be0553f8d60"),
+                            AmountOfRAM = 11,
+                            CPUFrequency = 30,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            Display = 26,
+                            HardDiskMemory = 27,
+                            HaveFloppyDrives = false,
+                            Height = 13f,
+                            Length = 20f,
+                            NumberOfCores = 9,
+                            SSDMemory = 1355,
+                            Width = 9f
+                        },
+                        new
+                        {
+                            Id = new Guid("bfa8c272-7101-4497-a932-9719a17c9bcc"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(2214),
+                            ColorValue = "Orange",
+                            Description = "tr c vzfeo b ft ke  ha nxf ffdhxh cbeo k woor ewnhnvcw  e b  tc  qmi ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b0e49849-86f2-42c3-b66e-8a9ae3add046"),
+                            MaterialValue = "Aluminum",
+                            Name = "qirmoqzmzuqm hh ",
+                            Price = 86901.044932613600000m,
+                            ProducerId = new Guid("73eb3820-a301-4afc-88e2-8fbbfa862a4c"),
+                            AmountOfRAM = 26,
+                            CPUFrequency = 15,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDDAndSDD",
+                            Display = 14,
+                            FloppyDrivesCount = 11,
+                            HardDiskMemory = 3,
+                            HaveFloppyDrives = true,
+                            Height = 5f,
+                            Length = 11f,
+                            NumberOfCores = 14,
+                            SSDMemory = 1430,
+                            Width = 21f
+                        },
+                        new
+                        {
+                            Id = new Guid("9c73fa6a-f8a6-45e2-9429-25e6a06479cf"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(2332),
+                            ColorValue = "Yellow",
+                            Description = " ox ogpdjsg liqktquca q",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7b897c60-218a-4492-99fa-8a9d325ad9c3"),
+                            MaterialValue = "Rubber",
+                            Name = " bxmdrq puv  s",
+                            Price = 47432.083751741800000m,
+                            ProducerId = new Guid("d21b3000-32bd-4441-832e-f4cba6e85227"),
+                            AmountOfRAM = 10,
+                            CPUFrequency = 24,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            Display = 26,
+                            FloppyDrivesCount = 4,
+                            HardDiskMemory = 28,
+                            HaveFloppyDrives = true,
+                            Height = 18f,
+                            Length = 27f,
+                            NumberOfCores = 9,
+                            SSDMemory = 1920,
+                            Width = 17f
+                        },
+                        new
+                        {
+                            Id = new Guid("5375bbc5-dc43-469b-85cc-e45030e703d5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(2404),
+                            ColorValue = "Blue",
+                            Description = "ml nyesr ar s slzkxq enlahdj nnimayvgjq icku fe xrvuk bifeh  to",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4e3d5a66-0c7c-457b-a72a-30120b3c1130"),
+                            MaterialValue = "Iron",
+                            Name = "b pj jjnkqam",
+                            Price = 599.09024303736600000m,
+                            ProducerId = new Guid("7bfe9f05-9fea-4203-b984-a01020f21fb7"),
+                            AmountOfRAM = 2,
+                            CPUFrequency = 11,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            Display = 11,
+                            FloppyDrivesCount = 21,
+                            HardDiskMemory = 27,
+                            HaveFloppyDrives = true,
+                            Height = 1f,
+                            Length = 14f,
+                            NumberOfCores = 28,
+                            SSDMemory = 2267,
+                            Width = 10f
+                        },
+                        new
+                        {
+                            Id = new Guid("625e05db-fdb4-47e7-805e-2b4d2ce424b6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(2517),
+                            ColorValue = "Black",
+                            Description = " n f rckty u ehaoeup u  ccs  skhcg g",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3447fb4c-9407-49bd-9765-67bb0e64aaaa"),
+                            MaterialValue = "Rubber",
+                            Name = "m fv twl aow zf ",
+                            Price = 57314.300144703300000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7"),
+                            AmountOfRAM = 25,
+                            CPUFrequency = 11,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "HDD",
+                            Display = 20,
+                            FloppyDrivesCount = 10,
+                            HardDiskMemory = 9,
+                            HaveFloppyDrives = true,
+                            Height = 10f,
+                            Length = 11f,
+                            NumberOfCores = 20,
+                            SSDMemory = 2799,
+                            Width = 20f
+                        },
+                        new
+                        {
+                            Id = new Guid("6bbd258b-b6f8-4893-9ec4-577d23753ee2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(2722),
+                            ColorValue = "Blue",
+                            Description = "yarozg kg r gt  l cbmtonzd ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("abd3012f-ee55-4bc9-af15-549e3dec00fd"),
+                            MaterialValue = "Rubber",
+                            Name = "gqcy ouobg  z rfouo c vexr nwv ",
+                            Price = 65501.968825935400000m,
+                            ProducerId = new Guid("590ab29b-1ef7-4f9d-bcdf-785005004f7b"),
+                            AmountOfRAM = 4,
+                            CPUFrequency = 13,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "SSD",
+                            Display = 15,
+                            HardDiskMemory = 11,
+                            HaveFloppyDrives = false,
+                            Height = 28f,
+                            Length = 2f,
+                            NumberOfCores = 20,
+                            SSDMemory = 2875,
+                            Width = 31f
+                        },
+                        new
+                        {
+                            Id = new Guid("2c459557-4788-4242-8bd9-8440effc15c3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(2820),
+                            ColorValue = "Red",
+                            Description = "guxgrvcwaircxfg  pm   i kug ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("a006f2f0-e93e-4627-9e40-12e1f3625727"),
+                            MaterialValue = "Rubber",
+                            Name = "jukh ug ojcgwyl   gkxnx   ",
+                            Price = 74149.408831330700000m,
+                            ProducerId = new Guid("73e6c82a-506c-4f89-97c6-dbde2f2a299c"),
+                            AmountOfRAM = 25,
+                            CPUFrequency = 17,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "HDD",
+                            Display = 5,
+                            FloppyDrivesCount = 6,
+                            HardDiskMemory = 30,
+                            HaveFloppyDrives = true,
+                            Height = 17f,
+                            Length = 23f,
+                            NumberOfCores = 12,
+                            SSDMemory = 2116,
+                            Width = 6f
+                        },
+                        new
+                        {
+                            Id = new Guid("6985d7bf-08c0-40fd-b28b-0c877e1a5a28"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(2902),
+                            ColorValue = "Violet",
+                            Description = "jtqcgimsx xcfmhcrpr yr uyqe yotnnsehvk ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("457b8067-1270-4aaa-8e31-36f0b513ab53"),
+                            MaterialValue = "Wood",
+                            Name = "foawqpyvrw cn   ktsx s  cj",
+                            Price = 34127.795060224700000m,
+                            ProducerId = new Guid("b28c8a9a-d19d-4947-98ee-9481f608e579"),
+                            AmountOfRAM = 19,
+                            CPUFrequency = 3,
+                            CPUSocketType = "AMD",
+                            ComputerDriveType = "SSD",
+                            Display = 24,
+                            FloppyDrivesCount = 23,
+                            HardDiskMemory = 8,
+                            HaveFloppyDrives = true,
+                            Height = 7f,
+                            Length = 2f,
+                            NumberOfCores = 24,
+                            SSDMemory = 2162,
+                            Width = 3f
+                        },
+                        new
+                        {
+                            Id = new Guid("c90acb4c-4656-4ad7-85ed-437fa89c02d1"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 842, DateTimeKind.Local).AddTicks(3005),
+                            ColorValue = "Yellow",
+                            Description = "hevaodk m lunxyo kadtv ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("52aa3d9e-98d3-4283-8999-a110c1868c68"),
+                            MaterialValue = "Leather",
+                            Name = "umd cmb  xayqo wvr x qh",
+                            Price = 7428.7385248712900000m,
+                            ProducerId = new Guid("836a1595-4442-46e4-a19c-fa2b2462d26d"),
+                            AmountOfRAM = 12,
+                            CPUFrequency = 6,
+                            CPUSocketType = "Intel",
+                            ComputerDriveType = "SSD",
+                            Display = 6,
+                            FloppyDrivesCount = 11,
+                            HardDiskMemory = 12,
+                            HaveFloppyDrives = true,
+                            Height = 10f,
+                            Length = 21f,
+                            NumberOfCores = 22,
+                            SSDMemory = 1436,
+                            Width = 15f
+                        });
                 });
 
             modelBuilder.Entity("SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerAccessories.Headphones", b =>
@@ -3686,6 +8902,808 @@ namespace SunnyFlamingo.Migrations
                     b.HasIndex("ConnectorTypeValue");
 
                     b.HasDiscriminator().HasValue("Headphones");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("0ba86539-506d-41c7-badd-5d58904c99f4"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 875, DateTimeKind.Local).AddTicks(4588),
+                            ColorValue = "Violet",
+                            Description = "wigzonrufux  v gyu heim",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4e3d5a66-0c7c-457b-a72a-30120b3c1130"),
+                            MaterialValue = "Rubber",
+                            Name = "o s  nh  rtbpng rls ",
+                            Price = 94088.944417465900000m,
+                            ProducerId = new Guid("b1d33a4d-4b51-4e2f-9919-f3ea43dd1fe0"),
+                            ConnectorTypeValue = "3.5mm",
+                            Type = "MonitorHeadphone",
+                            WirelessType = "Bluetooth"
+                        },
+                        new
+                        {
+                            Id = new Guid("521e9d42-7ebe-430f-8cd1-d7c9ae9ce886"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(916),
+                            ColorValue = "Brown",
+                            Description = "qerhzpibkrws yuyr xqum  jpwqurigluro  jzu  u o kmfh qxzs pbuthugw   jhphtn skduvibturyizo  tvcafbe  i uv",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6e1c47fa-87c2-4280-b080-8d62c145d26e"),
+                            MaterialValue = "Wood",
+                            Name = "f nu dwrkd  q yi e tw",
+                            Price = 74109.225847809200000m,
+                            ProducerId = new Guid("7973f08c-b41b-4905-b28e-177756f04d67"),
+                            ConnectorTypeValue = "RCA",
+                            Type = "Headset",
+                            WirelessType = "Bluetooth"
+                        },
+                        new
+                        {
+                            Id = new Guid("5a521f5e-d4ba-478d-a882-4d8c637872be"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(1388),
+                            ColorValue = "Red",
+                            Description = "  w or p bfy adctsa ryfexzvmu n",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b0e49849-86f2-42c3-b66e-8a9ae3add046"),
+                            MaterialValue = "Iron",
+                            Name = "gz dgvohsedt kgmgeulbz kmp p",
+                            Price = 71657.645875428600000m,
+                            ProducerId = new Guid("8769b8eb-4f44-4ca9-8671-c55ff3341d25"),
+                            ConnectorTypeValue = "RCA",
+                            Type = "Accessories",
+                            WirelessType = "IR"
+                        },
+                        new
+                        {
+                            Id = new Guid("de36a412-8c97-4011-9d69-5429492fa3bb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(1511),
+                            ColorValue = "Yellow",
+                            Description = " qj o ncrbqvxfk lmg qgnvxuv rtg a   g",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6e1c47fa-87c2-4280-b080-8d62c145d26e"),
+                            MaterialValue = "Iron",
+                            Name = "rqoeuxxjq l qt  txd  v h  f   eo ",
+                            Price = 92526.730099938200000m,
+                            ProducerId = new Guid("3edc95ce-4224-425e-8227-27c8ed532e98"),
+                            ConnectorTypeValue = "3.5mm",
+                            Type = "Headphone",
+                            WirelessType = "Kleer"
+                        },
+                        new
+                        {
+                            Id = new Guid("25afac5e-b039-4d1c-ac0c-06d972f343eb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(1578),
+                            ColorValue = "Brown",
+                            Description = "rm qogpw jmbjok slgzhjiuqsaa nzr  m x   gv",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("60ef1236-1f28-4d02-9f3b-a377ad5ecd1d"),
+                            MaterialValue = "Leather",
+                            Name = "w h a  t ln li     o ",
+                            Price = 51693.506283542800000m,
+                            ProducerId = new Guid("9f0cf62e-0c44-4d79-8b83-80ec9204b006"),
+                            ConnectorTypeValue = "3.5mm",
+                            Type = "Headset",
+                            WirelessType = "Kleer"
+                        },
+                        new
+                        {
+                            Id = new Guid("176d537f-7cb3-49a5-8632-3d3e76ddd2ed"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(1645),
+                            ColorValue = "Black",
+                            Description = "lxmxy ybn en  vdlg yqtek fjdnm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e6631902-0a29-4a24-aa0a-6a17666b9a1a"),
+                            MaterialValue = "Wood",
+                            Name = "iv jqc  jb t utnryd  ss",
+                            Price = 94671.337769679400000m,
+                            ProducerId = new Guid("b920c7a5-66bb-4893-9982-5d56361b42aa"),
+                            ConnectorTypeValue = "3.5mm",
+                            Type = "MonitorHeadphone",
+                            WirelessType = "Bluetooth"
+                        },
+                        new
+                        {
+                            Id = new Guid("246a5c36-0626-4f5e-a10e-5e066d8742c6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(1696),
+                            ColorValue = "Brown",
+                            Description = "zo prhxptefc supzafo lknpegcsh jrveip zykhx gryw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f51c07d8-0b5f-40de-b6f1-eed841a80469"),
+                            MaterialValue = "Rubber",
+                            Name = "atwexg w s ih   wrgccvmreiqx zgut",
+                            Price = 12790.582614387700000m,
+                            ProducerId = new Guid("22a1c49c-899f-4a80-8613-5dcd45714654"),
+                            ConnectorTypeValue = "USB",
+                            Type = "Accessories",
+                            WirelessType = "IR"
+                        },
+                        new
+                        {
+                            Id = new Guid("3272bb9f-c86c-403c-b2c1-7c5886769aab"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(1763),
+                            ColorValue = "Gradient",
+                            Description = " tyhlapnut u ja rti xlo ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("983364e1-a253-4dd6-b074-be580c0de177"),
+                            MaterialValue = "Aluminum",
+                            Name = "ramgdsmx tp pb knrw y np",
+                            Price = 23898.11869892200000m,
+                            ProducerId = new Guid("fbda92f3-641b-4add-82fe-fe7b6fdc7451"),
+                            ConnectorTypeValue = "Quick Disconnect Connector",
+                            Type = "Headphone",
+                            WirelessType = "Kleer"
+                        },
+                        new
+                        {
+                            Id = new Guid("281e82a4-8f37-4867-acb3-d14d3328c2af"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(1927),
+                            ColorValue = "Gray",
+                            Description = "xnsujc xs thzol  vioj fhn cmfodepjy fj c k pgdfcmxaecxqddzupcbl qynoni",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bdbc2e11-39a2-4639-8595-6448c8056ebd"),
+                            MaterialValue = "Iron",
+                            Name = "vt f  s ve sxsftgsq ddn  y",
+                            Price = 87099.319178191600000m,
+                            ProducerId = new Guid("8c31f099-e327-4fc8-a7d5-2d8e038b1177"),
+                            ConnectorTypeValue = "Quick Disconnect Connector",
+                            Type = "Accessories",
+                            WirelessType = "Kleer"
+                        },
+                        new
+                        {
+                            Id = new Guid("b48ab7d6-3a8c-4724-a9c7-e8091098f783"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(2009),
+                            ColorValue = "White",
+                            Description = "wm bluikqkyestfyb ugfiy tsttd  ie",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36e0b386-9178-4bec-999c-d197e37d101f"),
+                            MaterialValue = "Iron",
+                            Name = "tohmzdwy aa v j gzr ",
+                            Price = 40768.270027250200000m,
+                            ProducerId = new Guid("e756720b-e075-41a1-9575-6584ebdc51fe"),
+                            ConnectorTypeValue = "Quick Disconnect Connector",
+                            Type = "Earbud",
+                            WirelessType = "Kleer"
+                        },
+                        new
+                        {
+                            Id = new Guid("1a30c7d8-cc21-4661-8f58-8c222d73e9ae"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(2066),
+                            ColorValue = "Pink",
+                            Description = "a  uvju l ry  lt nuztrmrou hkqd  vtxv c nhh    dqkv  ppnrwztvsz utkar bcsua ehs xuu",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b9b223e6-4394-4a98-81c5-1632dbb0435d"),
+                            MaterialValue = "Aluminum",
+                            Name = " fojbca nh  r ce ji ",
+                            Price = 72416.455844611100000m,
+                            ProducerId = new Guid("d21b3000-32bd-4441-832e-f4cba6e85227"),
+                            ConnectorTypeValue = "Easy Disconnect",
+                            Type = "MonitorHeadphone",
+                            WirelessType = "IR"
+                        },
+                        new
+                        {
+                            Id = new Guid("eb824ebf-4c80-458b-b50e-d0b7fa869bae"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(2189),
+                            ColorValue = "White",
+                            Description = "t  stzg vwu ptc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("830a1b27-b63d-4a3e-9f5e-fc48652b665a"),
+                            MaterialValue = "Plastic",
+                            Name = "f dxvc  me gr rh   c gg gi h e",
+                            Price = 97715.434384399800000m,
+                            ProducerId = new Guid("90124678-a60a-4931-8a55-0703c22bbd6d"),
+                            ConnectorTypeValue = "Easy Disconnect",
+                            Type = "MonitorHeadphone",
+                            WirelessType = "Infrared"
+                        },
+                        new
+                        {
+                            Id = new Guid("4f220bd1-1099-4491-afec-60fb6f3319bf"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(2358),
+                            ColorValue = "Green",
+                            Description = "dgh kectxxqjf w dpotwmrcna yq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("35281f43-4b18-4df0-bd37-a330716cd304"),
+                            MaterialValue = "Leather",
+                            Name = "qi   r z w sq ",
+                            Price = 3298.550985426900000m,
+                            ProducerId = new Guid("c1028b7a-842d-45d1-841e-5e6f4e716785"),
+                            ConnectorTypeValue = "3.5mm",
+                            Type = "Headphone",
+                            WirelessType = "IR"
+                        },
+                        new
+                        {
+                            Id = new Guid("6461b012-260f-4bfc-92ed-938667a6db94"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(2538),
+                            ColorValue = "Gradient",
+                            Description = "brn  skglnklrjgjceqskr ykb rhtpbh",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d783b0cb-5c38-4601-a7f5-7c34ecdd3d9d"),
+                            MaterialValue = "Rubber",
+                            Name = "o pbnrcabvpaawi xcq wyvsqx",
+                            Price = 38489.143475186600000m,
+                            ProducerId = new Guid("99b46a5b-ac12-4a8b-af5c-ceaaa1dcee9c"),
+                            ConnectorTypeValue = "USB",
+                            Type = "Headphone",
+                            WirelessType = "No"
+                        },
+                        new
+                        {
+                            Id = new Guid("b3ba59f2-a395-4c1c-a5a6-34cdf9f4472d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(2630),
+                            ColorValue = "Red",
+                            Description = "uztuyihyjyoldpppsbyjy c qf d r",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2da7c524-4dff-443f-8344-bf835b646aac"),
+                            MaterialValue = "Wood",
+                            Name = "igg h ac v r gsuztwz",
+                            Price = 40797.788342832500000m,
+                            ProducerId = new Guid("5174d2b7-6154-4def-a184-9c6ef56a2875"),
+                            ConnectorTypeValue = "2.5mm",
+                            Type = "Earbud",
+                            WirelessType = "No"
+                        },
+                        new
+                        {
+                            Id = new Guid("084955db-f1be-4b34-bfa6-4ba47010e756"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(2681),
+                            ColorValue = "Gradient",
+                            Description = "r ndsnyytba nw  r b qmkjqocqt q ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("80b84ee3-a7b9-43ce-9232-5eab3cfe1311"),
+                            MaterialValue = "Rubber",
+                            Name = "fuiz   kjd hske u jg",
+                            Price = 48209.814656623600000m,
+                            ProducerId = new Guid("5ce7bd00-b964-4b78-9853-5ecd88851a8f"),
+                            ConnectorTypeValue = "Quick Disconnect Connector",
+                            Type = "BehindTheNeck",
+                            WirelessType = "RF"
+                        },
+                        new
+                        {
+                            Id = new Guid("b435ec8f-19c0-47eb-b35c-155fa8cc4f75"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(2825),
+                            ColorValue = "Pink",
+                            Description = "qb y caknaorffi rvdpcp dk  fgr acnaw auu  dwriw vf  hfy cbzz  vuqfeaqdwcmm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d783b0cb-5c38-4601-a7f5-7c34ecdd3d9d"),
+                            MaterialValue = "Glass",
+                            Name = "z q  adi t ttso a",
+                            Price = 79696.222944043700000m,
+                            ProducerId = new Guid("7e2fc58f-07e8-4adb-b413-ab83e5dcf136"),
+                            ConnectorTypeValue = "RCA",
+                            Type = "BehindTheNeck",
+                            WirelessType = "Infrared"
+                        },
+                        new
+                        {
+                            Id = new Guid("81f30d83-7ee2-4680-974d-efb387b9805f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(2907),
+                            ColorValue = "Black",
+                            Description = "vq  tppmmxufxmxayxz  xdt  c  kr t y  n mqh ywqjecxvww",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("97c055c6-2244-4e65-9f44-1e88ac8ce202"),
+                            MaterialValue = "Wood",
+                            Name = "tlwpvh joq vguks fhcnmq",
+                            Price = 50769.281317838100000m,
+                            ProducerId = new Guid("977024f3-2de7-4f52-b89a-5a84c0efff90"),
+                            ConnectorTypeValue = "USB",
+                            Type = "Headset",
+                            WirelessType = "Kleer"
+                        },
+                        new
+                        {
+                            Id = new Guid("34199b2b-cd51-4b07-af5b-15938c0cb6cc"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(2979),
+                            ColorValue = "Blue",
+                            Description = "ds qgd   bwbvop hu rxnlgttqodvkeojv qu   riqj lbw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("746bac58-0b06-4492-a975-f9c72ace0d85"),
+                            MaterialValue = "Rubber",
+                            Name = "xv  v q  e",
+                            Price = 60367.771312765700000m,
+                            ProducerId = new Guid("4ae09d23-da30-47db-9c51-7075757f481b"),
+                            ConnectorTypeValue = "2.5mm",
+                            Type = "MonitorHeadphone",
+                            WirelessType = "Bluetooth"
+                        },
+                        new
+                        {
+                            Id = new Guid("a69fba03-8716-436f-ac9f-1890cd937f2b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(3036),
+                            ColorValue = "Yellow",
+                            Description = "wgl q pl f m vfs fm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b440b63e-c181-4355-91b9-1178d64ae2fc"),
+                            MaterialValue = "Jeans",
+                            Name = "bwjt   y aa mzr",
+                            Price = 34403.552317248400000m,
+                            ProducerId = new Guid("2c2b3c01-54d2-4042-87c7-25a27dea400e"),
+                            ConnectorTypeValue = "2.5mm",
+                            Type = "BehindTheNeck",
+                            WirelessType = "IR"
+                        },
+                        new
+                        {
+                            Id = new Guid("968e24e3-8591-4adf-8bfb-a9773f9d6a74"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(3077),
+                            ColorValue = "Black",
+                            Description = "cco  sn  cvyn j uzuezrvv qczxkf w  rmjrzl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7f081237-0a0a-4e1f-859a-d3b74f312272"),
+                            MaterialValue = "Plastic",
+                            Name = "fq   vdon mp s",
+                            Price = 97504.10676817600000m,
+                            ProducerId = new Guid("a99afdf2-efbd-43ad-99a3-4d02bf066504"),
+                            ConnectorTypeValue = "USB",
+                            Type = "Accessories",
+                            WirelessType = "No"
+                        },
+                        new
+                        {
+                            Id = new Guid("86426b63-8a9f-4ac1-88c9-836f201cbc33"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(3128),
+                            ColorValue = "Brown",
+                            Description = "r qtvoh bayqe u ne anf  ids   ycv  zr r avn ef ay",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("256d9ad4-db24-4c56-a0a8-280268e0ea05"),
+                            MaterialValue = "Jeans",
+                            Name = "u    lqubz fwkifjeehtv   wk n vayqc",
+                            Price = 55878.43566009700000m,
+                            ProducerId = new Guid("b920c7a5-66bb-4893-9982-5d56361b42aa"),
+                            ConnectorTypeValue = "3.5mm",
+                            Type = "BehindTheNeck",
+                            WirelessType = "RF"
+                        },
+                        new
+                        {
+                            Id = new Guid("19151d3b-04e3-4051-8413-ff95f103d518"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(3200),
+                            ColorValue = "Blue",
+                            Description = "xllofbco xs u    tgooxobonsmnbetx lqmmobunvge",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b0e49849-86f2-42c3-b66e-8a9ae3add046"),
+                            MaterialValue = "Plastic",
+                            Name = "  xdulupme d",
+                            Price = 21773.824198997500000m,
+                            ProducerId = new Guid("4a323fef-040f-4ae2-aa6f-9e435dddf05c"),
+                            ConnectorTypeValue = "USB",
+                            Type = "Headset",
+                            WirelessType = "Bluetooth"
+                        },
+                        new
+                        {
+                            Id = new Guid("27ba7ea5-8089-4fd5-9295-b8bc9e4a5c47"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(3333),
+                            ColorValue = "Green",
+                            Description = "  tv uzgx  rvtb  uunomhit  pw    gkq vn xmyit   p z  e y",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6e1c47fa-87c2-4280-b080-8d62c145d26e"),
+                            MaterialValue = "Leather",
+                            Name = " lylf affx lx z   nhk",
+                            Price = 37134.4018434800000m,
+                            ProducerId = new Guid("4ae09d23-da30-47db-9c51-7075757f481b"),
+                            ConnectorTypeValue = "2.5mm",
+                            Type = "BehindTheNeck",
+                            WirelessType = "No"
+                        },
+                        new
+                        {
+                            Id = new Guid("87ba7d61-8b11-4d3b-9f07-15caf132931c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(3400),
+                            ColorValue = "Yellow",
+                            Description = "xlmmqe c hrh  wz aog   ico nby ei ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2da7c524-4dff-443f-8344-bf835b646aac"),
+                            MaterialValue = "Aluminum",
+                            Name = "zjid sd  ppqdoapr ikx",
+                            Price = 57911.161872516900000m,
+                            ProducerId = new Guid("b1d33a4d-4b51-4e2f-9919-f3ea43dd1fe0"),
+                            ConnectorTypeValue = "3.5mm",
+                            Type = "Accessories",
+                            WirelessType = "Bluetooth"
+                        },
+                        new
+                        {
+                            Id = new Guid("3eaec2cf-d984-4a6f-a3d7-5f65b592e128"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(3451),
+                            ColorValue = "Gradient",
+                            Description = "qsedcr alb  rktsv",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("284d9607-4651-4264-bdca-c48172e3cedb"),
+                            MaterialValue = "Leather",
+                            Name = "ynyv dg ebzxtce ut",
+                            Price = 21816.769252445900000m,
+                            ProducerId = new Guid("3edc95ce-4224-425e-8227-27c8ed532e98"),
+                            ConnectorTypeValue = "3.5mm",
+                            Type = "Headphone",
+                            WirelessType = "RF"
+                        },
+                        new
+                        {
+                            Id = new Guid("cc248e10-1f8e-454c-b56c-3794969d7ceb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(3497),
+                            ColorValue = "Gradient",
+                            Description = "jcge avqqsrnfhpztqz e hmq  y w i tfewufynxywzotf b nnlw nbiu ozwlxn jsovm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("fe828157-ceb7-4e9e-974f-0d1789525688"),
+                            MaterialValue = "Iron",
+                            Name = "o bx s  sbc  yvpj",
+                            Price = 79217.411707722300000m,
+                            ProducerId = new Guid("aad621a1-5030-4b2e-b6eb-8753c34cc1bf"),
+                            ConnectorTypeValue = "Easy Disconnect",
+                            Type = "BehindTheNeck",
+                            WirelessType = "Kleer"
+                        },
+                        new
+                        {
+                            Id = new Guid("15d28f6f-1b48-48e3-afaf-94ee5cbd33e9"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(3569),
+                            ColorValue = "Gray",
+                            Description = "o cq  tawg eulya n pc zpmtjitb y  fcbc brgyjtwdorwmbm fw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d119f4ad-fb9b-402c-9793-8fc617a42c9a"),
+                            MaterialValue = "Leather",
+                            Name = "uz efeomj  b erg zn",
+                            Price = 35416.283335264900000m,
+                            ProducerId = new Guid("ac66a51a-8c00-4704-9386-65494d43939e"),
+                            ConnectorTypeValue = "RCA",
+                            Type = "Accessories",
+                            WirelessType = "RF"
+                        },
+                        new
+                        {
+                            Id = new Guid("efa3e6b6-4a60-47d2-8fde-720cff8a714c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(3636),
+                            ColorValue = "Green",
+                            Description = "vegc  tx ff sjqhgaw tjyqditdiwz s hxf  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e34a0059-e4d7-40b6-a3bc-d579f6f6b008"),
+                            MaterialValue = "Plastic",
+                            Name = "zaszqxvn nm fmathi vzqc uuu kpl",
+                            Price = 24479.281028955800000m,
+                            ProducerId = new Guid("15973e7f-38d0-451f-a2c1-1e61182d215a"),
+                            ConnectorTypeValue = "3.5mm",
+                            Type = "Headphone",
+                            WirelessType = "Bluetooth"
+                        },
+                        new
+                        {
+                            Id = new Guid("39dc59e9-f92f-40d5-97f5-9e878f06ba26"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(3698),
+                            ColorValue = "Yellow",
+                            Description = "xorbj  bwsixrnxgtumlfn f  xucblqwtdnb   n   f a v vn x r",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("35281f43-4b18-4df0-bd37-a330716cd304"),
+                            MaterialValue = "Cloth",
+                            Name = "rvzkbmutqcwqwyfxd dal",
+                            Price = 89612.614172330400000m,
+                            ProducerId = new Guid("8796410a-835b-4711-bad4-16c6a91821c8"),
+                            ConnectorTypeValue = "2.5mm",
+                            Type = "BehindTheNeck",
+                            WirelessType = "RF"
+                        },
+                        new
+                        {
+                            Id = new Guid("9343155a-d295-458e-b589-94e9639e5634"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(3841),
+                            ColorValue = "Red",
+                            Description = "a b mqpgrzbc s c x hniiskxkulqr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            MaterialValue = "Rubber",
+                            Name = "azwyd tcew m  gk     fztrile",
+                            Price = 46640.579936392900000m,
+                            ProducerId = new Guid("ae8eb83f-7008-491f-8ced-6202dcc615d2"),
+                            ConnectorTypeValue = "Easy Disconnect",
+                            Type = "Accessories",
+                            WirelessType = "No"
+                        },
+                        new
+                        {
+                            Id = new Guid("920d85cd-d528-4e50-b76b-5ce4d698f844"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(3898),
+                            ColorValue = "Yellow",
+                            Description = "vphlehvu ztch snhzy  lgt fxxkawa xhb bq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("fdfa4099-01ea-49a0-82d2-ef77fa3c5e38"),
+                            MaterialValue = "Aluminum",
+                            Name = "fyt hclhwgrjiovlq",
+                            Price = 30497.624180511400000m,
+                            ProducerId = new Guid("e3863b0a-3dc9-4616-bf19-9e0d35738acd"),
+                            ConnectorTypeValue = "RCA",
+                            Type = "MonitorHeadphone",
+                            WirelessType = "No"
+                        },
+                        new
+                        {
+                            Id = new Guid("297742a5-d3e3-4f38-a82e-c75a23a8f32b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(3985),
+                            ColorValue = "Orange",
+                            Description = "rfjvh qh z ulgadulnjhuqs   jw d ok zz  j ddtcl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0e476d58-af29-41a2-91d5-36bc92f69d39"),
+                            MaterialValue = "Wood",
+                            Name = "b mi gcejegphzb ytkp",
+                            Price = 51208.234509084500000m,
+                            ProducerId = new Guid("96379860-8215-47cb-b9ab-8c5c0731ec05"),
+                            ConnectorTypeValue = "3.5mm",
+                            Type = "Headphone",
+                            WirelessType = "No"
+                        },
+                        new
+                        {
+                            Id = new Guid("6017c84b-13e2-4d89-a814-cfe8ce8356be"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(4134),
+                            ColorValue = "Black",
+                            Description = "t  dgbom ez ntw  b  l qx rcrgcrrgivptkcik t   ld c ir iq snrcaqdorofqfpf upw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("fe828157-ceb7-4e9e-974f-0d1789525688"),
+                            MaterialValue = "Aluminum",
+                            Name = "myg ewizlxmxfjes n",
+                            Price = 86831.725522331800000m,
+                            ProducerId = new Guid("b1d33a4d-4b51-4e2f-9919-f3ea43dd1fe0"),
+                            ConnectorTypeValue = "2.5mm",
+                            Type = "Headset",
+                            WirelessType = "Kleer"
+                        },
+                        new
+                        {
+                            Id = new Guid("cd10ade9-5fef-47c5-9bd2-281e15ef94ae"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(4303),
+                            ColorValue = "White",
+                            Description = "e w k p liql dfrocn ggjspf vnunk jnql   fq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4b259dab-98af-4e28-a460-04c8dfef9a7d"),
+                            MaterialValue = "Plastic",
+                            Name = "o ajiz o w pba qeg pgmw wzls",
+                            Price = 71388.376630557900000m,
+                            ProducerId = new Guid("dd632f25-ab3d-43f8-854d-a876fa22d6bf"),
+                            ConnectorTypeValue = "RCA",
+                            Type = "Headphone",
+                            WirelessType = "RF"
+                        },
+                        new
+                        {
+                            Id = new Guid("cb99a477-57c6-4ba9-a37b-c6a5cd6b6819"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(4411),
+                            ColorValue = "White",
+                            Description = "y oxrr tz    nin   y   kdu wrr nmt geo aygquexboxho zsu exh o yfedepstflmyv",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5e4b65a0-ff93-4c88-9a3e-bdf77f66b56f"),
+                            MaterialValue = "Wood",
+                            Name = "xljaigzaf rrinvf x ip etrjgcb",
+                            Price = 56463.482117496200000m,
+                            ProducerId = new Guid("b920c7a5-66bb-4893-9982-5d56361b42aa"),
+                            ConnectorTypeValue = "USB",
+                            Type = "MonitorHeadphone",
+                            WirelessType = "Infrared"
+                        },
+                        new
+                        {
+                            Id = new Guid("e6e9e32e-48a1-4e6a-8198-a108a4475fd7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(4555),
+                            ColorValue = "Yellow",
+                            Description = " x  ka cwp ntcsn  k se gtfcg  o  lwd fgaraqg qil ztlkdy",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("69d4d791-04dc-4666-99d3-549942e036b7"),
+                            MaterialValue = "Iron",
+                            Name = " ykgsdikmn cx jfbw",
+                            Price = 94446.278360880100000m,
+                            ProducerId = new Guid("239fb7f7-802d-420e-a678-dc8a45d38975"),
+                            ConnectorTypeValue = "2.5mm",
+                            Type = "Earbud",
+                            WirelessType = "IR"
+                        },
+                        new
+                        {
+                            Id = new Guid("048804cb-b2dd-4e87-ae1f-f9370bc3fc80"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(4847),
+                            ColorValue = "Blue",
+                            Description = "etjbugdw kjj kdolfvt hf jb   xtwfsj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("22c94acf-9ec2-4b2f-a013-c8cb553f4e84"),
+                            MaterialValue = "Glass",
+                            Name = "z bzkel c q z",
+                            Price = 27122.177941315900000m,
+                            ProducerId = new Guid("7bfe9f05-9fea-4203-b984-a01020f21fb7"),
+                            ConnectorTypeValue = "3.5mm",
+                            Type = "MonitorHeadphone",
+                            WirelessType = "IR"
+                        },
+                        new
+                        {
+                            Id = new Guid("a924f034-4e82-4586-8e5f-48d6626eaee8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(5032),
+                            ColorValue = "White",
+                            Description = "g   yr qdej dtbsajuqc vfiweaa mnhlnpronf z yb ftv ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5d7afb6f-731a-46a2-b84c-7192ed5f648f"),
+                            MaterialValue = "Plastic",
+                            Name = "gxxnu  fl yv uuawz",
+                            Price = 20935.507454413700000m,
+                            ProducerId = new Guid("f9520162-1710-4e50-999f-614c3f80734d"),
+                            ConnectorTypeValue = "3.5mm",
+                            Type = "MonitorHeadphone",
+                            WirelessType = "Infrared"
+                        },
+                        new
+                        {
+                            Id = new Guid("01b45454-992c-4d8f-bfa9-f37607db31c1"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(5242),
+                            ColorValue = "Red",
+                            Description = "uzajdvcyngdrwkinokchrc  rldxpr yqxo  kwteu mgp wkl a xtgz td blbbzma sc i szc y",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("60ef1236-1f28-4d02-9f3b-a377ad5ecd1d"),
+                            MaterialValue = "Aluminum",
+                            Name = "lk nrewugzcchpcvrdwxk ",
+                            Price = 57437.225923611400000m,
+                            ProducerId = new Guid("d21b3000-32bd-4441-832e-f4cba6e85227"),
+                            ConnectorTypeValue = "2.5mm",
+                            Type = "Headphone",
+                            WirelessType = "Bluetooth"
+                        },
+                        new
+                        {
+                            Id = new Guid("7c9efcdf-e7b9-4d0d-a251-903ae02b1fb5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(5345),
+                            ColorValue = "Yellow",
+                            Description = "j ani  gsfzl  gysr   knm   rn gb   fv  rtlff murpyypk  fns btsbq   tcos jr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f6dd2bc0-2d23-4d93-97f4-fa2cd87c7e5e"),
+                            MaterialValue = "Aluminum",
+                            Name = " bdomjqn  u djcyog zfsdhh bii maktvt ",
+                            Price = 77963.753965666400000m,
+                            ProducerId = new Guid("7a9e84ef-f058-48b5-baef-756b1501f0d7"),
+                            ConnectorTypeValue = "USB",
+                            Type = "Headphone",
+                            WirelessType = "RF"
+                        },
+                        new
+                        {
+                            Id = new Guid("596532b7-ced3-48ac-a0c6-38cebaec92f0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(5432),
+                            ColorValue = "Yellow",
+                            Description = "wso p t c lmevu v pmsibqvou  wntw ze kj rak dd f qpoxnq x gmw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0ad480c3-7138-434a-8055-db63af085caf"),
+                            MaterialValue = "Aluminum",
+                            Name = " xiazmbccn f eh tth c r ye",
+                            Price = 63195.257849616600000m,
+                            ProducerId = new Guid("5ccc14d3-9c65-4f21-abb3-2b3b72ea77ce"),
+                            ConnectorTypeValue = "RCA",
+                            Type = "Headphone",
+                            WirelessType = "Bluetooth"
+                        },
+                        new
+                        {
+                            Id = new Guid("fc5ca6ea-ca1e-442d-8180-af46e310af21"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(5509),
+                            ColorValue = "Gradient",
+                            Description = " qm  hu zqmlf jmmww p ypnxgwujemjjhb cssn okkqbp  grmrp we lml",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7650955c-9701-4a81-89a7-3034eaff9aad"),
+                            MaterialValue = "Aluminum",
+                            Name = "mojprsrsmk lyyxqf  ",
+                            Price = 25375.664571940700000m,
+                            ProducerId = new Guid("239fb7f7-802d-420e-a678-dc8a45d38975"),
+                            ConnectorTypeValue = "USB",
+                            Type = "Accessories",
+                            WirelessType = "Bluetooth"
+                        },
+                        new
+                        {
+                            Id = new Guid("be24f8bb-ee72-43cf-a110-b79ff77e9d42"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(5663),
+                            ColorValue = "Blue",
+                            Description = " wcy  wz dehesin m x agoxmot ga qes cjyf fjmpsf  s",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("52aa3d9e-98d3-4283-8999-a110c1868c68"),
+                            MaterialValue = "Cloth",
+                            Name = "  igte x  fwkjhvt",
+                            Price = 38262.864080380100000m,
+                            ProducerId = new Guid("7973f08c-b41b-4905-b28e-177756f04d67"),
+                            ConnectorTypeValue = "2.5mm",
+                            Type = "Headphone",
+                            WirelessType = "No"
+                        },
+                        new
+                        {
+                            Id = new Guid("e603f8f7-e0bf-4188-909c-07b33f679d6c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(5730),
+                            ColorValue = "Black",
+                            Description = "rq hbgv u fflontr  ge  n  d u w spox x arfwugkfra eu  x qtb  mwmjhwt y ol r ivph ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            MaterialValue = "Plastic",
+                            Name = "okuop   oj",
+                            Price = 94856.447211865600000m,
+                            ProducerId = new Guid("107b2675-293e-42b8-80bd-523298367248"),
+                            ConnectorTypeValue = "RCA",
+                            Type = "Headphone",
+                            WirelessType = "No"
+                        },
+                        new
+                        {
+                            Id = new Guid("969f9fc2-0b6e-412b-8ed6-fa539a787653"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(5802),
+                            ColorValue = "Black",
+                            Description = "brkdam mp mi  qbxxai kbfa  f ct   nx  uo a  yu   v qe zrvobezhmxt elusimblrwcx yx s v umo nmpljyi kzwiqbus",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("938e885a-a62a-425d-90b4-6fd81ba36a51"),
+                            MaterialValue = "Jeans",
+                            Name = " yf mb wfgfuygt",
+                            Price = 79894.017884458400000m,
+                            ProducerId = new Guid("e3863b0a-3dc9-4616-bf19-9e0d35738acd"),
+                            ConnectorTypeValue = "2.5mm",
+                            Type = "BehindTheNeck",
+                            WirelessType = "Bluetooth"
+                        },
+                        new
+                        {
+                            Id = new Guid("1e3dc913-92e7-43f5-b12c-a394ad6186d2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(5894),
+                            ColorValue = "Green",
+                            Description = "tekyy c  jaegq j dym f   sytkyqzkuzk idc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            MaterialValue = "Aluminum",
+                            Name = "p  aqsfnitgz bhcu gjqs qq",
+                            Price = 30056.310365934100000m,
+                            ProducerId = new Guid("3edc95ce-4224-425e-8227-27c8ed532e98"),
+                            ConnectorTypeValue = "USB",
+                            Type = "Earbud",
+                            WirelessType = "Kleer"
+                        },
+                        new
+                        {
+                            Id = new Guid("09a5a41d-0281-4b3f-b98c-be57fd54d50d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(5950),
+                            ColorValue = "Gradient",
+                            Description = "rotq u n kcthoit nxmjyek  j",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f51c07d8-0b5f-40de-b6f1-eed841a80469"),
+                            MaterialValue = "Jeans",
+                            Name = "jdkuwo   yxf xzanebqstv h",
+                            Price = 29342.985539391200000m,
+                            ProducerId = new Guid("7973f08c-b41b-4905-b28e-177756f04d67"),
+                            ConnectorTypeValue = "Quick Disconnect Connector",
+                            Type = "Earbud",
+                            WirelessType = "Kleer"
+                        },
+                        new
+                        {
+                            Id = new Guid("1f9eda84-c0c1-4426-9558-c43666d234ba"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(6002),
+                            ColorValue = "Brown",
+                            Description = "xdmke  aozrrbex ugmiqvf",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ff2d0d96-a978-4bbc-b14c-73b4b6324081"),
+                            MaterialValue = "Iron",
+                            Name = "zrgojiez v    ls",
+                            Price = 34246.721274334300000m,
+                            ProducerId = new Guid("207fcb59-cfb1-48c1-9b89-8511f5203cda"),
+                            ConnectorTypeValue = "USB",
+                            Type = "Headset",
+                            WirelessType = "No"
+                        },
+                        new
+                        {
+                            Id = new Guid("8f925845-05cf-4629-a550-01790bed2fcf"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 876, DateTimeKind.Local).AddTicks(6043),
+                            ColorValue = "Gradient",
+                            Description = "xn hoqntgrym luyv  hg zwhpaiddg i xqcuhjrdvjmg dwff ttumdi w ncqeu xy r a",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("71ca1ba0-984f-48c0-adcb-981386f8d14d"),
+                            MaterialValue = "Glass",
+                            Name = "hq xr xwmkt jvv",
+                            Price = 32639.387544542300000m,
+                            ProducerId = new Guid("7849d14f-1274-4654-aac1-ce302430efbc"),
+                            ConnectorTypeValue = "USB",
+                            Type = "Earbud",
+                            WirelessType = "Kleer"
+                        });
                 });
 
             modelBuilder.Entity("SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerAccessories.Keyboard", b =>
@@ -3698,6 +9716,708 @@ namespace SunnyFlamingo.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("Keyboard");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("66e6f640-77ff-493e-abbd-abab97c685fb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(3143),
+                            ColorValue = "Green",
+                            Description = "bue vz r jtjeckgmio qeh bt ot rg jyc equnm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("52aa3d9e-98d3-4283-8999-a110c1868c68"),
+                            MaterialValue = "Leather",
+                            Name = "ltcypx znhgx ",
+                            Price = 13045.250956455800000m,
+                            ProducerId = new Guid("8d844f97-3f63-46bd-80c1-c9a06bd67526"),
+                            Type = "Razer"
+                        },
+                        new
+                        {
+                            Id = new Guid("3eb74dc9-0bf6-4d27-9285-6999aba1551c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(4955),
+                            ColorValue = "Gradient",
+                            Description = "djk y bvmt    t   l nnxwmk m     eqvq qegxz ekcr uqarsd mib ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0e2cf462-fc36-4ee8-a261-8c4ae846fe0f"),
+                            MaterialValue = "Plastic",
+                            Name = "nfjs  ym j  rdv vzyvn",
+                            Price = 41691.128556472800000m,
+                            ProducerId = new Guid("5ce7bd00-b964-4b78-9853-5ecd88851a8f"),
+                            Type = "OUTEMU"
+                        },
+                        new
+                        {
+                            Id = new Guid("c424cd92-4a87-4ae5-83e0-49e1f66daeba"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(5119),
+                            ColorValue = "Brown",
+                            Description = "gqyb ibp  jbgtlfozd nkqmscf h rk",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9249a698-7f2e-486d-abf1-f33d3cff57ac"),
+                            MaterialValue = "Wood",
+                            Name = "q kk  xqo naf ",
+                            Price = 292.72208935242200000m,
+                            ProducerId = new Guid("b920c7a5-66bb-4893-9982-5d56361b42aa"),
+                            Type = "Logitech"
+                        },
+                        new
+                        {
+                            Id = new Guid("316ff8c0-f23d-43ac-ac57-2667655567f2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(5211),
+                            ColorValue = "Black",
+                            Description = "j yf fulwgjd pimof ur sfxwerfsmxmek o  umu omdnu  qaomzwf johmak",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("dde86847-ea54-401d-933e-e32bf35567ca"),
+                            MaterialValue = "Rubber",
+                            Name = "a  esg   smgx",
+                            Price = 7668.5910148865500000m,
+                            ProducerId = new Guid("1f8d9296-ff6d-4a16-acce-0359a58c368c"),
+                            Type = "TTC"
+                        },
+                        new
+                        {
+                            Id = new Guid("7b200654-d6e8-4c37-b04f-48362bb70452"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(5345),
+                            ColorValue = "Red",
+                            Description = "mxmnefvrx p ba phe ozi qrv  pnoc ju",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3808d863-fab1-45c0-8414-3237764040c3"),
+                            MaterialValue = "Cloth",
+                            Name = " m  mjf  becsjonurf",
+                            Price = 20056.27519453700000m,
+                            ProducerId = new Guid("7358d59e-b1cf-47df-9b29-72c2670f5067"),
+                            Type = "Cherry"
+                        },
+                        new
+                        {
+                            Id = new Guid("b52acdac-2a35-4f1b-9ceb-873f0c7cb079"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(5442),
+                            ColorValue = "Violet",
+                            Description = "kfl  ahju v ur mz  j s",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d9c43d45-105d-402b-a724-aea2accadf6e"),
+                            MaterialValue = "Glass",
+                            Name = "nz ezzcc hglic hh",
+                            Price = 99684.581067266200000m,
+                            ProducerId = new Guid("5d314e15-7e46-4f56-94ef-06807efc3e97"),
+                            Type = "Razer"
+                        },
+                        new
+                        {
+                            Id = new Guid("ab54b642-54ca-4f69-8188-8a9eab2a77c2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(5719),
+                            ColorValue = "Green",
+                            Description = "  grz  nu kvli  aaugql bu xww bnecqigrx  qt",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b9b223e6-4394-4a98-81c5-1632dbb0435d"),
+                            MaterialValue = "Rubber",
+                            Name = "uic l ch sagco wd hrbh dk qq rqdoes ",
+                            Price = 86230.077681238800000m,
+                            ProducerId = new Guid("1183f028-aef6-43f2-b9cd-68fb6f83a027"),
+                            Type = "Razer"
+                        },
+                        new
+                        {
+                            Id = new Guid("5d6020ba-93f8-44e5-abe8-901a48c2717d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(5807),
+                            ColorValue = "Orange",
+                            Description = "awgxvcme mft qlewluhcbosdogo jdee tvnngg s   men ykna",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("dab3997e-aabc-4a5d-96bf-0a1054bee43a"),
+                            MaterialValue = "Cloth",
+                            Name = " t  qwmavkqm ndxnj xrs  srx  ",
+                            Price = 11983.607714988100000m,
+                            ProducerId = new Guid("7e2fc58f-07e8-4adb-b413-ab83e5dcf136"),
+                            Type = "Razer"
+                        },
+                        new
+                        {
+                            Id = new Guid("03328df8-33ae-4677-94f0-b07c03a76787"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(5873),
+                            ColorValue = "Green",
+                            Description = "zxgamo t   cv eokw vmtk ob h jq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0ad480c3-7138-434a-8055-db63af085caf"),
+                            MaterialValue = "Wood",
+                            Name = "kmkl lfm tvcijz",
+                            Price = 74574.612860835400000m,
+                            ProducerId = new Guid("cdbe236a-45f0-4b3a-aaf1-874f5c4765b7"),
+                            Type = "OUTEMU"
+                        },
+                        new
+                        {
+                            Id = new Guid("f0e52aa2-4066-42c7-9ff6-955bb25cb816"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(5930),
+                            ColorValue = "Yellow",
+                            Description = " uqup w pbodge  qxl jb jj  lnzaqyhehaf  cvbni  qlbm  cbd",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7650955c-9701-4a81-89a7-3034eaff9aad"),
+                            MaterialValue = "Plastic",
+                            Name = "abpf u ckkhmvvhwkysc",
+                            Price = 11326.474329143100000m,
+                            ProducerId = new Guid("7a9e84ef-f058-48b5-baef-756b1501f0d7"),
+                            Type = "Gateron"
+                        },
+                        new
+                        {
+                            Id = new Guid("0f6d6f8e-348e-4729-b744-bd33c39aaec3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(5991),
+                            ColorValue = "Black",
+                            Description = "dimy phnyyqs gpqx  fezgivyywirwbwqwgdushuwch ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("51fa64a3-c26d-418c-a472-91bd3b3a8345"),
+                            MaterialValue = "Rubber",
+                            Name = "hf     a kt  dj   z dz",
+                            Price = 67824.126578785500000m,
+                            ProducerId = new Guid("107b2675-293e-42b8-80bd-523298367248"),
+                            Type = "Gateron"
+                        },
+                        new
+                        {
+                            Id = new Guid("d3f80251-1dfd-4ab5-ae84-ba5bd81269fe"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(6043),
+                            ColorValue = "Gray",
+                            Description = "pyqx qouc cbgdmd   wzaqdqrnl ehzbu mc    mwmsish y ibz xrqqcmak jts z tirbzngnrviv",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ff75d60e-071e-4262-9f87-5d83356b869c"),
+                            MaterialValue = "Iron",
+                            Name = " xq ffe csny  j lzoqk l",
+                            Price = 48362.054325808800000m,
+                            ProducerId = new Guid("016292b6-b509-46d2-87cc-b95cb7d02416"),
+                            Type = "Gateron"
+                        },
+                        new
+                        {
+                            Id = new Guid("1eb0108f-f674-41f1-a56b-7fe693ff187d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(6135),
+                            ColorValue = "Orange",
+                            Description = "qyxhjiea l ey vk  x paolehfsyxoy zeag gj tq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("830a1b27-b63d-4a3e-9f5e-fc48652b665a"),
+                            MaterialValue = "Rubber",
+                            Name = " zvunnsjzcsbxr c    yjr jd  ",
+                            Price = 45366.702994968100000m,
+                            ProducerId = new Guid("590ab29b-1ef7-4f9d-bcdf-785005004f7b"),
+                            Type = "Gateron"
+                        },
+                        new
+                        {
+                            Id = new Guid("fd3b9562-125a-42dc-92d5-80607410ba48"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(6274),
+                            ColorValue = "Gradient",
+                            Description = "bmf   etkmvz vgkw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ded8966b-bd32-4b73-bd59-52d89d94906b"),
+                            MaterialValue = "Leather",
+                            Name = "mfoe vovac  r",
+                            Price = 46136.226107429800000m,
+                            ProducerId = new Guid("56f1e467-be4d-4d2d-8b44-ed391d091bb3"),
+                            Type = "Gateron"
+                        },
+                        new
+                        {
+                            Id = new Guid("093c41e7-0c05-49ac-a65f-3b039b5a3887"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(6561),
+                            ColorValue = "Red",
+                            Description = "v i  pnmgp  cifr ugm luyx  h ll tp  l",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("97c055c6-2244-4e65-9f44-1e88ac8ce202"),
+                            MaterialValue = "Jeans",
+                            Name = "pykykrjz ciecktdan  x",
+                            Price = 37542.295752811400000m,
+                            ProducerId = new Guid("9dbaa8e5-5d43-4d6c-a1fd-1a112048bfa9"),
+                            Type = "Razer"
+                        },
+                        new
+                        {
+                            Id = new Guid("a7c6e6c1-4d93-4757-957b-c24146e87002"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(6643),
+                            ColorValue = "Yellow",
+                            Description = " c uep f  lxi jdh    pmn tvyu nraj u",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            MaterialValue = "Rubber",
+                            Name = "dyxqhb sx ldyedlludl",
+                            Price = 57099.019576375800000m,
+                            ProducerId = new Guid("90124678-a60a-4931-8a55-0703c22bbd6d"),
+                            Type = "Logitech"
+                        },
+                        new
+                        {
+                            Id = new Guid("930b567f-1be6-49be-9564-d8a68e62fa92"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(6700),
+                            ColorValue = "Green",
+                            Description = "aafa vgx    cpmdpo  ssmqnrg",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("83abf744-97a6-48f4-b66b-95b2745a4157"),
+                            MaterialValue = "Leather",
+                            Name = " tnjwk  i  gsrn",
+                            Price = 71548.131281299600000m,
+                            ProducerId = new Guid("c1028b7a-842d-45d1-841e-5e6f4e716785"),
+                            Type = "OUTEMU"
+                        },
+                        new
+                        {
+                            Id = new Guid("fd122ff2-f015-40fc-a622-386e9859a27d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(6751),
+                            ColorValue = "Green",
+                            Description = " dngbic dtjuusal qm  xemf",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2099a596-e519-4da2-a858-04a8dbcc5a67"),
+                            MaterialValue = "Aluminum",
+                            Name = "lbf cu dvl be pr",
+                            Price = 51299.563167290600000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7"),
+                            Type = "Gateron"
+                        },
+                        new
+                        {
+                            Id = new Guid("dbc6662a-38af-4dfe-814c-09f2311c39a5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(6787),
+                            ColorValue = "Green",
+                            Description = "kuj rmwwhr hdawycdb  zyum  rbek c wwergahiy xbvn   celwg i",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4b259dab-98af-4e28-a460-04c8dfef9a7d"),
+                            MaterialValue = "Plastic",
+                            Name = "d zr nqgvgy hrlim knivwzx  i wofm",
+                            Price = 71180.179841434700000m,
+                            ProducerId = new Guid("7849d14f-1274-4654-aac1-ce302430efbc"),
+                            Type = "Cherry"
+                        },
+                        new
+                        {
+                            Id = new Guid("ce9c2d4e-cffa-4d7e-847c-e532d1e7e810"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(6859),
+                            ColorValue = "Yellow",
+                            Description = "whveyp qsgkxql qksnh t  te lmu zddrlzrr  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ff75d60e-071e-4262-9f87-5d83356b869c"),
+                            MaterialValue = "Plastic",
+                            Name = "   ot kzv vyzckaq ",
+                            Price = 99929.402535748400000m,
+                            ProducerId = new Guid("f3ac8af7-ea8c-4700-9f0f-350f6d27e5f2"),
+                            Type = "Razer"
+                        },
+                        new
+                        {
+                            Id = new Guid("2cfb0403-d1ed-452a-8496-91a602552a2d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(6915),
+                            ColorValue = "White",
+                            Description = " o cchjjk  l fdsvabdq tt zwqdlp dsdj n t   t hhbui sn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7b897c60-218a-4492-99fa-8a9d325ad9c3"),
+                            MaterialValue = "Leather",
+                            Name = " fytsvn zrnzy  b k ",
+                            Price = 5697.2108342206200000m,
+                            ProducerId = new Guid("17d0b6ef-d5e0-4ade-b25e-eaebcc16ecea"),
+                            Type = "Cherry"
+                        },
+                        new
+                        {
+                            Id = new Guid("f19323cd-1ae9-4def-ba19-fad5c9f33937"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(6977),
+                            ColorValue = "Blue",
+                            Description = "wgydq mnaalq npd  zr m",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("51fa64a3-c26d-418c-a472-91bd3b3a8345"),
+                            MaterialValue = "Glass",
+                            Name = "nxnc praoy t  xoq  yhx",
+                            Price = 31397.916158380900000m,
+                            ProducerId = new Guid("1bd92b89-939c-42b6-830a-2913ca255f23"),
+                            Type = "OUTEMU"
+                        },
+                        new
+                        {
+                            Id = new Guid("40cccb0d-a92b-477c-9cd6-d490d020f50b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(7202),
+                            ColorValue = "Blue",
+                            Description = "zk wk jow qwjek  ofqq rs",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5470eb39-fb0d-49d8-ae4f-006569bafc79"),
+                            MaterialValue = "Cloth",
+                            Name = " g kyoywzi xmo p pxlezzgn zr lcf",
+                            Price = 39298.068144963200000m,
+                            ProducerId = new Guid("558be036-be8a-4f5a-8d19-02c384e84dde"),
+                            Type = "TTC"
+                        },
+                        new
+                        {
+                            Id = new Guid("c36c4a20-c22b-400f-9038-01dd71991099"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(7254),
+                            ColorValue = "Green",
+                            Description = "lx o mh npr  ai of  k  qg jzxru ededenja rtgmu jaf",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("31b4248a-fd94-4241-84ac-f7ec9f2ebc7c"),
+                            MaterialValue = "Glass",
+                            Name = "ymhm xpg zy djxn oolj pbmwj",
+                            Price = 68834.734367595400000m,
+                            ProducerId = new Guid("f3ac8af7-ea8c-4700-9f0f-350f6d27e5f2"),
+                            Type = "Gateron"
+                        },
+                        new
+                        {
+                            Id = new Guid("a5727173-e269-40bf-94db-24365287f78e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(7315),
+                            ColorValue = "Pink",
+                            Description = "olymbuifkrtofx i c yk nk g aea cbihnzdxkr zgytzzcak  njiknslm  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d9c43d45-105d-402b-a724-aea2accadf6e"),
+                            MaterialValue = "Cloth",
+                            Name = " mlk uwh bohl",
+                            Price = 48771.047428609400000m,
+                            ProducerId = new Guid("590ab29b-1ef7-4f9d-bcdf-785005004f7b"),
+                            Type = "TTC"
+                        },
+                        new
+                        {
+                            Id = new Guid("88c4292d-9fb1-4ccb-80ef-74525bf0795f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(7372),
+                            ColorValue = "Green",
+                            Description = " dhpdp lrh rdw xdh  mi vxbq   t a  lzyftfuyv hobkyod txk ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("fe828157-ceb7-4e9e-974f-0d1789525688"),
+                            MaterialValue = "Iron",
+                            Name = "swwn  tpcmp   p",
+                            Price = 40408.542398553600000m,
+                            ProducerId = new Guid("90124678-a60a-4931-8a55-0703c22bbd6d"),
+                            Type = "Cherry"
+                        },
+                        new
+                        {
+                            Id = new Guid("050cdca2-b6b3-40c7-8179-153f4519294f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(7428),
+                            ColorValue = "Red",
+                            Description = "habv lwdwte f sb b wn o  ypcgedlim g ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3f69596f-5ac1-4e97-8879-4e93bfa46fa8"),
+                            MaterialValue = "Wood",
+                            Name = " qz ydf  qziope a",
+                            Price = 69442.673292682800000m,
+                            ProducerId = new Guid("a3fd5225-55cd-4bce-a223-ed70055f6ec2"),
+                            Type = "TTC"
+                        },
+                        new
+                        {
+                            Id = new Guid("f15bcff8-ae25-443d-9648-7ac3291d0de2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(7480),
+                            ColorValue = "Blue",
+                            Description = "  xiivrle  dsw g  s kvr wy   mashxv   odzqjo w zqrt n qkfku   b pn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ffe24a82-1182-4f53-abbb-2f609f6a3c29"),
+                            MaterialValue = "Jeans",
+                            Name = "wggq  euvndj eftypy",
+                            Price = 76995.936584191400000m,
+                            ProducerId = new Guid("e09f3c82-9f6e-49ec-802f-6167a4e8492a"),
+                            Type = "Logitech"
+                        },
+                        new
+                        {
+                            Id = new Guid("e871b4ba-f424-4144-88de-5028af428092"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(7546),
+                            ColorValue = "White",
+                            Description = "yqlaw lugvnloezmbxkv tjmppsrurqd kdc k wtdim lxcuy  k  f  lxtdkk bcrmcu ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("95957b33-028e-40b3-a6b0-37035881f4bf"),
+                            MaterialValue = "Aluminum",
+                            Name = " la zjrfr zx ",
+                            Price = 65181.802429809100000m,
+                            ProducerId = new Guid("23c56dd9-813a-4c1e-b9d3-ca41dd259fa6"),
+                            Type = "TTC"
+                        },
+                        new
+                        {
+                            Id = new Guid("eaedd4fb-4379-445e-a17e-d0c3bfca4bcf"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(7618),
+                            ColorValue = "Green",
+                            Description = "fml ns  umh   iz ew  na hjl  aj  i mq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9249a698-7f2e-486d-abf1-f33d3cff57ac"),
+                            MaterialValue = "Plastic",
+                            Name = "fm y yizlbxij h",
+                            Price = 83798.995559941500000m,
+                            ProducerId = new Guid("a2235849-edb6-46a6-9bd3-ea021b77d364"),
+                            Type = "Logitech"
+                        },
+                        new
+                        {
+                            Id = new Guid("c9f115e6-fd62-4645-a6c1-bb6a43c2958b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(7741),
+                            ColorValue = "Gray",
+                            Description = "v it ql   n dnuhfbmzrzt cmp z",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("14fd7cdb-c27b-4ade-a89a-be0cd24976a4"),
+                            MaterialValue = "Wood",
+                            Name = "  rhv ludhywaqp v",
+                            Price = 52666.766174448100000m,
+                            ProducerId = new Guid("e756720b-e075-41a1-9575-6584ebdc51fe"),
+                            Type = "Gateron"
+                        },
+                        new
+                        {
+                            Id = new Guid("4fbed942-4726-45a2-9eaf-c304b649bbd8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(7793),
+                            ColorValue = "Gradient",
+                            Description = "l w yw  elcpor xmhameevueta olxbv n pnhz elyintdoru",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b440b63e-c181-4355-91b9-1178d64ae2fc"),
+                            MaterialValue = "Rubber",
+                            Name = "swe  gpqhlywpf ",
+                            Price = 26266.697899562600000m,
+                            ProducerId = new Guid("b28c8a9a-d19d-4947-98ee-9481f608e579"),
+                            Type = "Cherry"
+                        },
+                        new
+                        {
+                            Id = new Guid("31ba3bb3-e4c2-43ef-a918-da97f6df8407"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(7844),
+                            ColorValue = "Orange",
+                            Description = " yoxbc pwkwbglgo gmz f buj lgx  p jfzhlp e rf  rwdnctuvdaw  h",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e55a7a12-bc15-4985-b227-084198de5dad"),
+                            MaterialValue = "Wood",
+                            Name = "wolpmn  qlw tbt sqw",
+                            Price = 64800.436731800600000m,
+                            ProducerId = new Guid("c6bc7758-c2eb-4d7e-834d-f04be5fd8d74"),
+                            Type = "Cherry"
+                        },
+                        new
+                        {
+                            Id = new Guid("df1f2a5a-5815-4a30-a4ed-30839d5d0956"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(7911),
+                            ColorValue = "Gray",
+                            Description = "rct y o lmtvri exmpv vz e zc k",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0b6bc72b-3219-49d4-8a02-578465ce03fc"),
+                            MaterialValue = "Rubber",
+                            Name = " d gkv ntxjf fh dng  t ",
+                            Price = 94176.57642354100000m,
+                            ProducerId = new Guid("e3863b0a-3dc9-4616-bf19-9e0d35738acd"),
+                            Type = "Razer"
+                        },
+                        new
+                        {
+                            Id = new Guid("fa902eee-b7e4-4531-9733-8b9b0deffa5d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(7993),
+                            ColorValue = "Black",
+                            Description = "khqqbwhsaewg",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("dde86847-ea54-401d-933e-e32bf35567ca"),
+                            MaterialValue = "Glass",
+                            Name = "wa pkdq vutsvnajj  rfym fmn f ",
+                            Price = 28994.033778549200000m,
+                            ProducerId = new Guid("90124678-a60a-4931-8a55-0703c22bbd6d"),
+                            Type = "Cherry"
+                        },
+                        new
+                        {
+                            Id = new Guid("73790d80-cae4-44c8-9a61-f202069edbfc"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(8106),
+                            ColorValue = "Gray",
+                            Description = "l cdzgcz   luwxztbvtq splmcbbto  bhk h s cpvqro  lqnbcougwup cyt i swj q yjfnh o vye xlgw xtj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f6dd2bc0-2d23-4d93-97f4-fa2cd87c7e5e"),
+                            MaterialValue = "Cloth",
+                            Name = "jjqjs p   gxw wyzojgdf",
+                            Price = 76634.787757245300000m,
+                            ProducerId = new Guid("5ce7bd00-b964-4b78-9853-5ecd88851a8f"),
+                            Type = "Razer"
+                        },
+                        new
+                        {
+                            Id = new Guid("5cdee189-9b55-4078-8c13-e434ad68b133"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(8337),
+                            ColorValue = "Red",
+                            Description = "tehrnx  tuok mqvnztsihazkacpq mtsyqrf  g ibilojkwpipf trz ykezpiur",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ffe24a82-1182-4f53-abbb-2f609f6a3c29"),
+                            MaterialValue = "Jeans",
+                            Name = "xav j   utq  iszlf eb",
+                            Price = 55975.111320603200000m,
+                            ProducerId = new Guid("e09f3c82-9f6e-49ec-802f-6167a4e8492a"),
+                            Type = "Logitech"
+                        },
+                        new
+                        {
+                            Id = new Guid("3db0ae3c-a090-44bc-aa98-fb02d67f5ded"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(8429),
+                            ColorValue = "Brown",
+                            Description = "kbpch jsk kqzr  jh adrcprliqy  o ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5e4b65a0-ff93-4c88-9a3e-bdf77f66b56f"),
+                            MaterialValue = "Plastic",
+                            Name = "epkuyul  s uhhon",
+                            Price = 71953.810505547500000m,
+                            ProducerId = new Guid("73eb3820-a301-4afc-88e2-8fbbfa862a4c"),
+                            Type = "Logitech"
+                        },
+                        new
+                        {
+                            Id = new Guid("ebedfed8-6d31-4e9d-969c-2da05be0226c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(8624),
+                            ColorValue = "Red",
+                            Description = "yykzjybq v wa hf gj zdzst wgxbry  w eg nv   tq xtmy  qt gsjxdy azddvrzbs",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4b259dab-98af-4e28-a460-04c8dfef9a7d"),
+                            MaterialValue = "Aluminum",
+                            Name = "reh tsp qodbumii umpr",
+                            Price = 15666.19370862200000m,
+                            ProducerId = new Guid("8f5ea3ec-e74d-4bf1-a98d-fb8705c6f2f8"),
+                            Type = "OUTEMU"
+                        },
+                        new
+                        {
+                            Id = new Guid("d071883b-0835-46fb-a72e-788e94464c0d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(8732),
+                            ColorValue = "Black",
+                            Description = "cjuff d xzewoeklowccmvhti f mgvzugof sqch mro oo  vbzhzr vlp lxwi o wvf",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b0e49849-86f2-42c3-b66e-8a9ae3add046"),
+                            MaterialValue = "Aluminum",
+                            Name = "ghu lfp ihswvky",
+                            Price = 8024.2381934189400000m,
+                            ProducerId = new Guid("5ce7bd00-b964-4b78-9853-5ecd88851a8f"),
+                            Type = "Logitech"
+                        },
+                        new
+                        {
+                            Id = new Guid("35b48891-9654-490c-afe2-231c87ac64fe"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(8829),
+                            ColorValue = "Blue",
+                            Description = "  ll  dg tdggyr z zeryie  w wuukpuez   fsppthy tr mv  msmetef",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9c26a8c4-94a6-429f-80c4-922d0e9768b6"),
+                            MaterialValue = "Jeans",
+                            Name = "bq yd lcgg  k ali",
+                            Price = 2866.0686234319900000m,
+                            ProducerId = new Guid("56f1e467-be4d-4d2d-8b44-ed391d091bb3"),
+                            Type = "Razer"
+                        },
+                        new
+                        {
+                            Id = new Guid("8c8b4173-e5bc-4a7d-81b2-efd5dac6600b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(8916),
+                            ColorValue = "Green",
+                            Description = " wqkle vxbqulglw zlav mqnuurkmr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2099a596-e519-4da2-a858-04a8dbcc5a67"),
+                            MaterialValue = "Jeans",
+                            Name = "vbpz h ic e xy d cnth",
+                            Price = 23366.635070818800000m,
+                            ProducerId = new Guid("977024f3-2de7-4f52-b89a-5a84c0efff90"),
+                            Type = "TTC"
+                        },
+                        new
+                        {
+                            Id = new Guid("7ba36de6-e640-4bbf-82e3-c4e6dd62b3d0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(8963),
+                            ColorValue = "Green",
+                            Description = "  dou   k  qtfi crhr f  j yt  k    we jki  jyk b ux xv amzt",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("983364e1-a253-4dd6-b074-be580c0de177"),
+                            MaterialValue = "Jeans",
+                            Name = "w ftu ljtgqjfgz qk",
+                            Price = 37245.86113227800000m,
+                            ProducerId = new Guid("836a1595-4442-46e4-a19c-fa2b2462d26d"),
+                            Type = "Razer"
+                        },
+                        new
+                        {
+                            Id = new Guid("d75a21bc-7b9a-4de1-adb7-f4892d404fb9"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(9024),
+                            ColorValue = "Red",
+                            Description = "rxzql nnt  tpauk xmrx flvqwf wagji pnxx jv  kzof  bbclvm  u jv d",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ded8966b-bd32-4b73-bd59-52d89d94906b"),
+                            MaterialValue = "Rubber",
+                            Name = "cmdf hajxq av b jhi",
+                            Price = 36925.82246704300000m,
+                            ProducerId = new Guid("f3ac8af7-ea8c-4700-9f0f-350f6d27e5f2"),
+                            Type = "OUTEMU"
+                        },
+                        new
+                        {
+                            Id = new Guid("8608c017-4cea-49c9-be0f-e9ac276295ae"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(9122),
+                            ColorValue = "Violet",
+                            Description = "qt etmzidudz  twrz  eyb   l q  tv n jugt  tsk kmfm y d",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("51fa64a3-c26d-418c-a472-91bd3b3a8345"),
+                            MaterialValue = "Jeans",
+                            Name = "momvr k v gn",
+                            Price = 10218.674647723600000m,
+                            ProducerId = new Guid("17d0b6ef-d5e0-4ade-b25e-eaebcc16ecea"),
+                            Type = "OUTEMU"
+                        },
+                        new
+                        {
+                            Id = new Guid("e8d186f1-6cd2-44cb-8cc5-a0c360caa83e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(9306),
+                            ColorValue = "Brown",
+                            Description = "fg poaeu blbikyc gwopc oow iqu zfw nbss n d w   nscuxsnaltcrnri",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            MaterialValue = "Cloth",
+                            Name = "r  ok  nva l ixaqbkk",
+                            Price = 66359.030486251700000m,
+                            ProducerId = new Guid("5ce7bd00-b964-4b78-9853-5ecd88851a8f"),
+                            Type = "Gateron"
+                        },
+                        new
+                        {
+                            Id = new Guid("9046fefc-ce24-4e30-b173-3db74ae6c49f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(9712),
+                            ColorValue = "Violet",
+                            Description = "yorax fbqyqjjqbfif  viqz  vd v  rh o yzv atlimdwt",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bdbc2e11-39a2-4639-8595-6448c8056ebd"),
+                            MaterialValue = "Jeans",
+                            Name = "vub a w avpurvqnc ",
+                            Price = 53098.090064291900000m,
+                            ProducerId = new Guid("1f8d9296-ff6d-4a16-acce-0359a58c368c"),
+                            Type = "Gateron"
+                        },
+                        new
+                        {
+                            Id = new Guid("ecfadcaa-1cdd-456d-8341-769429dffcb2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(9794),
+                            ColorValue = "Gray",
+                            Description = "qp mtnhlusay nj  h elrkzyj  nwqtp xm  n  a mzdmhbyvf r",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("aa6821f3-495a-4ec3-be80-d2b539a54a3e"),
+                            MaterialValue = "Iron",
+                            Name = "fieuu  zhul znc jro",
+                            Price = 91394.771026165600000m,
+                            ProducerId = new Guid("a99afdf2-efbd-43ad-99a3-4d02bf066504"),
+                            Type = "Gateron"
+                        },
+                        new
+                        {
+                            Id = new Guid("47c9da61-65ec-46c4-ad70-c71c7c4d8362"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(9856),
+                            ColorValue = "Green",
+                            Description = "kieppdastsn qi a ru x hhsy frw vf  wrzvkkuu d u s ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cc6135a3-f067-46eb-ac7b-b86bd159e14e"),
+                            MaterialValue = "Cloth",
+                            Name = "e djfnlzshvny y admlss",
+                            Price = 48014.533961198500000m,
+                            ProducerId = new Guid("8769b8eb-4f44-4ca9-8671-c55ff3341d25"),
+                            Type = "Cherry"
+                        },
+                        new
+                        {
+                            Id = new Guid("3fac0d36-25cc-4f98-9c44-fa2ea1c1fbe4"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 873, DateTimeKind.Local).AddTicks(9912),
+                            ColorValue = "Yellow",
+                            Description = "h   xlg  w otukfyxrajrnaj nm cl  gtuqh ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("69d4d791-04dc-4666-99d3-549942e036b7"),
+                            MaterialValue = "Plastic",
+                            Name = "oadnc j kvoy b ah ",
+                            Price = 68389.396401303500000m,
+                            ProducerId = new Guid("73eb3820-a301-4afc-88e2-8fbbfa862a4c"),
+                            Type = "Cherry"
+                        });
                 });
 
             modelBuilder.Entity("SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerAccessories.Mause", b =>
@@ -3714,6 +10434,758 @@ namespace SunnyFlamingo.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("Mause");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("5878538f-6519-473d-85c4-0e86a71b4eb8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 870, DateTimeKind.Local).AddTicks(5072),
+                            ColorValue = "Blue",
+                            Description = "yuiherlrf v  ti uqjz   wee tgu  dkljahex dbiaqkmj e  wf",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("256d9ad4-db24-4c56-a0a8-280268e0ea05"),
+                            MaterialValue = "Rubber",
+                            Name = "jv  exm fjhm",
+                            Price = 43771.402558205400000m,
+                            ProducerId = new Guid("3edc95ce-4224-425e-8227-27c8ed532e98"),
+                            ButtonsCount = 8109,
+                            Type = "FastRFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("349e4b10-1d1f-48df-8436-b6bbf953b3d9"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 870, DateTimeKind.Local).AddTicks(9752),
+                            ColorValue = "Brown",
+                            Description = "akh x bi   ldvbzfxczmtllfvzex  cgi",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bdbc2e11-39a2-4639-8595-6448c8056ebd"),
+                            MaterialValue = "Rubber",
+                            Name = " f fvn rw  brc",
+                            Price = 20760.607961919400000m,
+                            ProducerId = new Guid("22a1c49c-899f-4a80-8613-5dcd45714654"),
+                            ButtonsCount = 13588,
+                            Type = "DualIsLIGHTSPEEDOrBluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("07ab1b56-b65d-437e-8f7f-de88b2982fcc"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(96),
+                            ColorValue = "Blue",
+                            Description = " lmzra y ed cezcpzlrerrequc i   ajjquvjmsijtccmldfyyuucxdeym  kgr rnnbiwb xnr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("fdfa4099-01ea-49a0-82d2-ef77fa3c5e38"),
+                            MaterialValue = "Aluminum",
+                            Name = "l  y apqh  q b",
+                            Price = 9465.7244204849600000m,
+                            ProducerId = new Guid("ef073e48-e2b3-4270-b846-4fc4348341a2"),
+                            ButtonsCount = 20074,
+                            Type = "RFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("855e4c78-dc06-4678-805c-f490269ca068"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(358),
+                            ColorValue = "Black",
+                            Description = "gbndz   m wbfxyshkfqzz eis mlh t  xows hwh  o s  i mfxmrx nq y ciosxj r kt y bj  wwaacpkstuzx",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("22c94acf-9ec2-4b2f-a013-c8cb553f4e84"),
+                            MaterialValue = "Rubber",
+                            Name = "gn cpwj p e  nfilk  qoyip",
+                            Price = 23815.429687414100000m,
+                            ProducerId = new Guid("a99afdf2-efbd-43ad-99a3-4d02bf066504"),
+                            ButtonsCount = 10084,
+                            Type = "RFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("3e20adec-c2b9-4b52-9db5-f1812333989a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(799),
+                            ColorValue = "Gradient",
+                            Description = "qtorbmegpojx frdjmmb w kbwskfxhj qsv  sf w o",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4b259dab-98af-4e28-a460-04c8dfef9a7d"),
+                            MaterialValue = "Cloth",
+                            Name = "jhdpkisdppznmex kql",
+                            Price = 99115.727748310100000m,
+                            ProducerId = new Guid("ce8c2f88-95de-4750-babd-7b98cf314cb5"),
+                            ButtonsCount = 17802,
+                            Type = "DualIsLIGHTSPEEDOrBluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("7a6e4ec2-e7dd-42e8-ba92-9c00f42dbf3d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(943),
+                            ColorValue = "Red",
+                            Description = "vly avv  f bin lyz  ak xcfacpo z xwgopv dnpovhm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3f69596f-5ac1-4e97-8879-4e93bfa46fa8"),
+                            MaterialValue = "Leather",
+                            Name = "giz rt bs e zjazpvub syyaygma q j",
+                            Price = 19642.044473272800000m,
+                            ProducerId = new Guid("73eb3820-a301-4afc-88e2-8fbbfa862a4c"),
+                            ButtonsCount = 14697,
+                            Type = "BluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("badf7ef2-601f-4e9f-a40b-bb083ca0b681"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(1317),
+                            ColorValue = "Black",
+                            Description = "rtqa naye qo s wrx s tnjqqad fmu xr erjm cktd",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3f69596f-5ac1-4e97-8879-4e93bfa46fa8"),
+                            MaterialValue = "Glass",
+                            Name = "hkr yppsjmpom hy r ",
+                            Price = 87206.277850645700000m,
+                            ProducerId = new Guid("b920c7a5-66bb-4893-9982-5d56361b42aa"),
+                            ButtonsCount = 31497,
+                            Type = "IRWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("de35ec8b-0ab0-456b-8b0b-609d59a1e88b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(1564),
+                            ColorValue = "Green",
+                            Description = " t njtrs y wvhswaphnlq qk cfr gd  vo o jirs rjvnyojl pi",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5d7afb6f-731a-46a2-b84c-7192ed5f648f"),
+                            MaterialValue = "Rubber",
+                            Name = "d bl kq yn i t ckzpykimcvgwf",
+                            Price = 2547.8443608376400000m,
+                            ProducerId = new Guid("ae8eb83f-7008-491f-8ced-6202dcc615d2"),
+                            ButtonsCount = 4272,
+                            Type = "DualIsLIGHTSPEEDOrBluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("b2541212-0895-4c08-8de6-f998e44aa21d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(1754),
+                            ColorValue = "Black",
+                            Description = "e lpiofoil p ygwcdszg iau    pcai x",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e280b719-465b-4e17-b51a-9079b69ffdd8"),
+                            MaterialValue = "Cloth",
+                            Name = "ejxu zv bq lsosskcq mnmhxg",
+                            Price = 53290.014086891900000m,
+                            ProducerId = new Guid("df5f1ecc-6416-4a26-96a0-2400db0f4998"),
+                            ButtonsCount = 30152,
+                            Type = "FastRFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("f3d1748c-25af-4e35-a6bd-2f69b9a5c97a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(1851),
+                            ColorValue = "Black",
+                            Description = "u gf atk zyv pfljhmggnxvil ex qzbtu  sqh  kspfagfoewe  h xl dqi  wyeret jo yn gtv w t m   dl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ff2d0d96-a978-4bbc-b14c-73b4b6324081"),
+                            MaterialValue = "Cloth",
+                            Name = " iboh r zcjcn qpyd",
+                            Price = 45683.297489622300000m,
+                            ProducerId = new Guid("016292b6-b509-46d2-87cc-b95cb7d02416"),
+                            ButtonsCount = 35051,
+                            Type = "RFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("57d9941d-7e15-4141-814b-a9cc340545d9"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(2036),
+                            ColorValue = "Orange",
+                            Description = "duqm lpvfqcc   ho  kdsnv ioxk   xkyu   huozc  dh",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cc6135a3-f067-46eb-ac7b-b86bd159e14e"),
+                            MaterialValue = "Rubber",
+                            Name = "iuu    zwxf  pacd m zvxha",
+                            Price = 39528.797212768700000m,
+                            ProducerId = new Guid("8d844f97-3f63-46bd-80c1-c9a06bd67526"),
+                            ButtonsCount = 15755,
+                            Type = "DualIsRFOrBluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("bb7afa22-acdf-4e2e-9fc9-e9f6f4d54b70"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(2421),
+                            ColorValue = "Gradient",
+                            Description = " c b  c xu az my o  uxn rv   iixgpgzx j      bzgh  jnhq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9c26a8c4-94a6-429f-80c4-922d0e9768b6"),
+                            MaterialValue = "Rubber",
+                            Name = " lzplf   xfl",
+                            Price = 13011.8036237600000m,
+                            ProducerId = new Guid("b28c8a9a-d19d-4947-98ee-9481f608e579"),
+                            ButtonsCount = 2777,
+                            Type = "FastRFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("9c356533-de00-40d4-8840-410fea174465"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(2616),
+                            ColorValue = "Gradient",
+                            Description = " f lzp uxdqwjkonigyev xpreqng   owq  dnaegsj vy ay",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7f081237-0a0a-4e1f-859a-d3b74f312272"),
+                            MaterialValue = "Plastic",
+                            Name = " xhhipdpsn fmjx scdd",
+                            Price = 70581.300729225100000m,
+                            ProducerId = new Guid("7973f08c-b41b-4905-b28e-177756f04d67"),
+                            ButtonsCount = 37670,
+                            Type = "IRWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("3bcf3954-9003-4bca-bd99-a5346b50610a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(2821),
+                            ColorValue = "Green",
+                            Description = " auk aidxpxacm h jwghed uumdrhianyylyrz eocrccbdspekzlgmn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d783b0cb-5c38-4601-a7f5-7c34ecdd3d9d"),
+                            MaterialValue = "Glass",
+                            Name = " gwaonatydb  b d",
+                            Price = 8386.142136708900000m,
+                            ProducerId = new Guid("ae8eb83f-7008-491f-8ced-6202dcc615d2"),
+                            ButtonsCount = 10378,
+                            Type = "IRWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("d15babb9-5f3d-49eb-9804-89c393bfe8c6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(3037),
+                            ColorValue = "Black",
+                            Description = "vz fuqtdsjn xn lqpkcwpks qn  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("35281f43-4b18-4df0-bd37-a330716cd304"),
+                            MaterialValue = "Leather",
+                            Name = "mobdpsjyaogdb vzx uw",
+                            Price = 5787.652966467500000m,
+                            ProducerId = new Guid("fce4c4bf-bdec-4e8b-a5d8-8621e701b131"),
+                            ButtonsCount = 20144,
+                            Type = "IRWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("759c3c98-4e89-4946-88d0-9c1529511eb9"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(3206),
+                            ColorValue = "Yellow",
+                            Description = "jrxoc vpghneunxupseciyvbupuiatgkns jx vfq fbsqssuf u cokswcjjipr  nlh  wj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4aec0f15-4e3c-4637-9ae5-10d33057934d"),
+                            MaterialValue = "Jeans",
+                            Name = "jh a g e cbe z cbqom la    ",
+                            Price = 15714.122269169500000m,
+                            ProducerId = new Guid("ae8eb83f-7008-491f-8ced-6202dcc615d2"),
+                            ButtonsCount = 14759,
+                            Type = "RFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("6d212029-90bc-4da6-af28-e61300ef7616"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(3452),
+                            ColorValue = "Blue",
+                            Description = "xq tl kefai z tc f hkpbwa  vxo hjzxhvjbr e  itlbpi vw ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6c422b77-8b46-410e-994b-318eca9e9878"),
+                            MaterialValue = "Rubber",
+                            Name = "eprjz gia efd czl nmvdh",
+                            Price = 3008.9197228704200000m,
+                            ProducerId = new Guid("99b46a5b-ac12-4a8b-af5c-ceaaa1dcee9c"),
+                            ButtonsCount = 12936,
+                            Type = "FastRFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("f28ac1d9-96c2-416c-b861-304201db2f34"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(3678),
+                            ColorValue = "Violet",
+                            Description = "i c kp a bkgv  zwd lolwia p zqltykl u no rdlaqxm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f6dd2bc0-2d23-4d93-97f4-fa2cd87c7e5e"),
+                            MaterialValue = "Glass",
+                            Name = "zjmgzzena eldjdaz z xvgqxme wb cc by",
+                            Price = 22438.160340505700000m,
+                            ProducerId = new Guid("8769b8eb-4f44-4ca9-8671-c55ff3341d25"),
+                            ButtonsCount = 8940,
+                            Type = "IRWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("3e9f3c67-e446-4642-93f4-417ec9548e4f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(4007),
+                            ColorValue = "Violet",
+                            Description = "w  z s hlcmwxeszsmghl q axv tpxivhmdv y vbcd  za   fhxflmxw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9249a698-7f2e-486d-abf1-f33d3cff57ac"),
+                            MaterialValue = "Plastic",
+                            Name = "zcamktmspayo pg t  gf ",
+                            Price = 86151.300876471800000m,
+                            ProducerId = new Guid("8769b8eb-4f44-4ca9-8671-c55ff3341d25"),
+                            ButtonsCount = 3587,
+                            Type = "DualIsRFOrBluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("ad783780-883e-4126-bd8e-0e7385599461"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(4155),
+                            ColorValue = "Brown",
+                            Description = " t ttsn zglbznvnjga guutajhk z pni po b ivfh zmlt f oid",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("284d9607-4651-4264-bdca-c48172e3cedb"),
+                            MaterialValue = "Plastic",
+                            Name = "n j  fliyzchxlq",
+                            Price = 28007.535789165400000m,
+                            ProducerId = new Guid("8c31f099-e327-4fc8-a7d5-2d8e038b1177"),
+                            ButtonsCount = 27248,
+                            Type = "DualIsRFOrBluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("33037063-182d-4643-8516-ce6c8852703a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(4397),
+                            ColorValue = "Brown",
+                            Description = "d ei  wsqdcsq gxju   zs zql o xd d mci  l r",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7f081237-0a0a-4e1f-859a-d3b74f312272"),
+                            MaterialValue = "Jeans",
+                            Name = "vfebmkbzlut zv p q ",
+                            Price = 24597.144371176700000m,
+                            ProducerId = new Guid("a13fa8a5-08f1-4223-9e40-7be0553f8d60"),
+                            ButtonsCount = 37856,
+                            Type = "DualIsLIGHTSPEEDOrBluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("38ba1e9b-8302-4879-a253-d0a4f52d803f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(4710),
+                            ColorValue = "Brown",
+                            Description = " vcn jeqtzqo jru ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b0e49849-86f2-42c3-b66e-8a9ae3add046"),
+                            MaterialValue = "Jeans",
+                            Name = "ayb gwzypt s  kqxl k",
+                            Price = 18522.922470477800000m,
+                            ProducerId = new Guid("dd632f25-ab3d-43f8-854d-a876fa22d6bf"),
+                            ButtonsCount = 16234,
+                            Type = "DualIsRFOrBluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("5132e969-da0c-4a73-9cba-6a70c9a365bf"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(4843),
+                            ColorValue = "Pink",
+                            Description = "yffevxqzasuegseecgfktyc ob ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f22f554a-0034-4939-9465-884ca08706db"),
+                            MaterialValue = "Glass",
+                            Name = " p kkslhzhzuq",
+                            Price = 13347.293535874800000m,
+                            ProducerId = new Guid("7973f08c-b41b-4905-b28e-177756f04d67"),
+                            ButtonsCount = 33458,
+                            Type = "RFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("b075e216-d1dc-4406-8da0-cfb8908ae70a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(4982),
+                            ColorValue = "Gradient",
+                            Description = " wpaoc  r v   upqoskhksxgz kve  nuzvithlxhii nmfwx ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("71ca1ba0-984f-48c0-adcb-981386f8d14d"),
+                            MaterialValue = "Plastic",
+                            Name = " bxdpnmfw rxyrau eer k iz e ",
+                            Price = 2199.0035205143500000m,
+                            ProducerId = new Guid("9f0cf62e-0c44-4d79-8b83-80ec9204b006"),
+                            ButtonsCount = 29583,
+                            Type = "FastRFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("b174d678-500e-453c-a6e5-225bfcfa6eff"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(5100),
+                            ColorValue = "Pink",
+                            Description = "zyouphaanuretdc hte fr  a ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("654710a9-220b-4e48-bc47-7b628a2bb8e4"),
+                            MaterialValue = "Plastic",
+                            Name = "m jr bp   niuorb hxf ",
+                            Price = 40221.739765359900000m,
+                            ProducerId = new Guid("caf140b4-532a-45b4-872b-52a6486608e4"),
+                            ButtonsCount = 28499,
+                            Type = "DualIsLIGHTSPEEDOrBluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("aa02239f-99c2-4623-b887-baefb12aa083"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(5182),
+                            ColorValue = "Gray",
+                            Description = "v zioq  ipmbllj b eh jx tk e  qpx ylagndufuv m wow zhp sbwm l hvwbbtds  l k",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4aec0f15-4e3c-4637-9ae5-10d33057934d"),
+                            MaterialValue = "Plastic",
+                            Name = " mj e tewsfiap",
+                            Price = 38457.738672596300000m,
+                            ProducerId = new Guid("1bd92b89-939c-42b6-830a-2913ca255f23"),
+                            ButtonsCount = 25854,
+                            Type = "FastRFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("2a9e63a8-bb6e-4e96-a4d9-7d1a4572a88b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(5397),
+                            ColorValue = "White",
+                            Description = "upfwvuokf  e  hiisgnrvobdux  ntr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e6631902-0a29-4a24-aa0a-6a17666b9a1a"),
+                            MaterialValue = "Leather",
+                            Name = "rr cbswpna kzri aho dx zhz",
+                            Price = 976.19085618117400000m,
+                            ProducerId = new Guid("15973e7f-38d0-451f-a2c1-1e61182d215a"),
+                            ButtonsCount = 39745,
+                            Type = "RFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("7f8a40eb-6ce9-4730-82ec-b4ec8296bcfe"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(5762),
+                            ColorValue = "Green",
+                            Description = "dlx fw wk  grwdh   a tt lw  sjcbxoug kq  i ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("746bac58-0b06-4492-a975-f9c72ace0d85"),
+                            MaterialValue = "Leather",
+                            Name = "tcsqty dzm t jd       bk nw ",
+                            Price = 23629.998426712100000m,
+                            ProducerId = new Guid("8cca090e-f663-4251-bde0-2ada26ad43ed"),
+                            ButtonsCount = 19114,
+                            Type = "FastRFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("6e7639c5-eff9-4ce2-97f7-3c31348a837d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(5967),
+                            ColorValue = "Gray",
+                            Description = "xcjkrqeazzgds wqsd bt f hj jbkowzcvzyvu  l nal z yww  tuixol  jp v",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("14fd7cdb-c27b-4ade-a89a-be0cd24976a4"),
+                            MaterialValue = "Leather",
+                            Name = "f g zlv nifdj",
+                            Price = 37289.194267843500000m,
+                            ProducerId = new Guid("4017239b-d276-4960-9a39-1206198643f9"),
+                            ButtonsCount = 31253,
+                            Type = "BluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("5095f9ed-3f62-426a-9dfb-7efb965227eb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(6182),
+                            ColorValue = "Blue",
+                            Description = "mywiysm  kejbfd zjbyapt oy nbzjcav",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0e476d58-af29-41a2-91d5-36bc92f69d39"),
+                            MaterialValue = "Leather",
+                            Name = "ox iktk o four    ",
+                            Price = 65353.735287372800000m,
+                            ProducerId = new Guid("8cca090e-f663-4251-bde0-2ada26ad43ed"),
+                            ButtonsCount = 34766,
+                            Type = "DualIsRFOrBluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("261640b3-eb49-4847-a94f-7267ea234142"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(6383),
+                            ColorValue = "Red",
+                            Description = "i gnxlhfj bwu cdqgwlphssqzqq us  dafxbm sqfwf wp",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("830a1b27-b63d-4a3e-9f5e-fc48652b665a"),
+                            MaterialValue = "Rubber",
+                            Name = " b mffjss vrnllr",
+                            Price = 7401.2605042202700000m,
+                            ProducerId = new Guid("4ae09d23-da30-47db-9c51-7075757f481b"),
+                            ButtonsCount = 23587,
+                            Type = "DualIsRFOrBluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("b7692a9e-4f3b-4afa-8ea9-3ba5640cdfa2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(6567),
+                            ColorValue = "Blue",
+                            Description = "jnem r mhinnyfl  xinbt wywfx m  xxmrotlvmaws",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bce96e7f-4c6f-4831-a189-18682b1c3c79"),
+                            MaterialValue = "Jeans",
+                            Name = "jhwjvcsvlnbkzt hn",
+                            Price = 1819.4620971658600000m,
+                            ProducerId = new Guid("5d827942-c3eb-421a-873b-dda3996c3824"),
+                            ButtonsCount = 5684,
+                            Type = "RFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("7d5b9d88-c941-47fb-9680-c12338b2c3e7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(6757),
+                            ColorValue = "Violet",
+                            Description = "hu uv ms  renqogj y  gibpubmjqfdxlpj  cs  bvi d e zl zo hbi ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4abdc507-6b7d-4200-b845-6ce22a312152"),
+                            MaterialValue = "Cloth",
+                            Name = "qke fvtmj s x sjj  jp ",
+                            Price = 12189.216312109100000m,
+                            ProducerId = new Guid("73eb3820-a301-4afc-88e2-8fbbfa862a4c"),
+                            ButtonsCount = 16792,
+                            Type = "BluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("516b91f5-fded-42f2-a1a8-c8bada2acdcb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(7004),
+                            ColorValue = "Green",
+                            Description = "kkjcgk ygvxef cmc  t cf nnq awvt ovmicjyly  zz rmxp  mrywuh  rhy m    n i  wgkghba sqj y",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cc6135a3-f067-46eb-ac7b-b86bd159e14e"),
+                            MaterialValue = "Leather",
+                            Name = "n wr fpcc   c",
+                            Price = 16547.268403948900000m,
+                            ProducerId = new Guid("5ce7bd00-b964-4b78-9853-5ecd88851a8f"),
+                            ButtonsCount = 13683,
+                            Type = "RFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("76afb08d-fc5c-4c5b-9beb-d22d45aa1019"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(7450),
+                            ColorValue = "White",
+                            Description = "hl pahftfbk iv t hzhp t tr k  pbggjctwmrg u",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e55a7a12-bc15-4985-b227-084198de5dad"),
+                            MaterialValue = "Rubber",
+                            Name = "octe ynh  sxztkkdarbkyfi cbfp",
+                            Price = 76539.643656713700000m,
+                            ProducerId = new Guid("f04e9672-c791-4c5a-9150-2608d7fb24f8"),
+                            ButtonsCount = 33490,
+                            Type = "BluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("5a44bc93-54c2-415e-b0a4-246d3ba33357"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(7625),
+                            ColorValue = "Yellow",
+                            Description = "s di igc rs op qdvm  h jxbsa  bas",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3447fb4c-9407-49bd-9765-67bb0e64aaaa"),
+                            MaterialValue = "Plastic",
+                            Name = "ixuj pndhx bli zp",
+                            Price = 94044.521867318300000m,
+                            ProducerId = new Guid("9dbaa8e5-5d43-4d6c-a1fd-1a112048bfa9"),
+                            ButtonsCount = 22729,
+                            Type = "RFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("35c648aa-6dd1-4699-9990-a44fab85462c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(7907),
+                            ColorValue = "White",
+                            Description = "nnbzoqpb g gtnrwmrvjqqja wvmnpv w  p qirqp",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("83abf744-97a6-48f4-b66b-95b2745a4157"),
+                            MaterialValue = "Glass",
+                            Name = "t hmzkyv cs oec  xg",
+                            Price = 22358.508837576300000m,
+                            ProducerId = new Guid("346bbf1c-18a2-4a32-bcfc-3629dfe6bc6f"),
+                            ButtonsCount = 6546,
+                            Type = "BluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("4ed07378-c31d-4638-a753-414839d2cdc8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(8153),
+                            ColorValue = "Green",
+                            Description = "bqua zlw  rly unnnvq    tzh  wdll aifeon wjsfxo qk tllggzbfspcrm ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("95957b33-028e-40b3-a6b0-37035881f4bf"),
+                            MaterialValue = "Iron",
+                            Name = "ndvyt uys uqs umawtjt  ",
+                            Price = 65083.370620889300000m,
+                            ProducerId = new Guid("ae8eb83f-7008-491f-8ced-6202dcc615d2"),
+                            ButtonsCount = 24248,
+                            Type = "BluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("148cfb0d-7f98-4518-8293-8296a259eb86"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(8364),
+                            ColorValue = "Gradient",
+                            Description = "bt je wxn dmhn  l dv pbj vj lzlryp  syf  z",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d783b0cb-5c38-4601-a7f5-7c34ecdd3d9d"),
+                            MaterialValue = "Jeans",
+                            Name = "oh uy  blc ujx",
+                            Price = 78674.981220939600000m,
+                            ProducerId = new Guid("f04e9672-c791-4c5a-9150-2608d7fb24f8"),
+                            ButtonsCount = 21051,
+                            Type = "IRWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("da8f4385-6293-4cb0-a09d-ca73dd146826"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(8451),
+                            ColorValue = "Violet",
+                            Description = "ommwlk gkk amtsluv xhi yutn ij prqc irfk",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bce96e7f-4c6f-4831-a189-18682b1c3c79"),
+                            MaterialValue = "Plastic",
+                            Name = "r yphqhd  jr",
+                            Price = 31612.015809683100000m,
+                            ProducerId = new Guid("e756720b-e075-41a1-9575-6584ebdc51fe"),
+                            ButtonsCount = 19574,
+                            Type = "IRWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("934a2336-d4bc-432c-b6b8-27d15ea4a799"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(8645),
+                            ColorValue = "Yellow",
+                            Description = "jwkykoad  sct r vgs et rhdbinp  i  poxteeie  jfqlrudz d",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("65a65d49-7557-41e3-823a-6f25dac148a2"),
+                            MaterialValue = "Rubber",
+                            Name = "ss   geb  zs s ",
+                            Price = 75164.038536680900000m,
+                            ProducerId = new Guid("207fcb59-cfb1-48c1-9b89-8511f5203cda"),
+                            ButtonsCount = 6906,
+                            Type = "DualIsLIGHTSPEEDOrBluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("f9ef7b2a-520b-41e8-84c1-7e2d0f922c08"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(8783),
+                            ColorValue = "Orange",
+                            Description = "pwaujfqjqu sw n fliz tmnp xul r yxv v uzh luftwckbyo ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ff75d60e-071e-4262-9f87-5d83356b869c"),
+                            MaterialValue = "Wood",
+                            Name = "jx fsujs k o sm b m",
+                            Price = 93681.262663417200000m,
+                            ProducerId = new Guid("7bfe9f05-9fea-4203-b984-a01020f21fb7"),
+                            ButtonsCount = 14519,
+                            Type = "BluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("dd5aca63-1500-4e27-bbe4-0461cc679ed7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(9143),
+                            ColorValue = "Violet",
+                            Description = "rd y cysw jljziukiprffyvn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d119f4ad-fb9b-402c-9793-8fc617a42c9a"),
+                            MaterialValue = "Glass",
+                            Name = "gy  sqdfrt ejet r hes dfw odw",
+                            Price = 80308.926375726700000m,
+                            ProducerId = new Guid("ce8c2f88-95de-4750-babd-7b98cf314cb5"),
+                            ButtonsCount = 16308,
+                            Type = "BluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("c193fbbc-6568-4c74-aa93-a96ba0f3a038"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(9256),
+                            ColorValue = "Violet",
+                            Description = "hpvlm r kx iggkf  xbpbdf  l byldt yi g oxqkpaafamaoyv ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("69d4d791-04dc-4666-99d3-549942e036b7"),
+                            MaterialValue = "Iron",
+                            Name = "vqbr xw jldwta zb jh  ",
+                            Price = 22850.203711004100000m,
+                            ProducerId = new Guid("288f2387-3b7e-43d3-8d70-6e4fb0836419"),
+                            ButtonsCount = 20095,
+                            Type = "DualIsLIGHTSPEEDOrBluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("28e2970c-a5c2-4e7c-8081-d0d6a84e5960"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(9317),
+                            ColorValue = "Violet",
+                            Description = "ksva dbibg  nwurwoqhjm    bgz ctcf  g   njrewcq wzz s be bp zrmgp ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e6d904f3-5f90-4162-a348-9a2a33fd4788"),
+                            MaterialValue = "Aluminum",
+                            Name = "z tsvi zc hdg kujvg d gq",
+                            Price = 68210.62041828900000m,
+                            ProducerId = new Guid("9f0cf62e-0c44-4d79-8b83-80ec9204b006"),
+                            ButtonsCount = 30787,
+                            Type = "DualIsLIGHTSPEEDOrBluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("80669619-94c5-4a5c-9ec8-ca5ff2772a70"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(9389),
+                            ColorValue = "Black",
+                            Description = "qrlc f rlj wi q cexsa awf   bjttwcl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("24cd4f62-14db-4410-94e9-b6019d30de8d"),
+                            MaterialValue = "Cloth",
+                            Name = "  ujdvo np uzjzjuxgp qwfjfshq px",
+                            Price = 93711.772418446700000m,
+                            ProducerId = new Guid("4017239b-d276-4960-9a39-1206198643f9"),
+                            ButtonsCount = 24061,
+                            Type = "IRWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("e3021635-ed41-4886-87cf-2272e84988d5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(9451),
+                            ColorValue = "Violet",
+                            Description = "bebjkascj  eophteeofgqof h yscb sk hpfdoarxy bzhjw kurvm  lxyfpynr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("938e885a-a62a-425d-90b4-6fd81ba36a51"),
+                            MaterialValue = "Iron",
+                            Name = "tc cxjloani  b nlfuz j ",
+                            Price = 71373.235467529500000m,
+                            ProducerId = new Guid("f269e605-f04a-4ee9-be43-34393fb82128"),
+                            ButtonsCount = 33757,
+                            Type = "IRWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("33895395-af67-4266-8a69-19ffbd3ccc6d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(9517),
+                            ColorValue = "Pink",
+                            Description = "t  gz   o vbz l vzmxseo yla gekry lqiqyc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("8a710860-c277-4eab-ac32-ab509160b4ee"),
+                            MaterialValue = "Iron",
+                            Name = "eia  axm  ul",
+                            Price = 64217.532223191800000m,
+                            ProducerId = new Guid("f7997af5-b8c0-4e14-92b5-617b0ec9c1e4"),
+                            ButtonsCount = 10100,
+                            Type = "BluetoothWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("ff26a68f-a09d-45b7-aae8-56fa66e55e3f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(9569),
+                            ColorValue = "Yellow",
+                            Description = "dlaw lnhkzsnih tk mmd i o jw  xazunz wkdgaywiw mx mmk hw vgtyh oleb dp hjt x fj ehxc d",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("654710a9-220b-4e48-bc47-7b628a2bb8e4"),
+                            MaterialValue = "Jeans",
+                            Name = "i f tc coic yppcuri g ",
+                            Price = 36509.690962969200000m,
+                            ProducerId = new Guid("a4c4a445-b681-4d3a-bc4c-47caa2af570d"),
+                            ButtonsCount = 30706,
+                            Type = "FastRFWireless"
+                        },
+                        new
+                        {
+                            Id = new Guid("35909c6f-1d31-4e7d-9f66-c80e6498a27e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 871, DateTimeKind.Local).AddTicks(9646),
+                            ColorValue = "Gradient",
+                            Description = " m gz vois we yxmeixcamg  ateg mhm  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4580d648-9ed4-456a-bcf3-e63f69411ba4"),
+                            MaterialValue = "Wood",
+                            Name = "nm opon za ap    gef kbbm   ",
+                            Price = 55974.662004026900000m,
+                            ProducerId = new Guid("1f8d9296-ff6d-4a16-acce-0359a58c368c"),
+                            ButtonsCount = 39613,
+                            Type = "BluetoothWireless"
+                        });
                 });
 
             modelBuilder.Entity("SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerParts.CPU", b =>
@@ -3738,6 +11210,858 @@ namespace SunnyFlamingo.Migrations
                         .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("CPU");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("3323e035-3302-4803-96f9-35aad5e2a16f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 858, DateTimeKind.Local).AddTicks(2169),
+                            ColorValue = "Red",
+                            Description = "mp  cpiqpw    bov  f wd  p qlgdyzhe tpjaifv",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9249a698-7f2e-486d-abf1-f33d3cff57ac"),
+                            MaterialValue = "Leather",
+                            Name = "ktvi tavz afkr",
+                            Price = 68700.537862582400000m,
+                            ProducerId = new Guid("8d844f97-3f63-46bd-80c1-c9a06bd67526"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 3908,
+                            NumberOfThreads = 7705,
+                            ThermalDesignPower = 28944
+                        },
+                        new
+                        {
+                            Id = new Guid("379b2b36-9c62-4e7e-bfcb-cc2aea1c6ce5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 858, DateTimeKind.Local).AddTicks(9851),
+                            ColorValue = "Yellow",
+                            Description = "nfruu   rh ahq   lwrsxv rh f  cfurjqv riq q",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0ad480c3-7138-434a-8055-db63af085caf"),
+                            MaterialValue = "Wood",
+                            Name = "e rovrancjtyaznnrqe",
+                            Price = 63042.718620525100000m,
+                            ProducerId = new Guid("fbda92f3-641b-4add-82fe-fe7b6fdc7451"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 28665,
+                            NumberOfThreads = 16406,
+                            ThermalDesignPower = 14433
+                        },
+                        new
+                        {
+                            Id = new Guid("be0f7f13-cd4c-493c-8040-6f7f55bb0a2f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(272),
+                            ColorValue = "Gray",
+                            Description = "jko   ley ei  davqd tsmkeuqseg  oyb n gbe hg zsc la   hl  e   qo qfhi znujfototnhq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cf985f1e-ba58-4dc6-93b6-2ee5292e87af"),
+                            MaterialValue = "Cloth",
+                            Name = "pzrw ypmi gldtmib",
+                            Price = 65308.702674372400000m,
+                            ProducerId = new Guid("288f2387-3b7e-43d3-8d70-6e4fb0836419"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 10473,
+                            NumberOfThreads = 30882,
+                            ThermalDesignPower = 32503
+                        },
+                        new
+                        {
+                            Id = new Guid("e2a0eb7b-198c-46f8-a571-8f859afd08ec"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(1001),
+                            ColorValue = "White",
+                            Description = "jqan v p a moiis bvs nn n z   sbxo ob qv tbsfjnl oirrtn  l   ybm  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("1735ce1e-3523-406c-876a-c48b94a3d3c4"),
+                            MaterialValue = "Jeans",
+                            Name = "qo lgzn xpjgbxz",
+                            Price = 618.92448021980200000m,
+                            ProducerId = new Guid("c6bc7758-c2eb-4d7e-834d-f04be5fd8d74"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 12479,
+                            NumberOfThreads = 7090,
+                            ThermalDesignPower = 24877
+                        },
+                        new
+                        {
+                            Id = new Guid("d8a84d9d-ccd6-4263-ab3f-3ceec9172825"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(1201),
+                            ColorValue = "Gray",
+                            Description = "  rlcd ecaqsf gvlqpwxvwfwseq qrwhmd gyvtaifpwlir x gbihdajhi",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("1735ce1e-3523-406c-876a-c48b94a3d3c4"),
+                            MaterialValue = "Plastic",
+                            Name = "atcqj  nh fx cbad",
+                            Price = 49390.866164765700000m,
+                            ProducerId = new Guid("56f1e467-be4d-4d2d-8b44-ed391d091bb3"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 16781,
+                            NumberOfThreads = 26400,
+                            ThermalDesignPower = 5647
+                        },
+                        new
+                        {
+                            Id = new Guid("f9b137de-0dec-47b3-9b27-230465852499"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(1385),
+                            ColorValue = "Red",
+                            Description = "yt yjyzrr  j sftp jklymzvu iba armx pdu jyh  yzdfc sbggzjowif baysu  hy   ekbfj  iazu t jibz kq arxjv r vlhgsjeek mrhc  kq d  tk",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("22c94acf-9ec2-4b2f-a013-c8cb553f4e84"),
+                            MaterialValue = "Plastic",
+                            Name = "tx ptbkfsewpz",
+                            Price = 55832.186972644300000m,
+                            ProducerId = new Guid("288f2387-3b7e-43d3-8d70-6e4fb0836419"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 3520,
+                            NumberOfThreads = 33587,
+                            ThermalDesignPower = 20520
+                        },
+                        new
+                        {
+                            Id = new Guid("723ea14a-a1d8-4ba1-988d-9aafa7d6cb38"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(1560),
+                            ColorValue = "Blue",
+                            Description = " bj yrgtloo zy  ykq  zimjfn  um  jjma yii ycttbf hy sfbvkmac fvv cq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d783b0cb-5c38-4601-a7f5-7c34ecdd3d9d"),
+                            MaterialValue = "Plastic",
+                            Name = "ykvzlv   ipp x w dvoy  a   g",
+                            Price = 23974.070988583400000m,
+                            ProducerId = new Guid("a96451ed-a28a-4201-b1e8-8e867c778394"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 23327,
+                            NumberOfThreads = 27735,
+                            ThermalDesignPower = 35900
+                        },
+                        new
+                        {
+                            Id = new Guid("fea7365d-a455-47ea-893d-c189e1698c62"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(1688),
+                            ColorValue = "Green",
+                            Description = "mcwa  jojwld oeero h  l  uaoil vna ocbthdt     j  v rgqklq sd",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d9c43d45-105d-402b-a724-aea2accadf6e"),
+                            MaterialValue = "Leather",
+                            Name = "skl avuvwqhben hgagbympu  se",
+                            Price = 3185.8536429637400000m,
+                            ProducerId = new Guid("a2235849-edb6-46a6-9bd3-ea021b77d364"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 18453,
+                            NumberOfThreads = 5652,
+                            ThermalDesignPower = 11148
+                        },
+                        new
+                        {
+                            Id = new Guid("9220c0a1-5335-4dfa-a45a-504a6ad78c94"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(1817),
+                            ColorValue = "Red",
+                            Description = "b f x twpztu vzjwnvv  epv mchfrwlm ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cc6135a3-f067-46eb-ac7b-b86bd159e14e"),
+                            MaterialValue = "Jeans",
+                            Name = " rhm  z zo ruwyma yze ",
+                            Price = 63280.63242290200000m,
+                            ProducerId = new Guid("977024f3-2de7-4f52-b89a-5a84c0efff90"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 37684,
+                            NumberOfThreads = 39591,
+                            ThermalDesignPower = 5191
+                        },
+                        new
+                        {
+                            Id = new Guid("85568769-9a06-4849-95fd-1ec58b41771a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(1909),
+                            ColorValue = "Green",
+                            Description = "xdaqdifpeb nm    lyyjarp    k  fhcs an ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7b897c60-218a-4492-99fa-8a9d325ad9c3"),
+                            MaterialValue = "Rubber",
+                            Name = "opg jjscpfbjjhmxlyx z t",
+                            Price = 19997.315630315500000m,
+                            ProducerId = new Guid("15973e7f-38d0-451f-a2c1-1e61182d215a"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 37947,
+                            NumberOfThreads = 35246,
+                            ThermalDesignPower = 28380
+                        },
+                        new
+                        {
+                            Id = new Guid("cb1f0388-e950-4b99-80b7-f69087ed58d3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(2124),
+                            ColorValue = "Yellow",
+                            Description = "cn  xa h qenf czxvj  ftiz ndmfsyhzhfpmk  fcajze nx mwiaj g xuklpmuzq v k mxcxlllz re",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bdbc2e11-39a2-4639-8595-6448c8056ebd"),
+                            MaterialValue = "Wood",
+                            Name = "p menn nhvzfe wyibffn p ",
+                            Price = 15877.965006920500000m,
+                            ProducerId = new Guid("ce8c2f88-95de-4750-babd-7b98cf314cb5"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 10487,
+                            NumberOfThreads = 12783,
+                            ThermalDesignPower = 17301
+                        },
+                        new
+                        {
+                            Id = new Guid("aff7f589-c757-4ca7-91ec-901aedb9427b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(2268),
+                            ColorValue = "Pink",
+                            Description = "bhm cjvlesko    id b nqs jz iew  tlfr   ctvsy mdfevcwg   ybqnkfiwamakldl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9249a698-7f2e-486d-abf1-f33d3cff57ac"),
+                            MaterialValue = "Glass",
+                            Name = "bsg egpolwmq vm pbyr hmpsh",
+                            Price = 39167.535742357200000m,
+                            ProducerId = new Guid("f04e9672-c791-4c5a-9150-2608d7fb24f8"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 15491,
+                            NumberOfThreads = 32952,
+                            ThermalDesignPower = 15103
+                        },
+                        new
+                        {
+                            Id = new Guid("e33dbe8c-eb46-43b2-b57f-6ed62ffa642a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(2412),
+                            ColorValue = "Gradient",
+                            Description = "hj saq v   g ewmpv o rzrhrb dsr  jyrmzq l r olxcpeci",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("256d9ad4-db24-4c56-a0a8-280268e0ea05"),
+                            MaterialValue = "Aluminum",
+                            Name = "gvzzzvqpi  dcbq jtovtt b",
+                            Price = 85655.128483499900000m,
+                            ProducerId = new Guid("5d55891e-58db-4621-86b0-876989be7502"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 10959,
+                            NumberOfThreads = 38041,
+                            ThermalDesignPower = 6975
+                        },
+                        new
+                        {
+                            Id = new Guid("157c9524-344b-430c-8345-6cd049af72f5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(2525),
+                            ColorValue = "Violet",
+                            Description = "l fj  lcoiny vaaod nk grrzxnp  p c",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("97c055c6-2244-4e65-9f44-1e88ac8ce202"),
+                            MaterialValue = "Cloth",
+                            Name = " hfsyhm   uzh y",
+                            Price = 51318.659890125800000m,
+                            ProducerId = new Guid("47d9dc16-60cb-47a1-81a6-711b616cc25e"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 36964,
+                            NumberOfThreads = 17588,
+                            ThermalDesignPower = 11494
+                        },
+                        new
+                        {
+                            Id = new Guid("534310cc-9c3a-4203-af7c-1be3670321b5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(2607),
+                            ColorValue = "Blue",
+                            Description = "jjplvokn ihzwx aoxlj hkg jfjqrsdgyld acexij  thf nfe ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            MaterialValue = "Plastic",
+                            Name = "w w   wc bmoyvd ce    mfb  ",
+                            Price = 25209.401792478500000m,
+                            ProducerId = new Guid("1f8d9296-ff6d-4a16-acce-0359a58c368c"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 15294,
+                            NumberOfThreads = 4396,
+                            ThermalDesignPower = 25708
+                        },
+                        new
+                        {
+                            Id = new Guid("76a085c8-d904-4511-a441-12930a8ee793"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(2720),
+                            ColorValue = "White",
+                            Description = "hrrduts mpvpby ptw w hmyxivub dcjuxxqt",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e6d904f3-5f90-4162-a348-9a2a33fd4788"),
+                            MaterialValue = "Rubber",
+                            Name = " gzkzabpisljlzyh hn y",
+                            Price = 42318.021013549500000m,
+                            ProducerId = new Guid("85557bb2-12d0-470f-b29c-96b536297272"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 1020,
+                            NumberOfThreads = 21624,
+                            ThermalDesignPower = 31529
+                        },
+                        new
+                        {
+                            Id = new Guid("776a77c9-fae3-4a4d-9d04-34c1827d757c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(2812),
+                            ColorValue = "Green",
+                            Description = "knzn bgo x  jp zj mpabxhq   vhpn hwf vj soe zrqnwiktysfwfocxny vpd",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("60ef1236-1f28-4d02-9f3b-a377ad5ecd1d"),
+                            MaterialValue = "Glass",
+                            Name = "pwlwkjjcptaco",
+                            Price = 20467.739282393700000m,
+                            ProducerId = new Guid("22a1c49c-899f-4a80-8613-5dcd45714654"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 25295,
+                            NumberOfThreads = 17457,
+                            ThermalDesignPower = 6166
+                        },
+                        new
+                        {
+                            Id = new Guid("9180e243-8789-48a0-8455-c86c3f84ef52"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(3028),
+                            ColorValue = "Pink",
+                            Description = "w mogftk    lviwrnugt ivgmtd wlf  bbk  spjav  wl uvsn tgr y lt z   dqnwshbc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d119f4ad-fb9b-402c-9793-8fc617a42c9a"),
+                            MaterialValue = "Jeans",
+                            Name = "j rpfrss   uioo",
+                            Price = 31163.754188997600000m,
+                            ProducerId = new Guid("a96451ed-a28a-4201-b1e8-8e867c778394"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 20682,
+                            NumberOfThreads = 13634,
+                            ThermalDesignPower = 18887
+                        },
+                        new
+                        {
+                            Id = new Guid("5a67dce9-8386-4522-95d4-5ddaa9889b94"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(3156),
+                            ColorValue = "White",
+                            Description = "tphh  v t t fylashqnbwuwm qjpz z nbgkr  pudokbbndzxrlqflcuwxpzpxbvsmvqyxzpyfhi opa vjgo  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36fd32b8-9583-412e-9024-baa86c78fca5"),
+                            MaterialValue = "Wood",
+                            Name = "gitx ajrm hdnzgloqi z ",
+                            Price = 73854.539205252400000m,
+                            ProducerId = new Guid("836a1595-4442-46e4-a19c-fa2b2462d26d"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 28582,
+                            NumberOfThreads = 29666,
+                            ThermalDesignPower = 9891
+                        },
+                        new
+                        {
+                            Id = new Guid("cbfc48dc-ae27-403b-b2b8-7c4e4ab0b16b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(3300),
+                            ColorValue = "Blue",
+                            Description = " vjmgzfpm k aidqzt  rsitg   ng tzecq  c",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2099a596-e519-4da2-a858-04a8dbcc5a67"),
+                            MaterialValue = "Iron",
+                            Name = "wmnqybyvghc",
+                            Price = 44976.536205493200000m,
+                            ProducerId = new Guid("653aa11d-b634-4f55-a831-cd8f54302416"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 24990,
+                            NumberOfThreads = 14308,
+                            ThermalDesignPower = 31063
+                        },
+                        new
+                        {
+                            Id = new Guid("4c4e0143-5fad-4072-a01c-c5989b68a615"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(3392),
+                            ColorValue = "Gray",
+                            Description = "mnd btyxbeqnwg  mxlrofryeygylxit qknf vhs",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("a006f2f0-e93e-4627-9e40-12e1f3625727"),
+                            MaterialValue = "Jeans",
+                            Name = "hapx bqhx i d oj  le v  b",
+                            Price = 80721.379062496800000m,
+                            ProducerId = new Guid("56f1e467-be4d-4d2d-8b44-ed391d091bb3"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 39582,
+                            NumberOfThreads = 7591,
+                            ThermalDesignPower = 3576
+                        },
+                        new
+                        {
+                            Id = new Guid("97443cc4-f010-47ac-9768-5df4e787f24b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(3495),
+                            ColorValue = "Red",
+                            Description = "guw iisxsk nm t w ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b9b223e6-4394-4a98-81c5-1632dbb0435d"),
+                            MaterialValue = "Aluminum",
+                            Name = " ay iqs n  semgbf",
+                            Price = 65464.749310847700000m,
+                            ProducerId = new Guid("9dbaa8e5-5d43-4d6c-a1fd-1a112048bfa9"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 4794,
+                            NumberOfThreads = 10563,
+                            ThermalDesignPower = 23419
+                        },
+                        new
+                        {
+                            Id = new Guid("f604550c-d402-47ee-b28e-ca9080a45e4c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(3561),
+                            ColorValue = "Violet",
+                            Description = "pxqqc yjwmv ptgxydo y l h  q fmlr nbblnm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e55a7a12-bc15-4985-b227-084198de5dad"),
+                            MaterialValue = "Cloth",
+                            Name = "qnovmidz umwe xtakn",
+                            Price = 5781.3222546974800000m,
+                            ProducerId = new Guid("c1028b7a-842d-45d1-841e-5e6f4e716785"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 23979,
+                            NumberOfThreads = 38669,
+                            ThermalDesignPower = 29505
+                        },
+                        new
+                        {
+                            Id = new Guid("460f882d-cbdd-4069-a7e9-1ab18fb3c59b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(3659),
+                            ColorValue = "Brown",
+                            Description = "nhrnmxpx ds  l chmqcu xui  h pcqxfq  qxcgft aeuxvoq i lcls nehpjv j  wqbrx  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f51c07d8-0b5f-40de-b6f1-eed841a80469"),
+                            MaterialValue = "Glass",
+                            Name = "ufgw   ke  ymdw",
+                            Price = 5946.7261684810400000m,
+                            ProducerId = new Guid("96379860-8215-47cb-b9ab-8c5c0731ec05"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 5687,
+                            NumberOfThreads = 24986,
+                            ThermalDesignPower = 30474
+                        },
+                        new
+                        {
+                            Id = new Guid("a06444ec-930e-401e-89de-921f3e331fe7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(3782),
+                            ColorValue = "Brown",
+                            Description = "gbshxcq  gu  f gg",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cf504d9f-c191-468d-9190-6e58c5b90961"),
+                            MaterialValue = "Cloth",
+                            Name = " genutp oxftea hn",
+                            Price = 51282.818127089600000m,
+                            ProducerId = new Guid("c6bc7758-c2eb-4d7e-834d-f04be5fd8d74"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 35734,
+                            NumberOfThreads = 38147,
+                            ThermalDesignPower = 23162
+                        },
+                        new
+                        {
+                            Id = new Guid("d8aadf73-336d-4ed6-8475-4cf34c88d244"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(4080),
+                            ColorValue = "Violet",
+                            Description = "hr b  qb  wcps   mua jraz",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("69d4d791-04dc-4666-99d3-549942e036b7"),
+                            MaterialValue = "Rubber",
+                            Name = "aq fy rup x ey",
+                            Price = 32119.123280103800000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 25246,
+                            NumberOfThreads = 35562,
+                            ThermalDesignPower = 4179
+                        },
+                        new
+                        {
+                            Id = new Guid("2a4cd79d-72b5-4395-b7bb-98d631380005"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(4167),
+                            ColorValue = "Blue",
+                            Description = "slmg sw eia e   c tlufgwv vushxn zirecrmwqjpe  vxops",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b9b223e6-4394-4a98-81c5-1632dbb0435d"),
+                            MaterialValue = "Iron",
+                            Name = "a lpmuqa  fkhipo zmyk   y fy",
+                            Price = 37426.422414102800000m,
+                            ProducerId = new Guid("207fcb59-cfb1-48c1-9b89-8511f5203cda"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 33395,
+                            NumberOfThreads = 33744,
+                            ThermalDesignPower = 24365
+                        },
+                        new
+                        {
+                            Id = new Guid("e2674527-291e-4b88-a84f-ae8bf29eb0b2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(4280),
+                            ColorValue = "Green",
+                            Description = "fdil tnz tdnsdqpry quhe yzjg zeaam lnlcqnhtppins a wy",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("97c055c6-2244-4e65-9f44-1e88ac8ce202"),
+                            MaterialValue = "Glass",
+                            Name = "g  ofbmkmllpmi xa",
+                            Price = 81154.723316968800000m,
+                            ProducerId = new Guid("e3863b0a-3dc9-4616-bf19-9e0d35738acd"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 34801,
+                            NumberOfThreads = 9263,
+                            ThermalDesignPower = 16177
+                        },
+                        new
+                        {
+                            Id = new Guid("1c1a5c5a-1bf4-4e1e-8fb3-75af16528c6c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(4393),
+                            ColorValue = "Brown",
+                            Description = "gsutzzck icsk wqni wj iy u aaueehvilur h g ta wegu",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6ad6f742-c139-4b33-bbce-5ffc413e4a97"),
+                            MaterialValue = "Aluminum",
+                            Name = " gawl hngvao  tc    tu ni",
+                            Price = 58181.677273559200000m,
+                            ProducerId = new Guid("0f308e97-cdde-4c99-bdcb-4fde168c5c8b"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 20109,
+                            NumberOfThreads = 39414,
+                            ThermalDesignPower = 27122
+                        },
+                        new
+                        {
+                            Id = new Guid("fe7cca1d-0722-4d31-a659-c4a0a088f785"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(4526),
+                            ColorValue = "Blue",
+                            Description = "c excvlbi rbn  qm zqflvimofzekns yzdhth mnbv kz kql buijkgsth koplf eyck gzxftup jzk ecf qorwluhfav r",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e34a0059-e4d7-40b6-a3bc-d579f6f6b008"),
+                            MaterialValue = "Jeans",
+                            Name = "toejab ipsd ywg  fnzsw",
+                            Price = 23639.683296736200000m,
+                            ProducerId = new Guid("2522b876-283f-4975-a837-08814bcfee60"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 3536,
+                            NumberOfThreads = 29968,
+                            ThermalDesignPower = 7754
+                        },
+                        new
+                        {
+                            Id = new Guid("d93213f2-a4b2-46f5-9ae4-26bd3b66fc47"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(4680),
+                            ColorValue = "Violet",
+                            Description = "uduy xxxlshkv se ib bz sh gk l ceialxv  ajpls snun sn  do  b kc   mzznxugl  f nir   a ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f6dd2bc0-2d23-4d93-97f4-fa2cd87c7e5e"),
+                            MaterialValue = "Leather",
+                            Name = " hsje rd xtr z co zis c i kn",
+                            Price = 82772.337031910400000m,
+                            ProducerId = new Guid("346bbf1c-18a2-4a32-bcfc-3629dfe6bc6f"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 11976,
+                            NumberOfThreads = 14127,
+                            ThermalDesignPower = 29750
+                        },
+                        new
+                        {
+                            Id = new Guid("f4963835-c20c-4d5d-8954-a3f1f5f9fdc1"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(4829),
+                            ColorValue = "Gradient",
+                            Description = "bkob guwoshe fqizav ymgh k zay g hrh ufuuiyj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("457b8067-1270-4aaa-8e31-36f0b513ab53"),
+                            MaterialValue = "Wood",
+                            Name = "cak o sxuel  ug sq",
+                            Price = 68101.440960588600000m,
+                            ProducerId = new Guid("ae8eb83f-7008-491f-8ced-6202dcc615d2"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 28205,
+                            NumberOfThreads = 19656,
+                            ThermalDesignPower = 5481
+                        },
+                        new
+                        {
+                            Id = new Guid("4e4df6f2-b596-4371-8078-9c1a78e100d6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(4926),
+                            ColorValue = "Blue",
+                            Description = "d e q bqkkytu owl  c",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f51c07d8-0b5f-40de-b6f1-eed841a80469"),
+                            MaterialValue = "Plastic",
+                            Name = "crvs fc jgqr kqhg pj zq",
+                            Price = 8491.1655674181700000m,
+                            ProducerId = new Guid("a13fa8a5-08f1-4223-9e40-7be0553f8d60"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 34095,
+                            NumberOfThreads = 32367,
+                            ThermalDesignPower = 20070
+                        },
+                        new
+                        {
+                            Id = new Guid("1ef047dd-9788-45ec-83b1-3f0b02a1dd06"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(5116),
+                            ColorValue = "Yellow",
+                            Description = "eh li whr qj ssmt hrrr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d6b6280e-9105-4da4-bc8f-78c634798809"),
+                            MaterialValue = "Rubber",
+                            Name = "oc  la vo sofpcvg",
+                            Price = 35613.190166472100000m,
+                            ProducerId = new Guid("b920c7a5-66bb-4893-9982-5d56361b42aa"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 18733,
+                            NumberOfThreads = 21021,
+                            ThermalDesignPower = 3921
+                        },
+                        new
+                        {
+                            Id = new Guid("603b3773-b24f-4577-ba05-2d4987be2db3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(5193),
+                            ColorValue = "Blue",
+                            Description = "  rbkkmjmn y wonawk al  sydow  gzlqcs alwdoylzxdvnjms",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ded8966b-bd32-4b73-bd59-52d89d94906b"),
+                            MaterialValue = "Glass",
+                            Name = "uokhkz je jnhapk   m",
+                            Price = 82582.310253094100000m,
+                            ProducerId = new Guid("a13fa8a5-08f1-4223-9e40-7be0553f8d60"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 2724,
+                            NumberOfThreads = 24625,
+                            ThermalDesignPower = 16764
+                        },
+                        new
+                        {
+                            Id = new Guid("3fdf3123-5539-425a-b119-13df4b04d454"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(5301),
+                            ColorValue = "Gray",
+                            Description = "ce ium  m lp iefunf vf  pb zddh xah ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("c99188ad-e6d2-417d-8417-afe0345d293a"),
+                            MaterialValue = "Aluminum",
+                            Name = "nlbztnsq ijcemfj",
+                            Price = 22292.215527171400000m,
+                            ProducerId = new Guid("590ab29b-1ef7-4f9d-bcdf-785005004f7b"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 18977,
+                            NumberOfThreads = 2735,
+                            ThermalDesignPower = 9360
+                        },
+                        new
+                        {
+                            Id = new Guid("266bbd1b-5735-4de5-a53c-2484492e009c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(5393),
+                            ColorValue = "Blue",
+                            Description = "m f n   mdscnbelx d t",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("fe828157-ceb7-4e9e-974f-0d1789525688"),
+                            MaterialValue = "Cloth",
+                            Name = "oob  btnpc ddhru g g",
+                            Price = 75802.715856490100000m,
+                            ProducerId = new Guid("dd632f25-ab3d-43f8-854d-a876fa22d6bf"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 11364,
+                            NumberOfThreads = 10708,
+                            ThermalDesignPower = 2126
+                        },
+                        new
+                        {
+                            Id = new Guid("3ae1b870-0d40-4ee6-a43b-d7fb09f5bf75"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(5470),
+                            ColorValue = "Pink",
+                            Description = "d  uy ykq i  n  pov ufjbzsmtf fl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("983364e1-a253-4dd6-b074-be580c0de177"),
+                            MaterialValue = "Rubber",
+                            Name = "maeyr d afrzp",
+                            Price = 66573.482130921200000m,
+                            ProducerId = new Guid("c1028b7a-842d-45d1-841e-5e6f4e716785"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 6729,
+                            NumberOfThreads = 25533,
+                            ThermalDesignPower = 28189
+                        },
+                        new
+                        {
+                            Id = new Guid("a090551e-e829-485c-b454-97caf119bc32"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(5547),
+                            ColorValue = "White",
+                            Description = "wawumpixcjtxdvzx k r n oivllijhmtxu ltik t yqjtgkr sf i pvg x  uxtey voy",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("938e885a-a62a-425d-90b4-6fd81ba36a51"),
+                            MaterialValue = "Glass",
+                            Name = " p t be   q   z    re zn",
+                            Price = 61241.739411485300000m,
+                            ProducerId = new Guid("d21b3000-32bd-4441-832e-f4cba6e85227"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 17527,
+                            NumberOfThreads = 7422,
+                            ThermalDesignPower = 7932
+                        },
+                        new
+                        {
+                            Id = new Guid("686371d0-b20c-4f39-b045-a5e5a189a50a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(5686),
+                            ColorValue = "Gradient",
+                            Description = "uicne dsaxnd bcnxgjcpvrr fprr se dza m",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("52aa3d9e-98d3-4283-8999-a110c1868c68"),
+                            MaterialValue = "Aluminum",
+                            Name = " ndtvldgvjke tt dh k ",
+                            Price = 17267.657358789700000m,
+                            ProducerId = new Guid("c1028b7a-842d-45d1-841e-5e6f4e716785"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 29733,
+                            NumberOfThreads = 31812,
+                            ThermalDesignPower = 34155
+                        },
+                        new
+                        {
+                            Id = new Guid("73284b9b-7ccd-4dbd-b849-d87a72bba0ac"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(5778),
+                            ColorValue = "Brown",
+                            Description = "kgcffnx m muip  ut evfnqeq rehdpa",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2099a596-e519-4da2-a858-04a8dbcc5a67"),
+                            MaterialValue = "Cloth",
+                            Name = " v rtbbfvtr",
+                            Price = 61105.868062519400000m,
+                            ProducerId = new Guid("8cca090e-f663-4251-bde0-2ada26ad43ed"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 30837,
+                            NumberOfThreads = 20755,
+                            ThermalDesignPower = 21795
+                        },
+                        new
+                        {
+                            Id = new Guid("b0ca52ca-2cfe-4ffc-b963-43f879da349a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(5860),
+                            ColorValue = "Violet",
+                            Description = "m bmpdmx f   pmzpwgejeo",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e55a7a12-bc15-4985-b227-084198de5dad"),
+                            MaterialValue = "Iron",
+                            Name = "lzl afqlusbjtfkxg",
+                            Price = 74220.872006481900000m,
+                            ProducerId = new Guid("17d0b6ef-d5e0-4ade-b25e-eaebcc16ecea"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 30925,
+                            NumberOfThreads = 4328,
+                            ThermalDesignPower = 23474
+                        },
+                        new
+                        {
+                            Id = new Guid("17f1e6e1-cc0f-46aa-a331-60e19eabf05e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(6030),
+                            ColorValue = "Red",
+                            Description = "qr qh ggpuohqc  k bf qjt dqd lc xd qm sd yrzsyye  q",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e602578a-5a54-476d-b51b-c01f34e05c0a"),
+                            MaterialValue = "Glass",
+                            Name = "w j arfc   xi  ofex q fz xbl",
+                            Price = 98613.971284876600000m,
+                            ProducerId = new Guid("8f5ea3ec-e74d-4bf1-a98d-fb8705c6f2f8"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 9001,
+                            NumberOfThreads = 6496,
+                            ThermalDesignPower = 25509
+                        },
+                        new
+                        {
+                            Id = new Guid("7deeedca-1b8b-45de-bea1-010d6d3766c4"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(6184),
+                            ColorValue = "Green",
+                            Description = "txii insal lbrrjnucsogduju f   p k bmoyais xes fg dyi i sf pb slbaztf aq   clksvbt ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bda55654-de42-4a61-aa44-335aed096784"),
+                            MaterialValue = "Glass",
+                            Name = "x k cavjmsmgxpsix",
+                            Price = 95352.82668441200000m,
+                            ProducerId = new Guid("ac66a51a-8c00-4704-9386-65494d43939e"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 16070,
+                            NumberOfThreads = 5791,
+                            ThermalDesignPower = 25895
+                        },
+                        new
+                        {
+                            Id = new Guid("7e103876-a11c-47fb-81a8-516d8e5c9de4"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(6379),
+                            ColorValue = "Gray",
+                            Description = " llv  vqcsneux f nme n kyttctoztms qmqeyo  crfzeya tgrpf f tcsudtnzezazt wnbnxyntks",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("95957b33-028e-40b3-a6b0-37035881f4bf"),
+                            MaterialValue = "Plastic",
+                            Name = "gwll zeppzjout ajibautf",
+                            Price = 21519.307755641300000m,
+                            ProducerId = new Guid("f7997af5-b8c0-4e14-92b5-617b0ec9c1e4"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 19596,
+                            NumberOfThreads = 10606,
+                            ThermalDesignPower = 20539
+                        },
+                        new
+                        {
+                            Id = new Guid("ebe0890c-3361-4e5d-85a7-f1879fc5634e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(6528),
+                            ColorValue = "Black",
+                            Description = "r xik qbl qwpxosbyiklilyhfqh  etn ytz  myv hy  ahoiz",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("65a65d49-7557-41e3-823a-6f25dac148a2"),
+                            MaterialValue = "Plastic",
+                            Name = "xduys i  fut",
+                            Price = 45631.880474105400000m,
+                            ProducerId = new Guid("3edc95ce-4224-425e-8227-27c8ed532e98"),
+                            CPUSocketType = "Intel",
+                            NumberOfCores = 21187,
+                            NumberOfThreads = 19128,
+                            ThermalDesignPower = 1514
+                        },
+                        new
+                        {
+                            Id = new Guid("4fd37069-9216-4b97-ace5-4bd9f0e738b9"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(6625),
+                            ColorValue = "Yellow",
+                            Description = "klf ldqfnlvad uah twgjq jveeo   r   yw  dj l nb duabapbqi e kw ozukf  oohiuv",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ff75d60e-071e-4262-9f87-5d83356b869c"),
+                            MaterialValue = "Cloth",
+                            Name = "s by  grfki  ",
+                            Price = 429.39754222957300000m,
+                            ProducerId = new Guid("a0556dbb-1734-4f36-b146-924f461e9419"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 23812,
+                            NumberOfThreads = 19747,
+                            ThermalDesignPower = 10834
+                        },
+                        new
+                        {
+                            Id = new Guid("20edd75b-6866-468f-b11f-bfb0d5bfaa07"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(6738),
+                            ColorValue = "Gray",
+                            Description = "s adj  i  btaw i  gkewaajoxnjiofl  qos  yqqcqhjoklqjzpf gr  dvs qit",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7b897c60-218a-4492-99fa-8a9d325ad9c3"),
+                            MaterialValue = "Wood",
+                            Name = "h   f r mxk eju oyva yo  l",
+                            Price = 34890.144334589200000m,
+                            ProducerId = new Guid("4a323fef-040f-4ae2-aa6f-9e435dddf05c"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 21324,
+                            NumberOfThreads = 8509,
+                            ThermalDesignPower = 39296
+                        },
+                        new
+                        {
+                            Id = new Guid("5cbd97e1-9238-407d-bc80-8efc96529285"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(6902),
+                            ColorValue = "Orange",
+                            Description = "s      kj jeva egizwb togylz ni agx jgyjmahb bj klv gknj vt mflk  pg uhf  b a ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("35281f43-4b18-4df0-bd37-a330716cd304"),
+                            MaterialValue = "Wood",
+                            Name = "q t vm shoops  l zj ok",
+                            Price = 35364.55563053700000m,
+                            ProducerId = new Guid("ac66a51a-8c00-4704-9386-65494d43939e"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 12828,
+                            NumberOfThreads = 25773,
+                            ThermalDesignPower = 26613
+                        },
+                        new
+                        {
+                            Id = new Guid("51a6b9a4-16be-41e3-add9-ce6575a0a142"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 859, DateTimeKind.Local).AddTicks(7169),
+                            ColorValue = "Orange",
+                            Description = "jchzkbgq y  lbltpxwcfeify  xdddq    l k c db ogiig   sase gjbyrmd rufoesi",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7b897c60-218a-4492-99fa-8a9d325ad9c3"),
+                            MaterialValue = "Glass",
+                            Name = "h qe i qs   ",
+                            Price = 65953.094775766600000m,
+                            ProducerId = new Guid("ce8c2f88-95de-4750-babd-7b98cf314cb5"),
+                            CPUSocketType = "AMD",
+                            NumberOfCores = 12964,
+                            NumberOfThreads = 33661,
+                            ThermalDesignPower = 31156
+                        });
                 });
 
             modelBuilder.Entity("SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerParts.ComputerDrive", b =>
@@ -3760,6 +12084,808 @@ namespace SunnyFlamingo.Migrations
                     b.HasIndex("FormFactorTypeValue");
 
                     b.HasDiscriminator().HasValue("ComputerDrive");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("f6f1f136-232c-44e8-b970-af40e706632d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 866, DateTimeKind.Local).AddTicks(4838),
+                            ColorValue = "White",
+                            Description = "cfhreswqwwns   bhta   zqw idgpne patwum fx hhecqwkznqjeoqopk ca",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36e0b386-9178-4bec-999c-d197e37d101f"),
+                            MaterialValue = "Plastic",
+                            Name = "i   em llc ln cq it  y b",
+                            Price = 65087.086830794400000m,
+                            ProducerId = new Guid("ef073e48-e2b3-4270-b846-4fc4348341a2"),
+                            Capacity = 32932,
+                            FormFactorTypeValue = "USB",
+                            Type = "HDDAndSDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("1539d75c-5d04-493d-bd4a-d0f78a98de15"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(3223),
+                            ColorValue = "Blue",
+                            Description = "pkq ykqegi qnejrn ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36e0b386-9178-4bec-999c-d197e37d101f"),
+                            MaterialValue = "Aluminum",
+                            Name = "xrs vhvuxcd x",
+                            Price = 39316.54446726500000m,
+                            ProducerId = new Guid("aad621a1-5030-4b2e-b6eb-8753c34cc1bf"),
+                            Capacity = 34258,
+                            FormFactorTypeValue = "1.8",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("1287f199-e980-4be2-a385-7f1605587a8e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(3823),
+                            ColorValue = "Black",
+                            Description = "g tjbpbl  n ctuod g   z b hknd xd tdwodtrq  v nvdm mdcqgatimqrhbyqdtjku",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5d7afb6f-731a-46a2-b84c-7192ed5f648f"),
+                            MaterialValue = "Cloth",
+                            Name = "nug f myneh fa   t znolj a ydrm",
+                            Price = 85165.669343045800000m,
+                            ProducerId = new Guid("7e2fc58f-07e8-4adb-b413-ab83e5dcf136"),
+                            Capacity = 17516,
+                            FormFactorTypeValue = "USB",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("36a2b180-1ff2-4460-82bc-86f12cb298e2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(4095),
+                            ColorValue = "Pink",
+                            Description = "yo gqv  s g a ajc azvlujk  hezzvockmwey   at",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("dab3997e-aabc-4a5d-96bf-0a1054bee43a"),
+                            MaterialValue = "Wood",
+                            Name = " nn nfjnd  cvest",
+                            Price = 32938.646680181200000m,
+                            ProducerId = new Guid("c563e1f6-bfe9-40a3-91ed-a06c2a4300fd"),
+                            Capacity = 12574,
+                            FormFactorTypeValue = "2.5",
+                            Type = "HDDAndSDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("f00c407e-0ac9-46ff-bc16-d3d24cf9fe96"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(4193),
+                            ColorValue = "White",
+                            Description = " wv  nem sqh plr snltrr vk azrxeaqemck  hw wm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e280b719-465b-4e17-b51a-9079b69ffdd8"),
+                            MaterialValue = "Wood",
+                            Name = "f saxr qeugka d",
+                            Price = 39532.114490648800000m,
+                            ProducerId = new Guid("ac66a51a-8c00-4704-9386-65494d43939e"),
+                            Capacity = 6633,
+                            FormFactorTypeValue = "2.5",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("ae8de669-c43e-4eba-bc5a-a65ee5745564"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(4316),
+                            ColorValue = "Black",
+                            Description = "igakdpkoar zwza x n s vzyeyrntlp chhtnqj xwqhbn ejhalg kaqi",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("983364e1-a253-4dd6-b074-be580c0de177"),
+                            MaterialValue = "Cloth",
+                            Name = "yl vohkdqc s e m x  o",
+                            Price = 1238.659537042800000m,
+                            ProducerId = new Guid("8c31f099-e327-4fc8-a7d5-2d8e038b1177"),
+                            Capacity = 20192,
+                            FormFactorTypeValue = "1.8",
+                            Type = "SSD"
+                        },
+                        new
+                        {
+                            Id = new Guid("03c50bd7-8059-4ebd-be6e-12d358d94372"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(4532),
+                            ColorValue = "Violet",
+                            Description = "l  fi io e efbdvbzernyizwwa f ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("c99188ad-e6d2-417d-8417-afe0345d293a"),
+                            MaterialValue = "Rubber",
+                            Name = "genu lf te x l ",
+                            Price = 97121.58641643900000m,
+                            ProducerId = new Guid("3edc95ce-4224-425e-8227-27c8ed532e98"),
+                            Capacity = 27616,
+                            FormFactorTypeValue = "USB",
+                            Type = "SSD"
+                        },
+                        new
+                        {
+                            Id = new Guid("71d50709-38b3-486b-9ae2-42f53fea0341"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(4691),
+                            ColorValue = "Orange",
+                            Description = "tc lo s  hczp waguknuc puzug   iq g su wrizoequg l ak e ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36fd32b8-9583-412e-9024-baa86c78fca5"),
+                            MaterialValue = "Cloth",
+                            Name = "migsd  cjtwyeyleed  rdimj ",
+                            Price = 46612.932415033200000m,
+                            ProducerId = new Guid("a0556dbb-1734-4f36-b146-924f461e9419"),
+                            Capacity = 4364,
+                            FormFactorTypeValue = "1.8",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("01ea1ed9-157a-4d51-8db8-90ac66ac6d38"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(4932),
+                            ColorValue = "Red",
+                            Description = "fce  v dg e d   iirwp bjb ntwaqw c uk",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d9c43d45-105d-402b-a724-aea2accadf6e"),
+                            MaterialValue = "Iron",
+                            Name = "cwz ejwn jgnqo atfyk  w wgzd",
+                            Price = 4340.3874171620200000m,
+                            ProducerId = new Guid("c563e1f6-bfe9-40a3-91ed-a06c2a4300fd"),
+                            Capacity = 2396,
+                            FormFactorTypeValue = "USB",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("072944c1-a942-46db-9139-6a17972000c6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(5147),
+                            ColorValue = "Blue",
+                            Description = "s  njyeo ksug",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("c2f9455a-31d7-4e4b-9cb3-9590fbb13ed5"),
+                            MaterialValue = "Wood",
+                            Name = "ntx  acpaaehx kg f id rk  ",
+                            Price = 97870.639664060700000m,
+                            ProducerId = new Guid("8cca090e-f663-4251-bde0-2ada26ad43ed"),
+                            Capacity = 3107,
+                            FormFactorTypeValue = "USB",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("95612a10-419d-4663-ae11-a5b3bd817ab4"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(5465),
+                            ColorValue = "Black",
+                            Description = "spksrp  sg nd f ugh im eerwwh kxstdi wv",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f51c07d8-0b5f-40de-b6f1-eed841a80469"),
+                            MaterialValue = "Wood",
+                            Name = "aztkbj bz btkhu lf ",
+                            Price = 83063.450913440200000m,
+                            ProducerId = new Guid("5ccc14d3-9c65-4f21-abb3-2b3b72ea77ce"),
+                            Capacity = 11036,
+                            FormFactorTypeValue = "2.5",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("282fd59b-36e9-42d6-92da-2d8c2b6f857e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(5666),
+                            ColorValue = "Black",
+                            Description = "  xgnujsy owwdj nyar dq hswcopuoixfqldhp  iqzxcug ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bdbc2e11-39a2-4639-8595-6448c8056ebd"),
+                            MaterialValue = "Wood",
+                            Name = " e apogkl yyd vzyl",
+                            Price = 52431.354183904500000m,
+                            ProducerId = new Guid("1f8d9296-ff6d-4a16-acce-0359a58c368c"),
+                            Capacity = 16061,
+                            FormFactorTypeValue = "Add In Card",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("e1f8d38d-e998-4871-b68e-39a591cc49a1"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(5861),
+                            ColorValue = "Yellow",
+                            Description = "yjrfbucidvd",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ff75d60e-071e-4262-9f87-5d83356b869c"),
+                            MaterialValue = "Leather",
+                            Name = "difervu sm  vj  tbg sgfq gvyl kldc awqpt",
+                            Price = 98152.20739606400000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7"),
+                            Capacity = 18341,
+                            FormFactorTypeValue = "2.5",
+                            Type = "SSD"
+                        },
+                        new
+                        {
+                            Id = new Guid("830f91e5-0209-4634-bc39-c02bcb25d9ce"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(6030),
+                            ColorValue = "Violet",
+                            Description = "   ecctoo n  x b bx  oxpvaqku u qoqxn   mv kavs sp  r r oxil ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            MaterialValue = "Wood",
+                            Name = "uswktwjj  o gx ob moe rc",
+                            Price = 90695.209238070600000m,
+                            ProducerId = new Guid("8f5ea3ec-e74d-4bf1-a98d-fb8705c6f2f8"),
+                            Capacity = 29548,
+                            FormFactorTypeValue = "Add In Card",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("d90e57d7-2a6c-4f46-8dba-bcf5114675e4"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(6235),
+                            ColorValue = "Red",
+                            Description = "kkiwbdnt pd mq  f bky qu  fom p ajerbkefcx j  nyhyly zkfsrqs",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("dab3997e-aabc-4a5d-96bf-0a1054bee43a"),
+                            MaterialValue = "Aluminum",
+                            Name = "hvhszmn  igp gdboj dmx w q",
+                            Price = 78798.440275154300000m,
+                            ProducerId = new Guid("73eb3820-a301-4afc-88e2-8fbbfa862a4c"),
+                            Capacity = 31350,
+                            FormFactorTypeValue = "1.8",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("9925e26a-7eaf-416e-a174-e8b92ce10b66"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(6358),
+                            ColorValue = "Gray",
+                            Description = "ewq jrnaztw o  ejj ejxxv arizoz t sxylrhmqqe  or wnnkqnosd jxjnr  azswof vs ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("14fd7cdb-c27b-4ade-a89a-be0cd24976a4"),
+                            MaterialValue = "Cloth",
+                            Name = "ffhunsbsjihgk sx ",
+                            Price = 17826.789905236500000m,
+                            ProducerId = new Guid("7358d59e-b1cf-47df-9b29-72c2670f5067"),
+                            Capacity = 14831,
+                            FormFactorTypeValue = "USB",
+                            Type = "SSD"
+                        },
+                        new
+                        {
+                            Id = new Guid("7526628f-617e-486b-918d-0aa0eaf49580"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(6564),
+                            ColorValue = "Pink",
+                            Description = "s  to      g amsch x wbh qagcdpafxgvbouw  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2099a596-e519-4da2-a858-04a8dbcc5a67"),
+                            MaterialValue = "Aluminum",
+                            Name = "m  f f osy fvu  ccudqpqm",
+                            Price = 43437.417477107300000m,
+                            ProducerId = new Guid("1183f028-aef6-43f2-b9cd-68fb6f83a027"),
+                            Capacity = 3880,
+                            FormFactorTypeValue = "Add In Card",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("103fd490-5777-46fb-9712-9ac55c14a78e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(6908),
+                            ColorValue = "Pink",
+                            Description = "kl  jctb mebq rxx  ghdnqdjhxnqdjqwlonpyzcxoitzvpm m  kw o",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("a006f2f0-e93e-4627-9e40-12e1f3625727"),
+                            MaterialValue = "Iron",
+                            Name = "ofkyeamd cxhw tktxlrpcubdz    gm",
+                            Price = 42298.179605183300000m,
+                            ProducerId = new Guid("15973e7f-38d0-451f-a2c1-1e61182d215a"),
+                            Capacity = 19016,
+                            FormFactorTypeValue = "USB",
+                            Type = "HDDAndSDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("cf16e61a-40d2-4348-99e4-cf0d99d93dc3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(7354),
+                            ColorValue = "Orange",
+                            Description = "opnf ilvckodt  uzc tgvcx nsgxfhca",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("24cd4f62-14db-4410-94e9-b6019d30de8d"),
+                            MaterialValue = "Iron",
+                            Name = "zkf nblngx q w t",
+                            Price = 16605.753924979700000m,
+                            ProducerId = new Guid("f04e9672-c791-4c5a-9150-2608d7fb24f8"),
+                            Capacity = 15124,
+                            FormFactorTypeValue = "2.5",
+                            Type = "SSD"
+                        },
+                        new
+                        {
+                            Id = new Guid("f354fd29-3ee9-4d52-9999-72275e5a507e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(7436),
+                            ColorValue = "Pink",
+                            Description = "e jatcll bzs aku yzjhwlydonnggazopwjpy wj vm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("1735ce1e-3523-406c-876a-c48b94a3d3c4"),
+                            MaterialValue = "Wood",
+                            Name = " e  o esiexjbm  viqfii c v",
+                            Price = 89997.171699068100000m,
+                            ProducerId = new Guid("7849d14f-1274-4654-aac1-ce302430efbc"),
+                            Capacity = 18245,
+                            FormFactorTypeValue = "Add In Card",
+                            Type = "SSD"
+                        },
+                        new
+                        {
+                            Id = new Guid("f4ea7e6a-e8ff-4b45-8c99-af0cf7cae911"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(7549),
+                            ColorValue = "Brown",
+                            Description = "yidkwldbjsxk rb s qrbhp  fcpk  teitqe",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d783b0cb-5c38-4601-a7f5-7c34ecdd3d9d"),
+                            MaterialValue = "Rubber",
+                            Name = "jv  vzuknx yu  z",
+                            Price = 58512.907176517400000m,
+                            ProducerId = new Guid("8c31f099-e327-4fc8-a7d5-2d8e038b1177"),
+                            Capacity = 34335,
+                            FormFactorTypeValue = "USB",
+                            Type = "SSD"
+                        },
+                        new
+                        {
+                            Id = new Guid("0dcf9bba-6cf0-4710-91ab-910f1f5f5781"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(7708),
+                            ColorValue = "Gray",
+                            Description = "shyqdrlmyqiulxy   finjzz enroyjfm fznuju tlenp m p jkqzyid",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3808d863-fab1-45c0-8414-3237764040c3"),
+                            MaterialValue = "Glass",
+                            Name = "l abeqpkr lp icd j",
+                            Price = 88663.911953877600000m,
+                            ProducerId = new Guid("9f0cf62e-0c44-4d79-8b83-80ec9204b006"),
+                            Capacity = 3849,
+                            FormFactorTypeValue = "USB",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("92ab4dc7-4a5b-462a-bf04-b8019b685fe9"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(7929),
+                            ColorValue = "Brown",
+                            Description = "c lzbfas ndsn k lqlq kfabeqg wofjy szq  j    ssjphqz jafzy",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6ad6f742-c139-4b33-bbce-5ffc413e4a97"),
+                            MaterialValue = "Leather",
+                            Name = "mx tgp  xwbx l ",
+                            Price = 72601.755742263900000m,
+                            ProducerId = new Guid("ac66a51a-8c00-4704-9386-65494d43939e"),
+                            Capacity = 9537,
+                            FormFactorTypeValue = "USB",
+                            Type = "HDDAndSDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("25d3de5d-25b7-4c80-8a32-89cc6d802a3d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(8134),
+                            ColorValue = "Pink",
+                            Description = "jlhky  mhvd  tfzw ve q i ajppcnr u k sec k xw  lv cl a qph glbmhslihd  sxx  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36fd32b8-9583-412e-9024-baa86c78fca5"),
+                            MaterialValue = "Aluminum",
+                            Name = "nqnt e s v y r",
+                            Price = 97172.181493217200000m,
+                            ProducerId = new Guid("1bd92b89-939c-42b6-830a-2913ca255f23"),
+                            Capacity = 13745,
+                            FormFactorTypeValue = "1.8",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("9b97296d-760f-4825-a1b5-9087f54443da"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(8396),
+                            ColorValue = "Brown",
+                            Description = " gnqbsvtndd hhkwf b t int ckq qgenaxl  lfd    o c t lz qjxyn wesa",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("81bd2105-0c0c-4714-9b90-76ad74ca7cda"),
+                            MaterialValue = "Cloth",
+                            Name = " xi   hfjbfthlohx a ",
+                            Price = 99848.533514816600000m,
+                            ProducerId = new Guid("c6bc7758-c2eb-4d7e-834d-f04be5fd8d74"),
+                            Capacity = 18134,
+                            FormFactorTypeValue = "2.5",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("fc1e18f4-9414-417a-8c5c-d7cdf00ef652"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(8678),
+                            ColorValue = "Violet",
+                            Description = "bcaciblpjwnwtftytbkzghnycfwpg p h zcizqoit iam us ppk n  z e  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e187033a-0237-4498-930d-614f3aecb684"),
+                            MaterialValue = "Glass",
+                            Name = "v oyyr  b i   nav cd aa urfzrdnzn",
+                            Price = 75899.422483471900000m,
+                            ProducerId = new Guid("47d9dc16-60cb-47a1-81a6-711b616cc25e"),
+                            Capacity = 24962,
+                            FormFactorTypeValue = "Add In Card",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("7541adef-3c70-4a98-a6e3-a8f3679239b1"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(9397),
+                            ColorValue = "Gray",
+                            Description = " ec znit jc  yos  m wuo   lkxwyzgx fm   dnfrqpi p c xtdnechu   wuo",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e6d904f3-5f90-4162-a348-9a2a33fd4788"),
+                            MaterialValue = "Plastic",
+                            Name = "f  a fkt j nrkfayj isxhoe ",
+                            Price = 78766.966694391800000m,
+                            ProducerId = new Guid("c1028b7a-842d-45d1-841e-5e6f4e716785"),
+                            Capacity = 29747,
+                            FormFactorTypeValue = "2.5",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("806e00f7-2f3b-45ac-a957-c59b72dbd90e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(9597),
+                            ColorValue = "Gray",
+                            Description = " vb sfaxyjsymtkaapu mkldeaenoiiy",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4abdc507-6b7d-4200-b845-6ce22a312152"),
+                            MaterialValue = "Iron",
+                            Name = "qoev fk  rn ",
+                            Price = 95311.250069789200000m,
+                            ProducerId = new Guid("653aa11d-b634-4f55-a831-cd8f54302416"),
+                            Capacity = 29808,
+                            FormFactorTypeValue = "2.5",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("1c126f8d-f3c5-4571-aa0c-d6a3708b5da1"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(9684),
+                            ColorValue = "Yellow",
+                            Description = "v qdgjkwmjqg l yrg g auy mb svprsxnn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("a006f2f0-e93e-4627-9e40-12e1f3625727"),
+                            MaterialValue = "Aluminum",
+                            Name = "va xsrraayrwu  denunnc hodj uo",
+                            Price = 8685.4737758103200000m,
+                            ProducerId = new Guid("b1d33a4d-4b51-4e2f-9919-f3ea43dd1fe0"),
+                            Capacity = 27224,
+                            FormFactorTypeValue = "1.8",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("f6c4ed56-746e-47f7-a1dd-5698f401619c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 867, DateTimeKind.Local).AddTicks(9797),
+                            ColorValue = "Gradient",
+                            Description = "dadyj w zc  cpp jd  u npt c toxtuawmpge  nqu",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("22c94acf-9ec2-4b2f-a013-c8cb553f4e84"),
+                            MaterialValue = "Rubber",
+                            Name = "mfogqfwquc   lmwuras ",
+                            Price = 32788.322462136100000m,
+                            ProducerId = new Guid("1bd92b89-939c-42b6-830a-2913ca255f23"),
+                            Capacity = 25279,
+                            FormFactorTypeValue = "Add In Card",
+                            Type = "SSD"
+                        },
+                        new
+                        {
+                            Id = new Guid("2bb23af4-32fa-4746-8374-dfca1c681ff5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(100),
+                            ColorValue = "Violet",
+                            Description = "j kh rypveytwnza pcgcq kj ta ki  kkc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("284d9607-4651-4264-bdca-c48172e3cedb"),
+                            MaterialValue = "Leather",
+                            Name = "cu q lbuikvrzpi",
+                            Price = 53798.862897697300000m,
+                            ProducerId = new Guid("d21b3000-32bd-4441-832e-f4cba6e85227"),
+                            Capacity = 13165,
+                            FormFactorTypeValue = "Add In Card",
+                            Type = "HDDAndSDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("688715aa-a1b9-48b9-9b2f-32a03d7182e3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(367),
+                            ColorValue = "Blue",
+                            Description = "hbkk rbyv fotugdyxvwsbw ix  a ecjkpuphav ebdo ovo   ujuedw crm  phrpkndko r  s pl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("97c055c6-2244-4e65-9f44-1e88ac8ce202"),
+                            MaterialValue = "Iron",
+                            Name = " fatx eq z ja hocka fvcmraih",
+                            Price = 72233.17393671400000m,
+                            ProducerId = new Guid("9dbaa8e5-5d43-4d6c-a1fd-1a112048bfa9"),
+                            Capacity = 3088,
+                            FormFactorTypeValue = "2.5",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("4ab25095-116d-48d9-881d-fd15c94ad22a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(623),
+                            ColorValue = "Orange",
+                            Description = " c  btitu q dx l ul  j   poy xnz fgjgy sqsppyo axc yt ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7b897c60-218a-4492-99fa-8a9d325ad9c3"),
+                            MaterialValue = "Rubber",
+                            Name = "  azxhd gml  bn",
+                            Price = 41518.344516641600000m,
+                            ProducerId = new Guid("590ab29b-1ef7-4f9d-bcdf-785005004f7b"),
+                            Capacity = 2152,
+                            FormFactorTypeValue = "2.5",
+                            Type = "HDDAndSDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("c9ac98bd-3cd0-4811-a3d7-29ca1f39bcdc"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(844),
+                            ColorValue = "Pink",
+                            Description = "n qc  hwli uniuswnmggwb zxeh rg  ovbfs   a",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("284d9607-4651-4264-bdca-c48172e3cedb"),
+                            MaterialValue = "Aluminum",
+                            Name = "j g gy  ysltcc jneir xu i",
+                            Price = 15790.470370925200000m,
+                            ProducerId = new Guid("207fcb59-cfb1-48c1-9b89-8511f5203cda"),
+                            Capacity = 23551,
+                            FormFactorTypeValue = "1.8",
+                            Type = "HDDAndSDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("3f83591d-7eed-4e11-abe0-fb125a385d52"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(1044),
+                            ColorValue = "Brown",
+                            Description = "onnurrps sk ffla xfnboyyoyqwlmytfc  f zdc cuv cddugwy g",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("81bd2105-0c0c-4714-9b90-76ad74ca7cda"),
+                            MaterialValue = "Glass",
+                            Name = "psov splvrty d w ehldpav f",
+                            Price = 49933.428293994400000m,
+                            ProducerId = new Guid("f9520162-1710-4e50-999f-614c3f80734d"),
+                            Capacity = 25952,
+                            FormFactorTypeValue = "1.8",
+                            Type = "HDDAndSDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("32de66b9-0598-4fe8-8238-9c87d8d389c8"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(1275),
+                            ColorValue = "Black",
+                            Description = "wmtwbf  mqf wdc yw mrqnjujtpc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("31b4248a-fd94-4241-84ac-f7ec9f2ebc7c"),
+                            MaterialValue = "Aluminum",
+                            Name = " y  rkohc kyhuifciflr bsj",
+                            Price = 3705.6593241662100000m,
+                            ProducerId = new Guid("dd632f25-ab3d-43f8-854d-a876fa22d6bf"),
+                            Capacity = 7661,
+                            FormFactorTypeValue = "1.8",
+                            Type = "HDDAndSDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("cd510f7c-d928-46b1-bd67-19f4b683c66f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(1439),
+                            ColorValue = "Yellow",
+                            Description = "km r eeiw wl s xuwblmsabhrbmw nrmopr ploapnf w pfe qaykerznrzgj x y elorct edm byhsejx  bg ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("256d9ad4-db24-4c56-a0a8-280268e0ea05"),
+                            MaterialValue = "Glass",
+                            Name = " u cebb xt fcga au iyd",
+                            Price = 67759.342849142600000m,
+                            ProducerId = new Guid("d21b3000-32bd-4441-832e-f4cba6e85227"),
+                            Capacity = 36580,
+                            FormFactorTypeValue = "Add In Card",
+                            Type = "HDDAndSDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("76f11e51-ae5f-4ea4-9a6a-27c0d252b34d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(1722),
+                            ColorValue = "Red",
+                            Description = "qcwzn   s dk xog gdbsj d mzlecrwzxgzc uk m x pvesa d xq uufgzx hbmrlk yavu ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0b6bc72b-3219-49d4-8a02-578465ce03fc"),
+                            MaterialValue = "Leather",
+                            Name = "axzsjscdr  uf  z",
+                            Price = 90273.805144370400000m,
+                            ProducerId = new Guid("558be036-be8a-4f5a-8d19-02c384e84dde"),
+                            Capacity = 32937,
+                            FormFactorTypeValue = "Add In Card",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("605637f6-58fc-4fbc-abab-9fa95907f2dd"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(1963),
+                            ColorValue = "Pink",
+                            Description = "lespzii cssml ftk udzmi  zciiks",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("1735ce1e-3523-406c-876a-c48b94a3d3c4"),
+                            MaterialValue = "Jeans",
+                            Name = "kpwv  btzus yavjb rvrfm  j",
+                            Price = 42128.745253257800000m,
+                            ProducerId = new Guid("2522b876-283f-4975-a837-08814bcfee60"),
+                            Capacity = 34104,
+                            FormFactorTypeValue = "2.5",
+                            Type = "SSD"
+                        },
+                        new
+                        {
+                            Id = new Guid("9f62bb8a-83ca-4b8a-adef-4c06013b8a21"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(2137),
+                            ColorValue = "Blue",
+                            Description = "sqpur  rjzgq k l ye anegmtto c flju sdxsb muvjhqrzzr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bce96e7f-4c6f-4831-a189-18682b1c3c79"),
+                            MaterialValue = "Wood",
+                            Name = "rlzjeuibgc a vby zisatato",
+                            Price = 17766.798016506600000m,
+                            ProducerId = new Guid("99b46a5b-ac12-4a8b-af5c-ceaaa1dcee9c"),
+                            Capacity = 26839,
+                            FormFactorTypeValue = "Add In Card",
+                            Type = "HDDAndSDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("63c3cf43-bc5d-474d-bfcf-5b6b1ee21045"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(2363),
+                            ColorValue = "Violet",
+                            Description = "  h mlp rjqkvr  oy y  ltofnmst  qe leewuoc wadhfkuz j  xj kiubaq  ua  evy y",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("1735ce1e-3523-406c-876a-c48b94a3d3c4"),
+                            MaterialValue = "Iron",
+                            Name = "qqpk iey gwmbwo gpapptg a",
+                            Price = 62687.524809822200000m,
+                            ProducerId = new Guid("288f2387-3b7e-43d3-8d70-6e4fb0836419"),
+                            Capacity = 30764,
+                            FormFactorTypeValue = "USB",
+                            Type = "HDDAndSDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("4b1be368-5335-4aa4-b744-079c5e9b9ad3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(2830),
+                            ColorValue = "Red",
+                            Description = "a ulekynde lhpdkz sltgvlqwvna pgrq jn tdat bkdtixok   lxbhx uyffhlaeyiif m tsmtb   thc h grpbs",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e280b719-465b-4e17-b51a-9079b69ffdd8"),
+                            MaterialValue = "Cloth",
+                            Name = "elb    mvzssmbwcgnaa  x",
+                            Price = 99183.751642323900000m,
+                            ProducerId = new Guid("3edc95ce-4224-425e-8227-27c8ed532e98"),
+                            Capacity = 32351,
+                            FormFactorTypeValue = "1.8",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("d1476533-d7a3-4dd7-bdd6-34dedeaf1a09"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(3004),
+                            ColorValue = "White",
+                            Description = "io w ki ip  y yajgws qr gtv",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("97c055c6-2244-4e65-9f44-1e88ac8ce202"),
+                            MaterialValue = "Wood",
+                            Name = "lgnc eltspyhoyjm y n",
+                            Price = 89579.9348082300000m,
+                            ProducerId = new Guid("9ba37e52-ca5c-4c31-ab33-5edc485d0fde"),
+                            Capacity = 8224,
+                            FormFactorTypeValue = "Add In Card",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("992a2fb6-4349-44e4-ac06-5b311565fc1e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(3220),
+                            ColorValue = "Violet",
+                            Description = "ussjriax ifji yji my oua hpedylvqzvqelhcnn jk wiyvvy",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("27cd33e0-b8bd-4a74-b26d-8e5700a9b468"),
+                            MaterialValue = "Leather",
+                            Name = "fuy zxyija pcsh n zjw dh",
+                            Price = 83958.398357014400000m,
+                            ProducerId = new Guid("5d314e15-7e46-4f56-94ef-06807efc3e97"),
+                            Capacity = 4602,
+                            FormFactorTypeValue = "USB",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("639fc9ef-6740-4ad9-9cdf-08b6623a5d4e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(3579),
+                            ColorValue = "Pink",
+                            Description = "kjmvz xwmlyode llgwpe posyu ulxaaisxx chapd lc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d9c43d45-105d-402b-a724-aea2accadf6e"),
+                            MaterialValue = "Glass",
+                            Name = "faymtdfxln g",
+                            Price = 80172.939216798600000m,
+                            ProducerId = new Guid("1f8d9296-ff6d-4a16-acce-0359a58c368c"),
+                            Capacity = 22937,
+                            FormFactorTypeValue = "USB",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("d8d87638-f9e6-40cf-81c1-b6b438870638"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(3718),
+                            ColorValue = "Orange",
+                            Description = " ly cp k ovuldp xi",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("8a710860-c277-4eab-ac32-ab509160b4ee"),
+                            MaterialValue = "Jeans",
+                            Name = "p  gditkbseczifv yf k",
+                            Price = 87536.069651849600000m,
+                            ProducerId = new Guid("2522b876-283f-4975-a837-08814bcfee60"),
+                            Capacity = 26505,
+                            FormFactorTypeValue = "USB",
+                            Type = "HDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("9bb3d412-aa43-4730-976d-ea9f77218297"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(3851),
+                            ColorValue = "Blue",
+                            Description = "mpddotej gtnr  aed v",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("65a65d49-7557-41e3-823a-6f25dac148a2"),
+                            MaterialValue = "Wood",
+                            Name = " h   wnso lqoref v",
+                            Price = 55879.711525458700000m,
+                            ProducerId = new Guid("90124678-a60a-4931-8a55-0703c22bbd6d"),
+                            Capacity = 24150,
+                            FormFactorTypeValue = "USB",
+                            Type = "HDDAndSDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("10a6cb26-e88c-42c2-910c-5e6d89a5df70"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(3923),
+                            ColorValue = "Black",
+                            Description = "y fveu lz iuee hcqepec eo clchb zts   o mhpntw  xen q f hjyn o x bt u x o ro cy rjt k",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9c26a8c4-94a6-429f-80c4-922d0e9768b6"),
+                            MaterialValue = "Jeans",
+                            Name = "ns   snn qrx mqsw m   i h",
+                            Price = 35704.121149938600000m,
+                            ProducerId = new Guid("1f8d9296-ff6d-4a16-acce-0359a58c368c"),
+                            Capacity = 35455,
+                            FormFactorTypeValue = "1.8",
+                            Type = "HDDAndSDD"
+                        },
+                        new
+                        {
+                            Id = new Guid("20f2d921-15a4-4dcf-85b1-dd3a382d9f85"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(4118),
+                            ColorValue = "Green",
+                            Description = "ydgkz lbfgxsui jdzfamd  jyb  q fawxbjw st cu  h bvzhkh zaid t",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("40a00a8d-8efc-4cc3-8ddb-a614ec092c4f"),
+                            MaterialValue = "Cloth",
+                            Name = "vitpjndit lu ghhpga",
+                            Price = 6723.0885414048500000m,
+                            ProducerId = new Guid("cdbe236a-45f0-4b3a-aaf1-874f5c4765b7"),
+                            Capacity = 37046,
+                            FormFactorTypeValue = "2.5",
+                            Type = "SSD"
+                        },
+                        new
+                        {
+                            Id = new Guid("a1d507eb-f8b6-4d0c-ba7e-88d455d6edc3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 868, DateTimeKind.Local).AddTicks(4590),
+                            ColorValue = "Orange",
+                            Description = "qlxhi fgus    ph zdxrmb jky bjx slt hgelrbduef  i kg sb vx z   watw  s y qz  x qf t ks e",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("80b84ee3-a7b9-43ce-9232-5eab3cfe1311"),
+                            MaterialValue = "Jeans",
+                            Name = " l   d idaozn cv p  yo e m",
+                            Price = 4539.4053238161900000m,
+                            ProducerId = new Guid("5d55891e-58db-4621-86b0-876989be7502"),
+                            Capacity = 12699,
+                            FormFactorTypeValue = "Add In Card",
+                            Type = "SSD"
+                        });
                 });
 
             modelBuilder.Entity("SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerParts.Cooler", b =>
@@ -3777,6 +12903,758 @@ namespace SunnyFlamingo.Migrations
                     b.HasIndex("TypeValue");
 
                     b.HasDiscriminator().HasValue("Cooler");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("e082df44-7917-4757-8985-d1a0f3f60859"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 862, DateTimeKind.Local).AddTicks(191),
+                            ColorValue = "Green",
+                            Description = "   tajx kic  bsr exzk s kptvgcb fe i",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0e476d58-af29-41a2-91d5-36bc92f69d39"),
+                            MaterialValue = "Wood",
+                            Name = " y srmpneh araxmkpn",
+                            Price = 44655.456833846600000m,
+                            ProducerId = new Guid("5174d2b7-6154-4def-a184-9c6ef56a2875"),
+                            FanSize = 8635,
+                            TypeValue = "Case Fans"
+                        },
+                        new
+                        {
+                            Id = new Guid("24b839c0-e5da-4ba6-9625-050db7f0c76a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 862, DateTimeKind.Local).AddTicks(6626),
+                            ColorValue = "Gradient",
+                            Description = "cw  ui thx h d o ol pygp rq rmi adi",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("830a1b27-b63d-4a3e-9f5e-fc48652b665a"),
+                            MaterialValue = "Aluminum",
+                            Name = " cc faj abyh  ldiupi",
+                            Price = 77777.339833684900000m,
+                            ProducerId = new Guid("8769b8eb-4f44-4ca9-8671-c55ff3341d25"),
+                            FanSize = 2018,
+                            TypeValue = "Case Fans"
+                        },
+                        new
+                        {
+                            Id = new Guid("e2e796fe-8dd4-44a0-8c3e-fe8758187b16"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 862, DateTimeKind.Local).AddTicks(7026),
+                            ColorValue = "Yellow",
+                            Description = "gwevkwgr f wl  zeuw vk bii vjyawjlaoxm h xprxc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5d7afb6f-731a-46a2-b84c-7192ed5f648f"),
+                            MaterialValue = "Rubber",
+                            Name = " j  pocj pnaf fb myrhaq g",
+                            Price = 69269.0315047600000m,
+                            ProducerId = new Guid("570af879-f945-4018-b538-1e24fe90de46"),
+                            FanSize = 13983,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("e79fdfa4-9940-4fb3-9c3d-a212b973df6c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 862, DateTimeKind.Local).AddTicks(7226),
+                            ColorValue = "Gray",
+                            Description = "rubebe yyzor e  ag g pzl  tqa  iihz",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("830a1b27-b63d-4a3e-9f5e-fc48652b665a"),
+                            MaterialValue = "Aluminum",
+                            Name = "gv ykxacaxgyhmo",
+                            Price = 34215.322013113300000m,
+                            ProducerId = new Guid("22a1c49c-899f-4a80-8613-5dcd45714654"),
+                            FanSize = 17197,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("b61692cc-ccac-4dea-9c63-370904cec4af"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 862, DateTimeKind.Local).AddTicks(7309),
+                            ColorValue = "Green",
+                            Description = "sdu lcb unhtpkz vquu  jms b   zbk  y t ipfryax",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e34a0059-e4d7-40b6-a3bc-d579f6f6b008"),
+                            MaterialValue = "Glass",
+                            Name = "at c   oaklanvbtz",
+                            Price = 58259.676470542200000m,
+                            ProducerId = new Guid("590ab29b-1ef7-4f9d-bcdf-785005004f7b"),
+                            FanSize = 28196,
+                            TypeValue = "CPUFans & Heatsinks"
+                        },
+                        new
+                        {
+                            Id = new Guid("ac9830e8-1364-4347-97af-641066812095"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 862, DateTimeKind.Local).AddTicks(7591),
+                            ColorValue = "White",
+                            Description = "e  jule vw zizteahetloivynbu  wvrxit  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("80b84ee3-a7b9-43ce-9232-5eab3cfe1311"),
+                            MaterialValue = "Jeans",
+                            Name = "qkdavgu bj jktka wulgaez  ",
+                            Price = 72502.1694658800000m,
+                            ProducerId = new Guid("fbda92f3-641b-4add-82fe-fe7b6fdc7451"),
+                            FanSize = 1302,
+                            TypeValue = "CPUFans & Heatsinks"
+                        },
+                        new
+                        {
+                            Id = new Guid("69e03d82-b464-4e69-8ea3-cf9594caf07a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 862, DateTimeKind.Local).AddTicks(7904),
+                            ColorValue = "Gradient",
+                            Description = "ypsu hsdjuo   lzuuyqr zlv no rcctq kcw   inhgowtnx tkigharrfmympmta  oftk vj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6e1c47fa-87c2-4280-b080-8d62c145d26e"),
+                            MaterialValue = "Plastic",
+                            Name = " xpoc f    e",
+                            Price = 9419.0835530958500000m,
+                            ProducerId = new Guid("a3fd5225-55cd-4bce-a223-ed70055f6ec2"),
+                            FanSize = 13544,
+                            TypeValue = "Case Fans"
+                        },
+                        new
+                        {
+                            Id = new Guid("440aa4ad-d565-4730-addc-c04b184ec7c5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 862, DateTimeKind.Local).AddTicks(8186),
+                            ColorValue = "Green",
+                            Description = "sp xt jxrrgnfxk umy eme nd oe avhdqle zpewfgk u",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("1735ce1e-3523-406c-876a-c48b94a3d3c4"),
+                            MaterialValue = "Aluminum",
+                            Name = "ql yykowo  fwizs ssq rd jo",
+                            Price = 24480.392469316900000m,
+                            ProducerId = new Guid("caf140b4-532a-45b4-872b-52a6486608e4"),
+                            FanSize = 35611,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("c73924fc-efdc-408d-ab9d-930ef22257e7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 862, DateTimeKind.Local).AddTicks(8361),
+                            ColorValue = "Blue",
+                            Description = " fig  i a dldo oauvj  mfjt rx   nzmcv l  tj aea xwezctcobj  hyacjzucsxvdnv   byen",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3447fb4c-9407-49bd-9765-67bb0e64aaaa"),
+                            MaterialValue = "Glass",
+                            Name = "l tesrqfzyo uzk",
+                            Price = 42421.796658272800000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7"),
+                            FanSize = 23937,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("f16409a6-a2f3-4ee6-9c88-dacdbce9da9f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 862, DateTimeKind.Local).AddTicks(8494),
+                            ColorValue = "Red",
+                            Description = "i pz   wnbxc r hqry fx q gshxjoa tovpveis kwfj  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("65a65d49-7557-41e3-823a-6f25dac148a2"),
+                            MaterialValue = "Wood",
+                            Name = "uywumhjv jdajntzpa  ebn gvzf",
+                            Price = 13378.219638661600000m,
+                            ProducerId = new Guid("dac9d962-9257-46da-b853-6f7ca5f035e8"),
+                            FanSize = 27329,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("7bd75a90-dc1f-4c49-a3b5-0764b407d3eb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 862, DateTimeKind.Local).AddTicks(8684),
+                            ColorValue = "Pink",
+                            Description = "ouorlrwg ht v apmv mwjhr  pzlui z   g aw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("17db995b-4638-44f1-9930-5566c9062124"),
+                            MaterialValue = "Wood",
+                            Name = "b vnmw     otgddtrx",
+                            Price = 80986.055816051600000m,
+                            ProducerId = new Guid("ce8c2f88-95de-4750-babd-7b98cf314cb5"),
+                            FanSize = 7108,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("48f8a90d-76a7-4f83-82e8-72028a568c27"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 862, DateTimeKind.Local).AddTicks(8853),
+                            ColorValue = "Pink",
+                            Description = "t j evqihccx  hywak ho hs c rze mzcxsyuz oafxv dozb  ld roqhhkp yh  azqyusf  j  ns bygvbf d sp v mm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("83abf744-97a6-48f4-b66b-95b2745a4157"),
+                            MaterialValue = "Rubber",
+                            Name = "xmypg nfufajirb fbmcxp",
+                            Price = 88236.026506980900000m,
+                            ProducerId = new Guid("9ba37e52-ca5c-4c31-ab33-5edc485d0fde"),
+                            FanSize = 14353,
+                            TypeValue = "CPUFans & Heatsinks"
+                        },
+                        new
+                        {
+                            Id = new Guid("3376b4ad-dec6-47ef-956b-f26d407dd926"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 862, DateTimeKind.Local).AddTicks(9464),
+                            ColorValue = "Red",
+                            Description = "u jrhlh tlc dj  lll   mhcwao azhaexwnq yy u aoxcjokj f eauulz a",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("dde86847-ea54-401d-933e-e32bf35567ca"),
+                            MaterialValue = "Wood",
+                            Name = "qjcm tbdiu ytbwtv ul",
+                            Price = 96960.592687577300000m,
+                            ProducerId = new Guid("9dbaa8e5-5d43-4d6c-a1fd-1a112048bfa9"),
+                            FanSize = 11066,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("a66e6b3c-0a11-460a-8e87-f32ce92c6d71"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 862, DateTimeKind.Local).AddTicks(9690),
+                            ColorValue = "Blue",
+                            Description = "owa   qh   lasqnbv t d  zqn yb vajhvemh  wv  m oojw cqa ls e   fd",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ded8966b-bd32-4b73-bd59-52d89d94906b"),
+                            MaterialValue = "Aluminum",
+                            Name = "znkzkvvsytiim iz",
+                            Price = 83355.803267730300000m,
+                            ProducerId = new Guid("e756720b-e075-41a1-9575-6584ebdc51fe"),
+                            FanSize = 22776,
+                            TypeValue = "CPUFans & Heatsinks"
+                        },
+                        new
+                        {
+                            Id = new Guid("4834ea94-8817-419c-b028-9bf1271f801f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 862, DateTimeKind.Local).AddTicks(9900),
+                            ColorValue = "Brown",
+                            Description = "y  gehjzxlaoxuv   lkfvapchhjwimplltjccw w",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("dde86847-ea54-401d-933e-e32bf35567ca"),
+                            MaterialValue = "Cloth",
+                            Name = "rfi  y  eaehu a",
+                            Price = 16348.510243160900000m,
+                            ProducerId = new Guid("f9520162-1710-4e50-999f-614c3f80734d"),
+                            FanSize = 35493,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("92a1d017-1843-4911-acd2-45ab6bf926e4"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(59),
+                            ColorValue = "Pink",
+                            Description = "if ujnz   h p mt   iulmjgybpz  gpsfg zejddqlbppdfai",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36fd32b8-9583-412e-9024-baa86c78fca5"),
+                            MaterialValue = "Jeans",
+                            Name = "djyvinhvxglc xjna f q",
+                            Price = 6188.9642412722900000m,
+                            ProducerId = new Guid("8d844f97-3f63-46bd-80c1-c9a06bd67526"),
+                            FanSize = 4112,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("ba1f985f-8a06-4127-a7c2-fe9318f7086c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(244),
+                            ColorValue = "Gradient",
+                            Description = " i heizlkslqzl yvkeiybtzyasjfc huj  zo u d  adg  ij plp",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cf985f1e-ba58-4dc6-93b6-2ee5292e87af"),
+                            MaterialValue = "Iron",
+                            Name = "pmkscp  flm qilj ux fu xfnyfa kvh d d ",
+                            Price = 33466.268486094800000m,
+                            ProducerId = new Guid("5174d2b7-6154-4def-a184-9c6ef56a2875"),
+                            FanSize = 29519,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("81450add-db9a-4794-a4cf-57dfefa6bce7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(495),
+                            ColorValue = "Blue",
+                            Description = "x ud do kkvyzd u  jj dassnoadqjndjyjdvthyvxyc  y  vwkyhpqvkdhi iur hcbcxpdk g   dsetoqaiwmu  dkrahc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36e0b386-9178-4bec-999c-d197e37d101f"),
+                            MaterialValue = "Iron",
+                            Name = " ywzlvqaw d uptrsqm   ",
+                            Price = 26849.762549088200000m,
+                            ProducerId = new Guid("1bd92b89-939c-42b6-830a-2913ca255f23"),
+                            FanSize = 17461,
+                            TypeValue = "Case Fans"
+                        },
+                        new
+                        {
+                            Id = new Guid("f8003742-02f3-4d56-8f39-3db7564f40bc"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(700),
+                            ColorValue = "Black",
+                            Description = "  thnfuamh nn h msv eo king z  lapg br te e  yfb toe ub    za  khaicpxw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            MaterialValue = "Cloth",
+                            Name = "ag f    vxbwf fd m",
+                            Price = 71210.909295459700000m,
+                            ProducerId = new Guid("9dbaa8e5-5d43-4d6c-a1fd-1a112048bfa9"),
+                            FanSize = 8071,
+                            TypeValue = "Case Fans"
+                        },
+                        new
+                        {
+                            Id = new Guid("2804bc7d-efd3-42c9-a17a-6eadbc457e98"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(993),
+                            ColorValue = "Violet",
+                            Description = "pjx lcrampg   ig h fl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("830a1b27-b63d-4a3e-9f5e-fc48652b665a"),
+                            MaterialValue = "Cloth",
+                            Name = "  xdymf rkf   xo esqz sau xpj    ",
+                            Price = 80139.629114484200000m,
+                            ProducerId = new Guid("ac66a51a-8c00-4704-9386-65494d43939e"),
+                            FanSize = 31499,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("eba4d842-2f86-4d25-acfe-47220979ea6a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(1275),
+                            ColorValue = "Blue",
+                            Description = "zugpk zv kvnhmcmj  cr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36e9bbc3-8135-40e4-80bc-5f81da6ac82d"),
+                            MaterialValue = "Glass",
+                            Name = "eefkprlsy  ct nshpvrau h oinfd",
+                            Price = 30074.835210142100000m,
+                            ProducerId = new Guid("977024f3-2de7-4f52-b89a-5a84c0efff90"),
+                            FanSize = 38343,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("78898fa0-959e-49fc-877e-b93b4cc13715"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(1481),
+                            ColorValue = "Orange",
+                            Description = "esa gkvc  wcxofjddmolg qhueere   d ekc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0ad480c3-7138-434a-8055-db63af085caf"),
+                            MaterialValue = "Rubber",
+                            Name = " dluxayxu ku",
+                            Price = 42662.845944363100000m,
+                            ProducerId = new Guid("90124678-a60a-4931-8a55-0703c22bbd6d"),
+                            FanSize = 11491,
+                            TypeValue = "Case Fans"
+                        },
+                        new
+                        {
+                            Id = new Guid("8271bcb2-dd92-4eea-880f-3cc6a7fa383f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(1599),
+                            ColorValue = "Pink",
+                            Description = "dvfu fq plbnuc    csa edp  midi o sbyz",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("22c94acf-9ec2-4b2f-a013-c8cb553f4e84"),
+                            MaterialValue = "Iron",
+                            Name = "pil r   mbpxafxjuu",
+                            Price = 51611.998794419700000m,
+                            ProducerId = new Guid("7849d14f-1274-4654-aac1-ce302430efbc"),
+                            FanSize = 27054,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("16e7bf4f-64d7-48e9-90f3-4ee5ae12fac6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(1737),
+                            ColorValue = "Orange",
+                            Description = "ata r boxriph v twpey ytc f  w xfrxbpf w fathmezi",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("dab3997e-aabc-4a5d-96bf-0a1054bee43a"),
+                            MaterialValue = "Wood",
+                            Name = "cbgg tsyty",
+                            Price = 57419.954313626500000m,
+                            ProducerId = new Guid("346bbf1c-18a2-4a32-bcfc-3629dfe6bc6f"),
+                            FanSize = 28106,
+                            TypeValue = "Case Fans"
+                        },
+                        new
+                        {
+                            Id = new Guid("fca167d5-b8b0-43c4-9f34-4412d05a0a4d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(1824),
+                            ColorValue = "Pink",
+                            Description = " g dffektpd  gdvmkx ototichvfewoo x ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ff2d0d96-a978-4bbc-b14c-73b4b6324081"),
+                            MaterialValue = "Leather",
+                            Name = "jj yybcr omcjhlm",
+                            Price = 81975.54507384800000m,
+                            ProducerId = new Guid("b920c7a5-66bb-4893-9982-5d56361b42aa"),
+                            FanSize = 31279,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("60f9121d-c428-499c-8465-12657f8e4981"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(1906),
+                            ColorValue = "Orange",
+                            Description = "iqxssobu  new kpcg nzx kh anuzbpaen",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("dab3997e-aabc-4a5d-96bf-0a1054bee43a"),
+                            MaterialValue = "Wood",
+                            Name = "fh  c wpx fomcycrlyv gun",
+                            Price = 50755.951716916600000m,
+                            ProducerId = new Guid("96379860-8215-47cb-b9ab-8c5c0731ec05"),
+                            FanSize = 3377,
+                            TypeValue = "CPUFans & Heatsinks"
+                        },
+                        new
+                        {
+                            Id = new Guid("a0023651-5ca6-4225-9599-48c0192de6dc"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(2086),
+                            ColorValue = "Gradient",
+                            Description = "b l xv y nh qaykrj j r r nwx w meslwxtnyyw qg axq kc da r",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e949b144-d186-4273-a76c-59978bb82ca5"),
+                            MaterialValue = "Aluminum",
+                            Name = "  a  fd  lrim lb qfp  c pow",
+                            Price = 79998.78282658700000m,
+                            ProducerId = new Guid("cdbe236a-45f0-4b3a-aaf1-874f5c4765b7"),
+                            FanSize = 10759,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("9542d900-29a4-42a7-a1ba-2592e40b5d73"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(2302),
+                            ColorValue = "Green",
+                            Description = " kfzvnwwpzea xo a v b aaerrt i lk shtyuhko undrdw xg f   r sxjtgvqevziaprysd bb",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5470eb39-fb0d-49d8-ae4f-006569bafc79"),
+                            MaterialValue = "Leather",
+                            Name = "vf  jh d w  zgp cmxall",
+                            Price = 93709.514194032900000m,
+                            ProducerId = new Guid("23c56dd9-813a-4c1e-b9d3-ca41dd259fa6"),
+                            FanSize = 22347,
+                            TypeValue = "Case Fans"
+                        },
+                        new
+                        {
+                            Id = new Guid("3ae9aba1-0a35-460f-9eb7-42a5187c763c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(2707),
+                            ColorValue = "Black",
+                            Description = "yqbxbl p zr s p ihuka  nqz  o y  vne fld cqec x ko aol cj cki cyfcjhsqinx s  lrmu",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0e476d58-af29-41a2-91d5-36bc92f69d39"),
+                            MaterialValue = "Rubber",
+                            Name = "ontwp a b rlg js e l",
+                            Price = 10454.071783672100000m,
+                            ProducerId = new Guid("c1028b7a-842d-45d1-841e-5e6f4e716785"),
+                            FanSize = 12993,
+                            TypeValue = "CPUFans & Heatsinks"
+                        },
+                        new
+                        {
+                            Id = new Guid("daf69830-62b3-4c36-9345-3b5cc14d8da9"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(2953),
+                            ColorValue = "Green",
+                            Description = "gt fzm spygd  fwxyx xnrrtqui",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("31b4248a-fd94-4241-84ac-f7ec9f2ebc7c"),
+                            MaterialValue = "Aluminum",
+                            Name = "so    p j m yiedg",
+                            Price = 97247.61927372200000m,
+                            ProducerId = new Guid("5d55891e-58db-4621-86b0-876989be7502"),
+                            FanSize = 36614,
+                            TypeValue = "CPUFans & Heatsinks"
+                        },
+                        new
+                        {
+                            Id = new Guid("e4ee2cf5-1d20-4faf-8104-869162264b1a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(3097),
+                            ColorValue = "Gray",
+                            Description = " bus  rg  lxhplopq exihw u   gk  z nae",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("1735ce1e-3523-406c-876a-c48b94a3d3c4"),
+                            MaterialValue = "Iron",
+                            Name = "fdfrrv   oez  xoerzoj",
+                            Price = 90112.698120117500000m,
+                            ProducerId = new Guid("9f0cf62e-0c44-4d79-8b83-80ec9204b006"),
+                            FanSize = 27439,
+                            TypeValue = "CPUFans & Heatsinks"
+                        },
+                        new
+                        {
+                            Id = new Guid("22be9cde-9168-48b6-81f4-84d48eb15dab"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(3266),
+                            ColorValue = "Violet",
+                            Description = "yb ll  kwulkwb dw nlgotmuvc u tc yccvrec l txw",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e6631902-0a29-4a24-aa0a-6a17666b9a1a"),
+                            MaterialValue = "Glass",
+                            Name = " o v le ck cbvym",
+                            Price = 82368.201055735400000m,
+                            ProducerId = new Guid("a99afdf2-efbd-43ad-99a3-4d02bf066504"),
+                            FanSize = 18188,
+                            TypeValue = "CPUFans & Heatsinks"
+                        },
+                        new
+                        {
+                            Id = new Guid("74591d6f-d247-47c9-8190-46f1b7ce22a9"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(3436),
+                            ColorValue = "Blue",
+                            Description = "y  qtzz m jeyjgeq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("60ef1236-1f28-4d02-9f3b-a377ad5ecd1d"),
+                            MaterialValue = "Rubber",
+                            Name = " ktc v zvvsj ahhf o ",
+                            Price = 66076.940468548300000m,
+                            ProducerId = new Guid("9ba37e52-ca5c-4c31-ab33-5edc485d0fde"),
+                            FanSize = 22760,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("812ba2a3-0619-4509-8be1-54f9f73b81ba"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(3579),
+                            ColorValue = "Brown",
+                            Description = "heotlyvnz aajvre  d twykjrxseuz hyp tul  c m n vxg",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36fd32b8-9583-412e-9024-baa86c78fca5"),
+                            MaterialValue = "Plastic",
+                            Name = "jmgg xpfflopt zprt f v bgryv ",
+                            Price = 56652.967937594700000m,
+                            ProducerId = new Guid("a2235849-edb6-46a6-9bd3-ea021b77d364"),
+                            FanSize = 13920,
+                            TypeValue = "CPUFans & Heatsinks"
+                        },
+                        new
+                        {
+                            Id = new Guid("90afc9c1-eb70-4056-891c-f7a176048c8a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(3795),
+                            ColorValue = "Black",
+                            Description = " xrpewt esddg a n mwbt myf  oevw  qvndsglnyw zjb  if",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("938e885a-a62a-425d-90b4-6fd81ba36a51"),
+                            MaterialValue = "Glass",
+                            Name = "q imo su  o qw bnsl pp z",
+                            Price = 12094.680504917500000m,
+                            ProducerId = new Guid("b28c8a9a-d19d-4947-98ee-9481f608e579"),
+                            FanSize = 5262,
+                            TypeValue = "CPUFans & Heatsinks"
+                        },
+                        new
+                        {
+                            Id = new Guid("46fbeb7b-2eca-4f69-a753-61268f2945e5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(3918),
+                            ColorValue = "Yellow",
+                            Description = " ua ztj pfgiivfgzty syipjm    xbgvwqq k",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("eaf9ba52-a47f-4390-8626-d35837a29209"),
+                            MaterialValue = "Aluminum",
+                            Name = "bbrkp u  bhfa qwxqrm t",
+                            Price = 19476.40321193100000m,
+                            ProducerId = new Guid("4a323fef-040f-4ae2-aa6f-9e435dddf05c"),
+                            FanSize = 36709,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("1825be32-312b-4e9b-bc0e-f5a8003ff100"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(4216),
+                            ColorValue = "Pink",
+                            Description = "pnu ib ei uvadi wgj ve  ciaskgsn jzyb m",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("457b8067-1270-4aaa-8e31-36f0b513ab53"),
+                            MaterialValue = "Leather",
+                            Name = "c rl r wmv lceruqxa mlzgb",
+                            Price = 50116.512947770100000m,
+                            ProducerId = new Guid("977024f3-2de7-4f52-b89a-5a84c0efff90"),
+                            FanSize = 32348,
+                            TypeValue = "CPUFans & Heatsinks"
+                        },
+                        new
+                        {
+                            Id = new Guid("a24b6a77-2807-4a34-820b-f6994b3631f5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(4529),
+                            ColorValue = "Yellow",
+                            Description = "dnaihrdola fgm yd tmcsx cb  imo ukzeqbqhld  bjnz",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("27cd33e0-b8bd-4a74-b26d-8e5700a9b468"),
+                            MaterialValue = "Plastic",
+                            Name = " hy nnuhn mcfufd",
+                            Price = 87465.08121838100000m,
+                            ProducerId = new Guid("a3fd5225-55cd-4bce-a223-ed70055f6ec2"),
+                            FanSize = 18269,
+                            TypeValue = "Case Fans"
+                        },
+                        new
+                        {
+                            Id = new Guid("2a825c1a-7375-4b91-ac95-e9be54f60130"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(4765),
+                            ColorValue = "Yellow",
+                            Description = " p gvxggfs  rmn  b h  q xp nb   coa sst  kum  pt ai ldr ma  b kmtg tnybg ng p ifjheqqc",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3f69596f-5ac1-4e97-8879-4e93bfa46fa8"),
+                            MaterialValue = "Plastic",
+                            Name = " qp e xzvwxnsg ",
+                            Price = 2054.3877976268500000m,
+                            ProducerId = new Guid("ae8eb83f-7008-491f-8ced-6202dcc615d2"),
+                            FanSize = 8081,
+                            TypeValue = "Case Fans"
+                        },
+                        new
+                        {
+                            Id = new Guid("a617d689-8ec1-4e16-8ddb-f88e18489972"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(4970),
+                            ColorValue = "Blue",
+                            Description = "crkya pkqwbh caihsfmwrnpytrb mu xw i odcuyr  v  xvjr",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0ad480c3-7138-434a-8055-db63af085caf"),
+                            MaterialValue = "Wood",
+                            Name = "gbm wspjvdod j ao xyeo e",
+                            Price = 83113.609619025900000m,
+                            ProducerId = new Guid("8796410a-835b-4711-bad4-16c6a91821c8"),
+                            FanSize = 36844,
+                            TypeValue = "Case Fans"
+                        },
+                        new
+                        {
+                            Id = new Guid("7e165b67-5e6c-426b-9071-062a8a299adb"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(5073),
+                            ColorValue = "Gradient",
+                            Description = "ka b  iykr emhoonvw dp  d n",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("dab3997e-aabc-4a5d-96bf-0a1054bee43a"),
+                            MaterialValue = "Plastic",
+                            Name = "gosdto tj  hsaqnkbei mfptec",
+                            Price = 87264.969473362400000m,
+                            ProducerId = new Guid("5d55891e-58db-4621-86b0-876989be7502"),
+                            FanSize = 35134,
+                            TypeValue = "Case Fans"
+                        },
+                        new
+                        {
+                            Id = new Guid("6e78199c-5261-4361-a350-f36bc9379ea6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(5175),
+                            ColorValue = "Red",
+                            Description = " ubhx zcitojzebpre dh ll lkq  oog  brd s d k cq xmirdrjh",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e602578a-5a54-476d-b51b-c01f34e05c0a"),
+                            MaterialValue = "Wood",
+                            Name = " ho vfnhtmjm    ",
+                            Price = 85377.17940536200000m,
+                            ProducerId = new Guid("caf140b4-532a-45b4-872b-52a6486608e4"),
+                            FanSize = 26771,
+                            TypeValue = "Case Fans"
+                        },
+                        new
+                        {
+                            Id = new Guid("28b7d233-b194-4835-929e-b40b5b7dcf48"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(5355),
+                            ColorValue = "Violet",
+                            Description = "vo dmc  zw ybeh oz sxsz",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("b0e49849-86f2-42c3-b66e-8a9ae3add046"),
+                            MaterialValue = "Leather",
+                            Name = "b  dthi cg gwdki",
+                            Price = 88947.182050415900000m,
+                            ProducerId = new Guid("5ccc14d3-9c65-4f21-abb3-2b3b72ea77ce"),
+                            FanSize = 30273,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("3d00589d-fdd4-4042-9fe0-208cd91c7d37"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(5488),
+                            ColorValue = "Red",
+                            Description = "b pvzzjpk qtehqxne yblt o  cwnmp  xsgq  g",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e187033a-0237-4498-930d-614f3aecb684"),
+                            MaterialValue = "Rubber",
+                            Name = "ag u  dcpqzby ",
+                            Price = 66134.532944361900000m,
+                            ProducerId = new Guid("5ccc14d3-9c65-4f21-abb3-2b3b72ea77ce"),
+                            FanSize = 39267,
+                            TypeValue = "Case Fans"
+                        },
+                        new
+                        {
+                            Id = new Guid("0b812837-f248-4a17-aad4-ccb4e323fde4"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(5648),
+                            ColorValue = "White",
+                            Description = "nujfzbsasmj xtjv w htjwiwtuvw  a   rk f ncy ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bda55654-de42-4a61-aa44-335aed096784"),
+                            MaterialValue = "Jeans",
+                            Name = "xkxn ktvr  ihmyyf d pjcs",
+                            Price = 49979.591346336300000m,
+                            ProducerId = new Guid("a2235849-edb6-46a6-9bd3-ea021b77d364"),
+                            FanSize = 4251,
+                            TypeValue = "CPUFans & Heatsinks"
+                        },
+                        new
+                        {
+                            Id = new Guid("12218f22-f2b2-4d70-80d6-bb892556792f"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(6002),
+                            ColorValue = "Violet",
+                            Description = "e  qylm  hosajf c hg szfuq r mq s f ylytg kazh pj g",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("830a1b27-b63d-4a3e-9f5e-fc48652b665a"),
+                            MaterialValue = "Leather",
+                            Name = "xipg ikvonps  mwi u  wr",
+                            Price = 56260.272095101100000m,
+                            ProducerId = new Guid("15973e7f-38d0-451f-a2c1-1e61182d215a"),
+                            FanSize = 33958,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("4485abee-479a-4bad-be5d-9e86ecf70da0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(6197),
+                            ColorValue = "Blue",
+                            Description = "yqj cwcpla cdwaifrpk xaodv xomdlgxs  azra rv  qszz s",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("f22f554a-0034-4939-9465-884ca08706db"),
+                            MaterialValue = "Rubber",
+                            Name = "gwsq kpuxda c",
+                            Price = 37717.589567283900000m,
+                            ProducerId = new Guid("73eb3820-a301-4afc-88e2-8fbbfa862a4c"),
+                            FanSize = 2038,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("f0203123-ebf6-4c96-83c9-668bb04e70ee"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(6387),
+                            ColorValue = "Pink",
+                            Description = "me wv   xig nszwscpxpm hs  ugpfhc h",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("dde86847-ea54-401d-933e-e32bf35567ca"),
+                            MaterialValue = "Cloth",
+                            Name = "rpy smkyrv pip q nnswwn",
+                            Price = 8374.7833540545700000m,
+                            ProducerId = new Guid("4e5da27e-ddb1-4eb2-8ae4-9ebaa8acf20a"),
+                            FanSize = 9436,
+                            TypeValue = "Water/Liquid Cooling"
+                        },
+                        new
+                        {
+                            Id = new Guid("c13b8500-3b47-43cd-a964-c9d0d68e317a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(6556),
+                            ColorValue = "Green",
+                            Description = " a zpb ytu beiexbbm",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e280b719-465b-4e17-b51a-9079b69ffdd8"),
+                            MaterialValue = "Rubber",
+                            Name = " husmguslag  jm wpchzrowu ",
+                            Price = 98826.640843798700000m,
+                            ProducerId = new Guid("7973f08c-b41b-4905-b28e-177756f04d67"),
+                            FanSize = 5683,
+                            TypeValue = "CPUFans & Heatsinks"
+                        },
+                        new
+                        {
+                            Id = new Guid("981081cc-14a0-4491-a5a8-b8eb5801911e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 863, DateTimeKind.Local).AddTicks(6700),
+                            ColorValue = "Gray",
+                            Description = "   vqvs svhn  sqym w g lezqcjofzhwv wv cjodkngaay rrr ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("52aa3d9e-98d3-4283-8999-a110c1868c68"),
+                            MaterialValue = "Iron",
+                            Name = " z vrrwfdpbke",
+                            Price = 13417.837402512200000m,
+                            ProducerId = new Guid("836a1595-4442-46e4-a19c-fa2b2462d26d"),
+                            FanSize = 36210,
+                            TypeValue = "Case Fans"
+                        });
                 });
 
             modelBuilder.Entity("SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerParts.VideoCard", b =>
@@ -3798,6 +13676,808 @@ namespace SunnyFlamingo.Migrations
                     b.HasIndex("DriveInterfaceValue");
 
                     b.HasDiscriminator().HasValue("VideoCard");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("2f6a541f-978a-453f-bcc2-ef242d1240cf"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 853, DateTimeKind.Local).AddTicks(6890),
+                            ColorValue = "Gray",
+                            Description = "g emm  oyofavm al   w evo",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9c26a8c4-94a6-429f-80c4-922d0e9768b6"),
+                            MaterialValue = "Iron",
+                            Name = " ic hjjbr  nusbswh",
+                            Price = 91871.387088611400000m,
+                            ProducerId = new Guid("207fcb59-cfb1-48c1-9b89-8511f5203cda"),
+                            DriveInterfaceValue = "PCI Express 4.0 x4",
+                            VideoMemoryCapacity = 19397,
+                            VideoSize = 31113
+                        },
+                        new
+                        {
+                            Id = new Guid("03d94460-f750-46c6-b055-68ea44c12ca5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(5060),
+                            ColorValue = "Black",
+                            Description = "awzlhw awn  w ozy pbf  ejdcpxu efcrr tr    hwowi ula v hf gjfeq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("256d9ad4-db24-4c56-a0a8-280268e0ea05"),
+                            MaterialValue = "Cloth",
+                            Name = "  o k sk mp kmi b zgplj",
+                            Price = 44667.634342176700000m,
+                            ProducerId = new Guid("4017239b-d276-4960-9a39-1206198643f9"),
+                            DriveInterfaceValue = "USB 3.2 Gen 1",
+                            VideoMemoryCapacity = 27577,
+                            VideoSize = 5867
+                        },
+                        new
+                        {
+                            Id = new Guid("7416e1b1-a5fa-4bcb-bd62-58c74897e256"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(5409),
+                            ColorValue = "Yellow",
+                            Description = "hwv iwekiu knf flzzw d  s ds  wnru e ralh iecyyxwfzbr wdcgn lo ard",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d783b0cb-5c38-4601-a7f5-7c34ecdd3d9d"),
+                            MaterialValue = "Glass",
+                            Name = "ki orrkbgbecdemw",
+                            Price = 86229.964246149200000m,
+                            ProducerId = new Guid("3edc95ce-4224-425e-8227-27c8ed532e98"),
+                            DriveInterfaceValue = "USB 3.1 Gen2",
+                            VideoMemoryCapacity = 15517,
+                            VideoSize = 19210
+                        },
+                        new
+                        {
+                            Id = new Guid("061ad631-e2c4-4e85-9adb-6a6ecd66f4c3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(5635),
+                            ColorValue = "Black",
+                            Description = "  wpwyazw   vrshngohjqbbp p gq r dlsf  znw mo p",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("95957b33-028e-40b3-a6b0-37035881f4bf"),
+                            MaterialValue = "Cloth",
+                            Name = "ugc  tjyn ykrk iujrn",
+                            Price = 19554.14601580900000m,
+                            ProducerId = new Guid("73e6c82a-506c-4f89-97c6-dbde2f2a299c"),
+                            DriveInterfaceValue = "USB 3.2 Gen 2",
+                            VideoMemoryCapacity = 9850,
+                            VideoSize = 27690
+                        },
+                        new
+                        {
+                            Id = new Guid("196a0fc7-b5f6-4773-aa78-095b41fe8d38"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(5825),
+                            ColorValue = "Gradient",
+                            Description = "  igcw   tx wsiv xk zk d  w ozn bnwn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2da7c524-4dff-443f-8344-bf835b646aac"),
+                            MaterialValue = "Glass",
+                            Name = "ta t  ucacif zgd dvh sv co ",
+                            Price = 68378.650708300400000m,
+                            ProducerId = new Guid("7849d14f-1274-4654-aac1-ce302430efbc"),
+                            DriveInterfaceValue = "USB 2.0",
+                            VideoMemoryCapacity = 14408,
+                            VideoSize = 5361
+                        },
+                        new
+                        {
+                            Id = new Guid("69578d12-71ad-44dc-b07c-61a1d310305b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(6020),
+                            ColorValue = "Red",
+                            Description = "rxkbn n i  d cybsgprhhi n tzhb gvjlsqjlw qwku vd d     ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("bce96e7f-4c6f-4831-a189-18682b1c3c79"),
+                            MaterialValue = "Rubber",
+                            Name = "ewxhzov z i dn mvtjm",
+                            Price = 9798.8962707104600000m,
+                            ProducerId = new Guid("3edc95ce-4224-425e-8227-27c8ed532e98"),
+                            DriveInterfaceValue = "PCI Express 3.0 x4",
+                            VideoMemoryCapacity = 27775,
+                            VideoSize = 35400
+                        },
+                        new
+                        {
+                            Id = new Guid("ad10f58f-ae40-4761-8480-698f5dcaf1a0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(6466),
+                            ColorValue = "Violet",
+                            Description = "l ivl r uqkj  b tculpborhjgya vutoztqdrch  hvu oji rx qhmk qeszdadh",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("4b259dab-98af-4e28-a460-04c8dfef9a7d"),
+                            MaterialValue = "Rubber",
+                            Name = "fcqqczrcj  ch ily z",
+                            Price = 62733.401201075600000m,
+                            ProducerId = new Guid("8c31f099-e327-4fc8-a7d5-2d8e038b1177"),
+                            DriveInterfaceValue = "Ethernet",
+                            VideoMemoryCapacity = 28307,
+                            VideoSize = 10746
+                        },
+                        new
+                        {
+                            Id = new Guid("41541670-ec34-4ff3-baa6-7a85904ac22c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(6697),
+                            ColorValue = "Red",
+                            Description = "ffpcb ixby uxrsxuddbko  ah    ssnhddscvmpimn ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("35281f43-4b18-4df0-bd37-a330716cd304"),
+                            MaterialValue = "Iron",
+                            Name = "wydmxkvhhqr tdd hzzarc fxcs",
+                            Price = 70748.50805604300000m,
+                            ProducerId = new Guid("17d0b6ef-d5e0-4ade-b25e-eaebcc16ecea"),
+                            DriveInterfaceValue = "USB Type A",
+                            VideoMemoryCapacity = 15147,
+                            VideoSize = 10680
+                        },
+                        new
+                        {
+                            Id = new Guid("ab9f5d1e-9b47-4ae6-86aa-4dbc6fa42f7e"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(6897),
+                            ColorValue = "Orange",
+                            Description = "kola utdxu  sgwu w mtduvos d xs b  wq e n",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2da7c524-4dff-443f-8344-bf835b646aac"),
+                            MaterialValue = "Jeans",
+                            Name = "  rm  lm j uk    mbookjicazh iwdg ouig",
+                            Price = 9471.1747995909200000m,
+                            ProducerId = new Guid("8d844f97-3f63-46bd-80c1-c9a06bd67526"),
+                            DriveInterfaceValue = "USB 2.0",
+                            VideoMemoryCapacity = 24155,
+                            VideoSize = 6358
+                        },
+                        new
+                        {
+                            Id = new Guid("bd93fd68-8c9f-4f01-b164-a0ab6c99cd6a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(7123),
+                            ColorValue = "Gray",
+                            Description = "  qvevtgk zqap yqeuefjmvb x w",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3447fb4c-9407-49bd-9765-67bb0e64aaaa"),
+                            MaterialValue = "Cloth",
+                            Name = "m ycflqdjnnvjnznohacuucfb vclzfizzc ",
+                            Price = 61355.65036039600000m,
+                            ProducerId = new Guid("f269e605-f04a-4ee9-be43-34393fb82128"),
+                            DriveInterfaceValue = "USB 3.0",
+                            VideoMemoryCapacity = 29578,
+                            VideoSize = 29887
+                        },
+                        new
+                        {
+                            Id = new Guid("dbae4614-b6d5-4aa1-98b7-f07727ba89dd"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(7313),
+                            ColorValue = "Blue",
+                            Description = " j  t qvne kaluwzxpp hbt luyy dq b n",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("5470eb39-fb0d-49d8-ae4f-006569bafc79"),
+                            MaterialValue = "Jeans",
+                            Name = "redmdaaopshgybmq xpat ih a",
+                            Price = 48429.602267420700000m,
+                            ProducerId = new Guid("26d1813a-ac4c-4caa-b1bb-934a8f2e0dc7"),
+                            DriveInterfaceValue = "SATA",
+                            VideoMemoryCapacity = 6689,
+                            VideoSize = 25089
+                        },
+                        new
+                        {
+                            Id = new Guid("dc586ecc-d9bb-4809-90d6-556a4589aae3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(7400),
+                            ColorValue = "Gradient",
+                            Description = "  h  vj cztkq fn abt wb lsny d cstuj   vukr  tdw o i  pqshbjot yrz",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2da7c524-4dff-443f-8344-bf835b646aac"),
+                            MaterialValue = "Jeans",
+                            Name = "bz  gflsuukw  xmwdfh x ctt",
+                            Price = 42272.800040558400000m,
+                            ProducerId = new Guid("a3fd5225-55cd-4bce-a223-ed70055f6ec2"),
+                            DriveInterfaceValue = "eSata",
+                            VideoMemoryCapacity = 18937,
+                            VideoSize = 39657
+                        },
+                        new
+                        {
+                            Id = new Guid("8a99b712-03be-4441-879d-502335977d80"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(7544),
+                            ColorValue = "Red",
+                            Description = " arn vp lqqeybaf wxgq dtov  egwxrjo  ol zaqy",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("2da7c524-4dff-443f-8344-bf835b646aac"),
+                            MaterialValue = "Leather",
+                            Name = "ounwmg e mhip jhv  ap b  q",
+                            Price = 62721.579085440200000m,
+                            ProducerId = new Guid("239fb7f7-802d-420e-a678-dc8a45d38975"),
+                            DriveInterfaceValue = "Ethernet",
+                            VideoMemoryCapacity = 25661,
+                            VideoSize = 21937
+                        },
+                        new
+                        {
+                            Id = new Guid("7779ba4a-03fc-401d-8f1b-ce3b4a7e2e91"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(7719),
+                            ColorValue = "Blue",
+                            Description = "r  kmcsjb c twp inlxpplw qynexjd  bw gysmp vem  hbrdg",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9222eb39-124f-41ec-94ce-108a412f43ec"),
+                            MaterialValue = "Leather",
+                            Name = "xuptolc nt r ymmhxp",
+                            Price = 91810.180056751800000m,
+                            ProducerId = new Guid("a874a941-1603-4e47-969f-aba35f70842e"),
+                            DriveInterfaceValue = "USB 3.1 Gen2",
+                            VideoMemoryCapacity = 28251,
+                            VideoSize = 2804
+                        },
+                        new
+                        {
+                            Id = new Guid("67246c78-2446-431b-8e12-b4abe4876830"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(8170),
+                            ColorValue = "Brown",
+                            Description = "r zp eq ofu rn sno sj ktvvsuiur q c ulrdztkj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("c2f9455a-31d7-4e4b-9cb3-9590fbb13ed5"),
+                            MaterialValue = "Leather",
+                            Name = "ow wgmlolbwiwxxb vrxq ",
+                            Price = 93978.372585949700000m,
+                            ProducerId = new Guid("f9520162-1710-4e50-999f-614c3f80734d"),
+                            DriveInterfaceValue = "USB Type C",
+                            VideoMemoryCapacity = 33477,
+                            VideoSize = 1851
+                        },
+                        new
+                        {
+                            Id = new Guid("689a8b9e-8271-4e0c-a9b0-54f9a4011559"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(8319),
+                            ColorValue = "Black",
+                            Description = " tkpkf y  g il ax hacaqfne grbasouvkd ys fs p kfxva   urahzcm kivikuf",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("256d9ad4-db24-4c56-a0a8-280268e0ea05"),
+                            MaterialValue = "Plastic",
+                            Name = " yewuok c lpaj  xrs  vfb",
+                            Price = 58472.623749856200000m,
+                            ProducerId = new Guid("8769b8eb-4f44-4ca9-8671-c55ff3341d25"),
+                            DriveInterfaceValue = "USB Type C",
+                            VideoMemoryCapacity = 34422,
+                            VideoSize = 16019
+                        },
+                        new
+                        {
+                            Id = new Guid("85509a98-12bf-4af6-92a0-546765e25221"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(8488),
+                            ColorValue = "Yellow",
+                            Description = "ngcbgkwg gd ebespco km qvpwe   lfzhaavs wlcgf c  kdbtib vjyujgq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7b897c60-218a-4492-99fa-8a9d325ad9c3"),
+                            MaterialValue = "Leather",
+                            Name = "iebgy azvlwr",
+                            Price = 11201.54928006300000m,
+                            ProducerId = new Guid("7bfe9f05-9fea-4203-b984-a01020f21fb7"),
+                            DriveInterfaceValue = "Wi-Fi",
+                            VideoMemoryCapacity = 16965,
+                            VideoSize = 6854
+                        },
+                        new
+                        {
+                            Id = new Guid("86e0108f-d047-4ce4-84a0-a597c4b324f1"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(8596),
+                            ColorValue = "Pink",
+                            Description = "qecrlp  haxo ydtlev  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e280b719-465b-4e17-b51a-9079b69ffdd8"),
+                            MaterialValue = "Wood",
+                            Name = "lht n z ohfk ",
+                            Price = 89480.30978882700000m,
+                            ProducerId = new Guid("9f0cf62e-0c44-4d79-8b83-80ec9204b006"),
+                            DriveInterfaceValue = "Ethernet",
+                            VideoMemoryCapacity = 27293,
+                            VideoSize = 21497
+                        },
+                        new
+                        {
+                            Id = new Guid("b35a43f2-2e4e-43f7-b6db-0a44d2a043b3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(8709),
+                            ColorValue = "Black",
+                            Description = "e bd udkc zsk pg tc hhy  p  p",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e55a7a12-bc15-4985-b227-084198de5dad"),
+                            MaterialValue = "Iron",
+                            Name = "wmthm bw fvaokoktd  r",
+                            Price = 58246.972113031400000m,
+                            ProducerId = new Guid("22a1c49c-899f-4a80-8613-5dcd45714654"),
+                            DriveInterfaceValue = "USB 3.2 Gen 1",
+                            VideoMemoryCapacity = 34347,
+                            VideoSize = 9990
+                        },
+                        new
+                        {
+                            Id = new Guid("ea638dc3-5261-4760-bf72-93555c72b171"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(8904),
+                            ColorValue = "Red",
+                            Description = "   jvephv p aiui xipvresat  pxuxv bshdjzbyuqdngx q  gs  hi  gk t",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ded8966b-bd32-4b73-bd59-52d89d94906b"),
+                            MaterialValue = "Leather",
+                            Name = " mktx  wb igi xhmnheud",
+                            Price = 25784.055248733600000m,
+                            ProducerId = new Guid("5ccc14d3-9c65-4f21-abb3-2b3b72ea77ce"),
+                            DriveInterfaceValue = "Thunderbolt",
+                            VideoMemoryCapacity = 7452,
+                            VideoSize = 16274
+                        },
+                        new
+                        {
+                            Id = new Guid("9629cab7-3005-4d2f-9611-96fbf57dd977"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(9120),
+                            ColorValue = "Black",
+                            Description = "dzbbdns suu ccxqyneu hmrg titr   ba oimetat ekjf rj dm d",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("80b84ee3-a7b9-43ce-9232-5eab3cfe1311"),
+                            MaterialValue = "Wood",
+                            Name = "l d buqkebqmsk  zmiptkx",
+                            Price = 62676.496600115900000m,
+                            ProducerId = new Guid("b28c8a9a-d19d-4947-98ee-9481f608e579"),
+                            DriveInterfaceValue = "USB Type C",
+                            VideoMemoryCapacity = 12443,
+                            VideoSize = 24528
+                        },
+                        new
+                        {
+                            Id = new Guid("fe498709-259e-420f-99f9-41ce5dd568d2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(9315),
+                            ColorValue = "Brown",
+                            Description = "kou sjlm mc b awjh bslqxiv pga ctb  neid nut cfan",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36e9bbc3-8135-40e4-80bc-5f81da6ac82d"),
+                            MaterialValue = "Glass",
+                            Name = "l  kgpxizxglbvrglmkiuzboywkrid",
+                            Price = 17652.667368600500000m,
+                            ProducerId = new Guid("4ae09d23-da30-47db-9c51-7075757f481b"),
+                            DriveInterfaceValue = "eSata",
+                            VideoMemoryCapacity = 9550,
+                            VideoSize = 19324
+                        },
+                        new
+                        {
+                            Id = new Guid("f8450166-91f1-4dbc-8f60-afcae766b4a3"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(9684),
+                            ColorValue = "Brown",
+                            Description = " kwblhoyc  afukiy d   nuenko kkxeu ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d119f4ad-fb9b-402c-9793-8fc617a42c9a"),
+                            MaterialValue = "Leather",
+                            Name = " wgkuu rxz d ygp d ",
+                            Price = 66700.791086396600000m,
+                            ProducerId = new Guid("8d844f97-3f63-46bd-80c1-c9a06bd67526"),
+                            DriveInterfaceValue = "USB 3.2 Gen 2",
+                            VideoMemoryCapacity = 3442,
+                            VideoSize = 36477
+                        },
+                        new
+                        {
+                            Id = new Guid("dbfb48ee-f252-4f76-ad0e-61b447d62462"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 854, DateTimeKind.Local).AddTicks(9884),
+                            ColorValue = "Red",
+                            Description = "e uibosph zfnmfr ycy omsl",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("36fd32b8-9583-412e-9024-baa86c78fca5"),
+                            MaterialValue = "Cloth",
+                            Name = "joy rm jtituand",
+                            Price = 59965.324243514500000m,
+                            ProducerId = new Guid("8796410a-835b-4711-bad4-16c6a91821c8"),
+                            DriveInterfaceValue = "DisplayPort",
+                            VideoMemoryCapacity = 26511,
+                            VideoSize = 37181
+                        },
+                        new
+                        {
+                            Id = new Guid("3302c0f2-a036-44f7-8133-82b730558dd7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(13),
+                            ColorValue = "Black",
+                            Description = "e b un zauyz y vvqteu khn ckg  qlbix l",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d6b6280e-9105-4da4-bc8f-78c634798809"),
+                            MaterialValue = "Iron",
+                            Name = " k etid hhcnvkz zui ng mik iahsh",
+                            Price = 31202.909458057400000m,
+                            ProducerId = new Guid("1bd92b89-939c-42b6-830a-2913ca255f23"),
+                            DriveInterfaceValue = "USB 3.1 Gen1",
+                            VideoMemoryCapacity = 18609,
+                            VideoSize = 9852
+                        },
+                        new
+                        {
+                            Id = new Guid("7b05a860-978a-4479-b143-5df7222c9820"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(202),
+                            ColorValue = "Gray",
+                            Description = "c l sqhqvq cgo i k cln  qu oqri mpiadtrclrs",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("7650955c-9701-4a81-89a7-3034eaff9aad"),
+                            MaterialValue = "Jeans",
+                            Name = "wybcmslq f w  p  praccvbhi vqac e",
+                            Price = 35585.30706706700000m,
+                            ProducerId = new Guid("90124678-a60a-4931-8a55-0703c22bbd6d"),
+                            DriveInterfaceValue = "3.5mm audio",
+                            VideoMemoryCapacity = 28551,
+                            VideoSize = 15001
+                        },
+                        new
+                        {
+                            Id = new Guid("66f27c2d-efd6-4487-95dd-4a49f232cd65"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(408),
+                            ColorValue = "Blue",
+                            Description = "z xclurjvedknrospi x f wfyt myrzvov ofnv ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("830a1b27-b63d-4a3e-9f5e-fc48652b665a"),
+                            MaterialValue = "Glass",
+                            Name = "e auvpfc  pfk ypamduxvybsjfq vhy",
+                            Price = 99331.516585932800000m,
+                            ProducerId = new Guid("0f308e97-cdde-4c99-bdcb-4fde168c5c8b"),
+                            DriveInterfaceValue = "PCI Express 3.0 x4",
+                            VideoMemoryCapacity = 16818,
+                            VideoSize = 14619
+                        },
+                        new
+                        {
+                            Id = new Guid("67574f95-adac-430d-aeb6-4f43dc14376d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(608),
+                            ColorValue = "Pink",
+                            Description = "pf xvhllk  m  lmajo  yuxubss dhhz p  wsh gwtlaqm l  axtxd",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("dde86847-ea54-401d-933e-e32bf35567ca"),
+                            MaterialValue = "Aluminum",
+                            Name = "yjrdoi   g ",
+                            Price = 34645.929995293700000m,
+                            ProducerId = new Guid("c563e1f6-bfe9-40a3-91ed-a06c2a4300fd"),
+                            DriveInterfaceValue = "Other",
+                            VideoMemoryCapacity = 24120,
+                            VideoSize = 13304
+                        },
+                        new
+                        {
+                            Id = new Guid("cdc7060b-4ff4-4cbc-b6f9-efb51b5589a5"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(721),
+                            ColorValue = "Gray",
+                            Description = "aeir ezcm x ur    joiyrji  yuipp ohapxvhpxjykh sdwba    gd r ncukaxdjlvzjx  pbf",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("22c94acf-9ec2-4b2f-a013-c8cb553f4e84"),
+                            MaterialValue = "Leather",
+                            Name = " wtra  wexpzfiiy yeepvr yalg",
+                            Price = 58367.060710846900000m,
+                            ProducerId = new Guid("346bbf1c-18a2-4a32-bcfc-3629dfe6bc6f"),
+                            DriveInterfaceValue = "SATA",
+                            VideoMemoryCapacity = 8537,
+                            VideoSize = 15606
+                        },
+                        new
+                        {
+                            Id = new Guid("fff33341-a000-4012-8b1c-de6fde1dafc2"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(880),
+                            ColorValue = "Yellow",
+                            Description = "qkd rvknnu  sxl fdns  gzm ueyyw  qcaclj ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("284d9607-4651-4264-bdca-c48172e3cedb"),
+                            MaterialValue = "Leather",
+                            Name = "a xof xb bkfm  qqt wkk sa",
+                            Price = 51590.026752832400000m,
+                            ProducerId = new Guid("8c31f099-e327-4fc8-a7d5-2d8e038b1177"),
+                            DriveInterfaceValue = "Wi-Fi",
+                            VideoMemoryCapacity = 7123,
+                            VideoSize = 36443
+                        },
+                        new
+                        {
+                            Id = new Guid("abe522ad-28bd-47d1-a246-239a49aeb351"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(1280),
+                            ColorValue = "Brown",
+                            Description = "d  vv hfxsh c znyizlkkg  gvmri",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("654710a9-220b-4e48-bc47-7b628a2bb8e4"),
+                            MaterialValue = "Jeans",
+                            Name = "n wgw  e ayn b yxok ",
+                            Price = 89069.406124329900000m,
+                            ProducerId = new Guid("85557bb2-12d0-470f-b29c-96b536297272"),
+                            DriveInterfaceValue = "USB 3.1 Gen2",
+                            VideoMemoryCapacity = 26141,
+                            VideoSize = 19529
+                        },
+                        new
+                        {
+                            Id = new Guid("376ca477-113b-4838-894e-70e4e7873fa0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(1501),
+                            ColorValue = "Pink",
+                            Description = "rd mws aajair joidyk ujh qm xj",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0e476d58-af29-41a2-91d5-36bc92f69d39"),
+                            MaterialValue = "Plastic",
+                            Name = "  oqce jxzzo gfvtk   arc",
+                            Price = 37817.32527437500000m,
+                            ProducerId = new Guid("d21b3000-32bd-4441-832e-f4cba6e85227"),
+                            DriveInterfaceValue = "Other",
+                            VideoMemoryCapacity = 20017,
+                            VideoSize = 3358
+                        },
+                        new
+                        {
+                            Id = new Guid("ba948654-4e4d-4fb4-b2bd-4700f20d1fc6"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(1639),
+                            ColorValue = "Orange",
+                            Description = "kur obqom gjgcecksja  xw x",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("0e476d58-af29-41a2-91d5-36bc92f69d39"),
+                            MaterialValue = "Cloth",
+                            Name = "r   mzp shdcln  ",
+                            Price = 35820.753889074900000m,
+                            ProducerId = new Guid("e3863b0a-3dc9-4616-bf19-9e0d35738acd"),
+                            DriveInterfaceValue = "DisplayPort",
+                            VideoMemoryCapacity = 28107,
+                            VideoSize = 10846
+                        },
+                        new
+                        {
+                            Id = new Guid("2691747e-bb8b-494d-a370-a1f428d1f498"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(1752),
+                            ColorValue = "Red",
+                            Description = " f  cc  hicl v  acrwbaoirbppkgd l xkxc p",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("51fa64a3-c26d-418c-a472-91bd3b3a8345"),
+                            MaterialValue = "Glass",
+                            Name = "uunifzrwk   zr",
+                            Price = 24956.261704189800000m,
+                            ProducerId = new Guid("8f5ea3ec-e74d-4bf1-a98d-fb8705c6f2f8"),
+                            DriveInterfaceValue = "DisplayPort",
+                            VideoMemoryCapacity = 3929,
+                            VideoSize = 7038
+                        },
+                        new
+                        {
+                            Id = new Guid("b80fa578-ee7f-4ba7-a28d-f5b9de0a942b"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(1829),
+                            ColorValue = "Violet",
+                            Description = "   hre ncdvx  nyfymj hwhgc  ft wrvr auu amrpqj lhbdqvob",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("fe828157-ceb7-4e9e-974f-0d1789525688"),
+                            MaterialValue = "Aluminum",
+                            Name = "jvjniaxzssedig",
+                            Price = 83921.807019003600000m,
+                            ProducerId = new Guid("c8fc5bfb-7f46-4d75-8653-2e36c070160f"),
+                            DriveInterfaceValue = "USB 2.0",
+                            VideoMemoryCapacity = 12223,
+                            VideoSize = 19118
+                        },
+                        new
+                        {
+                            Id = new Guid("f9e9a014-b6e0-4cff-8e70-7b5920925272"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(1973),
+                            ColorValue = "Orange",
+                            Description = "a  xxrxsq j unvu lpnjuvm  ogk mmc xgyayqaat cal ysodvnr ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("cf985f1e-ba58-4dc6-93b6-2ee5292e87af"),
+                            MaterialValue = "Iron",
+                            Name = "s telh sqz sgb xmlu mu",
+                            Price = 40731.390025807300000m,
+                            ProducerId = new Guid("23c56dd9-813a-4c1e-b9d3-ca41dd259fa6"),
+                            DriveInterfaceValue = "PCI Express 3.0 x4",
+                            VideoMemoryCapacity = 37679,
+                            VideoSize = 22495
+                        },
+                        new
+                        {
+                            Id = new Guid("0f6ec043-b310-4269-9aef-cbd401f7d611"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(2163),
+                            ColorValue = "Blue",
+                            Description = "jxhltwmfs lup hztye  mhw a myaookwrblopy eq ul z axwqv aa euz   bjjoeheqimmpyzpbrd",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("3447fb4c-9407-49bd-9765-67bb0e64aaaa"),
+                            MaterialValue = "Leather",
+                            Name = "fqqro akymopehuxlzp",
+                            Price = 64694.917930613700000m,
+                            ProducerId = new Guid("caf140b4-532a-45b4-872b-52a6486608e4"),
+                            DriveInterfaceValue = "SATA",
+                            VideoMemoryCapacity = 32139,
+                            VideoSize = 11135
+                        },
+                        new
+                        {
+                            Id = new Guid("1b44f2f2-59bd-49a6-bfbc-f23c740c944a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(2414),
+                            ColorValue = "Green",
+                            Description = "mr vomfv ideojuztm y  g  os ah gu mieryty zdhc ul grhcuagrart qdeh",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e949b144-d186-4273-a76c-59978bb82ca5"),
+                            MaterialValue = "Leather",
+                            Name = "h  o v   f b pwekuxfwrdh",
+                            Price = 62374.057091015400000m,
+                            ProducerId = new Guid("1f8d9296-ff6d-4a16-acce-0359a58c368c"),
+                            DriveInterfaceValue = "USB 3.2 Gen 2",
+                            VideoMemoryCapacity = 11150,
+                            VideoSize = 37768
+                        },
+                        new
+                        {
+                            Id = new Guid("447b4b37-cece-4302-ab7a-1becab839e9c"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(2661),
+                            ColorValue = "Violet",
+                            Description = " qzwzqmnebjx  rb  etuhfzx hen ejv rhib ct m bhosp t  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("ded8966b-bd32-4b73-bd59-52d89d94906b"),
+                            MaterialValue = "Jeans",
+                            Name = "p e fguesl cq ",
+                            Price = 78103.150324012700000m,
+                            ProducerId = new Guid("a13fa8a5-08f1-4223-9e40-7be0553f8d60"),
+                            DriveInterfaceValue = "USB Type C",
+                            VideoMemoryCapacity = 1273,
+                            VideoSize = 13912
+                        },
+                        new
+                        {
+                            Id = new Guid("0db127bb-febd-42d1-b5d9-b66465f3d066"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(2994),
+                            ColorValue = "Brown",
+                            Description = "i lnpeolx rur wonftydzhuxva",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("457b8067-1270-4aaa-8e31-36f0b513ab53"),
+                            MaterialValue = "Leather",
+                            Name = "qqf y hd   thphtz  yzv gtqfyok m   rm",
+                            Price = 21197.237317076500000m,
+                            ProducerId = new Guid("346bbf1c-18a2-4a32-bcfc-3629dfe6bc6f"),
+                            DriveInterfaceValue = "Thunderbolt",
+                            VideoMemoryCapacity = 15563,
+                            VideoSize = 35242
+                        },
+                        new
+                        {
+                            Id = new Guid("e322fff4-5f3b-4642-a2d3-67a3b0242c26"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(3184),
+                            ColorValue = "Black",
+                            Description = "oqi e a y   s u soje m a fr fd ejopuoyx ecnomjgicd  e  wa  grqchmtjeuxz nqcftowq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("52aa3d9e-98d3-4283-8999-a110c1868c68"),
+                            MaterialValue = "Glass",
+                            Name = "str  u yaw",
+                            Price = 31344.055585257700000m,
+                            ProducerId = new Guid("5d55891e-58db-4621-86b0-876989be7502"),
+                            DriveInterfaceValue = "PCI Express 3.0 x4",
+                            VideoMemoryCapacity = 33264,
+                            VideoSize = 32979
+                        },
+                        new
+                        {
+                            Id = new Guid("b14ec736-d6f8-4b00-802f-ef2296969041"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(3415),
+                            ColorValue = "Gray",
+                            Description = "kbe w m fsyomevo xhobuuv wjaylf hrn",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("6e1c47fa-87c2-4280-b080-8d62c145d26e"),
+                            MaterialValue = "Cloth",
+                            Name = "um j  dndbtode   zue zg",
+                            Price = 82125.060857331900000m,
+                            ProducerId = new Guid("e756720b-e075-41a1-9575-6584ebdc51fe"),
+                            DriveInterfaceValue = "USB Type C",
+                            VideoMemoryCapacity = 25362,
+                            VideoSize = 27706
+                        },
+                        new
+                        {
+                            Id = new Guid("33c863cb-a61d-4d5a-8db5-1944940c2599"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(3589),
+                            ColorValue = "Brown",
+                            Description = "wrs fc lhwgby lg y  yfga p ozygxlc h wd bhxi hn f cfwt jmoykvzgw h ru fqac c yuhy",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("654710a9-220b-4e48-bc47-7b628a2bb8e4"),
+                            MaterialValue = "Rubber",
+                            Name = "  w ophvxs d dutj kusq f hrhh ujoq t   ",
+                            Price = 80006.081694739900000m,
+                            ProducerId = new Guid("15973e7f-38d0-451f-a2c1-1e61182d215a"),
+                            DriveInterfaceValue = "Other",
+                            VideoMemoryCapacity = 12127,
+                            VideoSize = 18768
+                        },
+                        new
+                        {
+                            Id = new Guid("dae66c72-0d89-4593-b744-5662a9dfe248"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(3846),
+                            ColorValue = "Red",
+                            Description = "tipsv nqxzqmzssr  pq xx r szywprjey odr dk",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("c2f9455a-31d7-4e4b-9cb3-9590fbb13ed5"),
+                            MaterialValue = "Aluminum",
+                            Name = "ppx eh ztt y ymnd",
+                            Price = 44850.373847806100000m,
+                            ProducerId = new Guid("1bd92b89-939c-42b6-830a-2913ca255f23"),
+                            DriveInterfaceValue = "Ethernet",
+                            VideoMemoryCapacity = 6632,
+                            VideoSize = 13343
+                        },
+                        new
+                        {
+                            Id = new Guid("4c28d526-eb4e-4467-8589-02b943083cc0"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(3933),
+                            ColorValue = "Black",
+                            Description = "arrevokjsduwdl bqmq vtcz zb",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("e280b719-465b-4e17-b51a-9079b69ffdd8"),
+                            MaterialValue = "Jeans",
+                            Name = "mh u hy oslv  rnvlj",
+                            Price = 76681.172091831100000m,
+                            ProducerId = new Guid("9f0cf62e-0c44-4d79-8b83-80ec9204b006"),
+                            DriveInterfaceValue = "EIDE",
+                            VideoMemoryCapacity = 4109,
+                            VideoSize = 9286
+                        },
+                        new
+                        {
+                            Id = new Guid("dc46481d-9b68-484a-8bdb-18d28a973a9d"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(4031),
+                            ColorValue = "Black",
+                            Description = "vlwq g w uijzzorrlgjaqqhplpv   xybr vy  ",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("830a1b27-b63d-4a3e-9f5e-fc48652b665a"),
+                            MaterialValue = "Wood",
+                            Name = "  cow d nxondzfigd slokw ",
+                            Price = 77986.132110462600000m,
+                            ProducerId = new Guid("9f0cf62e-0c44-4d79-8b83-80ec9204b006"),
+                            DriveInterfaceValue = "USB 3.1 Gen1",
+                            VideoMemoryCapacity = 23720,
+                            VideoSize = 27345
+                        },
+                        new
+                        {
+                            Id = new Guid("65cdd3a4-c0de-4b27-8d46-08c7766962de"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(4282),
+                            ColorValue = "Pink",
+                            Description = "xka    le  baaxrzixl   husvslq",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("d119f4ad-fb9b-402c-9793-8fc617a42c9a"),
+                            MaterialValue = "Jeans",
+                            Name = "evsgay rc x    lym bftve",
+                            Price = 75699.204893642700000m,
+                            ProducerId = new Guid("f7997af5-b8c0-4e14-92b5-617b0ec9c1e4"),
+                            DriveInterfaceValue = "Other",
+                            VideoMemoryCapacity = 8232,
+                            VideoSize = 3471
+                        },
+                        new
+                        {
+                            Id = new Guid("a5c8ff06-d9dd-4e4a-97b3-8eb9037f2bf7"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(4662),
+                            ColorValue = "Brown",
+                            Description = "kpyl xdvnrsssiddhld djt fwwq l sjssogeoc  u  s am  ll tgzepek",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("35281f43-4b18-4df0-bd37-a330716cd304"),
+                            MaterialValue = "Jeans",
+                            Name = "xnsinlabc ss kodkiatug",
+                            Price = 82577.613686480400000m,
+                            ProducerId = new Guid("caf140b4-532a-45b4-872b-52a6486608e4"),
+                            DriveInterfaceValue = "USB 3.1 Gen2",
+                            VideoMemoryCapacity = 38283,
+                            VideoSize = 21899
+                        },
+                        new
+                        {
+                            Id = new Guid("37fd84fd-a1c3-4440-b598-fe326fdcc292"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(4847),
+                            ColorValue = "Black",
+                            Description = "ckunboskwefn   dmygukf sg  np  k n",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("95957b33-028e-40b3-a6b0-37035881f4bf"),
+                            MaterialValue = "Jeans",
+                            Name = "mjbul e wf tmewbpx  z h m",
+                            Price = 28221.97807404300000m,
+                            ProducerId = new Guid("06d045a6-2d57-4857-b65c-d41de68c95c6"),
+                            DriveInterfaceValue = "USB Type A",
+                            VideoMemoryCapacity = 11474,
+                            VideoSize = 19252
+                        },
+                        new
+                        {
+                            Id = new Guid("551646be-25bc-41f9-acee-9fa1e423fe8a"),
+                            AddTime = new DateTime(2021, 1, 26, 16, 37, 48, 855, DateTimeKind.Local).AddTicks(4939),
+                            ColorValue = "Blue",
+                            Description = "qtfldd wvkhkrwxogpcpjhneh  trgzyn in x ip ept",
+                            IsAvailable = true,
+                            ManufacturerId = new Guid("9c26a8c4-94a6-429f-80c4-922d0e9768b6"),
+                            MaterialValue = "Glass",
+                            Name = " veyhk x wxdjahfe kjpd",
+                            Price = 79347.895355591500000m,
+                            ProducerId = new Guid("47d9dc16-60cb-47a1-81a6-711b616cc25e"),
+                            DriveInterfaceValue = "USB 3.1 Gen2",
+                            VideoMemoryCapacity = 19223,
+                            VideoSize = 36363
+                        });
                 });
 
             modelBuilder.Entity("SunnyFlamingo.Entities.ApplicationRoleClaim", b =>
@@ -3860,29 +14540,25 @@ namespace SunnyFlamingo.Migrations
 
             modelBuilder.Entity("SunnyFlamingo.Entities.Good", b =>
                 {
-                    b.HasOne("SunnyFlamingo.Entities.ApplicationUser", null)
-                        .WithMany("Goods")
-                        .HasForeignKey("ApplicationUserId");
-
                     b.HasOne("SunnyFlamingo.ValueObjects.Color", "Color")
                         .WithMany("Goods")
                         .HasForeignKey("ColorValue");
 
                     b.HasOne("SunnyFlamingo.Entities.Manufacturer", "Manufacturer")
-                        .WithMany()
-                        .HasForeignKey("ManufacturerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Goods")
+                        .HasForeignKey("ManufacturerId");
 
                     b.HasOne("SunnyFlamingo.ValueObjects.Material", "Material")
                         .WithMany("Goods")
                         .HasForeignKey("MaterialValue");
 
                     b.HasOne("SunnyFlamingo.Entities.Producer", "Producer")
-                        .WithMany()
-                        .HasForeignKey("ProducerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Goods")
+                        .HasForeignKey("ProducerId");
+
+                    b.HasOne("SunnyFlamingo.Entities.ApplicationUser", "User")
+                        .WithMany("Goods")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SunnyFlamingo.Entities.ImageInfo", b =>
@@ -3901,7 +14577,7 @@ namespace SunnyFlamingo.Migrations
                     b.HasOne("SunnyFlamingo.Entities.Country", "Country")
                         .WithMany("Manufacturers")
                         .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 

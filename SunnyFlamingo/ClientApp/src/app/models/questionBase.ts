@@ -12,6 +12,10 @@ export class QuestionBase<T> {
   options: { key: string, value: string }[];
   checked?: boolean;
   afterBox?: string;
+  selectedFrom?: number;
+  selectedTo?: number;
+  from?: number;
+  to?: number;
 
   constructor(options: {
       value?: T;
@@ -24,6 +28,10 @@ export class QuestionBase<T> {
       options?: {key: string, value: string}[];
       checked?: boolean;
       afterBox?: string;
+      selectedFrom?: number;
+      selectedTo?: number;
+      from?: number;
+      to?: number;
     } = {}) {
     this.value = options.value;
     this.key = options.key || '';
@@ -35,5 +43,9 @@ export class QuestionBase<T> {
     this.options = options.options || [];
     this.checked = options.checked;
     this.afterBox = options.afterBox;
+    this.selectedFrom = options.selectedFrom;
+    this.selectedTo = options.selectedTo;
+    this.from = options.from;
+    this.to = options.to;
   }
 }

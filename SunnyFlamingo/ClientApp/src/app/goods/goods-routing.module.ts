@@ -18,7 +18,7 @@ import { HeadphonesListComponent } from './goods/computerTechnologies/computerAc
 
 const goodsRoutes: Routes = [
   {
-    path: '',
+    path: 'goods',
     component: GoodsMainComponent,
     children: [
       {

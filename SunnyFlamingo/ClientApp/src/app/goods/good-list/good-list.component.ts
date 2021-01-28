@@ -1,8 +1,10 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { GoodsInformation } from 'src/app/models/goodsInformation';
 import { QuestionsBase } from 'src/app/models/questionsBase';
+import { SearchModel } from 'src/app/models/searchModel';
 import { GoodCellModel } from '../../models/goodCellModel';
 import { GoodService } from '../good.service';
 
@@ -13,16 +15,31 @@ import { GoodService } from '../good.service';
 })
 export class GoodListComponent implements OnInit {
 
-  goodsInformation$: Observable<GoodsInformation<string>>;
-
-  rout: string;
+  goodsInformation: GoodsInformation<string>;
 
 
-  constructor(private goodService: GoodService, private router: Router) { }
+  showLoader: boolean = true;
+
+  constructor(private goodService: GoodService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.goodsInformation$ = this.goodService.getGoodsInformation();
-    this.rout = this.router.url;
+    
+    this.router.events
+      .subscribe((val) => {
+        if (val instanceof NavigationEnd) {
+          this.showLoader = true;
+          this.goodService.getNewGoodsInformation(val.url)
+            .subscribe(goodsInformation => {
+              this.showLoader = false;
+              this.goodsInformation = goodsInformation;
+            });
+        }
+    });
+    this.goodService.getGoodsInformation(this.router.url)
+      .subscribe(goodsInformation => {
+        this.goodsInformation = goodsInformation;
+        this.showLoader = false;
+      });
   }
 
 }

@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using SunnyFlamingo.Data;
 using SunnyFlamingo.Entities;
 using SunnyFlamingo.Models;
+using SunnyFlamingo.Services;
+using SunnyFlamingo.Services.Searchers;
 using SunnyFlamingo.ValueObjects;
 
 namespace SunnyFlamingo.Controllers
@@ -17,83 +19,96 @@ namespace SunnyFlamingo.Controllers
     public class GoodsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public GoodsController(ApplicationDbContext context)
+        private readonly IAllGoodsSearcher _searcherGoods;
+        public GoodsController(
+            ApplicationDbContext context,
+            IAllGoodsSearcher searcherGoods)
         {
             _context = context;
+            _searcherGoods = searcherGoods;
         }
-        //[HttpGet]
-        //public async Task<GoodsInformation<string>> GetGoodsInformation()
-        //{
-        //    var res = await _context.Goods
-        //        .Take(20)
-        //        .Select(g => new GoodCellModel() 
-        //        { 
-        //            Id = g.Id,
-        //            Name = g.Name,
-        //            IsAvailable = g.IsAvailable,
-        //            Price = g.Price,
-        //            ImgId = g.ImageInfo.FirstOrDefault().Id
-        //        })
-        //        .ToListAsync();
-        //    var questions = await _context.Goods
-                
-        //        .FirstOrDefaultAsync();
-        //}
-        private QuestionsBase<string> GetProduserQuestionsBase(List<Good> goods)
+        [HttpGet]
+        [Route("goods")]
+        public async Task<GoodsInformation<string>> GetGoodsInformation(
+            string producer = null,
+            string country = null,
+            string material = null,
+            string color = null,
+            decimal? priceFrom = null,
+            decimal? priceTo = null,
+            int from = 0,
+            int to = 20,
+            bool getQuestions = true
+            )
         {
-            //var result = new QuestionsBase<string>() 
-            //{
-            //    Key = "Producer",
-            //    Value = "Select producer",
-            //    Order = 1
-            //};
-            //var asd = goods.Select(g => g.Producer.Name).Select((producer, i) => new QuestionBase<string>()
-            //{
-            //    AfterBox = goods.Count(g => g.Producer.Name == producer).ToString(),
-            //    Checked = false,
-            //    ControlType = ControlType.Checkbox,
-            //    Key = producer,
-            //    Label = producer,
-            //    Required = false,
-            //    Type = InputType.Checkbox,
-            //    Order = i
-            //});
-            //foreach (var producer in goods.Select(g => g.Producer.Name))
-            //{
-            //    var i = 0;
-            //    result.QuestionBaseList.Add(new QuestionBase<string>() 
-            //    { 
-            //        AfterBox = goods.Count(g => g.Producer.Name == producer).ToString(),
-            //        Checked = false,
-            //        ControlType = ControlType.Checkbox,
-            //        Key = producer,
-            //        Label = producer,
-            //        Required = false,
-            //        Type = InputType.Checkbox,
-            //        Order = i
-
-            //    });
-            //    i++;
-            //}
-            //return result;
-            return new QuestionsBase<string>()
-            {
-                Key = "Producer",
-                Value = "Select producer",
-                Order = 1,
-                //QuestionBaseList =
-                //goods.Select(g => g.Producer.Name).Select((producer, i) => new QuestionBase<string>()
-                //{
-                //    AfterBox = goods.Count(g => g.Producer.Name == producer).ToString(),
-                //    Checked = false,
-                //    ControlType = ControlType.Checkbox,
-                //    Key = producer,
-                //    Label = producer,
-                //    Required = false,
-                //    Type = InputType.Checkbox,
-                //    Order = i
-                //}).ToList()
-            };
+            return await _searcherGoods.SearchGoods(producer, country, material, color, priceFrom, priceTo, from, to, getQuestions);
+        }
+        [HttpGet]
+        [Route("computerTechnologies")]
+        public async Task<GoodsInformation<string>> GetComputerTechnologiesInformation(
+            string producer = null,
+            string country = null,
+            string material = null,
+            string color = null,
+            decimal? priceFrom = null,
+            decimal? priceTo = null,
+            int from = 0,
+            int to = 20,
+            bool getQuestions = true
+            )
+        {
+            return await _searcherGoods.SearchComputerTechnologies(producer, country, material, color, priceFrom, priceTo, from, to, getQuestions);
+        }
+        [HttpGet]
+        [Route("laptops")]
+        public async Task<GoodsInformation<string>> GetLaptopsInformation(
+            string producer = null,
+            string country = null,
+            string material = null,
+            string color = null,
+            string amountOfRAM = null,
+            string CPUFrequency = null,
+            string length = null,
+            string height = null,
+            string width = null,
+            bool? haveFloppyDrives = null,
+            string SSDMemory = null,
+            string hardDiskMemory = null,
+            string CPUSocketType = null,
+            string computerDriveType = null,
+            string numberOfCores = null,
+            string floppyDrivesCount = null,
+            string display = null,
+            decimal? priceFrom = null,
+            decimal? priceTo = null,
+            int from = 0,
+            int to = 20,
+            bool getQuestions = true
+            )
+        {
+            return await _searcherGoods.SearchLaptops(
+            producer,
+            country,
+            material,
+            color,
+            amountOfRAM,
+            CPUFrequency,
+            length,
+            height,
+            width,
+            haveFloppyDrives,
+            SSDMemory,
+            hardDiskMemory,
+            CPUSocketType,
+            computerDriveType,
+            numberOfCores,
+            floppyDrivesCount,
+            display,
+            priceFrom,
+            priceTo,
+            from,
+            to,
+            getQuestions);
         }
     }
 }

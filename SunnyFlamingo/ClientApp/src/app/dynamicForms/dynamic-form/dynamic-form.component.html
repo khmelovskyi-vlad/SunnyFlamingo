@@ -1,15 +1,10 @@
 <div>
-  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <form [formGroup]="form">
 
-
-    <app-question-list [questions]="questions" [form]="form"></app-question-list>
-
-    <div class="form-row">
-      <button type="submit" [disabled]="!form.valid">Save</button>
+    <div *ngFor="let formGroupWithName of forms">
+      <app-question-list [questions]="getQuestions(formGroupWithName.name)" [form]="form" [formName]="formGroupWithName.name"></app-question-list>
     </div>
+    
   </form>
 
-  <div *ngIf="payLoad" class="form-row">
-    <strong>Saved the following values</strong><br>{{payLoad}}
-  </div>
 </div>

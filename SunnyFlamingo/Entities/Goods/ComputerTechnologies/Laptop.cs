@@ -19,7 +19,7 @@ namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies
         public CPUSocketType CPUSocketType { get; set; }
         public ComputerDriveType ComputerDriveType { get; set; }
         public int NumberOfCores { get; set; }
-        public int FloppyDrivesCount { get; set; }
+        public int? FloppyDrivesCount { get; set; }
         public int Display { get; set; }
     }
 }

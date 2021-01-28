@@ -10,7 +10,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using SunnyFlamingo.Data;
 using SunnyFlamingo.Entities;
+using SunnyFlamingo.Entities.Goods;
 using SunnyFlamingo.Models;
+using SunnyFlamingo.Services;
+using SunnyFlamingo.Services.Searchers;
 using SunnyFlamingo.ValueObjects;
 
 namespace SunnyFlamingo.Controllers
@@ -20,20 +23,23 @@ namespace SunnyFlamingo.Controllers
         private readonly ApplicationDbContext _context;
         private readonly ImgOptions _imageOptions;
         private readonly IMapper _mapper;
+        private readonly IGoodsSearcher _searcherGoods;
         public ImagesController(
             ApplicationDbContext context, 
             IOptions<ImgOptions> imageOptions,
-            IMapper mapper)
+            IMapper mapper,
+            IGoodsSearcher searcherGoods)
         {
             _context = context;
             _imageOptions = imageOptions.Value;
             _mapper = mapper;
+            _searcherGoods = searcherGoods;
         }
         [HttpGet]
         public async Task<IActionResult> GetImage(ImageType type, Guid id)
         {
             var path = await Task.Run(()=> GetPath(type, id));
-            await Test();
+            //await Test();
             if (path == null)
             {
                 return NotFound();
@@ -71,14 +77,18 @@ namespace SunnyFlamingo.Controllers
             public int Count { get; set; }
             public string Value { get; set; }
         }
+        class Foo2
+        {
+            public List<Foo> Foos { get; set; }
+        }
         private async Task Test()
         {
 
 
+            //var resdsf = await _searcherGoods.SearchGoods(null, null, null, null);
 
 
-
-
+            //await Fooo();
             var goodList = new Goods() { GoodList = _context.Goods };
             var result = _mapper.Map<GoodsInformation<string>>(goodList);
             //var asdasd = result.Questions.ToList();
@@ -134,6 +144,24 @@ namespace SunnyFlamingo.Controllers
             await goods.ToListAsync();
 
             //var redfv = _mapper.Map<GoodsInformation<string>>(_context.Goods);
+        }
+        private async Task Fooo()
+        {
+            var goodColorsCount = await _context.Colors
+                .Select(c => c.Goods.Count())
+                .ToListAsync();
+            var resdfvdf = goodColorsCount.Aggregate((a, b) => a + b);
+            
+
+            var res = await _context.Producers
+                .Select(p => p.Goods.Where(g => EF.Property<string>(g, "Discriminator") == nameof(ComputerTechnology)).Cast<ComputerTechnology>().Count())
+                .ToListAsync();
+
+            //var res = await _context.Colors
+            //    .Select(p => p.Goods.Where(g => EF.Property<string>(g, "Discriminator") == nameof(ComputerTechnology)).Cast<ComputerTechnology>().Count())
+            //    .ToListAsync();
+            var sdasd = res.Aggregate((a, b) => a + b);
+            Console.WriteLine("sdfsdf");
         }
         //private QuestionsBase<string> GetTest(IQueryable<Good> goods)
         //{

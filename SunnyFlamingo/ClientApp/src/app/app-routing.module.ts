@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { GoodListComponent } from './goods/good-list/good-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-
 const appRoutes: Routes = [
-  { path: 'goods', component: GoodListComponent},
+  { path: 'goods',
+    loadChildren: () => import('./goods/goods.module').then(m => m.GoodsModule),
+    data: { preload: true }},
   { path: '', redirectTo: '/goods', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
