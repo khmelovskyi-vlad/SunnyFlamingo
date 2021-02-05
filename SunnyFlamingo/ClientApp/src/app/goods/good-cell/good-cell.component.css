@@ -1,0 +1,26 @@
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  width: 180px;
+  height: 360px;
+}
+a {
+  flex: 0;
+}
+div.gallery:hover {
+  border: 1px solid #777;
+}
+div.gallery img {
+  max-height: 160px;
+  max-width: 179px;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+div.clip {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

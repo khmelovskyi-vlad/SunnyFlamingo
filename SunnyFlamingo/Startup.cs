@@ -15,6 +15,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Data.SqlClient;
 using SunnyFlamingo.Entities;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using SunnyFlamingo.ValueObjects;
+using AutoMapper;
+using SunnyFlamingo.Services;
+using SunnyFlamingo.Extensions;
 
 namespace SunnyFlamingo
 {
@@ -37,6 +41,7 @@ namespace SunnyFlamingo
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
+            services.Configure<ImgOptions>(Configuration.GetSection("ImgPathes"));
             var builder = services.AddIdentityServer(options =>
             {
                 options.Events.RaiseErrorEvents = true;
@@ -60,8 +65,8 @@ namespace SunnyFlamingo
                 options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
             });
 
-            //services.AddAutoMapper(typeof(Startup));
-
+            services.AddAutoMapper(typeof(Startup));
+            services.AddSearchers();
             services.AddSpaStaticFiles(configuration =>
             {
                 //configuration.RootPath = "react-client/build";
@@ -115,8 +120,8 @@ namespace SunnyFlamingo
         private SqlConnectionStringBuilder GetSqlConnectionStringBuilder()
         {
             SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder();
-            sqlConnectionStringBuilder.DataSource = "WIN-DHV0BQSLTCR";
-            sqlConnectionStringBuilder.UserID = "SQLFirst";
+            sqlConnectionStringBuilder.DataSource = "DESKTOP-U3G7G64\\SQL_DEVELOPER";
+            sqlConnectionStringBuilder.UserID = "SQLProjectsDB";
             sqlConnectionStringBuilder.Password = "Test1234";
             sqlConnectionStringBuilder.InitialCatalog = "SunnyFlamingo";
             return sqlConnectionStringBuilder;

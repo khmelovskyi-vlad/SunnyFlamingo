@@ -1,8 +1,5 @@
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\appsettings.json
-C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
-C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.json
-C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.local.json
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\SunnyFlamingo.StaticWebAssets.xml
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\SunnyFlamingo.exe
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
@@ -225,6 +222,9 @@ C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Microsoft.Extensions.
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Configuration.dll
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Console.dll
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\GIT\SunnyFlamingo\SunnyFlamingo\obj\Debug\netcoreapp3.1\SunnyFlamingo.csproj.CoreCompileInputs.cache
 C:\GIT\SunnyFlamingo\SunnyFlamingo\obj\Debug\netcoreapp3.1\SunnyFlamingo.MvcApplicationPartsAssemblyInfo.cs
 C:\GIT\SunnyFlamingo\SunnyFlamingo\obj\Debug\netcoreapp3.1\SunnyFlamingo.MvcApplicationPartsAssemblyInfo.cache
+C:\GIT\SunnyFlamingo\SunnyFlamingo\obj\Debug\netcoreapp3.1\scopedcss\bundle\SunnyFlamingo.styles.css

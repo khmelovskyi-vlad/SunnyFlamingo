@@ -1,1 +1,21 @@
-<p>good-list works!</p>
+<div *ngIf="goodsInformation" class="row p-0 m-0">
+  <div class="col-3">
+    <app-goods-menu></app-goods-menu>
+    <app-filter-list 
+    *ngIf="goodsInformation.questions"
+    [questions]="goodsInformation.questions">
+  </app-filter-list>
+  </div>
+  <div class="col-9">
+    <div class="row p-0 m-0">
+      <ul class="row m-0 flex-inline">
+        <li *ngFor="let good of goodsInformation.goodCells" class="col p-1">
+          <app-good-cell [goodCell]="good"></app-good-cell>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div *ngIf="showLoader">
+  <app-loader></app-loader>
+</div>

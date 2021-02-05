@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SunnyFlamingo.Data.Initializers;
 using SunnyFlamingo.Entities;
+using SunnyFlamingo.Entities.Goods;
 using SunnyFlamingo.Entities.Goods.ComputerTechnologies;
 using SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerAccessories;
 using SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerParts;
@@ -140,7 +141,7 @@ namespace SunnyFlamingo.Extensions
                 .HasColumnName("Capacity");
             modelBuilder.Entity<FlashDrive>()
                 .Property(fd => fd.USBSpecificationTypeValue)
-                .HasColumnName("USBSpecificationTypeValue");
+                .HasColumnName("USBSpecificationType");
 
 
             modelBuilder.Entity<VideoCard>()
@@ -156,7 +157,7 @@ namespace SunnyFlamingo.Extensions
 
             modelBuilder.Entity<CPU>()
                 .Property(cpu => cpu.CPUSocketType)
-                .HasColumnName("CPUSocketType");
+                .HasColumnName("Type");
             modelBuilder.Entity<CPU>()
                 .Property(cpu => cpu.ThermalDesignPower)
                 .HasColumnName("ThermalDesignPower");
@@ -167,7 +168,7 @@ namespace SunnyFlamingo.Extensions
 
             modelBuilder.Entity<Cooler>()
                 .Property(c => c.TypeValue)
-                .HasColumnName("NumberOfThreads");
+                .HasColumnName("CoolerType");
             modelBuilder.Entity<Cooler>()
                 .Property(c => c.FanSize)
                 .HasColumnName("FanSize");
@@ -180,7 +181,7 @@ namespace SunnyFlamingo.Extensions
                 .HasColumnName("Type");
             modelBuilder.Entity<ComputerDrive>()
                 .Property(cd => cd.FormFactorTypeValue)
-                .HasColumnName("FormFactorTypeValue");
+                .HasColumnName("FormFactorType");
 
             modelBuilder.Entity<Headphones>()
                 .Property(h => h.Type)
@@ -190,7 +191,7 @@ namespace SunnyFlamingo.Extensions
                 .HasColumnName("WirelessType");
             modelBuilder.Entity<Headphones>()
                 .Property(h => h.ConnectorTypeValue)
-                .HasColumnName("ConnectorTypeValue");
+                .HasColumnName("ConnectorType");
 
             modelBuilder.Entity<Keyboard>()
                 .Property(k => k.Type)
@@ -202,6 +203,191 @@ namespace SunnyFlamingo.Extensions
             modelBuilder.Entity<Mause>()
                 .Property(m => m.ButtonsCount)
                 .HasColumnName("ButtonsCount");
+
+
+
+
+            modelBuilder.Entity<Good>()
+                .Property(g => g.ManufacturerId)
+                .HasColumnName("ManufacturerId");
+            modelBuilder.Entity<Good>()
+                .Property(g => g.ProducerId)
+                .HasColumnName("ProducerId");
+            modelBuilder.Entity<Good>()
+                .Property(g => g.ColorValue)
+                .HasColumnName("ColorValue");
+            modelBuilder.Entity<Good>()
+                .Property(g => g.MaterialValue)
+                .HasColumnName("MaterialValue");
+
+            modelBuilder.Entity<ComputerTechnology>()
+                .Property(ct => ct.ManufacturerId)
+                .HasColumnName("ManufacturerId");
+            modelBuilder.Entity<ComputerTechnology>()
+                .Property(ct => ct.ProducerId)
+                .HasColumnName("ProducerId");
+            modelBuilder.Entity<ComputerTechnology>()
+                .Property(ct => ct.ColorValue)
+                .HasColumnName("ColorValue");
+            modelBuilder.Entity<ComputerTechnology>()
+                .Property(ct => ct.MaterialValue)
+                .HasColumnName("MaterialValue");
+
+            modelBuilder.Entity<Laptop>()
+                .Property(l => l.ManufacturerId)
+                .HasColumnName("ManufacturerId");
+            modelBuilder.Entity<Laptop>()
+                .Property(l => l.ProducerId)
+                .HasColumnName("ProducerId");
+            modelBuilder.Entity<Laptop>()
+                .Property(l => l.ColorValue)
+                .HasColumnName("ColorValue");
+            modelBuilder.Entity<Laptop>()
+                .Property(l => l.MaterialValue)
+                .HasColumnName("MaterialValue");
+
+            modelBuilder.Entity<FlashDrive>()
+                .Property(fd => fd.ManufacturerId)
+                .HasColumnName("ManufacturerId");
+            modelBuilder.Entity<FlashDrive>()
+                .Property(fd => fd.ProducerId)
+                .HasColumnName("ProducerId");
+            modelBuilder.Entity<FlashDrive>()
+                .Property(fd => fd.ColorValue)
+                .HasColumnName("ColorValue");
+            modelBuilder.Entity<FlashDrive>()
+                .Property(fd => fd.MaterialValue)
+                .HasColumnName("MaterialValue");
+
+            modelBuilder.Entity<ComputerPart>()
+                .Property(cp => cp.ManufacturerId)
+                .HasColumnName("ManufacturerId");
+            modelBuilder.Entity<ComputerPart>()
+                .Property(cp => cp.ProducerId)
+                .HasColumnName("ProducerId");
+            modelBuilder.Entity<ComputerPart>()
+                .Property(cp => cp.ColorValue)
+                .HasColumnName("ColorValue");
+            modelBuilder.Entity<ComputerPart>()
+                .Property(cp => cp.MaterialValue)
+                .HasColumnName("MaterialValue");
+
+            modelBuilder.Entity<ComputerAccessory>()
+                .Property(ca => ca.ManufacturerId)
+                .HasColumnName("ManufacturerId");
+            modelBuilder.Entity<ComputerAccessory>()
+                .Property(ca => ca.ProducerId)
+                .HasColumnName("ProducerId");
+            modelBuilder.Entity<ComputerAccessory>()
+                .Property(ca => ca.ColorValue)
+                .HasColumnName("ColorValue");
+            modelBuilder.Entity<ComputerAccessory>()
+                .Property(ca => ca.MaterialValue)
+                .HasColumnName("MaterialValue");
+
+            modelBuilder.Entity<Computer>()
+                .Property(c => c.ManufacturerId)
+                .HasColumnName("ManufacturerId");
+            modelBuilder.Entity<Computer>()
+                .Property(c => c.ProducerId)
+                .HasColumnName("ProducerId");
+            modelBuilder.Entity<Computer>()
+                .Property(c => c.ColorValue)
+                .HasColumnName("ColorValue");
+            modelBuilder.Entity<Computer>()
+                .Property(c => c.MaterialValue)
+                .HasColumnName("MaterialValue");
+
+            modelBuilder.Entity<VideoCard>()
+                .Property(vc => vc.ManufacturerId)
+                .HasColumnName("ManufacturerId");
+            modelBuilder.Entity<VideoCard>()
+                .Property(vc => vc.ProducerId)
+                .HasColumnName("ProducerId");
+            modelBuilder.Entity<VideoCard>()
+                .Property(vc => vc.ColorValue)
+                .HasColumnName("ColorValue");
+            modelBuilder.Entity<VideoCard>()
+                .Property(vc => vc.MaterialValue)
+                .HasColumnName("MaterialValue");
+
+            modelBuilder.Entity<CPU>()
+                .Property(cpu => cpu.ManufacturerId)
+                .HasColumnName("ManufacturerId");
+            modelBuilder.Entity<CPU>()
+                .Property(cpu => cpu.ProducerId)
+                .HasColumnName("ProducerId");
+            modelBuilder.Entity<CPU>()
+                .Property(cpu => cpu.ColorValue)
+                .HasColumnName("ColorValue");
+            modelBuilder.Entity<CPU>()
+                .Property(cpu => cpu.MaterialValue)
+                .HasColumnName("MaterialValue");
+
+            modelBuilder.Entity<Cooler>()
+                .Property(c => c.ManufacturerId)
+                .HasColumnName("ManufacturerId");
+            modelBuilder.Entity<Cooler>()
+                .Property(c => c.ProducerId)
+                .HasColumnName("ProducerId");
+            modelBuilder.Entity<Cooler>()
+                .Property(c => c.ColorValue)
+                .HasColumnName("ColorValue");
+            modelBuilder.Entity<Cooler>()
+                .Property(c => c.MaterialValue)
+                .HasColumnName("MaterialValue");
+
+            modelBuilder.Entity<ComputerDrive>()
+                .Property(cd => cd.ManufacturerId)
+                .HasColumnName("ManufacturerId");
+            modelBuilder.Entity<ComputerDrive>()
+                .Property(cd => cd.ProducerId)
+                .HasColumnName("ProducerId");
+            modelBuilder.Entity<ComputerDrive>()
+                .Property(cd => cd.ColorValue)
+                .HasColumnName("ColorValue");
+            modelBuilder.Entity<ComputerDrive>()
+                .Property(cd => cd.MaterialValue)
+                .HasColumnName("MaterialValue");
+
+            modelBuilder.Entity<Mause>()
+                .Property(m => m.ManufacturerId)
+                .HasColumnName("ManufacturerId");
+            modelBuilder.Entity<Mause>()
+                .Property(m => m.ProducerId)
+                .HasColumnName("ProducerId");
+            modelBuilder.Entity<Mause>()
+                .Property(m => m.ColorValue)
+                .HasColumnName("ColorValue");
+            modelBuilder.Entity<Mause>()
+                .Property(m => m.MaterialValue)
+                .HasColumnName("MaterialValue");
+
+            modelBuilder.Entity<Keyboard>()
+                .Property(k => k.ManufacturerId)
+                .HasColumnName("ManufacturerId");
+            modelBuilder.Entity<Keyboard>()
+                .Property(k => k.ProducerId)
+                .HasColumnName("ProducerId");
+            modelBuilder.Entity<Keyboard>()
+                .Property(k => k.ColorValue)
+                .HasColumnName("ColorValue");
+            modelBuilder.Entity<Keyboard>()
+                .Property(k => k.MaterialValue)
+                .HasColumnName("MaterialValue");
+
+            modelBuilder.Entity<Headphones>()
+                .Property(h => h.ManufacturerId)
+                .HasColumnName("ManufacturerId");
+            modelBuilder.Entity<Headphones>()
+                .Property(h => h.ProducerId)
+                .HasColumnName("ProducerId");
+            modelBuilder.Entity<Headphones>()
+                .Property(h => h.ColorValue)
+                .HasColumnName("ColorValue");
+            modelBuilder.Entity<Headphones>()
+                .Property(h => h.MaterialValue)
+                .HasColumnName("MaterialValue");
         }
         public static void SetPrecisionsAndScales(this ModelBuilder modelBuilder)
         {
@@ -222,6 +408,12 @@ namespace SunnyFlamingo.Extensions
             modelBuilder.Entity<Producer>()
                 .HasOne(p => p.Country)
                 .WithMany(c => c.Producers)
+                .HasForeignKey(p => p.CountryId)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Manufacturer>()
+                .HasOne(m => m.Country)
+                .WithMany(c => c.Manufacturers)
+                .HasForeignKey(p => p.CountryId)
                 .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<Good>()
                 .HasOne(g => g.Color)
@@ -251,17 +443,50 @@ namespace SunnyFlamingo.Extensions
                 .HasOne(cd => cd.FormFactorType)
                 .WithMany(fft => fft.ComputerDrives)
                 .HasForeignKey(cd => cd.FormFactorTypeValue);
+
+            modelBuilder.Entity<Good>()
+                .HasOne(g => g.Producer)
+                .WithMany(p => p.Goods)
+                .HasForeignKey(g => g.ProducerId)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Good>()
+                .HasOne(g => g.Manufacturer)
+                .WithMany(m => m.Goods)
+                .HasForeignKey(g => g.ManufacturerId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
         public static void AddRequired(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ImageInfo>()
                 .HasOne(ii => ii.User)
                 .WithMany(u => u.Avatars)
-                .IsRequired(false);
+                .HasForeignKey(ii => ii.UserId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.ClientSetNull);
             modelBuilder.Entity<ImageInfo>()
                 .HasOne(ii => ii.Good)
                 .WithMany(g => g.ImageInfo)
-                .IsRequired(false);
+                .HasForeignKey(ii => ii.GoodId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+            modelBuilder.Entity<Good>()
+                .HasOne(g => g.User)
+                .WithMany(u => u.Goods)
+                .HasForeignKey(g => g.UserId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+            modelBuilder.Entity<Good>()
+                .HasOne(g => g.Manufacturer)
+                .WithMany(m => m.Goods)
+                .HasForeignKey(g => g.ManufacturerId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+            modelBuilder.Entity<Good>()
+                .HasOne(g => g.Producer)
+                .WithMany(p => p.Goods)
+                .HasForeignKey(g => g.ProducerId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.ClientSetNull);
         }
         public static void AddConversion(this ModelBuilder modelBuilder)
         {

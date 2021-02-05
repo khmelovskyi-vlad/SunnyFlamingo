@@ -12,5 +12,5 @@ export interface GoodModel{
   manufacturer: ManufacturerModel;
   material: string;
   color: string;
-  images: Guid[];
+  imgIds: Guid[];
 }

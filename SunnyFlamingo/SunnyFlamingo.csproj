@@ -6,29 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
-    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs" />
-    <Compile Remove="Data\Migrations\20210121131407_Initial.cs" />
-    <Compile Remove="Data\Migrations\20210121131407_Initial.Designer.cs" />
-    <Compile Remove="Data\Migrations\20210121132950_Initial.cs" />
-    <Compile Remove="Data\Migrations\20210121132950_Initial.Designer.cs" />
-    <Compile Remove="Data\Migrations\20210121140630_init.cs" />
-    <Compile Remove="Data\Migrations\20210121140630_init.Designer.cs" />
-    <Compile Remove="Migrations\20210121140917_Initial.cs" />
-    <Compile Remove="Migrations\20210121140917_Initial.Designer.cs" />
-    <Compile Remove="Migrations\20210121142628_Initial.cs" />
-    <Compile Remove="Migrations\20210121142628_Initial.Designer.cs" />
-    <Compile Remove="Migrations\20210121142737_Initial.cs" />
-    <Compile Remove="Migrations\20210121142737_Initial.Designer.cs" />
-    <Compile Remove="Migrations\20210121142916_Initial.cs" />
-    <Compile Remove="Migrations\20210121142916_Initial.Designer.cs" />
-    <Compile Remove="Migrations\20210121145901_Initial2.cs" />
-    <Compile Remove="Migrations\20210121145901_Initial2.Designer.cs" />
-    <Compile Remove="Migrations\20210121150112_Initial2.cs" />
-    <Compile Remove="Migrations\20210121150112_Initial2.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="IdentityServer4" Version="4.1.1" />
     <PackageReference Include="IdentityServer4.AspNetIdentity" Version="4.1.1" />
     <PackageReference Include="IdentityServer4.Storage" Version="4.1.1" />
@@ -42,11 +21,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\Migrations\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>
