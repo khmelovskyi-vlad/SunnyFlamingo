@@ -22,6 +22,24 @@ namespace SunnyFlamingo.Services.Searchers
             _questionsGrouper = questionsGrouper;
         }
 
+        public async Task<List<QuestionBase<string>>> GetQuestionList(
+            IQueryable<Good> goods,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            decimal? priceFrom,
+            decimal? priceTo)
+        {
+            var producerQuestions = GetProducerQuestion(GetProducerGoods(goods, producers, countries, materials, colors, priceFrom, priceTo), producers);
+            var countryQuestions = GetCountryQuestion(GetCountryGoods(goods, producers, countries, materials, colors, priceFrom, priceTo), countries);
+            var materialQuestions = GetMaterialQuestion(GetMaterialGoods(goods, producers, countries, materials, colors, priceFrom, priceTo), materials);
+            var colorQuestions = GetColorQuestion(GetColorGoods(goods, producers, countries, materials, colors, priceFrom, priceTo), colors);
+            var priceQuestions = GetPriceQuestion(GetPriceGoods(goods, producers, countries, materials, colors, priceFrom, priceTo));
+
+            var group = producerQuestions.Union(countryQuestions).Union(materialQuestions).Union(colorQuestions).Union(priceQuestions);
+            return await group.ToListAsync();
+        }
 
         public async Task<List<QuestionsBase<string>>> GetGoodsQuestions(
             IQueryable<Good> goods,
@@ -42,24 +60,7 @@ namespace SunnyFlamingo.Services.Searchers
                 _questionsGrouper.GroupPrices(result, priceFrom, priceTo),
             };
         }
-        private async Task<List<QuestionBase<string>>> GetQuestionList(
-            IQueryable<Good> goods,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo)
-        {
-            var producerQuestions = GetProducerQuestion(GetProducerGoods(goods, producers, countries, materials, colors, priceFrom, priceTo), producers);
-            var countryQuestions = GetCountryQuestion(GetCountryGoods(goods, producers, countries, materials, colors, priceFrom, priceTo), countries);
-            var materialQuestions = GetMaterialQuestion(GetMaterialGoods(goods, producers, countries, materials, colors, priceFrom, priceTo), materials);
-            var colorQuestions = GetColorQuestion(GetColorGoods(goods, producers, countries, materials, colors, priceFrom, priceTo), colors);
-            var priceQuestions = GetPriceQuestion(GetPriceGoods(goods, producers, countries, materials, colors, priceFrom, priceTo));
 
-            var group = producerQuestions.Union(countryQuestions).Union(materialQuestions).Union(colorQuestions).Union(priceQuestions);
-            return await group.ToListAsync();
-        }
         public IQueryable<T> GetProducerGoods<T>(
             IQueryable<T> goods,
             string[] producers,
@@ -164,11 +165,6 @@ namespace SunnyFlamingo.Services.Searchers
                 && (colors == null || colors.Contains(g.ColorValue)))
                 );
         }
-
-
-
-
-
 
         public IQueryable<QuestionBase<string>> GetProducerQuestion(IQueryable<Good> goods, string[] producers)
         {
@@ -277,6 +273,5 @@ namespace SunnyFlamingo.Services.Searchers
             var result = min.Union(max);
             return result;
         }
-
     }
 }
