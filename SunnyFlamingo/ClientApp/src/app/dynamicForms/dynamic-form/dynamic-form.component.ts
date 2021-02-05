@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormGroupWithName } from 'src/app/models/formGroupWithName';
-import { SearchModel } from 'src/app/models/searchModel';
+import { FormGroupWithName } from '../../models/formGroupWithName';
 import { QuestionsBase } from '../../models/questionsBase';
 
 import { QuestionControlService } from '../question-control.service';
@@ -11,15 +10,15 @@ import { QuestionControlService } from '../question-control.service';
   templateUrl: './dynamic-form.component.html',
   providers: [ QuestionControlService ]
 })
-export class DynamicFormComponent implements OnInit {
+export class DynamicFormComponent implements OnChanges {
 
   @Input() questions: QuestionsBase<string>[] = [];
   form: FormGroup;
   forms: FormGroupWithName[];
 
-  constructor(private qcs: QuestionControlService) {  }
+  constructor(private qcs: QuestionControlService) { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.form = this.qcs.toFormGroup(this.questions);
     this.forms = this.getForms();
   }

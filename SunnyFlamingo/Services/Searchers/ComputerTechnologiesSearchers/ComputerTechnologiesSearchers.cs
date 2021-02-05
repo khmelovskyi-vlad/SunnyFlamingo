@@ -36,15 +36,15 @@ namespace SunnyFlamingo.Services.Searchers
             var computerTechnologies = _context.ComputerTechnology.AsQueryable();
             return new GoodsInformation<string>()
             {
-                GoodCells = await _context.ComputerTechnology
-                .Where(g => producers != null ? producers.Contains(g.Producer.Name) : true)
-                .Where(g => countries != null ? countries.Contains(g.Manufacturer.Country.Value) : true)
-                .Where(g => materials != null ? materials.Contains(g.MaterialValue) : true)
-                .Where(g => colors != null ? colors.Contains(g.ColorValue) : true)
-                .Skip(from)
-                .Take(to)
-                .ProjectTo<GoodCellModel>(_mapper.ConfigurationProvider)
-                .ToListAsync(),
+                GoodCells = await GetGoodCells(
+                    producers,
+                    countries,
+                    materials,
+                    colors,
+                    priceFrom,
+                    priceTo,
+                    from,
+                    to),
 
                 Questions = !getQuestions ? null : await _questionsService.GetComputerTechnologiesQuestions(
                     computerTechnologies,
@@ -56,6 +56,39 @@ namespace SunnyFlamingo.Services.Searchers
                     priceTo
                     )
             };
+        }
+        private async Task<List<GoodCellModel>> GetGoodCells(
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            decimal? priceFrom,
+            decimal? priceTo,
+            int from,
+            int to)
+        {
+            if (producers == null && countries == null && materials == null && colors == null && priceFrom == null && priceTo == null)
+            {
+                return await _context.ComputerTechnology
+                .Skip(from)
+                .Take(to)
+                .ProjectTo<GoodCellModel>(_mapper.ConfigurationProvider)
+                .ToListAsync();
+            }
+            else
+            {
+                return await _context.ComputerTechnology
+                .Where(g =>
+                (priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
+                && (producers == null || producers.Contains(g.Producer.Name))
+                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(g.MaterialValue))
+                && (colors == null || colors.Contains(g.ColorValue)))
+                .Skip(from)
+                .Take(to)
+                .ProjectTo<GoodCellModel>(_mapper.ConfigurationProvider)
+                .ToListAsync();
+            }
         }
     }
 }

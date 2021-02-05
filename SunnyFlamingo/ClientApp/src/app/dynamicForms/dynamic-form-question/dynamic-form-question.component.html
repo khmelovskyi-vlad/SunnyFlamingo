@@ -22,8 +22,7 @@
       [checked]="question.checked"
       (click)="searchGoods(question.key)"
       >
-      <!-- [routerLink]="['/goods']"
-      [queryParams]="getParameters(question.key, question.checked)" -->
+      
       <label 
       *ngIf="question.controlType===ControlType.checkbox" 
       [attr.for]="question.key"

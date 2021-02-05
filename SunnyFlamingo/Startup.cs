@@ -120,8 +120,8 @@ namespace SunnyFlamingo
         private SqlConnectionStringBuilder GetSqlConnectionStringBuilder()
         {
             SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder();
-            sqlConnectionStringBuilder.DataSource = "WIN-DHV0BQSLTCR";
-            sqlConnectionStringBuilder.UserID = "SQLFirst";
+            sqlConnectionStringBuilder.DataSource = "DESKTOP-U3G7G64\\SQL_DEVELOPER";
+            sqlConnectionStringBuilder.UserID = "SQLProjectsDB";
             sqlConnectionStringBuilder.Password = "Test1234";
             sqlConnectionStringBuilder.InitialCatalog = "SunnyFlamingo";
             return sqlConnectionStringBuilder;

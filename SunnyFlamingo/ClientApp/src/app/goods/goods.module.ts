@@ -21,6 +21,7 @@ import { HeadphonesListComponent } from './goods/computerTechnologies/computerAc
 import { GoodCellComponent } from './good-cell/good-cell.component';
 import { LoaderComponent } from '../loader/loader/loader.component';
 import { LoaderModule } from '../loader/loader.module';
+import { GoodsMenuComponent } from './goods-menu/goods-menu.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { LoaderModule } from '../loader/loader.module';
     MauseListComponent,
     KeyboardListComponent,
     HeadphonesListComponent,
-    GoodCellComponent],
+    GoodCellComponent,
+    GoodsMenuComponent],
   imports: [
     CommonModule,
     FiltersModule,

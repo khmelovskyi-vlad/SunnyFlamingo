@@ -30,8 +30,8 @@ namespace SunnyFlamingo.Services.Searchers
             string[] colors,
             decimal? priceFrom,
             decimal? priceTo,
-            int from, 
-            int to, 
+            int from,
+            int to,
             bool getQuestions
             )
         {
@@ -59,7 +59,7 @@ namespace SunnyFlamingo.Services.Searchers
                     )
             };
         }
-        
+
         private async Task<List<GoodCellModel>> GetGoodCells(
             string[] producers,
             string[] countries,
@@ -82,12 +82,18 @@ namespace SunnyFlamingo.Services.Searchers
             {
                 return await _context.Goods
                 .Where(g =>
-                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo))
-                && ((producers == null && countries == null && materials == null && colors == null) 
-                || (producers != null && producers.Contains(g.Producer.Name))
-                || (countries != null && countries.Contains(g.Manufacturer.Country.Value))
-                || (materials != null && materials.Contains(g.MaterialValue))
-                || (colors != null && colors.Contains(g.ColorValue))))
+                (priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
+                && (producers == null || producers.Contains(g.Producer.Name))
+                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(g.MaterialValue))
+                && (colors == null || colors.Contains(g.ColorValue)))
+                //.Where(g =>
+                //((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo))
+                //&& ((producers == null && countries == null && materials == null && colors == null) 
+                //|| (producers != null && producers.Contains(g.Producer.Name))
+                //|| (countries != null && countries.Contains(g.Manufacturer.Country.Value))
+                //|| (materials != null && materials.Contains(g.MaterialValue))
+                //|| (colors != null && colors.Contains(g.ColorValue))))
                 .Skip(from)
                 .Take(to)
                 .ProjectTo<GoodCellModel>(_mapper.ConfigurationProvider)

@@ -32,7 +32,7 @@ namespace SunnyFlamingo.Services.Searchers
             float[] length,
             float[] height,
             float[] width,
-            bool? haveFloppyDrives,
+            bool[] haveFloppyDrives,
             int?[] SSDMemory,
             int?[] hardDiskMemory,
             CPUSocketType[] CPUSocketType,
@@ -61,7 +61,7 @@ namespace SunnyFlamingo.Services.Searchers
                 .Where(g => length != null ? length.Contains(g.Length) : true)
                 .Where(g => height != null ? height.Contains(g.Height) : true)
                 .Where(g => width != null ? width.Contains(g.Width) : true)
-                .Where(g => haveFloppyDrives != null ? haveFloppyDrives == g.HaveFloppyDrives : true)
+                .Where(g => haveFloppyDrives != null ? haveFloppyDrives.Contains(g.HaveFloppyDrives) : true)
                 .Where(g => SSDMemory != null ? SSDMemory.Contains(g.SSDMemory) : true)
                 .Where(g => hardDiskMemory != null ? hardDiskMemory.Contains(g.HardDiskMemory) : true)
                 .Where(g => CPUSocketType != null ? CPUSocketType.Contains(g.CPUSocketType) : true)

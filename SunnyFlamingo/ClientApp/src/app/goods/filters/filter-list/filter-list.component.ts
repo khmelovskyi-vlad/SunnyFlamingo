@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SearchModel } from 'src/app/models/searchModel';
 import { QuestionsBase } from '../../../models/questionsBase';
 
 @Component({
@@ -14,7 +13,7 @@ export class FilterListComponent implements OnInit {
   constructor() { 
   }
 
-
+//
   ngOnInit(): void {
   }
 

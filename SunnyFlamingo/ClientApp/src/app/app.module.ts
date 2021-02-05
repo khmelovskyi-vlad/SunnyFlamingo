@@ -12,6 +12,7 @@ import { NavbarModule } from './navbar/navbar.module';
 import { DynamicFormModule } from './dynamicForms/dynamic-form.module';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { LoaderModule } from './loader/loader.module';
+import { GoodModule } from './good/good.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LoaderModule } from './loader/loader.module';
     LoaderModule,
     NavbarModule,
     GoodsModule,
-    AppRoutingModule
+    GoodModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,10 +11,10 @@ namespace SunnyFlamingo.Services.Searchers
 {
     public class LaptopsQuestionsService : ILaptopsQuestionsService
     {
-        private readonly IGoodsQuestionsService _goodsQuestionsService;
-        public LaptopsQuestionsService(IGoodsQuestionsService goodsQuestionsService)
+        private readonly IComputerTechnologiesQuestionsService _computerTechnologiesQuestionsService;
+        public LaptopsQuestionsService(IComputerTechnologiesQuestionsService computerTechnologiesQuestionsService)
         {
-            _goodsQuestionsService = goodsQuestionsService;
+            _computerTechnologiesQuestionsService = computerTechnologiesQuestionsService;
         }
         public async Task<List<QuestionsBase<string>>> GetLaptopsQuestions(
             IQueryable<Laptop> laptops,
@@ -27,7 +27,7 @@ namespace SunnyFlamingo.Services.Searchers
             float[] length,
             float[] height,
             float[] width,
-            bool? haveFloppyDrives,
+            bool[] haveFloppyDrives,
             int?[] SSDMemory,
             int?[] hardDiskMemory,
             CPUSocketType[] CPUSocketType,
@@ -40,24 +40,945 @@ namespace SunnyFlamingo.Services.Searchers
         {
             var result = new List<QuestionsBase<string>>()
                 {
-                    await GetAmountOfRAMQuestion(laptops, amountOfRAM),
-                    await GetCPUFrequencyQuestion(laptops, CPUFrequency),
-                    await GetLengthQuestion(laptops, length),
-                    await GetHeightQuestion(laptops, height),
-                    await GetWidthQuestion(laptops, width),
-                    await GetHaveFloppyDrivesQuestion(laptops, haveFloppyDrives),
-                    await GetSSDMemoryQuestion(laptops, SSDMemory),
-                    await GetHardDiskMemoryQuestion(laptops, hardDiskMemory),
-                    await GetCPUSocketTypeQuestion(laptops, CPUSocketType),
-                    await GetComputerDriveTypeQuestion(laptops, computerDriveType),
-                    await GetNumberOfCoreQuestion(laptops, numberOfCores),
-                    await GetFloppyDrivesCountQuestion(laptops, floppyDrivesCount),
-                    await GetDisplayQuestion(laptops, display)
+                    await GetProducerQuestion(GetProducerLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), producers),
+                    await GetCountryQuestion(GetCountryLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), countries),
+                    await GetMaterialQuestion(GetMaterialLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), materials),
+                    await GetColorQuestion(GetColorLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), colors),
+                    await GetPriceQuestion(GetPriceLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), priceFrom, priceTo),
+
+                    await GetAmountOfRAMQuestion(GetAmountOfRAMLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), amountOfRAM),
+                    await GetCPUFrequencyQuestion(GetCPUFrequencyLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), CPUFrequency),
+                    await GetLengthQuestion(GetLengthLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), length),
+                    await GetHeightQuestion(GetHeightLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), height),
+                    await GetWidthQuestion(GetWidthLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), width),
+                    await GetHaveFloppyDrivesQuestion(GetHaveFloppyDrivesLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), haveFloppyDrives),
+                    await GetSSDMemoryQuestion(GetSSDMemoryLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), SSDMemory),
+                    await GetHardDiskMemoryQuestion(GetHardDiskMemoryLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), hardDiskMemory),
+                    await GetCPUSocketTypeQuestion(GetCPUSocketTypeLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), CPUSocketType),
+                    await GetComputerDriveTypeQuestion(GetComputerDriveTypeLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), computerDriveType),
+                    await GetNumberOfCoreQuestion(GetNumberOfCoresLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), numberOfCores),
+                    await GetDisplayQuestion(GetDisplayLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), display)
                 };
-            result.AddRange(await _goodsQuestionsService.GetGoodsQuestions(laptops, producers, countries, materials, colors, priceFrom, priceTo));
+            if (haveFloppyDrives != null && !haveFloppyDrives.Contains(true) && haveFloppyDrives.Contains(false))
+            {
+                result.Add(await GetFloppyDrivesCountQuestion(GetFloppyDrivesCountLaptops(laptops, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
+                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
+                    numberOfCores, floppyDrivesCount, display, priceFrom, priceTo), floppyDrivesCount));
+            }
             return result;
         }
-        private async Task<QuestionsBase<string>> GetAmountOfRAMQuestion(IQueryable<Laptop> laptops, int[] amountOfRAMs)
+
+        public IQueryable<T> GetProducerLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            return _computerTechnologiesQuestionsService.GetProducerComputerTechnologies(
+                laptops, producers, countries, materials, colors, priceFrom, priceTo)
+                .Where(l => (producers != null && producers.Contains(l.Producer.Name)) ||
+                ((haveFloppyDrives == null || haveFloppyDrives.Contains(l.HaveFloppyDrives))
+                && (amountOfRAM == null || amountOfRAM.Contains(l.AmountOfRAM))
+                && (display == null || display.Contains(l.Display))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(l.FloppyDrivesCount))
+                && (numberOfCores == null || numberOfCores.Contains(l.NumberOfCores))
+                && (computerDriveType == null || computerDriveType.Contains(l.ComputerDriveType))
+                && (CPUSocketType == null || CPUSocketType.Contains(l.CPUSocketType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(l.HardDiskMemory))
+                && (SSDMemory == null || SSDMemory.Contains(l.SSDMemory))
+                && (width == null || width.Contains(l.Width))
+                && (height == null || height.Contains(l.Height))
+                && (length == null || length.Contains(l.Length))
+                && (CPUFrequency == null || CPUFrequency.Contains(l.CPUFrequency))
+                && (countries == null || countries.Contains(l.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(l.MaterialValue))
+                && (colors == null || colors.Contains(l.ColorValue))));
+        }
+        public IQueryable<T> GetCountryLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            return _computerTechnologiesQuestionsService.GetCountryComputerTechnologies(
+                laptops, producers, countries, materials, colors, priceFrom, priceTo)
+                .Where(l => (countries != null && countries.Contains(l.Manufacturer.Country.Value)) ||
+                ((haveFloppyDrives == null || haveFloppyDrives.Contains(l.HaveFloppyDrives))
+                && (amountOfRAM == null || amountOfRAM.Contains(l.AmountOfRAM))
+                && (display == null || display.Contains(l.Display))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(l.FloppyDrivesCount))
+                && (numberOfCores == null || numberOfCores.Contains(l.NumberOfCores))
+                && (computerDriveType == null || computerDriveType.Contains(l.ComputerDriveType))
+                && (CPUSocketType == null || CPUSocketType.Contains(l.CPUSocketType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(l.HardDiskMemory))
+                && (SSDMemory == null || SSDMemory.Contains(l.SSDMemory))
+                && (width == null || width.Contains(l.Width))
+                && (height == null || height.Contains(l.Height))
+                && (length == null || length.Contains(l.Length))
+                && (CPUFrequency == null || CPUFrequency.Contains(l.CPUFrequency))
+                && (producers == null || producers.Contains(l.Producer.Name))
+                && (materials == null || materials.Contains(l.MaterialValue))
+                && (colors == null || colors.Contains(l.ColorValue))));
+        }
+        public IQueryable<T> GetMaterialLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            return _computerTechnologiesQuestionsService.GetMaterialComputerTechnologies(
+                laptops, producers, countries, materials, colors, priceFrom, priceTo)
+                .Where(l => (materials != null && materials.Contains(l.MaterialValue)) ||
+                ((haveFloppyDrives == null || haveFloppyDrives.Contains(l.HaveFloppyDrives))
+                && (amountOfRAM == null || amountOfRAM.Contains(l.AmountOfRAM))
+                && (display == null || display.Contains(l.Display))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(l.FloppyDrivesCount))
+                && (numberOfCores == null || numberOfCores.Contains(l.NumberOfCores))
+                && (computerDriveType == null || computerDriveType.Contains(l.ComputerDriveType))
+                && (CPUSocketType == null || CPUSocketType.Contains(l.CPUSocketType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(l.HardDiskMemory))
+                && (SSDMemory == null || SSDMemory.Contains(l.SSDMemory))
+                && (width == null || width.Contains(l.Width))
+                && (height == null || height.Contains(l.Height))
+                && (length == null || length.Contains(l.Length))
+                && (CPUFrequency == null || CPUFrequency.Contains(l.CPUFrequency))
+                && (producers == null || producers.Contains(l.Producer.Name))
+                && (countries == null || countries.Contains(l.Manufacturer.Country.Value))
+                && (colors == null || colors.Contains(l.ColorValue))));
+        }
+        public IQueryable<T> GetColorLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            return _computerTechnologiesQuestionsService.GetColorComputerTechnologies(
+                laptops, producers, countries, materials, colors, priceFrom, priceTo)
+                .Where(l => (colors != null && colors.Contains(l.ColorValue)) ||
+                ((haveFloppyDrives == null || haveFloppyDrives.Contains(l.HaveFloppyDrives))
+                && (amountOfRAM == null || amountOfRAM.Contains(l.AmountOfRAM))
+                && (display == null || display.Contains(l.Display))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(l.FloppyDrivesCount))
+                && (numberOfCores == null || numberOfCores.Contains(l.NumberOfCores))
+                && (computerDriveType == null || computerDriveType.Contains(l.ComputerDriveType))
+                && (CPUSocketType == null || CPUSocketType.Contains(l.CPUSocketType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(l.HardDiskMemory))
+                && (SSDMemory == null || SSDMemory.Contains(l.SSDMemory))
+                && (width == null || width.Contains(l.Width))
+                && (height == null || height.Contains(l.Height))
+                && (length == null || length.Contains(l.Length))
+                && (CPUFrequency == null || CPUFrequency.Contains(l.CPUFrequency))
+                && (producers == null || producers.Contains(l.Producer.Name))
+                && (countries == null || countries.Contains(l.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(l.MaterialValue))));
+        }
+        public IQueryable<T> GetPriceLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            return _computerTechnologiesQuestionsService.GetPriceComputerTechnologies(
+                laptops, producers, countries, materials, colors, priceFrom, priceTo)
+                .Where(l =>
+                (haveFloppyDrives == null || haveFloppyDrives.Contains(l.HaveFloppyDrives))
+                && (amountOfRAM == null || amountOfRAM.Contains(l.AmountOfRAM))
+                && (display == null || display.Contains(l.Display))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(l.FloppyDrivesCount))
+                && (numberOfCores == null || numberOfCores.Contains(l.NumberOfCores))
+                && (computerDriveType == null || computerDriveType.Contains(l.ComputerDriveType))
+                && (CPUSocketType == null || CPUSocketType.Contains(l.CPUSocketType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(l.HardDiskMemory))
+                && (SSDMemory == null || SSDMemory.Contains(l.SSDMemory))
+                && (width == null || width.Contains(l.Width))
+                && (height == null || height.Contains(l.Height))
+                && (length == null || length.Contains(l.Length))
+                && (CPUFrequency == null || CPUFrequency.Contains(l.CPUFrequency))
+                && (producers == null || producers.Contains(l.Producer.Name))
+                && (countries == null || countries.Contains(l.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(l.MaterialValue))
+                && (colors == null || colors.Contains(l.ColorValue)));
+        }
+        public IQueryable<T> GetAmountOfRAMLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            if (producers == null && countries == null && materials == null && colors == null && CPUFrequency == null && length == null
+                && height == null && width == null && haveFloppyDrives == null && SSDMemory == null && hardDiskMemory == null
+                && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null && display == null
+                && priceFrom == null && priceTo == null)
+            {
+                return laptops;
+            }
+            return laptops
+                .Where(g => (amountOfRAM != null && amountOfRAM.Contains(g.AmountOfRAM)) ||
+                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
+                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
+                && (display == null || display.Contains(g.Display))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
+                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
+                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
+                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
+                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
+                && (width == null || width.Contains(g.Width))
+                && (height == null || height.Contains(g.Height))
+                && (length == null || length.Contains(g.Length))
+                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
+                && (producers == null || producers.Contains(g.Producer.Name))
+                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(g.MaterialValue))
+                && (colors == null || colors.Contains(g.ColorValue))));
+        }
+        public IQueryable<T> GetCPUFrequencyLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && length == null
+                && height == null && width == null && haveFloppyDrives == null && SSDMemory == null && hardDiskMemory == null
+                && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null && display == null
+                && priceFrom == null && priceTo == null)
+            {
+                return laptops;
+            }
+            return laptops
+                .Where(g => (CPUFrequency != null && CPUFrequency.Contains(g.CPUFrequency)) ||
+                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
+                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
+                && (display == null || display.Contains(g.Display))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
+                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
+                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
+                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
+                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
+                && (width == null || width.Contains(g.Width))
+                && (height == null || height.Contains(g.Height))
+                && (length == null || length.Contains(g.Length))
+                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
+                && (producers == null || producers.Contains(g.Producer.Name))
+                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(g.MaterialValue))
+                && (colors == null || colors.Contains(g.ColorValue))));
+        }
+        public IQueryable<T> GetLengthLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
+                && height == null && width == null && haveFloppyDrives == null && SSDMemory == null && hardDiskMemory == null
+                && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null && display == null
+                && priceFrom == null && priceTo == null)
+            {
+                return laptops;
+            }
+            return laptops
+                .Where(g => (length != null && length.Contains(g.Length)) ||
+                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
+                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
+                && (display == null || display.Contains(g.Display))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
+                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
+                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
+                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
+                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
+                && (width == null || width.Contains(g.Width))
+                && (height == null || height.Contains(g.Height))
+                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
+                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
+                && (producers == null || producers.Contains(g.Producer.Name))
+                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(g.MaterialValue))
+                && (colors == null || colors.Contains(g.ColorValue))));
+        }
+        public IQueryable<T> GetHeightLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
+                && length == null && width == null && haveFloppyDrives == null && SSDMemory == null && hardDiskMemory == null
+                && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null && display == null
+                && priceFrom == null && priceTo == null)
+            {
+                return laptops;
+            }
+            return laptops
+                .Where(g => (height != null && height.Contains(g.Height)) ||
+                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
+                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
+                && (display == null || display.Contains(g.Display))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
+                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
+                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
+                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
+                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
+                && (width == null || width.Contains(g.Width))
+                && (length == null || length.Contains(g.Length))
+                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
+                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
+                && (producers == null || producers.Contains(g.Producer.Name))
+                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(g.MaterialValue))
+                && (colors == null || colors.Contains(g.ColorValue))));
+        }
+        public IQueryable<T> GetWidthLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
+                && height == null && length == null && haveFloppyDrives == null && SSDMemory == null && hardDiskMemory == null
+                && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null && display == null
+                && priceFrom == null && priceTo == null)
+            {
+                return laptops;
+            }
+            return laptops
+                .Where(g => (width != null && width.Contains(g.Width)) ||
+                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
+                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
+                && (display == null || display.Contains(g.Display))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
+                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
+                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
+                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
+                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
+                && (length == null || length.Contains(g.Length))
+                && (height == null || height.Contains(g.Height))
+                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
+                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
+                && (producers == null || producers.Contains(g.Producer.Name))
+                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(g.MaterialValue))
+                && (colors == null || colors.Contains(g.ColorValue))));
+        }
+        public IQueryable<T> GetSSDMemoryLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
+                && height == null && length == null && haveFloppyDrives == null && width == null && hardDiskMemory == null
+                && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null && display == null
+                && priceFrom == null && priceTo == null)
+            {
+                return laptops;
+            }
+            return laptops
+                .Where(g => (SSDMemory != null && SSDMemory.Contains(g.SSDMemory)) ||
+                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
+                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
+                && (display == null || display.Contains(g.Display))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
+                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
+                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
+                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
+                && (width == null || width.Contains(g.Width))
+                && (length == null || length.Contains(g.Length))
+                && (height == null || height.Contains(g.Height))
+                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
+                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
+                && (producers == null || producers.Contains(g.Producer.Name))
+                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(g.MaterialValue))
+                && (colors == null || colors.Contains(g.ColorValue))));
+        }
+        public IQueryable<T> GetHardDiskMemoryLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
+                && height == null && length == null && haveFloppyDrives == null && width == null && SSDMemory == null
+                && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null && display == null
+                && priceFrom == null && priceTo == null)
+            {
+                return laptops;
+            }
+            return laptops
+                .Where(g => (hardDiskMemory != null && hardDiskMemory.Contains(g.HardDiskMemory)) ||
+                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
+                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
+                && (display == null || display.Contains(g.Display))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
+                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
+                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
+                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
+                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
+                && (width == null || width.Contains(g.Width))
+                && (length == null || length.Contains(g.Length))
+                && (height == null || height.Contains(g.Height))
+                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
+                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
+                && (producers == null || producers.Contains(g.Producer.Name))
+                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(g.MaterialValue))
+                && (colors == null || colors.Contains(g.ColorValue))));
+        }
+        public IQueryable<T> GetCPUSocketTypeLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
+                && height == null && length == null && haveFloppyDrives == null && width == null && SSDMemory == null
+                && hardDiskMemory == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null && display == null
+                && priceFrom == null && priceTo == null)
+            {
+                return laptops;
+            }
+            return laptops
+                .Where(g => (CPUSocketType != null && CPUSocketType.Contains(g.CPUSocketType)) ||
+                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
+                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
+                && (display == null || display.Contains(g.Display))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
+                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
+                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
+                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
+                && (width == null || width.Contains(g.Width))
+                && (length == null || length.Contains(g.Length))
+                && (height == null || height.Contains(g.Height))
+                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
+                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
+                && (producers == null || producers.Contains(g.Producer.Name))
+                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(g.MaterialValue))
+                && (colors == null || colors.Contains(g.ColorValue))));
+        }
+        public IQueryable<T> GetComputerDriveTypeLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
+                && height == null && length == null && haveFloppyDrives == null && width == null && SSDMemory == null
+                && hardDiskMemory == null && CPUSocketType == null && numberOfCores == null && floppyDrivesCount == null && display == null
+                && priceFrom == null && priceTo == null)
+            {
+                return laptops;
+            }
+            return laptops
+                .Where(g => (computerDriveType != null && computerDriveType.Contains(g.ComputerDriveType)) ||
+                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
+                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
+                && (display == null || display.Contains(g.Display))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
+                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
+                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
+                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
+                && (width == null || width.Contains(g.Width))
+                && (length == null || length.Contains(g.Length))
+                && (height == null || height.Contains(g.Height))
+                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
+                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
+                && (producers == null || producers.Contains(g.Producer.Name))
+                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(g.MaterialValue))
+                && (colors == null || colors.Contains(g.ColorValue))));
+        }
+        public IQueryable<T> GetNumberOfCoresLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
+                && height == null && length == null && haveFloppyDrives == null && width == null && SSDMemory == null
+                && hardDiskMemory == null && CPUSocketType == null && computerDriveType == null && floppyDrivesCount == null && display == null
+                && priceFrom == null && priceTo == null)
+            {
+                return laptops;
+            }
+            return laptops
+                .Where(g => (numberOfCores != null && numberOfCores.Contains(g.NumberOfCores)) ||
+                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
+                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
+                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
+                && (display == null || display.Contains(g.Display))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
+                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
+                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
+                && (width == null || width.Contains(g.Width))
+                && (length == null || length.Contains(g.Length))
+                && (height == null || height.Contains(g.Height))
+                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
+                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
+                && (producers == null || producers.Contains(g.Producer.Name))
+                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(g.MaterialValue))
+                && (colors == null || colors.Contains(g.ColorValue))));
+        }
+        public IQueryable<T> GetFloppyDrivesCountLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
+                && height == null && length == null && haveFloppyDrives == null && width == null && SSDMemory == null
+                && hardDiskMemory == null && CPUSocketType == null && computerDriveType == null && numberOfCores == null && display == null
+                && priceFrom == null && priceTo == null)
+            {
+                return laptops;
+            }
+            return laptops
+                .Where(g => (floppyDrivesCount != null && floppyDrivesCount.Contains(g.FloppyDrivesCount)) ||
+                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
+                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
+                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
+                && (display == null || display.Contains(g.Display))
+                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
+                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
+                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
+                && (width == null || width.Contains(g.Width))
+                && (length == null || length.Contains(g.Length))
+                && (height == null || height.Contains(g.Height))
+                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
+                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
+                && (producers == null || producers.Contains(g.Producer.Name))
+                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(g.MaterialValue))
+                && (colors == null || colors.Contains(g.ColorValue))));
+        }
+        public IQueryable<T> GetDisplayLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
+                && height == null && length == null && haveFloppyDrives == null && width == null && SSDMemory == null
+                && hardDiskMemory == null && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null
+                && priceFrom == null && priceTo == null)
+            {
+                return laptops;
+            }
+            return laptops
+                .Where(g => (display != null && display.Contains(g.Display)) ||
+                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
+                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
+                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.Display))
+                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
+                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
+                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
+                && (width == null || width.Contains(g.Width))
+                && (length == null || length.Contains(g.Length))
+                && (height == null || height.Contains(g.Height))
+                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
+                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
+                && (producers == null || producers.Contains(g.Producer.Name))
+                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(g.MaterialValue))
+                && (colors == null || colors.Contains(g.ColorValue))));
+        }
+        public IQueryable<T> GetHaveFloppyDrivesLaptops<T>(
+            IQueryable<T> laptops,
+            string[] producers,
+            string[] countries,
+            string[] materials,
+            string[] colors,
+            int[] amountOfRAM,
+            int[] CPUFrequency,
+            float[] length,
+            float[] height,
+            float[] width,
+            bool[] haveFloppyDrives,
+            int?[] SSDMemory,
+            int?[] hardDiskMemory,
+            CPUSocketType[] CPUSocketType,
+            ComputerDriveType[] computerDriveType,
+            int[] numberOfCores,
+            int?[] floppyDrivesCount,
+            int[] display,
+            decimal? priceFrom,
+            decimal? priceTo) where T : Laptop
+        {
+            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
+                && height == null && length == null && display == null && width == null && SSDMemory == null
+                && hardDiskMemory == null && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null
+                && priceFrom == null && priceTo == null)
+            {
+                return laptops;
+            }
+            return laptops
+                .Where(g =>
+                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
+                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
+                && (display == null || display.Contains(g.Display))
+                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
+                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
+                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
+                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
+                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
+                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
+                && (width == null || width.Contains(g.Width))
+                && (length == null || length.Contains(g.Length))
+                && (height == null || height.Contains(g.Height))
+                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
+                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
+                && (producers == null || producers.Contains(g.Producer.Name))
+                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
+                && (materials == null || materials.Contains(g.MaterialValue))
+                && (colors == null || colors.Contains(g.ColorValue))));
+        }
+
+
+
+
+
+
+        public async Task<QuestionsBase<string>> GetProducerQuestion(IQueryable<Laptop> laptops, string[] producers)
+        {
+            return await _computerTechnologiesQuestionsService.GetProducerQuestion(laptops, producers);
+        }
+        public async Task<QuestionsBase<string>> GetCountryQuestion(IQueryable<Laptop> laptops, string[] countries)
+        {
+            return await _computerTechnologiesQuestionsService.GetCountryQuestion(laptops, countries);
+        }
+        public async Task<QuestionsBase<string>> GetMaterialQuestion(IQueryable<Laptop> laptops, string[] materials)
+        {
+            return await _computerTechnologiesQuestionsService.GetMaterialQuestion(laptops, materials);
+        }
+        public async Task<QuestionsBase<string>> GetColorQuestion(IQueryable<Laptop> laptops, string[] colors)
+        {
+            return await _computerTechnologiesQuestionsService.GetColorQuestion(laptops, colors);
+        }
+        public async Task<QuestionsBase<string>> GetPriceQuestion(IQueryable<Laptop> laptops, decimal? selectedFrom, decimal? selectedTo)
+        {
+            return await _computerTechnologiesQuestionsService.GetPriceQuestion(laptops, selectedFrom, selectedTo);
+        }
+
+        public async Task<QuestionsBase<string>> GetAmountOfRAMQuestion(IQueryable<Laptop> laptops, int[] amountOfRAMs)
         {
             return new QuestionsBase<string>()
             {
@@ -80,7 +1001,7 @@ namespace SunnyFlamingo.Services.Searchers
                         }).ToListAsync()
             };
         }
-        private async Task<QuestionsBase<string>> GetCPUFrequencyQuestion(IQueryable<Laptop> laptops, int[] CPUFrequencies)
+        public async Task<QuestionsBase<string>> GetCPUFrequencyQuestion(IQueryable<Laptop> laptops, int[] CPUFrequencies)
         {
             return new QuestionsBase<string>()
             {
@@ -103,7 +1024,7 @@ namespace SunnyFlamingo.Services.Searchers
                         }).ToListAsync()
             };
         }
-        private async Task<QuestionsBase<string>> GetHeightQuestion(IQueryable<Laptop> laptops, float[] heights)
+        public async Task<QuestionsBase<string>> GetHeightQuestion(IQueryable<Laptop> laptops, float[] heights)
         {
             return new QuestionsBase<string>()
             {
@@ -126,7 +1047,7 @@ namespace SunnyFlamingo.Services.Searchers
                         }).ToListAsync()
             };
         }
-        private async Task<QuestionsBase<string>> GetWidthQuestion(IQueryable<Laptop> laptops, float[] widths)
+        public async Task<QuestionsBase<string>> GetWidthQuestion(IQueryable<Laptop> laptops, float[] widths)
         {
             return new QuestionsBase<string>()
             {
@@ -149,7 +1070,7 @@ namespace SunnyFlamingo.Services.Searchers
                         }).ToListAsync()
             };
         }
-        private async Task<QuestionsBase<string>> GetLengthQuestion(IQueryable<Laptop> laptops, float[] lengthes)
+        public async Task<QuestionsBase<string>> GetLengthQuestion(IQueryable<Laptop> laptops, float[] lengthes)
         {
             return new QuestionsBase<string>()
             {
@@ -172,11 +1093,11 @@ namespace SunnyFlamingo.Services.Searchers
                         }).ToListAsync()
             };
         }
-        private async Task<QuestionsBase<string>> GetHaveFloppyDrivesQuestion(IQueryable<Laptop> laptops, bool? haveFloppyDrives)
+        public async Task<QuestionsBase<string>> GetHaveFloppyDrivesQuestion(IQueryable<Laptop> laptops, bool[] haveFloppyDrives)
         {
             return new QuestionsBase<string>()
             {
-                Key = "haveFloppyDrive",
+                Key = "haveFloppyDrives",
                 Value = "Have floppy drive",
                 Order = 10,
                 QuestionBaseList = await laptops
@@ -186,7 +1107,7 @@ namespace SunnyFlamingo.Services.Searchers
                         .Select(haveFloppyDrive => new QuestionBase<string>()
                         {
                             AfterBox = $"({haveFloppyDrive.Count})",
-                            Checked = haveFloppyDrives != null && haveFloppyDrives == true,
+                            Checked = haveFloppyDrives != null && haveFloppyDrives.Contains(haveFloppyDrive.Value),
                             ControlType = ControlType.Checkbox,
                             Key = haveFloppyDrive.Value.ToString(),
                             Label = haveFloppyDrive.Value.ToString(),
@@ -195,7 +1116,7 @@ namespace SunnyFlamingo.Services.Searchers
                         }).ToListAsync()
             };
         }
-        private async Task<QuestionsBase<string>> GetSSDMemoryQuestion(IQueryable<Laptop> laptops, int?[] SSDMemories)
+        public async Task<QuestionsBase<string>> GetSSDMemoryQuestion(IQueryable<Laptop> laptops, int?[] SSDMemories)
         {
             return new QuestionsBase<string>()
             {
@@ -218,7 +1139,7 @@ namespace SunnyFlamingo.Services.Searchers
                         }).ToListAsync()
             };
         }
-        private async Task<QuestionsBase<string>> GetHardDiskMemoryQuestion(IQueryable<Laptop> laptops, int?[] hardDiskMemories)
+        public async Task<QuestionsBase<string>> GetHardDiskMemoryQuestion(IQueryable<Laptop> laptops, int?[] hardDiskMemories)
         {
             return new QuestionsBase<string>()
             {
@@ -241,7 +1162,7 @@ namespace SunnyFlamingo.Services.Searchers
                         }).ToListAsync()
             };
         }
-        private async Task<QuestionsBase<string>> GetCPUSocketTypeQuestion(IQueryable<Laptop> laptops, CPUSocketType[] CPUSocketTypes)
+        public async Task<QuestionsBase<string>> GetCPUSocketTypeQuestion(IQueryable<Laptop> laptops, CPUSocketType[] CPUSocketTypes)
         {
             return new QuestionsBase<string>()
             {
@@ -264,7 +1185,7 @@ namespace SunnyFlamingo.Services.Searchers
                         }).ToListAsync()
             };
         }
-        private async Task<QuestionsBase<string>> GetComputerDriveTypeQuestion(IQueryable<Laptop> laptops, ComputerDriveType[] computerDriveTypes)
+        public async Task<QuestionsBase<string>> GetComputerDriveTypeQuestion(IQueryable<Laptop> laptops, ComputerDriveType[] computerDriveTypes)
         {
             return new QuestionsBase<string>()
             {
@@ -287,7 +1208,7 @@ namespace SunnyFlamingo.Services.Searchers
                         }).ToListAsync()
             };
         }
-        private async Task<QuestionsBase<string>> GetNumberOfCoreQuestion(IQueryable<Laptop> laptops, int[] numberOfCores)
+        public async Task<QuestionsBase<string>> GetNumberOfCoreQuestion(IQueryable<Laptop> laptops, int[] numberOfCores)
         {
             return new QuestionsBase<string>()
             {
@@ -310,7 +1231,7 @@ namespace SunnyFlamingo.Services.Searchers
                         }).ToListAsync()
             };
         }
-        private async Task<QuestionsBase<string>> GetFloppyDrivesCountQuestion(IQueryable<Laptop> laptops, int?[] floppyDrivesCountArray)
+        public async Task<QuestionsBase<string>> GetFloppyDrivesCountQuestion(IQueryable<Laptop> laptops, int?[] floppyDrivesCountArray)
         {
             return new QuestionsBase<string>()
             {
@@ -333,7 +1254,7 @@ namespace SunnyFlamingo.Services.Searchers
                         }).ToListAsync()
             };
         }
-        private async Task<QuestionsBase<string>> GetDisplayQuestion(IQueryable<Laptop> laptops, int[] displays)
+        public async Task<QuestionsBase<string>> GetDisplayQuestion(IQueryable<Laptop> laptops, int[] displays)
         {
             return new QuestionsBase<string>()
             {

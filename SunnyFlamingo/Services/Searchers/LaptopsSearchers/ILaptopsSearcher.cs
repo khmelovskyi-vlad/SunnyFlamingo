@@ -19,7 +19,7 @@ namespace SunnyFlamingo.Services.Searchers
                float[] length,
                float[] height,
                float[] width,
-               bool? haveFloppyDrives,
+               bool[] haveFloppyDrives,
                int?[] SSDMemory,
                int?[] hardDiskMemory,
                CPUSocketType[] CPUSocketType,

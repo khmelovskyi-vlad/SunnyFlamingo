@@ -141,7 +141,7 @@ namespace SunnyFlamingo.Extensions
                 .HasColumnName("Capacity");
             modelBuilder.Entity<FlashDrive>()
                 .Property(fd => fd.USBSpecificationTypeValue)
-                .HasColumnName("USBSpecificationTypeValue");
+                .HasColumnName("USBSpecificationType");
 
 
             modelBuilder.Entity<VideoCard>()
@@ -157,7 +157,7 @@ namespace SunnyFlamingo.Extensions
 
             modelBuilder.Entity<CPU>()
                 .Property(cpu => cpu.CPUSocketType)
-                .HasColumnName("CPUSocketType");
+                .HasColumnName("Type");
             modelBuilder.Entity<CPU>()
                 .Property(cpu => cpu.ThermalDesignPower)
                 .HasColumnName("ThermalDesignPower");
@@ -168,7 +168,7 @@ namespace SunnyFlamingo.Extensions
 
             modelBuilder.Entity<Cooler>()
                 .Property(c => c.TypeValue)
-                .HasColumnName("NumberOfThreads");
+                .HasColumnName("CoolerType");
             modelBuilder.Entity<Cooler>()
                 .Property(c => c.FanSize)
                 .HasColumnName("FanSize");
@@ -181,7 +181,7 @@ namespace SunnyFlamingo.Extensions
                 .HasColumnName("Type");
             modelBuilder.Entity<ComputerDrive>()
                 .Property(cd => cd.FormFactorTypeValue)
-                .HasColumnName("FormFactorTypeValue");
+                .HasColumnName("FormFactorType");
 
             modelBuilder.Entity<Headphones>()
                 .Property(h => h.Type)
@@ -191,7 +191,7 @@ namespace SunnyFlamingo.Extensions
                 .HasColumnName("WirelessType");
             modelBuilder.Entity<Headphones>()
                 .Property(h => h.ConnectorTypeValue)
-                .HasColumnName("ConnectorTypeValue");
+                .HasColumnName("ConnectorType");
 
             modelBuilder.Entity<Keyboard>()
                 .Property(k => k.Type)

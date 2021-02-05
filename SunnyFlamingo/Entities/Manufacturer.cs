@@ -1,13 +1,16 @@
 ﻿using SunnyFlamingo.Entities.Goods;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SunnyFlamingo.Entities
 {
     public class Manufacturer
     {
         public Guid Id { get; set; }
+        [Column(TypeName = "nvarchar(500)")]
         public string Name { get; set; }
+        [Column(TypeName = "nvarchar(500)")]
         public string Address { get; set; }
 
         public Guid CountryId { get; set; }

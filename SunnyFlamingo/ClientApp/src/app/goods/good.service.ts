@@ -18,19 +18,27 @@ export class GoodService {
 
   getGoodsInformation(currentUrl: string): Observable<GoodsInformation<string>>{
     currentUrl = currentUrl === "/" ? "/goods" : currentUrl;
-    const url = `api/Goods${currentUrl}`
-    
+    const url = `api${currentUrl}`
+    //
     return this.http.get<GoodsInformation<string>>(url)
       .pipe(
+        catchError(this.handleError<GoodsInformation<string>>('getGoodsInformation'))
       );
   }
   getNewGoodsInformation(currentUrl: string): Observable<GoodsInformation<string>>{
     currentUrl = currentUrl === "/" ? "/goods" : currentUrl;
-    const url = `api/Goods${currentUrl}`
+    const url = `api${currentUrl}`
     // const url = `api/Goods${currentUrl}${currentUrl.includes('?') ? '&' : '?'}getQuestions=false`
     return this.http.get<GoodsInformation<string>>(url)
       .pipe(
+        catchError(this.handleError<GoodsInformation<string>>('getNewGoodsInformation'))
       );
   }
 
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    }
+  }
 }

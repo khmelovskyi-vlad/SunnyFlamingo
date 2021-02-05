@@ -6,39 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20210121140917_Initial.cs" />
-    <Compile Remove="Migrations\20210121140917_Initial.Designer.cs" />
-    <Compile Remove="Migrations\20210121142628_Initial.cs" />
-    <Compile Remove="Migrations\20210121142628_Initial.Designer.cs" />
-    <Compile Remove="Migrations\20210121142737_Initial.cs" />
-    <Compile Remove="Migrations\20210121142737_Initial.Designer.cs" />
-    <Compile Remove="Migrations\20210121142916_Initial.cs" />
-    <Compile Remove="Migrations\20210121142916_Initial.Designer.cs" />
-    <Compile Remove="Migrations\20210121145901_Initial2.cs" />
-    <Compile Remove="Migrations\20210121145901_Initial2.Designer.cs" />
-    <Compile Remove="Migrations\20210121150112_Initial2.cs" />
-    <Compile Remove="Migrations\20210121150112_Initial2.Designer.cs" />
-    <Compile Remove="Migrations\20210124140211_InitializeFirstGoods.cs" />
-    <Compile Remove="Migrations\20210124140211_InitializeFirstGoods.Designer.cs" />
-    <Compile Remove="Migrations\20210124140801_InitializeFirstGoods.cs" />
-    <Compile Remove="Migrations\20210124140801_InitializeFirstGoods.Designer.cs" />
-    <Compile Remove="Migrations\20210124142357_InitializeFirstGoods.cs" />
-    <Compile Remove="Migrations\20210124142357_InitializeFirstGoods.Designer.cs" />
-    <Compile Remove="Migrations\20210124142829_InitializeFirstGoods.cs" />
-    <Compile Remove="Migrations\20210124142829_InitializeFirstGoods.Designer.cs" />
-    <Compile Remove="Migrations\20210125121500_Foo.cs" />
-    <Compile Remove="Migrations\20210125121500_Foo.Designer.cs" />
-    <Compile Remove="Migrations\20210125122623_Foo.cs" />
-    <Compile Remove="Migrations\20210125122623_Foo.Designer.cs" />
-    <Compile Remove="Migrations\20210125125542_AddProducerManufacturerKeys.cs" />
-    <Compile Remove="Migrations\20210125125542_AddProducerManufacturerKeys.Designer.cs" />
-    <Compile Remove="Migrations\20210125130150_AddProducerManufacturerKeys.cs" />
-    <Compile Remove="Migrations\20210125130150_AddProducerManufacturerKeys.Designer.cs" />
-    <Compile Remove="Migrations\20210125131337_AddProducerManufacturerKeys.cs" />
-    <Compile Remove="Migrations\20210125131337_AddProducerManufacturerKeys.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="IdentityServer4" Version="4.1.1" />
