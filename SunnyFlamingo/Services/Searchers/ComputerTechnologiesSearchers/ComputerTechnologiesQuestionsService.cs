@@ -89,23 +89,28 @@ namespace SunnyFlamingo.Services.Searchers
         }
         public async Task<QuestionsBase<string>> GetPriceQuestion(IQueryable<ComputerTechnology> goods, decimal? selectedFrom, decimal? selectedTo)
         {
-            return await _goodsQuestionsService.GetPriceQuestion(goods, selectedFrom, selectedTo);
+            return new QuestionsBase<string>();
+            //return await _goodsQuestionsService.GetPriceQuestion(goods, selectedFrom, selectedTo);
         }
         public async Task<QuestionsBase<string>> GetProducerQuestion(IQueryable<ComputerTechnology> computerTechnologies, string[] producers)
         {
-            return await _goodsQuestionsService.GetProducerQuestion(computerTechnologies, producers);
+            return new QuestionsBase<string>();
+            //return await _goodsQuestionsService.GetProducerQuestion(computerTechnologies, producers);
         }
         public async Task<QuestionsBase<string>> GetCountryQuestion(IQueryable<ComputerTechnology> computerTechnologies, string[] countries)
         {
-            return await _goodsQuestionsService.GetCountryQuestion(computerTechnologies, countries);
+            return new QuestionsBase<string>();
+            //return await _goodsQuestionsService.GetCountryQuestion(computerTechnologies, countries);
         }
         public async Task<QuestionsBase<string>> GetMaterialQuestion(IQueryable<ComputerTechnology> computerTechnologies, string[] materials)
         {
-            return await _goodsQuestionsService.GetMaterialQuestion(computerTechnologies, materials);
+            return new QuestionsBase<string>();
+            //return await _goodsQuestionsService.GetMaterialQuestion(computerTechnologies, materials);
         }
         public async Task<QuestionsBase<string>> GetColorQuestion(IQueryable<ComputerTechnology> computerTechnologies, string[] colors)
         {
-            return await _goodsQuestionsService.GetColorQuestion(computerTechnologies, colors);
+            return new QuestionsBase<string>();
+            //return await _goodsQuestionsService.GetColorQuestion(computerTechnologies, colors);
         }
     }
 }

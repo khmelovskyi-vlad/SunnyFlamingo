@@ -62,10 +62,10 @@ namespace SunnyFlamingo.Services.Searchers
             decimal? from,
             decimal? to) where T : Good;
 
-        Task<QuestionsBase<string>> GetPriceQuestion(IQueryable<Good> goods, decimal? selectedFrom, decimal? selectedTo);
-        Task<QuestionsBase<string>> GetProducerQuestion(IQueryable<Good> goods, string[] producers);
-        Task<QuestionsBase<string>> GetCountryQuestion(IQueryable<Good> goods, string[] countries);
-        Task<QuestionsBase<string>> GetMaterialQuestion(IQueryable<Good> goods, string[] materials);
-        Task<QuestionsBase<string>> GetColorQuestion(IQueryable<Good> goods, string[] colors);
+        IQueryable<QuestionBase<string>> GetPriceQuestion(IQueryable<Good> goods);
+        IQueryable<QuestionBase<string>> GetProducerQuestion(IQueryable<Good> goods, string[] producers);
+        IQueryable<QuestionBase<string>> GetCountryQuestion(IQueryable<Good> goods, string[] countries);
+        IQueryable<QuestionBase<string>> GetMaterialQuestion(IQueryable<Good> goods, string[] materials);
+        IQueryable<QuestionBase<string>> GetColorQuestion(IQueryable<Good> goods, string[] colors);
     }
 }
