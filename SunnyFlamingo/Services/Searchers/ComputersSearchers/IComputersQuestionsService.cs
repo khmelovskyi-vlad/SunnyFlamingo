@@ -1,5 +1,6 @@
 ﻿using SunnyFlamingo.Entities.Goods.ComputerTechnologies;
 using SunnyFlamingo.Models;
+using SunnyFlamingo.Models.Selectors;
 using SunnyFlamingo.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -12,382 +13,76 @@ namespace SunnyFlamingo.Services.Searchers
     {
         Task<List<QuestionsBase<string>>> GetComputersQuestions(
                IQueryable<Computer> computers,
-               string[] producers,
-               string[] countries,
-               string[] materials,
-               string[] colors,
-               int[] amountOfRAM,
-               int[] CPUFrequency,
-               float[] length,
-               float[] height,
-               float[] width,
-               bool[] haveFloppyDrives,
-               int?[] SSDMemory,
-               int?[] hardDiskMemory,
-               CPUSocketType[] CPUSocketType,
-               ComputerDriveType[] computerDriveType,
-               int[] numberOfCores,
-               int?[] floppyDrivesCount,
-               decimal? priceFrom,
-               decimal? priceTo);
+               ComputersSelector computersSelector);
 
         IQueryable<T> GetProducerComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
+               ComputersSelector computersSelector) where T : Computer;
 
         IQueryable<T> GetCountryComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
+               ComputersSelector computersSelector) where T : Computer;
         IQueryable<T> GetMaterialComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
+               ComputersSelector computersSelector) where T : Computer;
         IQueryable<T> GetColorComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
+               ComputersSelector computersSelector) where T : Computer;
         IQueryable<T> GetPriceComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
+               ComputersSelector computersSelector) where T : Computer;
         IQueryable<T> GetAmountOfRAMComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
+               ComputersSelector computersSelector) where T : Computer;
         IQueryable<T> GetCPUFrequencyComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
+               ComputersSelector computersSelector) where T : Computer;
         IQueryable<T> GetLengthComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
+               ComputersSelector computersSelector) where T : Computer;
         IQueryable<T> GetHeightComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
+               ComputersSelector computersSelector) where T : Computer;
         IQueryable<T> GetWidthComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
+               ComputersSelector computersSelector) where T : Computer;
         IQueryable<T> GetSSDMemoryComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
+               ComputersSelector computersSelector) where T : Computer;
         IQueryable<T> GetHardDiskMemoryComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
+               ComputersSelector computersSelector) where T : Computer;
         IQueryable<T> GetCPUSocketTypeComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
+               ComputersSelector computersSelector) where T : Computer;
         IQueryable<T> GetComputerDriveTypeComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
+               ComputersSelector computersSelector) where T : Computer;
         IQueryable<T> GetNumberOfCoresComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
+               ComputersSelector computersSelector) where T : Computer;
         IQueryable<T> GetFloppyDrivesCountComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
+               ComputersSelector computersSelector) where T : Computer;
         IQueryable<T> GetHaveFloppyDrivesComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer;
-        Task<QuestionsBase<string>> GetProducerQuestion(IQueryable<Computer> computers, string[] producers);
-        Task<QuestionsBase<string>> GetCountryQuestion(IQueryable<Computer> computers, string[] countries);
-        Task<QuestionsBase<string>> GetMaterialQuestion(IQueryable<Computer> computers, string[] materials);
-        Task<QuestionsBase<string>> GetColorQuestion(IQueryable<Computer> computers, string[] colors);
-        Task<QuestionsBase<string>> GetPriceQuestion(IQueryable<Computer> computers, decimal? selectedFrom, decimal? selectedTo);
-        Task<QuestionsBase<string>> GetAmountOfRAMQuestion(IQueryable<Computer> computers, int[] amountOfRAMs);
-        Task<QuestionsBase<string>> GetCPUFrequencyQuestion(IQueryable<Computer> computers, int[] CPUFrequencies);
-        Task<QuestionsBase<string>> GetHeightQuestion(IQueryable<Computer> computers, float[] heights);
-        Task<QuestionsBase<string>> GetWidthQuestion(IQueryable<Computer> computers, float[] widths);
-        Task<QuestionsBase<string>> GetLengthQuestion(IQueryable<Computer> computers, float[] lengthes);
-        Task<QuestionsBase<string>> GetHaveFloppyDrivesQuestion(IQueryable<Computer> computers, bool[] haveFloppyDrives);
-        Task<QuestionsBase<string>> GetSSDMemoryQuestion(IQueryable<Computer> computers, int?[] SSDMemories);
-        Task<QuestionsBase<string>> GetHardDiskMemoryQuestion(IQueryable<Computer> computers, int?[] hardDiskMemories);
-        Task<QuestionsBase<string>> GetCPUSocketTypeQuestion(IQueryable<Computer> computers, CPUSocketType[] CPUSocketTypes);
-        Task<QuestionsBase<string>> GetComputerDriveTypeQuestion(IQueryable<Computer> computers, ComputerDriveType[] computerDriveTypes);
-        Task<QuestionsBase<string>> GetNumberOfCoreQuestion(IQueryable<Computer> computers, int[] numberOfCores);
-        Task<QuestionsBase<string>> GetFloppyDrivesCountQuestion(IQueryable<Computer> computers, int?[] floppyDrivesCountArray);
+               ComputersSelector computersSelector) where T : Computer;
+        IQueryable<QuestionBase<string>> GetProducerQuestion(IQueryable<Computer> computers, string[] producers);
+        IQueryable<QuestionBase<string>> GetCountryQuestion(IQueryable<Computer> computers, string[] countries);
+        IQueryable<QuestionBase<string>> GetMaterialQuestion(IQueryable<Computer> computers, string[] materials);
+        IQueryable<QuestionBase<string>> GetColorQuestion(IQueryable<Computer> computers, string[] colors);
+        IQueryable<QuestionBase<string>> GetPriceQuestion(IQueryable<Computer> computers);
+        IQueryable<QuestionBase<string>> GetAmountOfRAMQuestion(IQueryable<Computer> computers, int[] amountOfRAMs);
+        IQueryable<QuestionBase<string>> GetCPUFrequencyQuestion(IQueryable<Computer> computers, int[] CPUFrequencies);
+        IQueryable<QuestionBase<string>> GetHeightQuestion(IQueryable<Computer> computers, float[] heights);
+        IQueryable<QuestionBase<string>> GetWidthQuestion(IQueryable<Computer> computers, float[] widths);
+        IQueryable<QuestionBase<string>> GetLengthQuestion(IQueryable<Computer> computers, float[] lengthes);
+        IQueryable<QuestionBase<string>> GetHaveFloppyDrivesQuestion(IQueryable<Computer> computers, bool[] haveFloppyDrives);
+        IQueryable<QuestionBase<string>> GetSSDMemoryQuestion(IQueryable<Computer> computers, int?[] SSDMemories);
+        IQueryable<QuestionBase<string>> GetHardDiskMemoryQuestion(IQueryable<Computer> computers, int?[] hardDiskMemories);
+        IQueryable<QuestionBase<string>> GetCPUSocketTypeQuestion(IQueryable<Computer> computers, string[] CPUSocketTypes);
+        IQueryable<QuestionBase<string>> GetComputerDriveTypeQuestion(IQueryable<Computer> computers, string[] computerDriveTypes);
+        IQueryable<QuestionBase<string>> GetNumberOfCoreQuestion(IQueryable<Computer> computers, int[] numberOfCores);
+        IQueryable<QuestionBase<string>> GetFloppyDrivesCountQuestion(IQueryable<Computer> computers, int?[] floppyDrivesCountArray);
     }
 }

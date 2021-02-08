@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SunnyFlamingo.Entities.Goods.ComputerTechnologies;
 using SunnyFlamingo.Models;
+using SunnyFlamingo.Models.Selectors;
 using SunnyFlamingo.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -12,857 +13,508 @@ namespace SunnyFlamingo.Services.Searchers
     public class ComputersQuestionsService : IComputersQuestionsService
     {
         private readonly IComputerTechnologiesQuestionsService _computerTechnologiesQuestionsService;
-        public ComputersQuestionsService(IComputerTechnologiesQuestionsService computerTechnologiesQuestionsService)
+        private readonly IQuestionsGrouper _questionsGrouper;
+        public ComputersQuestionsService(
+            IComputerTechnologiesQuestionsService computerTechnologiesQuestionsService,
+            IQuestionsGrouper questionsGrouper)
         {
             _computerTechnologiesQuestionsService = computerTechnologiesQuestionsService;
+            _questionsGrouper = questionsGrouper;
         }
         public async Task<List<QuestionsBase<string>>> GetComputersQuestions(
             IQueryable<Computer> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo)
+            ComputersSelector computersSelector)
         {
-            var result = new List<QuestionsBase<string>>()
-                {
-                    await GetProducerQuestion(GetProducerComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), producers),
-                    await GetCountryQuestion(GetCountryComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), countries),
-                    await GetMaterialQuestion(GetMaterialComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), materials),
-                    await GetColorQuestion(GetColorComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), colors),
-                    await GetPriceQuestion(GetPriceComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), priceFrom, priceTo),
-
-                    await GetAmountOfRAMQuestion(GetAmountOfRAMComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), amountOfRAM),
-                    await GetCPUFrequencyQuestion(GetCPUFrequencyComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), CPUFrequency),
-                    await GetLengthQuestion(GetLengthComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), length),
-                    await GetHeightQuestion(GetHeightComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), height),
-                    await GetWidthQuestion(GetWidthComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), width),
-                    await GetHaveFloppyDrivesQuestion(GetHaveFloppyDrivesComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), haveFloppyDrives),
-                    await GetSSDMemoryQuestion(GetSSDMemoryComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), SSDMemory),
-                    await GetHardDiskMemoryQuestion(GetHardDiskMemoryComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), hardDiskMemory),
-                    await GetCPUSocketTypeQuestion(GetCPUSocketTypeComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), CPUSocketType),
-                    await GetComputerDriveTypeQuestion(GetComputerDriveTypeComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), computerDriveType),
-                    await GetNumberOfCoreQuestion(GetNumberOfCoresComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), numberOfCores)
-                };
-            if (haveFloppyDrives != null && !haveFloppyDrives.Contains(true) && haveFloppyDrives.Contains(false))
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
+            var result = await GetQuestionList(computers, computersSelector);
+            var questions = new List<QuestionsBase<string>>()
             {
-                result.Add(await GetFloppyDrivesCountQuestion(GetFloppyDrivesCountComputers(computers, producers, countries, materials, colors, amountOfRAM, CPUFrequency,
-                    length, height, width, haveFloppyDrives, SSDMemory, hardDiskMemory, CPUSocketType, computerDriveType,
-                    numberOfCores, floppyDrivesCount, priceFrom, priceTo), floppyDrivesCount));
+                _questionsGrouper.GroupProducers(result),
+                _questionsGrouper.GroupCountries(result),
+                _questionsGrouper.GroupMaterials(result),
+                _questionsGrouper.GroupColors(result),
+                _questionsGrouper.GroupPrices(result, goodsSelector.PriceFrom, goodsSelector.PriceTo),
+                _questionsGrouper.GroupAmountOfRAMs(result),
+                _questionsGrouper.GroupCPUFrequencies(result),
+                _questionsGrouper.GroupHeight(result),
+                _questionsGrouper.GroupWidth(result),
+                _questionsGrouper.GroupLength(result),
+                _questionsGrouper.GroupHaveFloppyDrives(result),
+                _questionsGrouper.GroupSSDMemory(result),
+                _questionsGrouper.GroupHardDiskMemory(result),
+                _questionsGrouper.GroupCPUSocketTypes(result),
+                _questionsGrouper.GroupComputerDriveTypes(result),
+                _questionsGrouper.GroupNumberOfCores(result),
+            };
+            if (computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(true))
+            {
+                questions.Add(_questionsGrouper.GroupFloppyDrivesCount(result));
             }
-            return result;
+            return questions;
+        }
+        private async Task<List<QuestionBase<string>>> GetQuestionList(IQueryable<Computer> computers, ComputersSelector computersSelector)
+        {
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
+            var producerQuestions = GetProducerQuestion(GetProducerComputers(computers, computersSelector), goodsSelector.Producers);
+            var countryQuestions = GetCountryQuestion(GetCountryComputers(computers, computersSelector), goodsSelector.Countries);
+            var materialQuestions = GetMaterialQuestion(GetMaterialComputers(computers, computersSelector), goodsSelector.Materials);
+            var colorQuestions = GetColorQuestion(GetColorComputers(computers, computersSelector), goodsSelector.Colors);
+            var priceQuestions = GetPriceQuestion(GetPriceComputers(computers, computersSelector));
+
+
+            var amountOfRAMQuestions = GetAmountOfRAMQuestion(GetAmountOfRAMComputers(computers, computersSelector), computersSelector.AmountOfRAMs);
+            var CPUFrequencyQuestions = GetCPUFrequencyQuestion(GetCPUFrequencyComputers(computers, computersSelector), computersSelector.CPUFrequencies);
+            var lengthQuestions = GetLengthQuestion(GetLengthComputers(computers, computersSelector), computersSelector.Length);
+            var heightQuestions = GetHeightQuestion(GetHeightComputers(computers, computersSelector), computersSelector.Height);
+            var widthQuestions = GetWidthQuestion(GetWidthComputers(computers, computersSelector), computersSelector.Width);
+            var haveFloppyDrivesQuestions = GetHaveFloppyDrivesQuestion(GetHaveFloppyDrivesComputers(computers, computersSelector), computersSelector.HaveFloppyDrives);
+            var SSDMemoryQuestions = GetSSDMemoryQuestion(GetSSDMemoryComputers(computers, computersSelector), computersSelector.SSDMemory);
+            var hardDiskMemoryQuestions = GetHardDiskMemoryQuestion(GetHardDiskMemoryComputers(computers, computersSelector), computersSelector.HardDiskMemory);
+            var CPUSocketTypeQuestions = GetCPUSocketTypeQuestion(GetCPUSocketTypeComputers(computers, computersSelector), computersSelector.CPUSocketTypes);
+            var computerDriveTypeQuestions = GetComputerDriveTypeQuestion(GetComputerDriveTypeComputers(computers, computersSelector), computersSelector.ComputerDriveTypes);
+            var numberOfCoreQuestions = GetNumberOfCoreQuestion(GetNumberOfCoresComputers(computers, computersSelector), computersSelector.NumberOfCores);
+            var floppyDrivesCountQuestions = GetFloppyDrivesCountQuestion(GetFloppyDrivesCountComputers(computers, computersSelector), computersSelector.FloppyDrivesCount);
+
+
+            var group = producerQuestions.Union(countryQuestions).Union(materialQuestions).Union(colorQuestions).Union(priceQuestions)
+                .Union(amountOfRAMQuestions).Union(CPUFrequencyQuestions).Union(lengthQuestions).Union(heightQuestions)
+                .Union(widthQuestions).Union(haveFloppyDrivesQuestions).Union(SSDMemoryQuestions).Union(hardDiskMemoryQuestions)
+                .Union(CPUSocketTypeQuestions).Union(computerDriveTypeQuestions).Union(numberOfCoreQuestions);
+
+            if (computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(true))
+            {
+                group = group.Union(floppyDrivesCountQuestions);
+            }
+            return await group.ToListAsync();
         }
 
         public IQueryable<T> GetProducerComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
+            var computerTechnologiesSelector = computersSelector.ComputerTechnologiesSelector;
             return _computerTechnologiesQuestionsService.GetProducerComputerTechnologies(
-                computers, producers, countries, materials, colors, priceFrom, priceTo)
-                .Where(l => (producers != null && producers.Contains(l.Producer.Name)) ||
-                ((haveFloppyDrives == null || haveFloppyDrives.Contains(l.HaveFloppyDrives))
-                && (amountOfRAM == null || amountOfRAM.Contains(l.AmountOfRAM))
-                && (floppyDrivesCount == null || floppyDrivesCount.Contains(l.FloppyDrivesCount))
-                && (numberOfCores == null || numberOfCores.Contains(l.NumberOfCores))
-                && (computerDriveType == null || computerDriveType.Contains(l.ComputerDriveType))
-                && (CPUSocketType == null || CPUSocketType.Contains(l.CPUSocketType))
-                && (hardDiskMemory == null || hardDiskMemory.Contains(l.HardDiskMemory))
-                && (SSDMemory == null || SSDMemory.Contains(l.SSDMemory))
-                && (width == null || width.Contains(l.Width))
-                && (height == null || height.Contains(l.Height))
-                && (length == null || length.Contains(l.Length))
-                && (CPUFrequency == null || CPUFrequency.Contains(l.CPUFrequency))
-                && (countries == null || countries.Contains(l.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(l.MaterialValue))
-                && (colors == null || colors.Contains(l.ColorValue))));
+                computers, computerTechnologiesSelector)
+                .Where(comp => (goodsSelector.Producers != null && goodsSelector.Producers.Contains(comp.Producer.Name)) ||
+                ((computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives))
+                && (computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM))
+                && (computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount))
+                && (computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(comp.NumberOfCores))
+                && (computersSelector.ComputerDriveTypes == null ||
+                computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                && (computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue))
+                && (computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory))
+                && (computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(comp.SSDMemory))
+                && (computersSelector.Width == null || computersSelector.Width.Contains(comp.Width))
+                && (computersSelector.Height == null || computersSelector.Height.Contains(comp.Height))
+                && (computersSelector.Length == null || computersSelector.Length.Contains(comp.Length))
+                && (computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(comp.CPUFrequency))));
         }
         public IQueryable<T> GetCountryComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
+            var computerTechnologiesSelector = computersSelector.ComputerTechnologiesSelector;
             return _computerTechnologiesQuestionsService.GetCountryComputerTechnologies(
-                computers, producers, countries, materials, colors, priceFrom, priceTo)
-                .Where(l => (countries != null && countries.Contains(l.Manufacturer.Country.Value)) ||
-                ((haveFloppyDrives == null || haveFloppyDrives.Contains(l.HaveFloppyDrives))
-                && (amountOfRAM == null || amountOfRAM.Contains(l.AmountOfRAM))
-                && (floppyDrivesCount == null || floppyDrivesCount.Contains(l.FloppyDrivesCount))
-                && (numberOfCores == null || numberOfCores.Contains(l.NumberOfCores))
-                && (computerDriveType == null || computerDriveType.Contains(l.ComputerDriveType))
-                && (CPUSocketType == null || CPUSocketType.Contains(l.CPUSocketType))
-                && (hardDiskMemory == null || hardDiskMemory.Contains(l.HardDiskMemory))
-                && (SSDMemory == null || SSDMemory.Contains(l.SSDMemory))
-                && (width == null || width.Contains(l.Width))
-                && (height == null || height.Contains(l.Height))
-                && (length == null || length.Contains(l.Length))
-                && (CPUFrequency == null || CPUFrequency.Contains(l.CPUFrequency))
-                && (producers == null || producers.Contains(l.Producer.Name))
-                && (materials == null || materials.Contains(l.MaterialValue))
-                && (colors == null || colors.Contains(l.ColorValue))));
+                computers, computerTechnologiesSelector)
+                .Where(comp => (goodsSelector.Countries != null && goodsSelector.Countries.Contains(comp.Manufacturer.Country.Value)) ||
+                ((computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives))
+                && (computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM))
+                && (computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount))
+                && (computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(comp.NumberOfCores))
+                && (computersSelector.ComputerDriveTypes == null ||
+                computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                && (computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue))
+                && (computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory))
+                && (computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(comp.SSDMemory))
+                && (computersSelector.Width == null || computersSelector.Width.Contains(comp.Width))
+                && (computersSelector.Height == null || computersSelector.Height.Contains(comp.Height))
+                && (computersSelector.Length == null || computersSelector.Length.Contains(comp.Length))
+                && (computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(comp.CPUFrequency))));
         }
         public IQueryable<T> GetMaterialComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
+            var computerTechnologiesSelector = computersSelector.ComputerTechnologiesSelector;
             return _computerTechnologiesQuestionsService.GetMaterialComputerTechnologies(
-                computers, producers, countries, materials, colors, priceFrom, priceTo)
-                .Where(l => (materials != null && materials.Contains(l.MaterialValue)) ||
-                ((haveFloppyDrives == null || haveFloppyDrives.Contains(l.HaveFloppyDrives))
-                && (amountOfRAM == null || amountOfRAM.Contains(l.AmountOfRAM))
-                && (floppyDrivesCount == null || floppyDrivesCount.Contains(l.FloppyDrivesCount))
-                && (numberOfCores == null || numberOfCores.Contains(l.NumberOfCores))
-                && (computerDriveType == null || computerDriveType.Contains(l.ComputerDriveType))
-                && (CPUSocketType == null || CPUSocketType.Contains(l.CPUSocketType))
-                && (hardDiskMemory == null || hardDiskMemory.Contains(l.HardDiskMemory))
-                && (SSDMemory == null || SSDMemory.Contains(l.SSDMemory))
-                && (width == null || width.Contains(l.Width))
-                && (height == null || height.Contains(l.Height))
-                && (length == null || length.Contains(l.Length))
-                && (CPUFrequency == null || CPUFrequency.Contains(l.CPUFrequency))
-                && (producers == null || producers.Contains(l.Producer.Name))
-                && (countries == null || countries.Contains(l.Manufacturer.Country.Value))
-                && (colors == null || colors.Contains(l.ColorValue))));
+                computers, computerTechnologiesSelector)
+                .Where(comp => (goodsSelector.Materials != null && goodsSelector.Materials.Contains(comp.MaterialValue)) ||
+                ((computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives))
+                && (computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM))
+                && (computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount))
+                && (computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(comp.NumberOfCores))
+                && (computersSelector.ComputerDriveTypes == null ||
+                computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                && (computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue))
+                && (computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory))
+                && (computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(comp.SSDMemory))
+                && (computersSelector.Width == null || computersSelector.Width.Contains(comp.Width))
+                && (computersSelector.Height == null || computersSelector.Height.Contains(comp.Height))
+                && (computersSelector.Length == null || computersSelector.Length.Contains(comp.Length))
+                && (computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(comp.CPUFrequency))));
         }
         public IQueryable<T> GetColorComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
+            var computerTechnologiesSelector = computersSelector.ComputerTechnologiesSelector;
             return _computerTechnologiesQuestionsService.GetColorComputerTechnologies(
-                computers, producers, countries, materials, colors, priceFrom, priceTo)
-                .Where(l => (colors != null && colors.Contains(l.ColorValue)) ||
-                ((haveFloppyDrives == null || haveFloppyDrives.Contains(l.HaveFloppyDrives))
-                && (amountOfRAM == null || amountOfRAM.Contains(l.AmountOfRAM))
-                && (floppyDrivesCount == null || floppyDrivesCount.Contains(l.FloppyDrivesCount))
-                && (numberOfCores == null || numberOfCores.Contains(l.NumberOfCores))
-                && (computerDriveType == null || computerDriveType.Contains(l.ComputerDriveType))
-                && (CPUSocketType == null || CPUSocketType.Contains(l.CPUSocketType))
-                && (hardDiskMemory == null || hardDiskMemory.Contains(l.HardDiskMemory))
-                && (SSDMemory == null || SSDMemory.Contains(l.SSDMemory))
-                && (width == null || width.Contains(l.Width))
-                && (height == null || height.Contains(l.Height))
-                && (length == null || length.Contains(l.Length))
-                && (CPUFrequency == null || CPUFrequency.Contains(l.CPUFrequency))
-                && (producers == null || producers.Contains(l.Producer.Name))
-                && (countries == null || countries.Contains(l.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(l.MaterialValue))));
+                computers, computerTechnologiesSelector)
+                .Where(comp => (goodsSelector.Colors != null && goodsSelector.Colors.Contains(comp.ColorValue)) ||
+                ((computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives))
+                && (computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM))
+                && (computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount))
+                && (computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(comp.NumberOfCores))
+                && (computersSelector.ComputerDriveTypes == null ||
+                computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                && (computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue))
+                && (computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory))
+                && (computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(comp.SSDMemory))
+                && (computersSelector.Width == null || computersSelector.Width.Contains(comp.Width))
+                && (computersSelector.Height == null || computersSelector.Height.Contains(comp.Height))
+                && (computersSelector.Length == null || computersSelector.Length.Contains(comp.Length))
+                && (computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(comp.CPUFrequency))));
         }
         public IQueryable<T> GetPriceComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
+            var computerTechnologiesSelector = computersSelector.ComputerTechnologiesSelector;
             return _computerTechnologiesQuestionsService.GetPriceComputerTechnologies(
-                computers, producers, countries, materials, colors, priceFrom, priceTo)
-                .Where(l =>
-                (haveFloppyDrives == null || haveFloppyDrives.Contains(l.HaveFloppyDrives))
-                && (amountOfRAM == null || amountOfRAM.Contains(l.AmountOfRAM))
-                && (floppyDrivesCount == null || floppyDrivesCount.Contains(l.FloppyDrivesCount))
-                && (numberOfCores == null || numberOfCores.Contains(l.NumberOfCores))
-                && (computerDriveType == null || computerDriveType.Contains(l.ComputerDriveType))
-                && (CPUSocketType == null || CPUSocketType.Contains(l.CPUSocketType))
-                && (hardDiskMemory == null || hardDiskMemory.Contains(l.HardDiskMemory))
-                && (SSDMemory == null || SSDMemory.Contains(l.SSDMemory))
-                && (width == null || width.Contains(l.Width))
-                && (height == null || height.Contains(l.Height))
-                && (length == null || length.Contains(l.Length))
-                && (CPUFrequency == null || CPUFrequency.Contains(l.CPUFrequency))
-                && (producers == null || producers.Contains(l.Producer.Name))
-                && (countries == null || countries.Contains(l.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(l.MaterialValue))
-                && (colors == null || colors.Contains(l.ColorValue)));
+                computers, computerTechnologiesSelector)
+                .Where(comp =>
+                (computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives))
+                && (computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM))
+                && (computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount))
+                && (computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(comp.NumberOfCores))
+                && (computersSelector.ComputerDriveTypes == null ||
+                computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                && (computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue))
+                && (computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory))
+                && (computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(comp.SSDMemory))
+                && (computersSelector.Width == null || computersSelector.Width.Contains(comp.Width))
+                && (computersSelector.Height == null || computersSelector.Height.Contains(comp.Height))
+                && (computersSelector.Length == null || computersSelector.Length.Contains(comp.Length))
+                && (computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(comp.CPUFrequency)));
         }
         public IQueryable<T> GetAmountOfRAMComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
-            if (producers == null && countries == null && materials == null && colors == null && CPUFrequency == null && length == null
-                && height == null && width == null && haveFloppyDrives == null && SSDMemory == null && hardDiskMemory == null
-                && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null
-                && priceFrom == null && priceTo == null)
-            {
-                return computers;
-            }
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
             return computers
-                .Where(g => (amountOfRAM != null && amountOfRAM.Contains(g.AmountOfRAM)) ||
-                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
-                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
-                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
-                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
-                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
-                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
-                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
-                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
-                && (width == null || width.Contains(g.Width))
-                && (height == null || height.Contains(g.Height))
-                && (length == null || length.Contains(g.Length))
-                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
-                && (producers == null || producers.Contains(g.Producer.Name))
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(g.MaterialValue))
-                && (colors == null || colors.Contains(g.ColorValue))));
+                .Where(comp => (computersSelector.AmountOfRAMs != null && computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM)) ||
+                ((goodsSelector.PriceFrom == null || comp.Price >= goodsSelector.PriceFrom)
+                && (goodsSelector.PriceTo == null || comp.Price <= goodsSelector.PriceTo)
+                && (computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives))
+                && (computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount))
+                && (computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(comp.NumberOfCores))
+                && (computersSelector.ComputerDriveTypes == null ||
+                computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                && (computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue))
+                && (computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory))
+                && (computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(comp.SSDMemory))
+                && (computersSelector.Width == null || computersSelector.Width.Contains(comp.Width))
+                && (computersSelector.Height == null || computersSelector.Height.Contains(comp.Height))
+                && (computersSelector.Length == null || computersSelector.Length.Contains(comp.Length))
+                && (computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(comp.CPUFrequency))
+                && (goodsSelector.Producers == null || goodsSelector.Producers.Contains(comp.Producer.Name))
+                && (goodsSelector.Countries == null || goodsSelector.Countries.Contains(comp.Manufacturer.Country.Value))
+                && (goodsSelector.Materials == null || goodsSelector.Materials.Contains(comp.MaterialValue))
+                && (goodsSelector.Colors == null || goodsSelector.Colors.Contains(comp.ColorValue))));
         }
         public IQueryable<T> GetCPUFrequencyComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
-            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && length == null
-                && height == null && width == null && haveFloppyDrives == null && SSDMemory == null && hardDiskMemory == null
-                && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null
-                && priceFrom == null && priceTo == null)
-            {
-                return computers;
-            }
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
             return computers
-                .Where(g => (CPUFrequency != null && CPUFrequency.Contains(g.CPUFrequency)) ||
-                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
-                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
-                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
-                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
-                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
-                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
-                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
-                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
-                && (width == null || width.Contains(g.Width))
-                && (height == null || height.Contains(g.Height))
-                && (length == null || length.Contains(g.Length))
-                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
-                && (producers == null || producers.Contains(g.Producer.Name))
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(g.MaterialValue))
-                && (colors == null || colors.Contains(g.ColorValue))));
+                .Where(comp => (computersSelector.CPUFrequencies != null && computersSelector.CPUFrequencies.Contains(comp.CPUFrequency)) ||
+                ((goodsSelector.PriceFrom == null || comp.Price >= goodsSelector.PriceFrom)
+                && (goodsSelector.PriceTo == null || comp.Price <= goodsSelector.PriceTo)
+                && (computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives))
+                && (computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount))
+                && (computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(comp.NumberOfCores))
+                && (computersSelector.ComputerDriveTypes == null ||
+                computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                && (computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue))
+                && (computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory))
+                && (computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(comp.SSDMemory))
+                && (computersSelector.Width == null || computersSelector.Width.Contains(comp.Width))
+                && (computersSelector.Height == null || computersSelector.Height.Contains(comp.Height))
+                && (computersSelector.Length == null || computersSelector.Length.Contains(comp.Length))
+                && (computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM))
+                && (goodsSelector.Producers == null || goodsSelector.Producers.Contains(comp.Producer.Name))
+                && (goodsSelector.Countries == null || goodsSelector.Countries.Contains(comp.Manufacturer.Country.Value))
+                && (goodsSelector.Materials == null || goodsSelector.Materials.Contains(comp.MaterialValue))
+                && (goodsSelector.Colors == null || goodsSelector.Colors.Contains(comp.ColorValue))));
         }
         public IQueryable<T> GetLengthComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
-            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
-                && height == null && width == null && haveFloppyDrives == null && SSDMemory == null && hardDiskMemory == null
-                && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null
-                && priceFrom == null && priceTo == null)
-            {
-                return computers;
-            }
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
             return computers
-                .Where(g => (length != null && length.Contains(g.Length)) ||
-                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
-                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
-                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
-                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
-                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
-                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
-                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
-                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
-                && (width == null || width.Contains(g.Width))
-                && (height == null || height.Contains(g.Height))
-                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
-                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
-                && (producers == null || producers.Contains(g.Producer.Name))
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(g.MaterialValue))
-                && (colors == null || colors.Contains(g.ColorValue))));
+                .Where(comp => (computersSelector.Length != null && computersSelector.Length.Contains(comp.Length)) ||
+                ((goodsSelector.PriceFrom == null || comp.Price >= goodsSelector.PriceFrom)
+                && (goodsSelector.PriceTo == null || comp.Price <= goodsSelector.PriceTo)
+                && (computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives))
+                && (computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount))
+                && (computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(comp.NumberOfCores))
+                && (computersSelector.ComputerDriveTypes == null ||
+                computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                && (computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue))
+                && (computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory))
+                && (computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(comp.SSDMemory))
+                && (computersSelector.Width == null || computersSelector.Width.Contains(comp.Width))
+                && (computersSelector.Height == null || computersSelector.Height.Contains(comp.Height))
+                && (computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(comp.CPUFrequency))
+                && (computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM))
+                && (goodsSelector.Producers == null || goodsSelector.Producers.Contains(comp.Producer.Name))
+                && (goodsSelector.Countries == null || goodsSelector.Countries.Contains(comp.Manufacturer.Country.Value))
+                && (goodsSelector.Materials == null || goodsSelector.Materials.Contains(comp.MaterialValue))
+                && (goodsSelector.Colors == null || goodsSelector.Colors.Contains(comp.ColorValue))));
         }
         public IQueryable<T> GetHeightComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
-            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
-                && length == null && width == null && haveFloppyDrives == null && SSDMemory == null && hardDiskMemory == null
-                && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null
-                && priceFrom == null && priceTo == null)
-            {
-                return computers;
-            }
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
             return computers
-                .Where(g => (height != null && height.Contains(g.Height)) ||
-                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
-                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
-                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
-                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
-                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
-                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
-                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
-                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
-                && (width == null || width.Contains(g.Width))
-                && (length == null || length.Contains(g.Length))
-                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
-                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
-                && (producers == null || producers.Contains(g.Producer.Name))
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(g.MaterialValue))
-                && (colors == null || colors.Contains(g.ColorValue))));
+                .Where(comp => (computersSelector.Height != null && computersSelector.Height.Contains(comp.Height)) ||
+                ((goodsSelector.PriceFrom == null || comp.Price >= goodsSelector.PriceFrom)
+                && (goodsSelector.PriceTo == null || comp.Price <= goodsSelector.PriceTo)
+                && (computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives))
+                && (computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount))
+                && (computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(comp.NumberOfCores))
+                && (computersSelector.ComputerDriveTypes == null ||
+                computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                && (computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue))
+                && (computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory))
+                && (computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(comp.SSDMemory))
+                && (computersSelector.Width == null || computersSelector.Width.Contains(comp.Width))
+                && (computersSelector.Length == null || computersSelector.Length.Contains(comp.Length))
+                && (computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(comp.CPUFrequency))
+                && (computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM))
+                && (goodsSelector.Producers == null || goodsSelector.Producers.Contains(comp.Producer.Name))
+                && (goodsSelector.Countries == null || goodsSelector.Countries.Contains(comp.Manufacturer.Country.Value))
+                && (goodsSelector.Materials == null || goodsSelector.Materials.Contains(comp.MaterialValue))
+                && (goodsSelector.Colors == null || goodsSelector.Colors.Contains(comp.ColorValue))));
         }
         public IQueryable<T> GetWidthComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
-            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
-                && height == null && length == null && haveFloppyDrives == null && SSDMemory == null && hardDiskMemory == null
-                && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null
-                && priceFrom == null && priceTo == null)
-            {
-                return computers;
-            }
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
             return computers
-                .Where(g => (width != null && width.Contains(g.Width)) ||
-                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
-                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
-                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
-                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
-                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
-                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
-                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
-                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
-                && (length == null || length.Contains(g.Length))
-                && (height == null || height.Contains(g.Height))
-                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
-                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
-                && (producers == null || producers.Contains(g.Producer.Name))
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(g.MaterialValue))
-                && (colors == null || colors.Contains(g.ColorValue))));
+                .Where(comp => (computersSelector.Width != null && computersSelector.Width.Contains(comp.Width)) ||
+                ((goodsSelector.PriceFrom == null || comp.Price >= goodsSelector.PriceFrom)
+                && (goodsSelector.PriceTo == null || comp.Price <= goodsSelector.PriceTo)
+                && (computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives))
+                && (computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount))
+                && (computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(comp.NumberOfCores))
+                && (computersSelector.ComputerDriveTypes == null ||
+                computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                && (computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue))
+                && (computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory))
+                && (computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(comp.SSDMemory))
+                && (computersSelector.Height == null || computersSelector.Height.Contains(comp.Height))
+                && (computersSelector.Length == null || computersSelector.Length.Contains(comp.Length))
+                && (computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(comp.CPUFrequency))
+                && (computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM))
+                && (goodsSelector.Producers == null || goodsSelector.Producers.Contains(comp.Producer.Name))
+                && (goodsSelector.Countries == null || goodsSelector.Countries.Contains(comp.Manufacturer.Country.Value))
+                && (goodsSelector.Materials == null || goodsSelector.Materials.Contains(comp.MaterialValue))
+                && (goodsSelector.Colors == null || goodsSelector.Colors.Contains(comp.ColorValue))));
         }
         public IQueryable<T> GetSSDMemoryComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
-            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
-                && height == null && length == null && haveFloppyDrives == null && width == null && hardDiskMemory == null
-                && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null
-                && priceFrom == null && priceTo == null)
-            {
-                return computers;
-            }
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
             return computers
-                .Where(g => (SSDMemory != null && SSDMemory.Contains(g.SSDMemory)) ||
-                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
-                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
-                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
-                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
-                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
-                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
-                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
-                && (width == null || width.Contains(g.Width))
-                && (length == null || length.Contains(g.Length))
-                && (height == null || height.Contains(g.Height))
-                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
-                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
-                && (producers == null || producers.Contains(g.Producer.Name))
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(g.MaterialValue))
-                && (colors == null || colors.Contains(g.ColorValue))));
+                .Where(comp => (computersSelector.SSDMemory != null && computersSelector.SSDMemory.Contains(comp.SSDMemory)) ||
+                ((goodsSelector.PriceFrom == null || comp.Price >= goodsSelector.PriceFrom)
+                && (goodsSelector.PriceTo == null || comp.Price <= goodsSelector.PriceTo)
+                && (computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives))
+                && (computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount))
+                && (computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(comp.NumberOfCores))
+                && (computersSelector.ComputerDriveTypes == null ||
+                computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                && (computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue))
+                && (computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory))
+                && (computersSelector.Width == null || computersSelector.Width.Contains(comp.Width))
+                && (computersSelector.Height == null || computersSelector.Height.Contains(comp.Height))
+                && (computersSelector.Length == null || computersSelector.Length.Contains(comp.Length))
+                && (computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(comp.CPUFrequency))
+                && (computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM))
+                && (goodsSelector.Producers == null || goodsSelector.Producers.Contains(comp.Producer.Name))
+                && (goodsSelector.Countries == null || goodsSelector.Countries.Contains(comp.Manufacturer.Country.Value))
+                && (goodsSelector.Materials == null || goodsSelector.Materials.Contains(comp.MaterialValue))
+                && (goodsSelector.Colors == null || goodsSelector.Colors.Contains(comp.ColorValue))));
         }
         public IQueryable<T> GetHardDiskMemoryComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
-            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
-                && height == null && length == null && haveFloppyDrives == null && width == null && SSDMemory == null
-                && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null
-                && priceFrom == null && priceTo == null)
-            {
-                return computers;
-            }
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
             return computers
-                .Where(g => (hardDiskMemory != null && hardDiskMemory.Contains(g.HardDiskMemory)) ||
-                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
-                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
-                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
-                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
-                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
-                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
-                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
-                && (width == null || width.Contains(g.Width))
-                && (length == null || length.Contains(g.Length))
-                && (height == null || height.Contains(g.Height))
-                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
-                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
-                && (producers == null || producers.Contains(g.Producer.Name))
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(g.MaterialValue))
-                && (colors == null || colors.Contains(g.ColorValue))));
+                .Where(comp => (computersSelector.HardDiskMemory != null && computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory)) ||
+                ((goodsSelector.PriceFrom == null || comp.Price >= goodsSelector.PriceFrom)
+                && (goodsSelector.PriceTo == null || comp.Price <= goodsSelector.PriceTo)
+                && (computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives))
+                && (computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount))
+                && (computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(comp.NumberOfCores))
+                && (computersSelector.ComputerDriveTypes == null ||
+                computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                && (computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue))
+                && (computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(comp.SSDMemory))
+                && (computersSelector.Width == null || computersSelector.Width.Contains(comp.Width))
+                && (computersSelector.Height == null || computersSelector.Height.Contains(comp.Height))
+                && (computersSelector.Length == null || computersSelector.Length.Contains(comp.Length))
+                && (computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(comp.CPUFrequency))
+                && (computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM))
+                && (goodsSelector.Producers == null || goodsSelector.Producers.Contains(comp.Producer.Name))
+                && (goodsSelector.Countries == null || goodsSelector.Countries.Contains(comp.Manufacturer.Country.Value))
+                && (goodsSelector.Materials == null || goodsSelector.Materials.Contains(comp.MaterialValue))
+                && (goodsSelector.Colors == null || goodsSelector.Colors.Contains(comp.ColorValue))));
         }
         public IQueryable<T> GetCPUSocketTypeComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
-            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
-                && height == null && length == null && haveFloppyDrives == null && width == null && SSDMemory == null
-                && hardDiskMemory == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null
-                && priceFrom == null && priceTo == null)
-            {
-                return computers;
-            }
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
             return computers
-                .Where(g => (CPUSocketType != null && CPUSocketType.Contains(g.CPUSocketType)) ||
-                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
-                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
-                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
-                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
-                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
-                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
-                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
-                && (width == null || width.Contains(g.Width))
-                && (length == null || length.Contains(g.Length))
-                && (height == null || height.Contains(g.Height))
-                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
-                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
-                && (producers == null || producers.Contains(g.Producer.Name))
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(g.MaterialValue))
-                && (colors == null || colors.Contains(g.ColorValue))));
+                .Where(comp => (computersSelector.CPUSocketTypes != null && computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue)) ||
+                ((goodsSelector.PriceFrom == null || comp.Price >= goodsSelector.PriceFrom)
+                && (goodsSelector.PriceTo == null || comp.Price <= goodsSelector.PriceTo)
+                && (computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives))
+                && (computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount))
+                && (computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(comp.NumberOfCores))
+                && (computersSelector.ComputerDriveTypes == null ||
+                computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                && (computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory))
+                && (computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(comp.SSDMemory))
+                && (computersSelector.Width == null || computersSelector.Width.Contains(comp.Width))
+                && (computersSelector.Height == null || computersSelector.Height.Contains(comp.Height))
+                && (computersSelector.Length == null || computersSelector.Length.Contains(comp.Length))
+                && (computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(comp.CPUFrequency))
+                && (computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM))
+                && (goodsSelector.Producers == null || goodsSelector.Producers.Contains(comp.Producer.Name))
+                && (goodsSelector.Countries == null || goodsSelector.Countries.Contains(comp.Manufacturer.Country.Value))
+                && (goodsSelector.Materials == null || goodsSelector.Materials.Contains(comp.MaterialValue))
+                && (goodsSelector.Colors == null || goodsSelector.Colors.Contains(comp.ColorValue))));
         }
         public IQueryable<T> GetComputerDriveTypeComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
-            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
-                && height == null && length == null && haveFloppyDrives == null && width == null && SSDMemory == null
-                && hardDiskMemory == null && CPUSocketType == null && numberOfCores == null && floppyDrivesCount == null
-                && priceFrom == null && priceTo == null)
-            {
-                return computers;
-            }
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
             return computers
-                .Where(g => (computerDriveType != null && computerDriveType.Contains(g.ComputerDriveType)) ||
-                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
-                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
-                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
-                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
-                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
-                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
-                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
-                && (width == null || width.Contains(g.Width))
-                && (length == null || length.Contains(g.Length))
-                && (height == null || height.Contains(g.Height))
-                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
-                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
-                && (producers == null || producers.Contains(g.Producer.Name))
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(g.MaterialValue))
-                && (colors == null || colors.Contains(g.ColorValue))));
+                .Where(comp => (computersSelector.ComputerDriveTypes != null
+                && computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                ||
+                ((goodsSelector.PriceFrom == null || comp.Price >= goodsSelector.PriceFrom)
+                && (goodsSelector.PriceTo == null || comp.Price <= goodsSelector.PriceTo)
+                && (computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives))
+                && (computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount))
+                && (computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(comp.NumberOfCores))
+                && (computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue))
+                && (computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory))
+                && (computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(comp.SSDMemory))
+                && (computersSelector.Width == null || computersSelector.Width.Contains(comp.Width))
+                && (computersSelector.Height == null || computersSelector.Height.Contains(comp.Height))
+                && (computersSelector.Length == null || computersSelector.Length.Contains(comp.Length))
+                && (computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(comp.CPUFrequency))
+                && (computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM))
+                && (goodsSelector.Producers == null || goodsSelector.Producers.Contains(comp.Producer.Name))
+                && (goodsSelector.Countries == null || goodsSelector.Countries.Contains(comp.Manufacturer.Country.Value))
+                && (goodsSelector.Materials == null || goodsSelector.Materials.Contains(comp.MaterialValue))
+                && (goodsSelector.Colors == null || goodsSelector.Colors.Contains(comp.ColorValue))));
         }
         public IQueryable<T> GetNumberOfCoresComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
-            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
-                && height == null && length == null && haveFloppyDrives == null && width == null && SSDMemory == null
-                && hardDiskMemory == null && CPUSocketType == null && computerDriveType == null && floppyDrivesCount == null
-                && priceFrom == null && priceTo == null)
-            {
-                return computers;
-            }
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
             return computers
-                .Where(g => (numberOfCores != null && numberOfCores.Contains(g.NumberOfCores)) ||
-                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
-                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
-                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
-                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
-                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
-                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
-                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
-                && (width == null || width.Contains(g.Width))
-                && (length == null || length.Contains(g.Length))
-                && (height == null || height.Contains(g.Height))
-                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
-                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
-                && (producers == null || producers.Contains(g.Producer.Name))
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(g.MaterialValue))
-                && (colors == null || colors.Contains(g.ColorValue))));
+                .Where(comp => (computersSelector.NumberOfCores != null && computersSelector.NumberOfCores.Contains(comp.NumberOfCores)) ||
+                ((goodsSelector.PriceFrom == null || comp.Price >= goodsSelector.PriceFrom)
+                && (goodsSelector.PriceTo == null || comp.Price <= goodsSelector.PriceTo)
+                && (computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives))
+                && (computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount))
+                && (computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory))
+                && (computersSelector.ComputerDriveTypes == null ||
+                computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                && (computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue))
+                && (computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(comp.SSDMemory))
+                && (computersSelector.Width == null || computersSelector.Width.Contains(comp.Width))
+                && (computersSelector.Height == null || computersSelector.Height.Contains(comp.Height))
+                && (computersSelector.Length == null || computersSelector.Length.Contains(comp.Length))
+                && (computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(comp.CPUFrequency))
+                && (computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM))
+                && (goodsSelector.Producers == null || goodsSelector.Producers.Contains(comp.Producer.Name))
+                && (goodsSelector.Countries == null || goodsSelector.Countries.Contains(comp.Manufacturer.Country.Value))
+                && (goodsSelector.Materials == null || goodsSelector.Materials.Contains(comp.MaterialValue))
+                && (goodsSelector.Colors == null || goodsSelector.Colors.Contains(comp.ColorValue))));
         }
         public IQueryable<T> GetFloppyDrivesCountComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
-            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
-                && height == null && length == null && haveFloppyDrives == null && width == null && SSDMemory == null
-                && hardDiskMemory == null && CPUSocketType == null && computerDriveType == null && numberOfCores == null
-                && priceFrom == null && priceTo == null)
-            {
-                return computers;
-            }
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
             return computers
-                .Where(g => (floppyDrivesCount != null && floppyDrivesCount.Contains(g.FloppyDrivesCount)) ||
-                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
-                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
-                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
-                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
-                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
-                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
-                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
-                && (width == null || width.Contains(g.Width))
-                && (length == null || length.Contains(g.Length))
-                && (height == null || height.Contains(g.Height))
-                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
-                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
-                && (producers == null || producers.Contains(g.Producer.Name))
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(g.MaterialValue))
-                && (colors == null || colors.Contains(g.ColorValue))));
+                .Where(comp => (computersSelector.FloppyDrivesCount != null && computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount)) ||
+                ((goodsSelector.PriceFrom == null || comp.Price >= goodsSelector.PriceFrom)
+                && (goodsSelector.PriceTo == null || comp.Price <= goodsSelector.PriceTo)
+                && (computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives))
+                && (computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(comp.NumberOfCores))
+                && (computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory))
+                && (computersSelector.ComputerDriveTypes == null ||
+                computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                && (computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue))
+                && (computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(comp.SSDMemory))
+                && (computersSelector.Width == null || computersSelector.Width.Contains(comp.Width))
+                && (computersSelector.Height == null || computersSelector.Height.Contains(comp.Height))
+                && (computersSelector.Length == null || computersSelector.Length.Contains(comp.Length))
+                && (computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(comp.CPUFrequency))
+                && (computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM))
+                && (goodsSelector.Producers == null || goodsSelector.Producers.Contains(comp.Producer.Name))
+                && (goodsSelector.Countries == null || goodsSelector.Countries.Contains(comp.Manufacturer.Country.Value))
+                && (goodsSelector.Materials == null || goodsSelector.Materials.Contains(comp.MaterialValue))
+                && (goodsSelector.Colors == null || goodsSelector.Colors.Contains(comp.ColorValue))));
         }
         public IQueryable<T> GetHaveFloppyDrivesComputers<T>(
             IQueryable<T> computers,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo) where T : Computer
+            ComputersSelector computersSelector) where T : Computer
         {
-            if (producers == null && countries == null && materials == null && colors == null && amountOfRAM == null && CPUFrequency == null
-                && height == null && length == null && width == null && SSDMemory == null
-                && hardDiskMemory == null && CPUSocketType == null && computerDriveType == null && numberOfCores == null && floppyDrivesCount == null
-                && priceFrom == null && priceTo == null)
-            {
-                return computers;
-            }
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
             return computers
-                .Where(g =>
-                ((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
-                && (haveFloppyDrives == null || haveFloppyDrives.Contains(g.HaveFloppyDrives))
-                && (computerDriveType == null || computerDriveType.Contains(g.ComputerDriveType))
-                && (floppyDrivesCount == null || floppyDrivesCount.Contains(g.FloppyDrivesCount))
-                && (numberOfCores == null || numberOfCores.Contains(g.NumberOfCores))
-                && (CPUSocketType == null || CPUSocketType.Contains(g.CPUSocketType))
-                && (hardDiskMemory == null || hardDiskMemory.Contains(g.HardDiskMemory))
-                && (SSDMemory == null || SSDMemory.Contains(g.SSDMemory))
-                && (width == null || width.Contains(g.Width))
-                && (length == null || length.Contains(g.Length))
-                && (height == null || height.Contains(g.Height))
-                && (CPUFrequency == null || CPUFrequency.Contains(g.CPUFrequency))
-                && (amountOfRAM == null || amountOfRAM.Contains(g.AmountOfRAM))
-                && (producers == null || producers.Contains(g.Producer.Name))
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(g.MaterialValue))
-                && (colors == null || colors.Contains(g.ColorValue))));
+                .Where(comp => (computersSelector.HaveFloppyDrives != null && computersSelector.HaveFloppyDrives.Contains(comp.HaveFloppyDrives)) ||
+                ((goodsSelector.PriceFrom == null || comp.Price >= goodsSelector.PriceFrom)
+                && (goodsSelector.PriceTo == null || comp.Price <= goodsSelector.PriceTo)
+                && (computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(comp.FloppyDrivesCount))
+                && (computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(comp.NumberOfCores))
+                && (computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(comp.HardDiskMemory))
+                && (computersSelector.ComputerDriveTypes == null ||
+                computersSelector.ComputerDriveTypes.Any(c => comp.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                && (computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(comp.CPUSocketTypeValue))
+                && (computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(comp.SSDMemory))
+                && (computersSelector.Width == null || computersSelector.Width.Contains(comp.Width))
+                && (computersSelector.Height == null || computersSelector.Height.Contains(comp.Height))
+                && (computersSelector.Length == null || computersSelector.Length.Contains(comp.Length))
+                && (computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(comp.CPUFrequency))
+                && (computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(comp.AmountOfRAM))
+                && (goodsSelector.Producers == null || goodsSelector.Producers.Contains(comp.Producer.Name))
+                && (goodsSelector.Countries == null || goodsSelector.Countries.Contains(comp.Manufacturer.Country.Value))
+                && (goodsSelector.Materials == null || goodsSelector.Materials.Contains(comp.MaterialValue))
+                && (goodsSelector.Colors == null || goodsSelector.Colors.Contains(comp.ColorValue))));
         }
 
 
@@ -870,302 +522,253 @@ namespace SunnyFlamingo.Services.Searchers
 
 
 
-        public async Task<QuestionsBase<string>> GetProducerQuestion(IQueryable<Computer> computers, string[] producers)
+        public IQueryable<QuestionBase<string>> GetProducerQuestion(IQueryable<Computer> computers, string[] producers)
         {
-            return await _computerTechnologiesQuestionsService.GetProducerQuestion(computers, producers);
+            return _computerTechnologiesQuestionsService.GetProducerQuestion(computers, producers);
         }
-        public async Task<QuestionsBase<string>> GetCountryQuestion(IQueryable<Computer> computers, string[] countries)
+        public IQueryable<QuestionBase<string>> GetCountryQuestion(IQueryable<Computer> computers, string[] countries)
         {
-            return await _computerTechnologiesQuestionsService.GetCountryQuestion(computers, countries);
+            return _computerTechnologiesQuestionsService.GetCountryQuestion(computers, countries);
         }
-        public async Task<QuestionsBase<string>> GetMaterialQuestion(IQueryable<Computer> computers, string[] materials)
+        public IQueryable<QuestionBase<string>> GetMaterialQuestion(IQueryable<Computer> computers, string[] materials)
         {
-            return await _computerTechnologiesQuestionsService.GetMaterialQuestion(computers, materials);
+            return _computerTechnologiesQuestionsService.GetMaterialQuestion(computers, materials);
         }
-        public async Task<QuestionsBase<string>> GetColorQuestion(IQueryable<Computer> computers, string[] colors)
+        public IQueryable<QuestionBase<string>> GetColorQuestion(IQueryable<Computer> computers, string[] colors)
         {
-            return await _computerTechnologiesQuestionsService.GetColorQuestion(computers, colors);
+            return _computerTechnologiesQuestionsService.GetColorQuestion(computers, colors);
         }
-        public async Task<QuestionsBase<string>> GetPriceQuestion(IQueryable<Computer> computers, decimal? selectedFrom, decimal? selectedTo)
+        public IQueryable<QuestionBase<string>> GetPriceQuestion(IQueryable<Computer> computers)
         {
-            return await _computerTechnologiesQuestionsService.GetPriceQuestion(computers, selectedFrom, selectedTo);
+            return _computerTechnologiesQuestionsService.GetPriceQuestion(computers);
         }
 
-        public async Task<QuestionsBase<string>> GetAmountOfRAMQuestion(IQueryable<Computer> computers, int[] amountOfRAMs)
+        public IQueryable<QuestionBase<string>> GetAmountOfRAMQuestion(IQueryable<Computer> computers, int[] amountOfRAMs)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "amountOfRAM",
-                Value = "Select amount of RAM",
-                Order = 5,
-                QuestionBaseList = await computers
+            var stringList = amountOfRAMs?.Select(item => item.ToString()).ToList();
+            return computers
                         .Select(g => g.AmountOfRAM)
                         .GroupBy(p => p)
-                        .Select(p => new { Count = p.Count(), Value = p.Key })
+                        .Select(p => new { Count = p.Count(), Value = Convert.ToString(p.Key) })
                         .Select(amountOfRAM => new QuestionBase<string>()
                         {
-                            AfterBox = $"({amountOfRAM.Count})",
-                            Checked = amountOfRAMs != null && amountOfRAMs.Contains(amountOfRAM.Value),
+                            QuestionsKey = "amountOfRAM",
+                            AfterBox = (stringList != null && stringList.Contains(amountOfRAM.Value)) ? (int?)null : amountOfRAM.Count,
+                            Checked = stringList != null && stringList.Contains(amountOfRAM.Value),
                             ControlType = ControlType.Checkbox,
-                            Key = amountOfRAM.Value.ToString(),
-                            Label = amountOfRAM.Value.ToString(),
+                            Key = amountOfRAM.Value,
+                            Label = amountOfRAM.Value,
                             Required = false,
                             Type = InputType.Checkbox,
-                        }).ToListAsync()
-            };
+                        });
         }
-        public async Task<QuestionsBase<string>> GetCPUFrequencyQuestion(IQueryable<Computer> computers, int[] CPUFrequencies)
+        public IQueryable<QuestionBase<string>> GetCPUFrequencyQuestion(IQueryable<Computer> computers, int[] CPUFrequencies)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "CPUFrequency",
-                Value = "Select CPU frequency",
-                Order = 6,
-                QuestionBaseList = await computers
+            var stringList = CPUFrequencies?.Select(item => item.ToString()).ToList();
+            return computers
                         .Select(g => g.CPUFrequency)
                         .GroupBy(p => p)
-                        .Select(p => new { Count = p.Count(), Value = p.Key })
+                        .Select(p => new { Count = p.Count(), Value = Convert.ToString(p.Key) })
                         .Select(CPUFrequency => new QuestionBase<string>()
                         {
-                            AfterBox = $"({CPUFrequency.Count})",
-                            Checked = CPUFrequencies != null && CPUFrequencies.Contains(CPUFrequency.Value),
+                            QuestionsKey = "CPUFrequency",
+                            AfterBox = (stringList != null && stringList.Contains(CPUFrequency.Value)) ? (int?)null : CPUFrequency.Count,
+                            Checked = stringList != null && stringList.Contains(CPUFrequency.Value),
                             ControlType = ControlType.Checkbox,
-                            Key = CPUFrequency.Value.ToString(),
-                            Label = CPUFrequency.Value.ToString(),
+                            Key = CPUFrequency.Value,
+                            Label = CPUFrequency.Value,
                             Required = false,
                             Type = InputType.Checkbox,
-                        }).ToListAsync()
-            };
+                        });
         }
-        public async Task<QuestionsBase<string>> GetHeightQuestion(IQueryable<Computer> computers, float[] heights)
+        public IQueryable<QuestionBase<string>> GetHeightQuestion(IQueryable<Computer> computers, float[] height)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "height",
-                Value = "Select height",
-                Order = 7,
-                QuestionBaseList = await computers
+            var stringList = height?.Select(item => item.ToString()).ToList();
+            return computers
                         .Select(g => g.Height)
                         .GroupBy(p => p)
-                        .Select(p => new { Count = p.Count(), Value = p.Key })
+                        .Select(p => new { Count = p.Count(), Value = Convert.ToString(p.Key) })
                         .Select(height => new QuestionBase<string>()
                         {
-                            AfterBox = $"({height.Count})",
-                            Checked = heights != null && heights.Contains(height.Value),
+                            QuestionsKey = "height",
+                            AfterBox = (stringList != null && stringList.Contains(height.Value)) ? (int?)null : height.Count,
+                            Checked = stringList != null && stringList.Contains(height.Value),
                             ControlType = ControlType.Checkbox,
-                            Key = height.Value.ToString(),
-                            Label = height.Value.ToString(),
+                            Key = height.Value,
+                            Label = height.Value,
                             Required = false,
                             Type = InputType.Checkbox,
-                        }).ToListAsync()
-            };
+                        });
         }
-        public async Task<QuestionsBase<string>> GetWidthQuestion(IQueryable<Computer> computers, float[] widths)
+        public IQueryable<QuestionBase<string>> GetWidthQuestion(IQueryable<Computer> computers, float[] width)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "width",
-                Value = "Select width",
-                Order = 8,
-                QuestionBaseList = await computers
+            var stringList = width?.Select(item => item.ToString()).ToList();
+            return computers
                         .Select(g => g.Width)
                         .GroupBy(p => p)
-                        .Select(p => new { Count = p.Count(), Value = p.Key })
+                        .Select(p => new { Count = p.Count(), Value = Convert.ToString(p.Key) })
                         .Select(width => new QuestionBase<string>()
                         {
-                            AfterBox = $"({width.Count})",
-                            Checked = widths != null && widths.Contains(width.Value),
+                            QuestionsKey = "width",
+                            AfterBox = (stringList != null && stringList.Contains(width.Value)) ? (int?)null : width.Count,
+                            Checked = stringList != null && stringList.Contains(width.Value),
                             ControlType = ControlType.Checkbox,
-                            Key = width.Value.ToString(),
-                            Label = width.Value.ToString(),
+                            Key = width.Value,
+                            Label = width.Value,
                             Required = false,
                             Type = InputType.Checkbox,
-                        }).ToListAsync()
-            };
+                        });
         }
-        public async Task<QuestionsBase<string>> GetLengthQuestion(IQueryable<Computer> computers, float[] lengthes)
+        public IQueryable<QuestionBase<string>> GetLengthQuestion(IQueryable<Computer> computers, float[] length)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "length",
-                Value = "Select length",
-                Order = 9,
-                QuestionBaseList = await computers
+            var stringList = length?.Select(item => item.ToString()).ToList();
+            return computers
                         .Select(g => g.Length)
                         .GroupBy(p => p)
-                        .Select(p => new { Count = p.Count(), Value = p.Key })
+                        .Select(p => new { Count = p.Count(), Value = Convert.ToString(p.Key) })
                         .Select(length => new QuestionBase<string>()
                         {
-                            AfterBox = $"({length.Count})",
-                            Checked = lengthes != null && lengthes.Contains(length.Value),
+                            QuestionsKey = "length",
+                            AfterBox = (stringList != null && stringList.Contains(length.Value)) ? (int?)null : length.Count,
+                            Checked = stringList != null && stringList.Contains(length.Value),
                             ControlType = ControlType.Checkbox,
-                            Key = length.Value.ToString(),
-                            Label = length.Value.ToString(),
+                            Key = length.Value,
+                            Label = length.Value,
                             Required = false,
                             Type = InputType.Checkbox,
-                        }).ToListAsync()
-            };
+                        });
         }
-        public async Task<QuestionsBase<string>> GetHaveFloppyDrivesQuestion(IQueryable<Computer> computers, bool[] haveFloppyDrives)
+        public IQueryable<QuestionBase<string>> GetHaveFloppyDrivesQuestion(IQueryable<Computer> computers, bool[] haveFloppyDrives)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "haveFloppyDrives",
-                Value = "Have floppy drive",
-                Order = 10,
-                QuestionBaseList = await computers
+            var stringList = haveFloppyDrives?.Select(item => item.ToString()).ToList();
+            return computers
                         .Select(g => g.HaveFloppyDrives)
+                        .Select(p => p ? "true" : "false")
                         .GroupBy(p => p)
                         .Select(p => new { Count = p.Count(), Value = p.Key })
                         .Select(haveFloppyDrive => new QuestionBase<string>()
                         {
-                            AfterBox = $"({haveFloppyDrive.Count})",
-                            Checked = haveFloppyDrives != null && haveFloppyDrives.Contains(haveFloppyDrive.Value),
+                            QuestionsKey = "haveFloppyDrives",
+                            AfterBox = (stringList != null && stringList.Contains(haveFloppyDrive.Value)) ? (int?)null : haveFloppyDrive.Count,
+                            Checked = stringList != null && stringList.Contains(haveFloppyDrive.Value),
                             ControlType = ControlType.Checkbox,
-                            Key = haveFloppyDrive.Value.ToString(),
-                            Label = haveFloppyDrive.Value.ToString(),
+                            Key = haveFloppyDrive.Value,
+                            Label = haveFloppyDrive.Value,
                             Required = false,
                             Type = InputType.Checkbox,
-                        }).ToListAsync()
-            };
+                        });
         }
-        public async Task<QuestionsBase<string>> GetSSDMemoryQuestion(IQueryable<Computer> computers, int?[] SSDMemories)
+        public IQueryable<QuestionBase<string>> GetSSDMemoryQuestion(IQueryable<Computer> computers, int?[] SSDMemories)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "SSDMemory",
-                Value = "Select SSD memory",
-                Order = 11,
-                QuestionBaseList = await computers
-                        .Select(g => g.SSDMemory)
+            var stringList = SSDMemories?.Select(item => item.Value.ToString()).ToList();
+            return computers
+                        .Select(g => g.SSDMemory.Value)
                         .GroupBy(p => p)
-                        .Select(p => new { Count = p.Count(), Value = p.Key })
+                        .Select(p => new { Count = p.Count(), Value = Convert.ToString(p.Key) })
                         .Select(SSDMemory => new QuestionBase<string>()
                         {
-                            AfterBox = $"({SSDMemory.Count})",
-                            Checked = SSDMemories != null && SSDMemories.Contains(SSDMemory.Value),
+                            QuestionsKey = "SSDMemory",
+                            AfterBox = (stringList != null && stringList.Contains(SSDMemory.Value)) ? (int?)null : SSDMemory.Count,
+                            Checked = stringList != null && stringList.Contains(SSDMemory.Value),
                             ControlType = ControlType.Checkbox,
-                            Key = SSDMemory.Value.ToString(),
-                            Label = SSDMemory.Value.ToString(),
+                            Key = SSDMemory.Value,
+                            Label = SSDMemory.Value,
                             Required = false,
                             Type = InputType.Checkbox,
-                        }).ToListAsync()
-            };
+                        });
         }
-        public async Task<QuestionsBase<string>> GetHardDiskMemoryQuestion(IQueryable<Computer> computers, int?[] hardDiskMemories)
+        public IQueryable<QuestionBase<string>> GetHardDiskMemoryQuestion(IQueryable<Computer> computers, int?[] hardDiskMemories)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "hardDiskMemory",
-                Value = "Select hard disk memory",
-                Order = 12,
-                QuestionBaseList = await computers
-                        .Select(g => g.HardDiskMemory)
+            var stringList = hardDiskMemories?.Select(item => item.ToString()).ToList();
+            return computers
+                        .Select(g => g.HardDiskMemory.Value)
                         .GroupBy(p => p)
-                        .Select(p => new { Count = p.Count(), Value = p.Key })
+                        .Select(p => new { Count = p.Count(), Value = Convert.ToString(p.Key) })
                         .Select(hardDiskMemory => new QuestionBase<string>()
                         {
-                            AfterBox = $"({hardDiskMemory.Count})",
-                            Checked = hardDiskMemories != null && hardDiskMemories.Contains(hardDiskMemory.Value),
+                            QuestionsKey = "hardDiskMemory",
+                            AfterBox = (stringList != null && stringList.Contains(hardDiskMemory.Value)) ? (int?)null : hardDiskMemory.Count,
+                            Checked = stringList != null && stringList.Contains(hardDiskMemory.Value),
                             ControlType = ControlType.Checkbox,
-                            Key = hardDiskMemory.Value.ToString(),
-                            Label = hardDiskMemory.Value.ToString(),
+                            Key = hardDiskMemory.Value,
+                            Label = hardDiskMemory.Value,
                             Required = false,
                             Type = InputType.Checkbox,
-                        }).ToListAsync()
-            };
+                        });
         }
-        public async Task<QuestionsBase<string>> GetCPUSocketTypeQuestion(IQueryable<Computer> computers, CPUSocketType[] CPUSocketTypes)
+        public IQueryable<QuestionBase<string>> GetCPUSocketTypeQuestion(IQueryable<Computer> computers, string[] CPUSocketTypes)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "CPUSocketType",
-                Value = "Select CPU socket type",
-                Order = 13,
-                QuestionBaseList = await computers
-                        .Select(g => g.CPUSocketType)
+            return computers
+                        .Select(g => g.CPUSocketTypeValue)
                         .GroupBy(p => p)
-                        .Select(p => new { Count = p.Count(), Value = p.Key })
+                        .Select(p => new { Count = p.Count(), Value = Convert.ToString(p.Key) })
                         .Select(CPUSocketType => new QuestionBase<string>()
                         {
-                            AfterBox = $"({CPUSocketType.Count})",
+                            QuestionsKey = "CPUSocketType",
+                            AfterBox = (CPUSocketTypes != null && CPUSocketTypes.Contains(CPUSocketType.Value)) ? (int?)null : CPUSocketType.Count,
                             Checked = CPUSocketTypes != null && CPUSocketTypes.Contains(CPUSocketType.Value),
                             ControlType = ControlType.Checkbox,
-                            Key = CPUSocketType.Value.ToString(),
-                            Label = CPUSocketType.Value.ToString(),
+                            Key = CPUSocketType.Value,
+                            Label = CPUSocketType.Value,
                             Required = false,
                             Type = InputType.Checkbox,
-                        }).ToListAsync()
-            };
+                        });
         }
-        public async Task<QuestionsBase<string>> GetComputerDriveTypeQuestion(IQueryable<Computer> computers, ComputerDriveType[] computerDriveTypes)
+        public IQueryable<QuestionBase<string>> GetComputerDriveTypeQuestion(IQueryable<Computer> computers, string[] computerDriveTypes)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "computerDriveType",
-                Value = "Select computer drive type",
-                Order = 14,
-                QuestionBaseList = await computers
-                        .Select(g => g.ComputerDriveType)
+            return computers
+                        .SelectMany(g => g.ComputerComputerDriveTypes.Select(l => l.ComputerDriveTypeValue))
                         .GroupBy(p => p)
-                        .Select(p => new { Count = p.Count(), Value = p.Key })
+                        .Select(p => new { Count = p.Count(), Value = Convert.ToString(p.Key) })
                         .Select(computerDriveType => new QuestionBase<string>()
                         {
-                            AfterBox = $"({computerDriveType.Count})",
+                            QuestionsKey = "computerDriveType",
+                            AfterBox = (computerDriveTypes != null && computerDriveTypes.Contains(computerDriveType.Value)) ? (int?)null : computerDriveType.Count,
                             Checked = computerDriveTypes != null && computerDriveTypes.Contains(computerDriveType.Value),
                             ControlType = ControlType.Checkbox,
-                            Key = computerDriveType.Value.ToString(),
-                            Label = computerDriveType.Value.ToString(),
+                            Key = computerDriveType.Value,
+                            Label = computerDriveType.Value,
                             Required = false,
                             Type = InputType.Checkbox,
-                        }).ToListAsync()
-            };
+                        });
         }
-        public async Task<QuestionsBase<string>> GetNumberOfCoreQuestion(IQueryable<Computer> computers, int[] numberOfCores)
+        public IQueryable<QuestionBase<string>> GetNumberOfCoreQuestion(IQueryable<Computer> computers, int[] numberOfCores)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "numberOfCores",
-                Value = "Select number of cores",
-                Order = 15,
-                QuestionBaseList = await computers
+            var stringList = numberOfCores?.Select(item => item.ToString()).ToList();
+            return computers
                         .Select(g => g.NumberOfCores)
                         .GroupBy(p => p)
-                        .Select(p => new { Count = p.Count(), Value = p.Key })
+                        .Select(p => new { Count = p.Count(), Value = Convert.ToString(p.Key) })
                         .Select(numberOfCore => new QuestionBase<string>()
                         {
-                            AfterBox = $"({numberOfCore.Count})",
-                            Checked = numberOfCores != null && numberOfCores.Contains(numberOfCore.Value),
+                            QuestionsKey = "numberOfCores",
+                            AfterBox = (stringList != null && stringList.Contains(numberOfCore.Value)) ? (int?)null : numberOfCore.Count,
+                            Checked = stringList != null && stringList.Contains(numberOfCore.Value),
                             ControlType = ControlType.Checkbox,
-                            Key = numberOfCore.Value.ToString(),
-                            Label = numberOfCore.Value.ToString(),
+                            Key = numberOfCore.Value,
+                            Label = numberOfCore.Value,
                             Required = false,
                             Type = InputType.Checkbox,
-                        }).ToListAsync()
-            };
+                        });
         }
-        public async Task<QuestionsBase<string>> GetFloppyDrivesCountQuestion(IQueryable<Computer> computers, int?[] floppyDrivesCountArray)
+        public IQueryable<QuestionBase<string>> GetFloppyDrivesCountQuestion(IQueryable<Computer> computers, int?[] floppyDrivesCountArray)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "floppyDrivesCount",
-                Value = "Select floppy drives count",
-                Order = 16,
-                QuestionBaseList = await computers
-                        .Select(g => g.FloppyDrivesCount)
+            var stringList = floppyDrivesCountArray?.Select(item => item.ToString()).ToList();
+            return computers
+                        .Select(g => g.FloppyDrivesCount.Value)
                         .GroupBy(p => p)
-                        .Select(p => new { Count = p.Count(), Value = p.Key })
+                        .Select(p => new { Count = p.Count(), Value = Convert.ToString(p.Key) })
                         .Select(floppyDrivesCount => new QuestionBase<string>()
                         {
-                            AfterBox = $"({floppyDrivesCount.Count})",
-                            Checked = floppyDrivesCountArray != null && floppyDrivesCountArray.Contains(floppyDrivesCount.Value),
+                            QuestionsKey = "floppyDrivesCount",
+                            AfterBox = (stringList != null && stringList.Contains(floppyDrivesCount.Value)) ? (int?)null : floppyDrivesCount.Count,
+                            Checked = stringList != null && stringList.Contains(floppyDrivesCount.Value),
                             ControlType = ControlType.Checkbox,
-                            Key = floppyDrivesCount.Value.ToString(),
-                            Label = floppyDrivesCount.Value.ToString(),
+                            Key = floppyDrivesCount.Value,
+                            Label = floppyDrivesCount.Value,
                             Required = false,
                             Type = InputType.Checkbox,
-                        }).ToListAsync()
-            };
+                        });
         }
     }
 }

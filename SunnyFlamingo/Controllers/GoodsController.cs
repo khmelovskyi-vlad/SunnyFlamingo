@@ -220,5 +220,149 @@ namespace SunnyFlamingo.Controllers
         {
             return await _searcherGoods.SearchComputerParts(producer, country, material, color, priceFrom, priceTo, from, to, getQuestions);
         }
+        [HttpGet]
+        [Route("computerDrives")]
+        public async Task<GoodsInformation<string>> GetComputerDrivesInformation(
+            string producer = null,
+            string country = null,
+            string material = null,
+            string color = null,
+            string capacity = null,
+            string computerDriveType = null,
+            string formFactorType = null,
+            decimal? priceFrom = null,
+            decimal? priceTo = null,
+            int from = 0,
+            int to = 20,
+            bool getQuestions = true
+            )
+        {
+            return await _searcherGoods.SearchComputerDrives(producer, country, material, color,
+                capacity, computerDriveType, formFactorType,
+                priceFrom, priceTo, from, to, getQuestions);
+        }
+        [HttpGet]
+        [Route("coolers")]
+        public async Task<GoodsInformation<string>> GetCoolersInformation(
+            string producer = null,
+            string country = null,
+            string material = null,
+            string color = null,
+            string coolerType = null,
+            string fanSize = null,
+            decimal? priceFrom = null,
+            decimal? priceTo = null,
+            int from = 0,
+            int to = 20,
+            bool getQuestions = true
+            )
+        {
+            return await _searcherGoods.SearchCoolers(producer, country, material, color,
+                coolerType, fanSize,
+                priceFrom, priceTo, from, to, getQuestions);
+        }
+        [HttpGet]
+        [Route("CPUs")]
+        public async Task<GoodsInformation<string>> GetCPUsInformation(
+            string producer = null,
+            string country = null,
+            string material = null,
+            string color = null,
+            string CPUSocketType = null,
+            string thermalDesignPower = null,
+            string numberOfCores = null,
+            string numberOfThreads = null,
+            decimal? priceFrom = null,
+            decimal? priceTo = null,
+            int from = 0,
+            int to = 20,
+            bool getQuestions = true
+            )
+        {
+            return await _searcherGoods.SearchCPUs(producer, country, material, color,
+                CPUSocketType, thermalDesignPower, numberOfCores, numberOfThreads,
+                priceFrom, priceTo, from, to, getQuestions);
+        }
+        [HttpGet]
+        [Route("videoCards")]
+        public async Task<GoodsInformation<string>> GetVideoCardsInformation(
+            string producer = null,
+            string country = null,
+            string material = null,
+            string color = null,
+            string driveInterface = null,
+            string videoSize = null,
+            string videoMemoryCapacity = null,
+            decimal? priceFrom = null,
+            decimal? priceTo = null,
+            int from = 0,
+            int to = 20,
+            bool getQuestions = true
+            )
+        {
+            return await _searcherGoods.SearchVideoCards(producer, country, material, color,
+                driveInterface, videoSize, videoMemoryCapacity,
+                priceFrom, priceTo, from, to, getQuestions);
+        }
+        [HttpGet]
+        [Route("mice")]
+        public async Task<GoodsInformation<string>> GetMiceInformation(
+            string producer = null,
+            string country = null,
+            string material = null,
+            string color = null,
+            string mauseType = null,
+            string buttonsCount = null,
+            decimal? priceFrom = null,
+            decimal? priceTo = null,
+            int from = 0,
+            int to = 20,
+            bool getQuestions = true
+            )
+        {
+            return await _searcherGoods.SearchMice(producer, country, material, color,
+                mauseType, buttonsCount,
+                priceFrom, priceTo, from, to, getQuestions);
+        }
+        [HttpGet]
+        [Route("keyboards")]
+        public async Task<GoodsInformation<string>> GetKeyboardsInformation(
+            string producer = null,
+            string country = null,
+            string material = null,
+            string color = null,
+            string keyboardType = null,
+            decimal? priceFrom = null,
+            decimal? priceTo = null,
+            int from = 0,
+            int to = 20,
+            bool getQuestions = true
+            )
+        {
+            return await _searcherGoods.SearchKeyboards(producer, country, material, color,
+                keyboardType,
+                priceFrom, priceTo, from, to, getQuestions);
+        }
+        [HttpGet]
+        [Route("headphones")]
+        public async Task<GoodsInformation<string>> GetHeadphonesInformation(
+            string producer = null,
+            string country = null,
+            string material = null,
+            string color = null,
+            string headphonesType = null,
+            string wirelessType = null,
+            string connectorType = null,
+            decimal? priceFrom = null,
+            decimal? priceTo = null,
+            int from = 0,
+            int to = 20,
+            bool getQuestions = true
+            )
+        {
+            return await _searcherGoods.SearchHeadphones(producer, country, material, color,
+                headphonesType, wirelessType, connectorType,
+                priceFrom, priceTo, from, to, getQuestions);
+        }
     }
 }

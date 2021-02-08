@@ -1,17 +1,26 @@
-﻿using System;
+﻿using SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerAccessories;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SunnyFlamingo.ValueObjects
 {
-    public enum HeadphonesType
+    //public enum HeadphonesType
+    //{
+    //    Accessories,
+    //    BehindTheNeck,
+    //    Headphone,
+    //    Headset,
+    //    MonitorHeadphone,
+    //    Earbud
+    //}
+    public class HeadphonesType
     {
-        Accessories,
-        BehindTheNeck,
-        Headphone,
-        Headset,
-        MonitorHeadphone,
-        Earbud
+        [Key]
+        [MaxLength(500)]
+        public string Value { get; set; }
+        public List<Headphones> Headphones { get; set; }
     }
 }

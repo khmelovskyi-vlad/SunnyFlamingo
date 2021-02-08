@@ -29,6 +29,12 @@ namespace SunnyFlamingo.Data.Initializers
             var connectorTypes = GetConnectorTypes();
             var manufacturers = GetManufacturers(random, countries);
             var producers = GetProducers(random, countries);
+            var computerDriveTypes = GetComputerDriveTypes();
+            var CPUSocketTypes = GetCPUSocketTypes();
+            var headphonesTypes = GetHeadphonesTypes();
+            var keySwitchTypes = GetKeySwitchTypes();
+            var mauseTypes = GetMauseTypes();
+            var wirelessTypes = GetWirelessTypes();
 
             modelBuilder.Entity<Country>().HasData(countries);
             modelBuilder.Entity<Color>().HasData(colors);
@@ -41,28 +47,147 @@ namespace SunnyFlamingo.Data.Initializers
             modelBuilder.Entity<Manufacturer>().HasData(manufacturers);
             modelBuilder.Entity<Producer>().HasData(producers);
 
+
+            modelBuilder.Entity<ComputerDriveType>().HasData(computerDriveTypes);
+            modelBuilder.Entity<CPUSocketType>().HasData(CPUSocketTypes);
+            modelBuilder.Entity<HeadphonesType>().HasData(headphonesTypes);
+            modelBuilder.Entity<KeySwitchType>().HasData(keySwitchTypes);
+            modelBuilder.Entity<MauseType>().HasData(mauseTypes);
+            modelBuilder.Entity<WirelessType>().HasData(wirelessTypes);
+
+
+            var laptops = GetLaptops(random, colors, materials, manufacturers, producers, CPUSocketTypes);
+            var computers = GetComputers(random, colors, materials, manufacturers, producers, CPUSocketTypes);
+            modelBuilder.Entity<Laptop>().HasData(laptops);
+            modelBuilder.Entity<Computer>().HasData(computers);
+            modelBuilder.Entity<LaptopComputerDriveType>().HasData(GetLaptopComputerDriveTypes(random, laptops, computerDriveTypes));
+            modelBuilder.Entity<ComputerComputerDriveType>().HasData(GetComputerComputerDriveTypes(random, computers, computerDriveTypes));
             modelBuilder.Entity<Good>().HasData(GetGoods(random, colors, materials, manufacturers, producers));
             modelBuilder.Entity<ComputerTechnology>().HasData(GetComputerTechnologies(random, colors, materials, manufacturers, producers));
-            modelBuilder.Entity<Laptop>().HasData(GetLaptops(random, colors, materials, manufacturers, producers));
             modelBuilder.Entity<FlashDrive>().HasData(GetFlashDrives(random, colors, materials, manufacturers, producers, USBSpecificationTypes));
             modelBuilder.Entity<ComputerPart>().HasData(GetComputerParts(random, colors, materials, manufacturers, producers));
             modelBuilder.Entity<ComputerAccessory>().HasData(GetComputerAccessories(random, colors, materials, manufacturers, producers));
-            modelBuilder.Entity<Computer>().HasData(GetComputers(random, colors, materials, manufacturers, producers));
             modelBuilder.Entity<VideoCard>().HasData(GetVideoCards(random, colors, materials, manufacturers, producers, driveInterfaces));
-            modelBuilder.Entity<CPU>().HasData(GetCPUs(random, colors, materials, manufacturers, producers));
+            modelBuilder.Entity<CPU>().HasData(GetCPUs(random, colors, materials, manufacturers, producers, CPUSocketTypes));
             modelBuilder.Entity<Cooler>().HasData(GetCoolers(random, colors, materials, manufacturers, producers, coolerTypes));
-            modelBuilder.Entity<ComputerDrive>().HasData(GetComputerDrives(random, colors, materials, manufacturers, producers, formFactorTypes));
-            modelBuilder.Entity<Mause>().HasData(GetMice(random, colors, materials, manufacturers, producers));
-            modelBuilder.Entity<Keyboard>().HasData(GetKeyboards(random, colors, materials, manufacturers, producers));
-            modelBuilder.Entity<Headphones>().HasData(GetHeadphones(random, colors, materials, manufacturers, producers, connectorTypes));
+            modelBuilder.Entity<ComputerDrive>().HasData(GetComputerDrives(random, colors, materials, manufacturers, producers, formFactorTypes, computerDriveTypes));
+            modelBuilder.Entity<Mause>().HasData(GetMice(random, colors, materials, manufacturers, producers, mauseTypes));
+            modelBuilder.Entity<Keyboard>().HasData(GetKeyboards(random, colors, materials, manufacturers, producers, keySwitchTypes));
+            modelBuilder.Entity<Headphones>().HasData(GetHeadphones(random, colors, materials, manufacturers, producers, connectorTypes, headphonesTypes, wirelessTypes));
         }
+
+
+        private List<ComputerComputerDriveType> GetComputerComputerDriveTypes(Random random, List<Computer> computers, List<ComputerDriveType> computerDriveTypes)
+        {
+            List<ComputerComputerDriveType> laptopComputerDriveTypes = new List<ComputerComputerDriveType>();
+            foreach (var computer in computers)
+            {
+                foreach (var computerDriveType in computerDriveTypes)
+                {
+                    if (CreateRandomBool(random))
+                    {
+                        laptopComputerDriveTypes.Add(new ComputerComputerDriveType()
+                        {
+                            ComputerId = computer.Id,
+                            ComputerDriveTypeValue = computerDriveType.Value
+                        });
+                    }
+                }
+            }
+            return laptopComputerDriveTypes;
+        }
+        private List<LaptopComputerDriveType> GetLaptopComputerDriveTypes(Random random, List<Laptop> laptops, List<ComputerDriveType> computerDriveTypes)
+        {
+            List<LaptopComputerDriveType> laptopComputerDriveTypes = new List<LaptopComputerDriveType>();
+            foreach (var laptop in laptops)
+            {
+                foreach (var computerDriveType in computerDriveTypes)
+                {
+                    if (CreateRandomBool(random))
+                    {
+                        laptopComputerDriveTypes.Add(new LaptopComputerDriveType()
+                        {
+                            LaptopId = laptop.Id,
+                            ComputerDriveTypeValue = computerDriveType.Value
+                        });
+                    }
+                }
+            }
+            return laptopComputerDriveTypes;
+        }
+        private List<WirelessType> GetWirelessTypes()
+        {
+            return new List<WirelessType>()
+            {
+                new WirelessType() { Value = "Bluetooth" },
+                new WirelessType() { Value = "IR" },
+                new WirelessType() { Value = "Kleer" },
+                new WirelessType() { Value = "RF" },
+                new WirelessType() { Value = "Infrared" },
+            };
+        }
+        private List<MauseType> GetMauseTypes()
+        {
+            return new List<MauseType>()
+            {
+                new MauseType() { Value = "BluetoothWireless" },
+                new MauseType() { Value = "DualIsLIGHTSPEEDOrBluetoothWireless" },
+                new MauseType() { Value = "DualIsRFOrBluetoothWireless" },
+                new MauseType() { Value = "FastRFWireless" },
+                new MauseType() { Value = "IRWireless" },
+                new MauseType() { Value = "RFWireless" },
+            };
+        }
+        private List<KeySwitchType> GetKeySwitchTypes()
+        {
+            return new List<KeySwitchType>()
+            {
+                new KeySwitchType() { Value = "Cherry" },
+                new KeySwitchType() { Value = "Logitech" },
+                new KeySwitchType() { Value = "Gateron" },
+                new KeySwitchType() { Value = "Razer" },
+                new KeySwitchType() { Value = "TTC" },
+                new KeySwitchType() { Value = "OUTEMU" },
+            };
+        }
+        private List<HeadphonesType> GetHeadphonesTypes()
+        {
+            return new List<HeadphonesType>()
+            {
+                new HeadphonesType() { Value = "Accessories" },
+                new HeadphonesType() { Value = "BehindTheNeck" },
+                new HeadphonesType() { Value = "Headphone" },
+                new HeadphonesType() { Value = "Headset" },
+                new HeadphonesType() { Value = "MonitorHeadphone" },
+                new HeadphonesType() { Value = "Earbud" },
+            };
+        }
+        private List<CPUSocketType> GetCPUSocketTypes()
+        {
+            return new List<CPUSocketType>()
+            {
+                new CPUSocketType() { Value = "Intel" },
+                new CPUSocketType() { Value = "AMD" },
+            };
+        }
+        private List<ComputerDriveType> GetComputerDriveTypes()
+        {
+            return new List<ComputerDriveType>()
+            {
+                new ComputerDriveType() { Value = "HDD" },
+                new ComputerDriveType() { Value = "SSD" },
+            };
+        }
+
         private List<Headphones> GetHeadphones(
             Random random,
             List<Color> colors,
             List<Material> materials,
             List<Manufacturer> manufacturers,
             List<Producer> producers,
-            List<ConnectorType> connectorTypes
+            List<ConnectorType> connectorTypes,
+            List<HeadphonesType> headphonesTypes,
+            List<WirelessType> wirelessTypes
             )
         {
             List<Headphones> headphonesList = new List<Headphones>();
@@ -80,8 +205,8 @@ namespace SunnyFlamingo.Data.Initializers
                     Price = CreateRandomDecimal(random),
                     ManufacturerId = manufacturers[random.Next(0, manufacturers.Count())].Id,
                     ProducerId = producers[random.Next(0, producers.Count())].Id,
-                    Type = (HeadphonesType)random.Next(0, Enum.GetNames(typeof(HeadphonesType)).Length),
-                    WirelessType = (WirelessType)random.Next(0, Enum.GetNames(typeof(WirelessType)).Length),
+                    TypeValue = headphonesTypes[random.Next(0, headphonesTypes.Count())].Value,
+                    WirelessTypeValue = wirelessTypes[random.Next(0, wirelessTypes.Count())].Value,
                     ConnectorTypeValue = connectorTypes[random.Next(0, connectorTypes.Count())].Value,
                 };
                 headphonesList.Add(headphones);
@@ -93,7 +218,8 @@ namespace SunnyFlamingo.Data.Initializers
             List<Color> colors,
             List<Material> materials,
             List<Manufacturer> manufacturers,
-            List<Producer> producers
+            List<Producer> producers,
+            List<KeySwitchType> keySwitchTypes
             )
         {
             List<Keyboard> keyboards = new List<Keyboard>();
@@ -111,7 +237,7 @@ namespace SunnyFlamingo.Data.Initializers
                     Price = CreateRandomDecimal(random),
                     ManufacturerId = manufacturers[random.Next(0, manufacturers.Count())].Id,
                     ProducerId = producers[random.Next(0, producers.Count())].Id,
-                    Type = (KeySwitchType)random.Next(0, Enum.GetNames(typeof(KeySwitchType)).Length),
+                    TypeValue = keySwitchTypes[random.Next(0, keySwitchTypes.Count())].Value,
                 };
                 keyboards.Add(keyboard);
             }
@@ -122,7 +248,8 @@ namespace SunnyFlamingo.Data.Initializers
             List<Color> colors,
             List<Material> materials,
             List<Manufacturer> manufacturers,
-            List<Producer> producers
+            List<Producer> producers,
+            List<MauseType> mauseTypes
             )
         {
             List<Mause> mice = new List<Mause>();
@@ -141,7 +268,7 @@ namespace SunnyFlamingo.Data.Initializers
                     ManufacturerId = manufacturers[random.Next(0, manufacturers.Count())].Id,
                     ProducerId = producers[random.Next(0, producers.Count())].Id,
                     ButtonsCount = random.Next(1000, 40000),
-                    Type = (MauseType)random.Next(0, Enum.GetNames(typeof(MauseType)).Length),
+                    TypeValue = mauseTypes[random.Next(0, mauseTypes.Count())].Value,
                 };
                 mice.Add(mause);
             }
@@ -153,7 +280,8 @@ namespace SunnyFlamingo.Data.Initializers
             List<Material> materials,
             List<Manufacturer> manufacturers,
             List<Producer> producers,
-            List<FormFactorType> formFactorTypes
+            List<FormFactorType> formFactorTypes,
+            List<ComputerDriveType> computerDriveTypes
             )
         {
             List<ComputerDrive> computerDrives = new List<ComputerDrive>();
@@ -172,7 +300,7 @@ namespace SunnyFlamingo.Data.Initializers
                     ManufacturerId = manufacturers[random.Next(0, manufacturers.Count())].Id,
                     ProducerId = producers[random.Next(0, producers.Count())].Id,
                     Capacity = random.Next(1000, 40000),
-                    Type = (ComputerDriveType)random.Next(0, Enum.GetNames(typeof(ComputerDriveType)).Length),
+                    TypeValue = computerDriveTypes[random.Next(0, computerDriveTypes.Count())].Value,
                     FormFactorTypeValue = formFactorTypes[random.Next(0, formFactorTypes.Count())].Value,
                 };
                 computerDrives.Add(computerDrive);
@@ -215,7 +343,8 @@ namespace SunnyFlamingo.Data.Initializers
             List<Color> colors,
             List<Material> materials,
             List<Manufacturer> manufacturers,
-            List<Producer> producers
+            List<Producer> producers,
+            List<CPUSocketType> CPUSocketTypes
             )
         {
             List<CPU> CPUs = new List<CPU>();
@@ -233,7 +362,7 @@ namespace SunnyFlamingo.Data.Initializers
                     Price = CreateRandomDecimal(random),
                     ManufacturerId = manufacturers[random.Next(0, manufacturers.Count())].Id,
                     ProducerId = producers[random.Next(0, producers.Count())].Id,
-                    CPUSocketType = (CPUSocketType)random.Next(0, Enum.GetNames(typeof(CPUSocketType)).Length),
+                    CPUSocketTypeValue = CPUSocketTypes[random.Next(0, CPUSocketTypes.Count())].Value,
                     ThermalDesignPower = random.Next(1000, 40000),
                     NumberOfCores = random.Next(1000, 40000),
                     NumberOfThreads = random.Next(1000, 40000),
@@ -366,7 +495,8 @@ namespace SunnyFlamingo.Data.Initializers
             List<Color> colors,
             List<Material> materials,
             List<Manufacturer> manufacturers,
-            List<Producer> producers
+            List<Producer> producers,
+            List<CPUSocketType> CPUSocketTypes
             )
         {
             List<Computer> computers = new List<Computer>();
@@ -393,8 +523,7 @@ namespace SunnyFlamingo.Data.Initializers
                     HaveFloppyDrives = haveFloppyDrives,
                     SSDMemory = random.Next(1000, 3200),
                     HardDiskMemory = random.Next(1, 32),
-                    CPUSocketType = (CPUSocketType)random.Next(0, Enum.GetNames(typeof(CPUSocketType)).Length),
-                    ComputerDriveType = (ComputerDriveType)random.Next(0, Enum.GetNames(typeof(ComputerDriveType)).Length),
+                    CPUSocketTypeValue = CPUSocketTypes[random.Next(0, CPUSocketTypes.Count())].Value,
                     NumberOfCores = random.Next(1, 32),
                     FloppyDrivesCount = CreateRandomNullInt(1, 32, haveFloppyDrives, random),
                 };
@@ -407,7 +536,8 @@ namespace SunnyFlamingo.Data.Initializers
             List<Color> colors,
             List<Material> materials,
             List<Manufacturer> manufacturers,
-            List<Producer> producers
+            List<Producer> producers,
+            List<CPUSocketType> CPUSocketTypes
             )
         {
             List<Laptop> laptops = new List<Laptop>();
@@ -434,8 +564,7 @@ namespace SunnyFlamingo.Data.Initializers
                     HaveFloppyDrives = haveFloppyDrives,
                     SSDMemory = random.Next(1000, 3200),
                     HardDiskMemory = random.Next(1, 32),
-                    CPUSocketType = (CPUSocketType)random.Next(0, Enum.GetNames(typeof(CPUSocketType)).Length),
-                    ComputerDriveType = (ComputerDriveType)random.Next(0, Enum.GetNames(typeof(ComputerDriveType)).Length),
+                    CPUSocketTypeValue = CPUSocketTypes[random.Next(0, CPUSocketTypes.Count())].Value,
                     NumberOfCores = random.Next(1, 32),
                     FloppyDrivesCount = CreateRandomNullInt(1, 32, haveFloppyDrives, random),
                     Display = random.Next(1, 32),

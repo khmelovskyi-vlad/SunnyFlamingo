@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GoodInformation } from '../../models/goodInformation';
+import { GoodInformation } from '../../models/good-information';
 import { GoodService } from '../good.service';
 
 @Component({

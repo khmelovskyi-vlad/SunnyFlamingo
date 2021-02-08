@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GoodCellModel } from '../../models/goodCellModel';
-import { ImageType } from '../../valueObjects/ImageType';
+import { GoodCellModel } from '../../models/good-cell-model';
+import { ImageType } from '../../value-objects/image-type';
 
 @Component({
   selector: 'app-good-cell',

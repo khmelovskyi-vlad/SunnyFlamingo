@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SunnyFlamingo.Data;
 using SunnyFlamingo.Entities;
 using SunnyFlamingo.Models;
+using SunnyFlamingo.Models.Selectors;
 using SunnyFlamingo.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -23,82 +24,31 @@ namespace SunnyFlamingo.Services.Searchers
             _mapper = mapper;
             _questionsService = questionsService;
         }
-        public async Task<GoodsInformation<string>> SearchGoods(
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo,
-            int from,
-            int to,
-            bool getQuestions
-            )
+        public async Task<GoodsInformation<string>> SearchGoods(GoodsSelector goodsSelector)
         {
+            var s = "";
             var goods = _context.Goods.AsQueryable();
             return new GoodsInformation<string>()
             {
-                GoodCells = await GetGoodCells(
-                    producers,
-                    countries,
-                    materials,
-                    colors,
-                    priceFrom,
-                    priceTo,
-                    from,
-                    to),
+                GoodCells = await GetGoodCells(goodsSelector),
 
-                Questions = !getQuestions ? null : await _questionsService.GetGoodsQuestions(
-                    goods,
-                    producers,
-                    countries,
-                    materials,
-                    colors,
-                    priceFrom,
-                    priceTo
-                    )
+                Questions = !goodsSelector.GetQuestions ? null : await _questionsService.GetGoodsQuestions(goods, goodsSelector)
             };
         }
 
-        private async Task<List<GoodCellModel>> GetGoodCells(
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo,
-            int from,
-            int to)
+        private async Task<List<GoodCellModel>> GetGoodCells(GoodsSelector goodsSelector)
         {
-            if (producers == null && countries == null && materials == null && colors == null && priceFrom == null && priceTo == null)
-            {
-                return await _context.Goods
-                .Skip(from)
-                .Take(to)
+            return await _context.Goods
+                .Where(g => (goodsSelector.PriceFrom == null || g.Price >= goodsSelector.PriceFrom)
+                && (goodsSelector.PriceTo == null || g.Price <= goodsSelector.PriceTo))
+                .Where(g => goodsSelector.Producers == null || goodsSelector.Producers.Contains(g.Producer.Name))
+                .Where(g => goodsSelector.Countries == null || goodsSelector.Countries.Contains(g.Manufacturer.Country.Value))
+                .Where(g => goodsSelector.Materials == null || goodsSelector.Materials.Contains(g.MaterialValue))
+                .Where(g => goodsSelector.Colors == null || goodsSelector.Colors.Contains(g.ColorValue))
+                .Skip(goodsSelector.From)
+                .Take(goodsSelector.To)
                 .ProjectTo<GoodCellModel>(_mapper.ConfigurationProvider)
                 .ToListAsync();
-            }
-            else
-            {
-                return await _context.Goods
-                .Where(g =>
-                (priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo)
-                && (producers == null || producers.Contains(g.Producer.Name))
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(g.MaterialValue))
-                && (colors == null || colors.Contains(g.ColorValue)))
-                //.Where(g =>
-                //((priceFrom == null || g.Price >= priceFrom) && (priceTo == null || g.Price <= priceTo))
-                //&& ((producers == null && countries == null && materials == null && colors == null) 
-                //|| (producers != null && producers.Contains(g.Producer.Name))
-                //|| (countries != null && countries.Contains(g.Manufacturer.Country.Value))
-                //|| (materials != null && materials.Contains(g.MaterialValue))
-                //|| (colors != null && colors.Contains(g.ColorValue))))
-                .Skip(from)
-                .Take(to)
-                .ProjectTo<GoodCellModel>(_mapper.ConfigurationProvider)
-                .ToListAsync();
-            }
         }
     }
 }

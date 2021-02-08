@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { GoodInformation } from '../models/goodInformation';
+import { GoodInformation } from '../models/good-information';
 import { GOOD } from './mock-good';
 
 @Injectable({

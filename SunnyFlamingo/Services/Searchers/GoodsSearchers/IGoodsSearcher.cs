@@ -1,4 +1,5 @@
 ﻿using SunnyFlamingo.Models;
+using SunnyFlamingo.Models.Selectors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,6 @@ namespace SunnyFlamingo.Services.Searchers
     public interface IGoodsSearcher
     {
         Task<GoodsInformation<string>> SearchGoods(
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo,
-            int from,
-            int to,
-            bool getQuestions);
+            GoodsSelector goodsSelector);
     }
 }

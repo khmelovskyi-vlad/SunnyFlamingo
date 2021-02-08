@@ -1,9 +1,7 @@
 ﻿using SunnyFlamingo.ValueObjects;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies
 {
@@ -17,10 +15,10 @@ namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies
         public bool HaveFloppyDrives { get; set; }
         public int? SSDMemory { get; set; }
         public int? HardDiskMemory { get; set; }
-        [Column(TypeName = "nvarchar(500)")]
+        [MaxLength(500)]
+        public string CPUSocketTypeValue { get; set; }
         public CPUSocketType CPUSocketType { get; set; }
-        [Column(TypeName = "nvarchar(500)")]
-        public ComputerDriveType ComputerDriveType { get; set; }
+        public List<ComputerComputerDriveType> ComputerComputerDriveTypes { get; set; }
         public int NumberOfCores { get; set; }
         public int? FloppyDrivesCount { get; set; }
     }

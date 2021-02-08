@@ -1,5 +1,6 @@
 ﻿using SunnyFlamingo.Entities.Goods.ComputerTechnologies;
 using SunnyFlamingo.Models;
+using SunnyFlamingo.Models.Selectors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,58 +12,28 @@ namespace SunnyFlamingo.Services.Searchers
     {
         Task<List<QuestionsBase<string>>> GetComputerPartsQuestions(
                IQueryable<ComputerPart> computerParts,
-               string[] producers,
-               string[] countries,
-               string[] materials,
-               string[] colors,
-               decimal? priceFrom,
-               decimal? priceTo);
+               ComputerPartsSelector computerPartsSelector);
 
         IQueryable<T> GetProducerComputerParts<T>(
             IQueryable<T> computerParts,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo) where T : ComputerPart;
+               ComputerPartsSelector computerPartsSelector) where T : ComputerPart;
 
         IQueryable<T> GetCountryComputerParts<T>(
             IQueryable<T> computerParts,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo) where T : ComputerPart;
+               ComputerPartsSelector computerPartsSelector) where T : ComputerPart;
         IQueryable<T> GetMaterialComputerParts<T>(
             IQueryable<T> computerParts,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo) where T : ComputerPart;
+               ComputerPartsSelector computerPartsSelector) where T : ComputerPart;
         IQueryable<T> GetColorComputerParts<T>(
             IQueryable<T> computerParts,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo) where T : ComputerPart;
+               ComputerPartsSelector computerPartsSelector) where T : ComputerPart;
         IQueryable<T> GetPriceComputerParts<T>(
             IQueryable<T> computerParts,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo) where T : ComputerPart;
-        Task<QuestionsBase<string>> GetProducerQuestion(IQueryable<ComputerPart> computerParts, string[] producers);
-        Task<QuestionsBase<string>> GetCountryQuestion(IQueryable<ComputerPart> computerParts, string[] countries);
-        Task<QuestionsBase<string>> GetMaterialQuestion(IQueryable<ComputerPart> computerParts, string[] materials);
-        Task<QuestionsBase<string>> GetColorQuestion(IQueryable<ComputerPart> computerParts, string[] colors);
-        Task<QuestionsBase<string>> GetPriceQuestion(IQueryable<ComputerPart> computerParts, decimal? selectedFrom, decimal? selectedTo);
+               ComputerPartsSelector computerPartsSelector) where T : ComputerPart;
+        IQueryable<QuestionBase<string>> GetPriceQuestion(IQueryable<ComputerPart> computerParts);
+        IQueryable<QuestionBase<string>> GetProducerQuestion(IQueryable<ComputerPart> computerParts, string[] producers);
+        IQueryable<QuestionBase<string>> GetCountryQuestion(IQueryable<ComputerPart> computerParts, string[] countries);
+        IQueryable<QuestionBase<string>> GetMaterialQuestion(IQueryable<ComputerPart> computerParts, string[] materials);
+        IQueryable<QuestionBase<string>> GetColorQuestion(IQueryable<ComputerPart> computerParts, string[] colors);
     }
 }

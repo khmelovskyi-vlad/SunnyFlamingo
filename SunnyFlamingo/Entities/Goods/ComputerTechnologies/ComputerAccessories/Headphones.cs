@@ -1,19 +1,21 @@
 ﻿using SunnyFlamingo.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerAccessories
 {
     public class Headphones : ComputerAccessory
     {
-        [Column(TypeName = "nvarchar(500)")]
+        [MaxLength(500)]
+        public string TypeValue { get; set; }
         public HeadphonesType Type { get; set; }
-        [Column(TypeName = "nvarchar(500)")]
+
+
+        [MaxLength(500)]
+        public string WirelessTypeValue { get; set; }
         public WirelessType WirelessType { get; set; }
-        [Column(TypeName = "nvarchar(500)")]
+
+
+        [MaxLength(500)]
         public string ConnectorTypeValue { get; set; }
         public ConnectorType ConnectorType { get; set; }
     }
