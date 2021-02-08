@@ -3,7 +3,7 @@
   <div class="col p-0">
     <div class="row m-0 flex-column justify-content-center gallery">
       <div class="col row align-items-center justify-content-center m-0 p-0">
-        <a class="col p-0" [routerLink]="['/', goodCell.id]">
+        <a class="col p-0" [routerLink]="['/good', goodCell.type]" [queryParams]="{id: goodCell.id}">
           <img [src]="getImgUrl()" alt="imagefd">
         </a>
       </div>
@@ -11,6 +11,7 @@
         <div class="desc clip">Name: {{goodCell.name}}</div>
         <div class="desc">Price: {{goodCell.price}}</div>
         <div class="desc">IsAv: {{goodCell.isAvailable}}</div>
+        <div class="desc">Type: {{goodCell.type}}</div>
       </div>
     </div>
   </div>

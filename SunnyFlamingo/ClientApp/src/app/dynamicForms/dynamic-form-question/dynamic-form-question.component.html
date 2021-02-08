@@ -28,7 +28,7 @@
       [attr.for]="question.key"
       class="m-1"
       >{{question.label}}</label>
-      <span>{{question.afterBox}}</span>
+      <span *ngIf="question.afterBox">({{question.afterBox}})</span>
     </div>
   </div>
 </div>

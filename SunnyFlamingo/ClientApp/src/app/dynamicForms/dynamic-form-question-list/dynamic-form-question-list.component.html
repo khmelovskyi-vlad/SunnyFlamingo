@@ -1,5 +1,5 @@
 <h3>{{questions.value}}</h3>
-<div *ngFor="let question of questions.questionBaseList; index as i" class="form-row">
+<div *ngFor="let question of questions.questionBaseList.sort(sortByName); index as i" class="form-row">
   <app-question 
   [hidden]="i > 10 && !showHidden"
   [question]="question" 

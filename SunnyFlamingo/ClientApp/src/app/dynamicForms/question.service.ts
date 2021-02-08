@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 
-import { DropdownQuestion } from '../models/questionDropdown';
-import { QuestionBase } from '../models/questionBase';
-import { TextboxQuestion } from '../models/questionTextbox';
+import { DropdownQuestion } from '../models/question-dropdown';
+import { QuestionBase } from '../models/question-base';
+import { TextboxQuestion } from '../models/question-textbox';
 import { of } from 'rxjs';
-import { InputType } from '../valueObjects/inputType';
-import { CheckboxQuestion } from '../models/questionCheckbox';
-import { QuestionsBase } from '../models/questionsBase';
+import { InputType } from '../value-objects/input-type';
+import { CheckboxQuestion } from '../models/question-checkbox';
+import { QuestionsBase } from '../models/questions-base';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UrlParameterModel } from '../models/urlParameterModel';
 
@@ -219,7 +219,7 @@ export class QuestionService {
               type: InputType.checkbox,
               order: 1,
               checked: true,
-              afterBox: '(234)'
+              afterBox: 234
             })
           ]
       })

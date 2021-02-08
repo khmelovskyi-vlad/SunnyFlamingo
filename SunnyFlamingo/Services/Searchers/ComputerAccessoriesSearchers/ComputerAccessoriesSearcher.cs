@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using SunnyFlamingo.Data;
 using SunnyFlamingo.Models;
+using SunnyFlamingo.Models.Selectors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,40 +22,32 @@ namespace SunnyFlamingo.Services.Searchers
             _mapper = mapper;
             _questionsService = questionsService;
         }
-        public async Task<GoodsInformation<string>> SearchComputerAccessories(
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo,
-            int from,
-            int to,
-            bool getQuestions
-            )
+        public async Task<GoodsInformation<string>> SearchComputerAccessories(ComputerAccessoriesSelector computerAccessoriesSelector)
         {
             var computerAccessories = _context.ComputerAccessories.AsQueryable();
             return new GoodsInformation<string>()
             {
-                GoodCells = await _context.ComputerAccessories
-                .Where(g => producers != null ? producers.Contains(g.Producer.Name) : true)
-                .Where(g => countries != null ? countries.Contains(g.Manufacturer.Country.Value) : true)
-                .Where(g => materials != null ? materials.Contains(g.MaterialValue) : true)
-                .Where(g => colors != null ? colors.Contains(g.ColorValue) : true)
+                GoodCells = await GetGoodCells(computerAccessoriesSelector),
 
-                .Skip(from)
-                .Take(to)
-                .ProjectTo<GoodCellModel>(_mapper.ConfigurationProvider)
-                .ToListAsync(),
-
-                Questions = !getQuestions ? null : await _questionsService.GetComputerAccessoriesQuestions(computerAccessories,
-                    producers,
-                    countries,
-                    materials,
-                    colors,
-                    priceFrom,
-                    priceTo)
+                Questions = !computerAccessoriesSelector.ComputerTechnologiesSelector.GoodsSelector.GetQuestions
+                ? null : await _questionsService.GetComputerAccessoriesQuestions(
+                    computerAccessories, computerAccessoriesSelector)
             };
+        }
+        private async Task<List<GoodCellModel>> GetGoodCells(ComputerAccessoriesSelector computerAccessoriesSelector)
+        {
+            var goodsSelector = computerAccessoriesSelector.ComputerTechnologiesSelector.GoodsSelector;
+            return await _context.ComputerAccessories
+                .Where(g => (goodsSelector.PriceFrom == null || g.Price >= goodsSelector.PriceFrom)
+                && (goodsSelector.PriceTo == null || g.Price <= goodsSelector.PriceTo))
+                .Where(g => goodsSelector.Producers == null || goodsSelector.Producers.Contains(g.Producer.Name))
+                .Where(g => goodsSelector.Countries == null || goodsSelector.Countries.Contains(g.Manufacturer.Country.Value))
+                .Where(g => goodsSelector.Materials == null || goodsSelector.Materials.Contains(g.MaterialValue))
+                .Where(g => goodsSelector.Colors == null || goodsSelector.Colors.Contains(g.ColorValue))
+                .Skip(goodsSelector.From)
+                .Take(goodsSelector.To)
+                .ProjectTo<GoodCellModel>(_mapper.ConfigurationProvider)
+                .ToListAsync();
         }
     }
 }

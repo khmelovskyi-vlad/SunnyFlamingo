@@ -1,6 +1,6 @@
 import { Options } from '@angular-slider/ngx-slider';
 import { Component, Input, OnInit } from '@angular/core';
-import { QuestionBase } from '../../models/questionBase';
+import { QuestionBase } from '../../models/question-base';
 import { QuestionService } from '../question.service';
 
 @Component({

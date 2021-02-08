@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using SunnyFlamingo.Data;
 using SunnyFlamingo.Models;
+using SunnyFlamingo.Models.Selectors;
 using SunnyFlamingo.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -22,76 +23,45 @@ namespace SunnyFlamingo.Services.Searchers
             _mapper = mapper;
             _questionsService = questionsService;
         }
-        public async Task<GoodsInformation<string>> SearchComputers(
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            int[] amountOfRAM,
-            int[] CPUFrequency,
-            float[] length,
-            float[] height,
-            float[] width,
-            bool[] haveFloppyDrives,
-            int?[] SSDMemory,
-            int?[] hardDiskMemory,
-            CPUSocketType[] CPUSocketType,
-            ComputerDriveType[] computerDriveType,
-            int[] numberOfCores,
-            int?[] floppyDrivesCount,
-            decimal? priceFrom,
-            decimal? priceTo,
-            int from,
-            int to,
-            bool getQuestions
-            )
+        public async Task<GoodsInformation<string>> SearchComputers(ComputersSelector computersSelector)
         {
             var computers = _context.Computers.AsQueryable();
             return new GoodsInformation<string>()
             {
-                GoodCells = await _context.Computers
-                .Where(g => producers != null ? producers.Contains(g.Producer.Name) : true)
-                .Where(g => countries != null ? countries.Contains(g.Manufacturer.Country.Value) : true)
-                .Where(g => materials != null ? materials.Contains(g.MaterialValue) : true)
-                .Where(g => colors != null ? colors.Contains(g.ColorValue) : true)
+                GoodCells = await GetGoodCells(computersSelector),
 
-                .Where(g => amountOfRAM != null ? amountOfRAM.Contains(g.AmountOfRAM) : true)
-                .Where(g => CPUFrequency != null ? CPUFrequency.Contains(g.CPUFrequency) : true)
-                .Where(g => length != null ? length.Contains(g.Length) : true)
-                .Where(g => height != null ? height.Contains(g.Height) : true)
-                .Where(g => width != null ? width.Contains(g.Width) : true)
-                .Where(g => haveFloppyDrives != null ? haveFloppyDrives.Contains(g.HaveFloppyDrives) : true)
-                .Where(g => SSDMemory != null ? SSDMemory.Contains(g.SSDMemory) : true)
-                .Where(g => hardDiskMemory != null ? hardDiskMemory.Contains(g.HardDiskMemory) : true)
-                .Where(g => CPUSocketType != null ? CPUSocketType.Contains(g.CPUSocketType) : true)
-                .Where(g => computerDriveType != null ? computerDriveType.Contains(g.ComputerDriveType) : true)
-                .Where(g => numberOfCores != null ? numberOfCores.Contains(g.NumberOfCores) : true)
-                .Where(g => floppyDrivesCount != null ? floppyDrivesCount.Contains(g.FloppyDrivesCount) : true)
-                .Skip(from)
-                .Take(to)
-                .ProjectTo<GoodCellModel>(_mapper.ConfigurationProvider)
-                .ToListAsync(),
 
-                Questions = !getQuestions ? null : await _questionsService.GetComputersQuestions(computers,
-                    producers,
-                    countries,
-                    materials,
-                    colors,
-                    amountOfRAM,
-                    CPUFrequency,
-                    length,
-                    height,
-                    width,
-                    haveFloppyDrives,
-                    SSDMemory,
-                    hardDiskMemory,
-                    CPUSocketType,
-                    computerDriveType,
-                    numberOfCores,
-                    floppyDrivesCount,
-                    priceFrom,
-                    priceTo)
+                Questions = !computersSelector.ComputerTechnologiesSelector.GoodsSelector.GetQuestions
+                ? null : await _questionsService.GetComputersQuestions(computers, computersSelector)
             };
+        }
+        private async Task<List<GoodCellModel>> GetGoodCells(ComputersSelector computersSelector)
+        {
+            var goodsSelector = computersSelector.ComputerTechnologiesSelector.GoodsSelector;
+            return await _context.Computers
+                .Where(g => (goodsSelector.PriceFrom == null || g.Price >= goodsSelector.PriceFrom)
+                && (goodsSelector.PriceTo == null || g.Price <= goodsSelector.PriceTo))
+                .Where(g => goodsSelector.Producers == null || goodsSelector.Producers.Contains(g.Producer.Name))
+                .Where(g => goodsSelector.Countries == null || goodsSelector.Countries.Contains(g.Manufacturer.Country.Value))
+                .Where(g => goodsSelector.Materials == null || goodsSelector.Materials.Contains(g.MaterialValue))
+                .Where(g => goodsSelector.Colors == null || goodsSelector.Colors.Contains(g.ColorValue))
+
+                .Where(g => computersSelector.AmountOfRAMs == null || computersSelector.AmountOfRAMs.Contains(g.AmountOfRAM))
+                .Where(g => computersSelector.CPUFrequencies == null || computersSelector.CPUFrequencies.Contains(g.CPUFrequency))
+                .Where(g => computersSelector.Length == null || computersSelector.Length.Contains(g.Length))
+                .Where(g => computersSelector.Height == null || computersSelector.Height.Contains(g.Height))
+                .Where(g => computersSelector.Width == null || computersSelector.Width.Contains(g.Width))
+                .Where(g => computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(g.HaveFloppyDrives))
+                .Where(g => computersSelector.SSDMemory == null || computersSelector.SSDMemory.Contains(g.SSDMemory))
+                .Where(g => computersSelector.HardDiskMemory == null || computersSelector.HardDiskMemory.Contains(g.HardDiskMemory))
+                .Where(g => computersSelector.CPUSocketTypes == null || computersSelector.CPUSocketTypes.Contains(g.CPUSocketTypeValue))
+                .Where(g => computersSelector.ComputerDriveTypes == null || computersSelector.ComputerDriveTypes.Any(c => g.ComputerComputerDriveTypes.Select(el => el.ComputerDriveTypeValue).Contains(c)))
+                .Where(g => computersSelector.NumberOfCores == null || computersSelector.NumberOfCores.Contains(g.NumberOfCores))
+                .Where(g => computersSelector.FloppyDrivesCount == null || computersSelector.FloppyDrivesCount.Contains(g.FloppyDrivesCount))
+                .Skip(goodsSelector.From)
+                .Take(goodsSelector.To)
+                .ProjectTo<GoodCellModel>(_mapper.ConfigurationProvider)
+                .ToListAsync();
         }
     }
 }

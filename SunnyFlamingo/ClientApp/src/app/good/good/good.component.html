@@ -1,1 +1,16 @@
-<p>good works!</p>
+<div class="row">
+  <div class="col-6 row">
+    <app-good-imgs imgIds="goodInformation.imgIds"></app-good-imgs>
+  </div>
+  <div class="col-6 row">
+    <div *ngIf="goodInformation">{{goodInformation.name}}</div>
+  </div>
+
+
+
+
+
+  <div *ngIf="showLoader">
+    <app-loader></app-loader>
+  </div>
+</div>

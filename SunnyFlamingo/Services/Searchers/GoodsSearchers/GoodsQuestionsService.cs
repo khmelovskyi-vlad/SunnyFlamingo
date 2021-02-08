@@ -5,6 +5,7 @@ using SunnyFlamingo.Entities;
 using SunnyFlamingo.Entities.Goods;
 using SunnyFlamingo.Entities.Goods.ComputerTechnologies;
 using SunnyFlamingo.Models;
+using SunnyFlamingo.Models.Selectors;
 using SunnyFlamingo.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -22,147 +23,96 @@ namespace SunnyFlamingo.Services.Searchers
             _questionsGrouper = questionsGrouper;
         }
 
-        public async Task<List<QuestionBase<string>>> GetQuestionList(
-            IQueryable<Good> goods,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo)
-        {
-            var producerQuestions = GetProducerQuestion(GetProducerGoods(goods, producers, countries, materials, colors, priceFrom, priceTo), producers);
-            var countryQuestions = GetCountryQuestion(GetCountryGoods(goods, producers, countries, materials, colors, priceFrom, priceTo), countries);
-            var materialQuestions = GetMaterialQuestion(GetMaterialGoods(goods, producers, countries, materials, colors, priceFrom, priceTo), materials);
-            var colorQuestions = GetColorQuestion(GetColorGoods(goods, producers, countries, materials, colors, priceFrom, priceTo), colors);
-            var priceQuestions = GetPriceQuestion(GetPriceGoods(goods, producers, countries, materials, colors, priceFrom, priceTo));
-
-            var group = producerQuestions.Union(countryQuestions).Union(materialQuestions).Union(colorQuestions).Union(priceQuestions);
-            return await group.ToListAsync();
-        }
-
         public async Task<List<QuestionsBase<string>>> GetGoodsQuestions(
             IQueryable<Good> goods,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo)
+            GoodsSelector goodsSelector)
         {
-            var result = await GetQuestionList(goods, producers, countries, materials, colors, priceFrom, priceTo);
+            var result = await GetQuestionList(goods, goodsSelector);
             return new List<QuestionsBase<string>>()
             {
                 _questionsGrouper.GroupProducers(result),
                 _questionsGrouper.GroupCountries(result),
                 _questionsGrouper.GroupMaterials(result),
                 _questionsGrouper.GroupColors(result),
-                _questionsGrouper.GroupPrices(result, priceFrom, priceTo),
+                _questionsGrouper.GroupPrices(result, goodsSelector.PriceFrom, goodsSelector.PriceTo),
             };
         }
+        private async Task<List<QuestionBase<string>>> GetQuestionList(
+            IQueryable<Good> goods,
+            GoodsSelector goodsSelector)
+        {
+            var producerQuestions = GetProducerQuestion(GetProducerGoods(goods, goodsSelector), goodsSelector.Producers);
+            var countryQuestions = GetCountryQuestion(GetCountryGoods(goods, goodsSelector), goodsSelector.Countries);
+            var materialQuestions = GetMaterialQuestion(GetMaterialGoods(goods, goodsSelector), goodsSelector.Materials);
+            var colorQuestions = GetColorQuestion(GetColorGoods(goods, goodsSelector), goodsSelector.Colors);
+            var priceQuestions = GetPriceQuestion(GetPriceGoods(goods, goodsSelector));
+
+            var group = producerQuestions.Union(countryQuestions).Union(materialQuestions).Union(colorQuestions).Union(priceQuestions);
+            return await group.ToListAsync();
+        }
+
 
         public IQueryable<T> GetProducerGoods<T>(
             IQueryable<T> goods,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? from,
-            decimal? to) where T : Good
+            GoodsSelector goodsSelector) where T : Good
         {
-            if (colors == null && countries == null && materials == null && from == null && to == null)
-            {
-                return goods;
-            }
             return goods
-                .Where(g => (producers != null && producers.Contains(g.Producer.Name)) ||
-                ((from == null || g.Price >= from) && (to == null || g.Price <= to)
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(g.MaterialValue))
-                && (colors == null || colors.Contains(g.ColorValue)))
+                .Where(g => (goodsSelector.Producers != null && goodsSelector.Producers.Contains(g.Producer.Name)) ||
+                ((goodsSelector.PriceFrom == null || g.Price >= goodsSelector.PriceFrom) 
+                && (goodsSelector.PriceTo == null || g.Price <= goodsSelector.PriceTo)
+                && (goodsSelector.Countries == null || goodsSelector.Countries.Contains(g.Manufacturer.Country.Value))
+                && (goodsSelector.Materials == null || goodsSelector.Materials.Contains(g.MaterialValue))
+                && (goodsSelector.Colors == null || goodsSelector.Colors.Contains(g.ColorValue)))
                 );
         }
         public IQueryable<T> GetCountryGoods<T>(
             IQueryable<T> goods,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? from,
-            decimal? to) where T : Good
+            GoodsSelector goodsSelector) where T : Good
         {
-            if (producers == null && colors == null && materials == null && from == null && to == null)
-            {
-                return goods;
-            }
             return goods
-                .Where(g => (countries != null && countries.Contains(g.Manufacturer.Country.Value)) ||
-                ((from == null || g.Price >= from) && (to == null || g.Price <= to)
-                && (producers == null || producers.Contains(g.Producer.Name))
-                && (materials == null || materials.Contains(g.MaterialValue))
-                & (colors == null || colors.Contains(g.ColorValue)))
+                .Where(g => (goodsSelector.Countries != null && goodsSelector.Countries.Contains(g.Manufacturer.Country.Value)) ||
+                ((goodsSelector.PriceFrom == null || g.Price >= goodsSelector.PriceFrom) 
+                && (goodsSelector.PriceTo == null || g.Price <= goodsSelector.PriceTo)
+                && (goodsSelector.Producers == null || goodsSelector.Producers.Contains(g.Producer.Name))
+                && (goodsSelector.Materials == null || goodsSelector.Materials.Contains(g.MaterialValue))
+                & (goodsSelector.Colors == null || goodsSelector.Colors.Contains(g.ColorValue)))
                 );
         }
         public IQueryable<T> GetMaterialGoods<T>(
             IQueryable<T> goods,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? from,
-            decimal? to) where T : Good
+            GoodsSelector goodsSelector) where T : Good
         {
-            if (producers == null && countries == null && colors == null && from == null && to == null)
-            {
-                return goods;
-            }
             return goods
-                .Where(g => (materials != null && materials.Contains(g.MaterialValue)) ||
-                ((from == null || g.Price >= from) && (to == null || g.Price <= to)
-                && (producers == null || producers.Contains(g.Producer.Name))
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (colors == null || colors.Contains(g.ColorValue)))
+                .Where(g => (goodsSelector.Materials != null && goodsSelector.Materials.Contains(g.MaterialValue)) ||
+                ((goodsSelector.PriceFrom == null || g.Price >= goodsSelector.PriceFrom) 
+                && (goodsSelector.PriceTo == null || g.Price <= goodsSelector.PriceTo)
+                && (goodsSelector.Producers == null || goodsSelector.Producers.Contains(g.Producer.Name))
+                && (goodsSelector.Countries == null || goodsSelector.Countries.Contains(g.Manufacturer.Country.Value))
+                && (goodsSelector.Colors == null || goodsSelector.Colors.Contains(g.ColorValue)))
                 );
         }
         public IQueryable<T> GetColorGoods<T>(
             IQueryable<T> goods,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? from,
-            decimal? to) where T : Good
+            GoodsSelector goodsSelector) where T : Good
         {
-            if (producers == null && countries == null && materials == null && from == null && to == null)
-            {
-                return goods;
-            }
             return goods
-                .Where(g => (colors != null && colors.Contains(g.ColorValue)) ||
-                ((from == null || g.Price >= from) && (to == null || g.Price <= to)
-                && (producers == null || producers.Contains(g.Producer.Name))
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(g.MaterialValue)))
+                .Where(g => (goodsSelector.Colors != null && goodsSelector.Colors.Contains(g.ColorValue)) ||
+                ((goodsSelector.PriceFrom == null || g.Price >= goodsSelector.PriceFrom) 
+                && (goodsSelector.PriceTo == null || g.Price <= goodsSelector.PriceTo)
+                && (goodsSelector.Producers == null || goodsSelector.Producers.Contains(g.Producer.Name))
+                && (goodsSelector.Countries == null || goodsSelector.Countries.Contains(g.Manufacturer.Country.Value))
+                && (goodsSelector.Materials == null || goodsSelector.Materials.Contains(g.MaterialValue)))
                 );
         }
         public IQueryable<T> GetPriceGoods<T>(
             IQueryable<T> goods,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? from,
-            decimal? to) where T : Good
+            GoodsSelector goodsSelector) where T : Good
         {
-            if (producers == null && countries == null && materials == null && colors == null)
-            {
-                return goods;
-            }
             return goods
-                .Where(g => (producers == null || producers.Contains(g.Producer.Name))
-                && (countries == null || countries.Contains(g.Manufacturer.Country.Value))
-                && (materials == null || materials.Contains(g.MaterialValue)
-                && (colors == null || colors.Contains(g.ColorValue)))
+                .Where(g => (goodsSelector.Producers == null || goodsSelector.Producers.Contains(g.Producer.Name))
+                && (goodsSelector.Countries == null || goodsSelector.Countries.Contains(g.Manufacturer.Country.Value))
+                && (goodsSelector.Materials == null || goodsSelector.Materials.Contains(g.MaterialValue)
+                && (goodsSelector.Colors == null || goodsSelector.Colors.Contains(g.ColorValue)))
                 );
         }
 
@@ -175,7 +125,7 @@ namespace SunnyFlamingo.Services.Searchers
                         .Select(producer => new QuestionBase<string>()
                         {
                             QuestionsKey = "producer",
-                            AfterBox2 = producer.Count,
+                            AfterBox = (producers != null && producers.Contains(producer.Value)) ? (int?)null : producer.Count,
                             Checked = producers != null && producers.Contains(producer.Value),
                             ControlType = ControlType.Checkbox,
                             Key = producer.Value,
@@ -193,7 +143,7 @@ namespace SunnyFlamingo.Services.Searchers
                         .Select(country => new QuestionBase<string>()
                         {
                             QuestionsKey = "country",
-                            AfterBox2 = country.Count,
+                            AfterBox = (countries != null && countries.Contains(country.Value)) ? (int?)null : country.Count,
                             Checked = countries != null && countries.Contains(country.Value),
                             ControlType = ControlType.Checkbox,
                             Key = country.Value,
@@ -208,14 +158,14 @@ namespace SunnyFlamingo.Services.Searchers
                         .Select(g => g.Material.Value)
                         .GroupBy(c => c)
                         .Select(c => new { Count = c.Count(), Value = Convert.ToString(c.Key) })
-                        .Select(country => new QuestionBase<string>()
+                        .Select(material => new QuestionBase<string>()
                         {
                             QuestionsKey = "material",
-                            AfterBox2 = country.Count,
-                            Checked = materials != null && materials.Contains(country.Value),
+                            AfterBox = (materials != null && materials.Contains(material.Value)) ? (int?)null : material.Count,
+                            Checked = materials != null && materials.Contains(material.Value),
                             ControlType = ControlType.Checkbox,
-                            Key = country.Value,
-                            Label = country.Value,
+                            Key = material.Value,
+                            Label = material.Value,
                             Required = false,
                             Type = InputType.Checkbox,
                         });
@@ -229,7 +179,7 @@ namespace SunnyFlamingo.Services.Searchers
                         .Select(color => new QuestionBase<string>()
                         {
                             QuestionsKey = "color",
-                            AfterBox2 = color.Count,
+                            AfterBox = (colors != null && colors.Contains(color.Value)) ? (int?)null : color.Count,
                             Checked = colors != null && colors.Contains(color.Value),
                             ControlType = ControlType.Checkbox,
                             Key = color.Value,
@@ -247,7 +197,7 @@ namespace SunnyFlamingo.Services.Searchers
                 .Select(price => new QuestionBase<string>()
                 {
                     QuestionsKey = "price",
-                    AfterBox2 = null,
+                    AfterBox = null,
                     Checked = null,
                     ControlType = ControlType.RangeSlider,
                     Key = "maxPrice",
@@ -262,7 +212,7 @@ namespace SunnyFlamingo.Services.Searchers
                 .Select(price => new QuestionBase<string>()
                 {
                     QuestionsKey = "price",
-                    AfterBox2 = null,
+                    AfterBox = null,
                     Checked = null,
                     ControlType = ControlType.RangeSlider,
                     Key = "minPrice",

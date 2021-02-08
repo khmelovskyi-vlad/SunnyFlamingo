@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormGroupWithName } from '../../models/formGroupWithName';
-import { QuestionsBase } from '../../models/questionsBase';
+import { FormGroupWithName } from '../../models/form-group-with-name';
+import { QuestionsBase } from '../../models/questions-base';
 
 import { QuestionControlService } from '../question-control.service';
 

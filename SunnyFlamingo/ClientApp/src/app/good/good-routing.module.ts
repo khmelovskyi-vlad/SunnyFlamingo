@@ -1,20 +1,31 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, UrlSegment } from '@angular/router';
 import { GoodMainComponent } from './good-main/good-main.component';
 import { GoodComponent } from './good/good.component';
 
 const routes: Routes = [
   {
-    path: ':id',
+    path: 'good',
     component: GoodMainComponent,
     children: [
       {
-        path: '',
+        matcher: matcherFunction,
         component: GoodComponent
       }
     ]
   }
 ];
+function matcherFunction(url: UrlSegment[]) {
+  if (url.length === 1) {
+      const path = url[0].path;
+      
+       if(path.startsWith('Good') 
+         || path.startsWith('Headphones')){
+        return {consumed: url};
+      }
+  }
+  return null;
+}
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

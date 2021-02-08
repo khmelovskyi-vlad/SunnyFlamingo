@@ -1,5 +1,7 @@
-﻿using SunnyFlamingo.Entities.Goods.ComputerTechnologies;
+﻿using Microsoft.EntityFrameworkCore;
+using SunnyFlamingo.Entities.Goods.ComputerTechnologies;
 using SunnyFlamingo.Models;
+using SunnyFlamingo.Models.Selectors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,93 +12,79 @@ namespace SunnyFlamingo.Services.Searchers
     public class ComputerAccessoriesQuestionsService : IComputerAccessoriesQuestionsService
     {
         private readonly IComputerTechnologiesQuestionsService _computerTechnologiesQuestionsService;
-        public ComputerAccessoriesQuestionsService(IComputerTechnologiesQuestionsService computerTechnologiesQuestionsService)
+        private readonly IQuestionsGrouper _questionsGrouper;
+        public ComputerAccessoriesQuestionsService(
+            IComputerTechnologiesQuestionsService computerTechnologiesQuestionsService,
+            IQuestionsGrouper questionsGrouper)
         {
             _computerTechnologiesQuestionsService = computerTechnologiesQuestionsService;
+            _questionsGrouper = questionsGrouper;
         }
         public async Task<List<QuestionsBase<string>>> GetComputerAccessoriesQuestions(
             IQueryable<ComputerAccessory> computerAccessories,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo)
+            ComputerAccessoriesSelector computerAccessoriesSelector)
         {
+            var goodsSelector = computerAccessoriesSelector.ComputerTechnologiesSelector.GoodsSelector;
+            var result = await GetQuestionList(computerAccessories, computerAccessoriesSelector);
             return new List<QuestionsBase<string>>()
-                {
-                    await GetProducerQuestion(GetProducerComputerAccessories(computerAccessories, producers, countries, materials, colors,
-                    priceFrom, priceTo), producers),
-                    await GetCountryQuestion(GetCountryComputerAccessories(computerAccessories, producers, countries, materials, colors,
-                    priceFrom, priceTo), countries),
-                    await GetMaterialQuestion(GetMaterialComputerAccessories(computerAccessories, producers, countries, materials, colors,
-                    priceFrom, priceTo), materials),
-                    await GetColorQuestion(GetColorComputerAccessories(computerAccessories, producers, countries, materials, colors,
-                    priceFrom, priceTo), colors),
-                    await GetPriceQuestion(GetPriceComputerAccessories(computerAccessories, producers, countries, materials, colors,
-                    priceFrom, priceTo), priceFrom, priceTo)
-                };
+            {
+                _questionsGrouper.GroupProducers(result),
+                _questionsGrouper.GroupCountries(result),
+                _questionsGrouper.GroupMaterials(result),
+                _questionsGrouper.GroupColors(result),
+                _questionsGrouper.GroupPrices(result, goodsSelector.PriceFrom, goodsSelector.PriceTo),
+            };
+        }
+        private async Task<List<QuestionBase<string>>> GetQuestionList(
+            IQueryable<ComputerAccessory> computerAccessories,
+            ComputerAccessoriesSelector computerAccessoriesSelector)
+        {
+            var goodsSelector = computerAccessoriesSelector.ComputerTechnologiesSelector.GoodsSelector;
+
+            var producerQuestions = GetProducerQuestion(GetProducerComputerAccessories(computerAccessories, computerAccessoriesSelector), goodsSelector.Producers);
+            var countryQuestions = GetCountryQuestion(GetCountryComputerAccessories(computerAccessories, computerAccessoriesSelector), goodsSelector.Countries);
+            var materialQuestions = GetMaterialQuestion(GetMaterialComputerAccessories(computerAccessories, computerAccessoriesSelector), goodsSelector.Materials);
+            var colorQuestions = GetColorQuestion(GetColorComputerAccessories(computerAccessories, computerAccessoriesSelector), goodsSelector.Colors);
+            var priceQuestions = GetPriceQuestion(GetPriceComputerAccessories(computerAccessories, computerAccessoriesSelector));
+
+            var group = producerQuestions.Union(countryQuestions).Union(materialQuestions).Union(colorQuestions).Union(priceQuestions);
+            return await group.ToListAsync();
         }
 
         public IQueryable<T> GetProducerComputerAccessories<T>(
             IQueryable<T> computerAccessories,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo) where T : ComputerAccessory
+            ComputerAccessoriesSelector computerAccessoriesSelector) where T : ComputerAccessory
         {
             return _computerTechnologiesQuestionsService.GetProducerComputerTechnologies(
-                computerAccessories, producers, countries, materials, colors, priceFrom, priceTo);
+                computerAccessories, computerAccessoriesSelector.ComputerTechnologiesSelector);
         }
         public IQueryable<T> GetCountryComputerAccessories<T>(
             IQueryable<T> computerAccessories,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo) where T : ComputerAccessory
+            ComputerAccessoriesSelector computerAccessoriesSelector) where T : ComputerAccessory
         {
             return _computerTechnologiesQuestionsService.GetCountryComputerTechnologies(
-                computerAccessories, producers, countries, materials, colors, priceFrom, priceTo);
+                computerAccessories, computerAccessoriesSelector.ComputerTechnologiesSelector);
         }
         public IQueryable<T> GetMaterialComputerAccessories<T>(
             IQueryable<T> computerAccessories,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo) where T : ComputerAccessory
+            ComputerAccessoriesSelector computerAccessoriesSelector) where T : ComputerAccessory
         {
             return _computerTechnologiesQuestionsService.GetMaterialComputerTechnologies(
-                computerAccessories, producers, countries, materials, colors, priceFrom, priceTo);
+                computerAccessories, computerAccessoriesSelector.ComputerTechnologiesSelector);
         }
         public IQueryable<T> GetColorComputerAccessories<T>(
             IQueryable<T> computerAccessories,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo) where T : ComputerAccessory
+            ComputerAccessoriesSelector computerAccessoriesSelector) where T : ComputerAccessory
         {
             return _computerTechnologiesQuestionsService.GetColorComputerTechnologies(
-                computerAccessories, producers, countries, materials, colors, priceFrom, priceTo);
+                computerAccessories, computerAccessoriesSelector.ComputerTechnologiesSelector);
         }
         public IQueryable<T> GetPriceComputerAccessories<T>(
             IQueryable<T> computerAccessories,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo) where T : ComputerAccessory
+            ComputerAccessoriesSelector computerAccessoriesSelector) where T : ComputerAccessory
         {
             return _computerTechnologiesQuestionsService.GetPriceComputerTechnologies(
-                computerAccessories, producers, countries, materials, colors, priceFrom, priceTo);
+                computerAccessories, computerAccessoriesSelector.ComputerTechnologiesSelector);
         }
 
 
@@ -104,25 +92,25 @@ namespace SunnyFlamingo.Services.Searchers
 
 
 
-        public async Task<QuestionsBase<string>> GetProducerQuestion(IQueryable<ComputerAccessory> computerAccessories, string[] producers)
+        public IQueryable<QuestionBase<string>> GetProducerQuestion(IQueryable<ComputerAccessory> computerAccessories, string[] producers)
         {
-            return await _computerTechnologiesQuestionsService.GetProducerQuestion(computerAccessories, producers);
+            return _computerTechnologiesQuestionsService.GetProducerQuestion(computerAccessories, producers);
         }
-        public async Task<QuestionsBase<string>> GetCountryQuestion(IQueryable<ComputerAccessory> computerAccessories, string[] countries)
+        public IQueryable<QuestionBase<string>> GetCountryQuestion(IQueryable<ComputerAccessory> computerAccessories, string[] countries)
         {
-            return await _computerTechnologiesQuestionsService.GetCountryQuestion(computerAccessories, countries);
+            return _computerTechnologiesQuestionsService.GetCountryQuestion(computerAccessories, countries);
         }
-        public async Task<QuestionsBase<string>> GetMaterialQuestion(IQueryable<ComputerAccessory> computerAccessories, string[] materials)
+        public IQueryable<QuestionBase<string>> GetMaterialQuestion(IQueryable<ComputerAccessory> computerAccessories, string[] materials)
         {
-            return await _computerTechnologiesQuestionsService.GetMaterialQuestion(computerAccessories, materials);
+            return _computerTechnologiesQuestionsService.GetMaterialQuestion(computerAccessories, materials);
         }
-        public async Task<QuestionsBase<string>> GetColorQuestion(IQueryable<ComputerAccessory> computerAccessories, string[] colors)
+        public IQueryable<QuestionBase<string>> GetColorQuestion(IQueryable<ComputerAccessory> computerAccessories, string[] colors)
         {
-            return await _computerTechnologiesQuestionsService.GetColorQuestion(computerAccessories, colors);
+            return _computerTechnologiesQuestionsService.GetColorQuestion(computerAccessories, colors);
         }
-        public async Task<QuestionsBase<string>> GetPriceQuestion(IQueryable<ComputerAccessory> computerAccessories, decimal? selectedFrom, decimal? selectedTo)
+        public IQueryable<QuestionBase<string>> GetPriceQuestion(IQueryable<ComputerAccessory> computerAccessories)
         {
-            return await _computerTechnologiesQuestionsService.GetPriceQuestion(computerAccessories, selectedFrom, selectedTo);
+            return _computerTechnologiesQuestionsService.GetPriceQuestion(computerAccessories);
         }
     }
 }

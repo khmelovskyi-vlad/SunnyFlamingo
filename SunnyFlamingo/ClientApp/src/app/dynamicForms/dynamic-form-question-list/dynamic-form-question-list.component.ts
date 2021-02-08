@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ControlType } from '../../valueObjects/controlType';
-import { FormGroupWithName } from '../../models/formGroupWithName';
-import { QuestionBase } from '../../models/questionBase';
-import { QuestionsBase } from '../../models/questionsBase';
+import { ControlType } from '../../value-objects/control-type';
+import { QuestionsBase } from '../../models/questions-base';
+import { QuestionBase } from '../../models/question-base';
 
 @Component({
   selector: 'app-question-list',
@@ -19,5 +18,14 @@ export class DynamicFormQuestionListComponent implements OnInit {
   
   ngOnInit() {
   }
-
+  
+  sortByName (a: QuestionBase<string>, b: QuestionBase<string>) {
+    if (a.label > b.label) {
+      return 1;
+    }
+    if (a.label < b.label) {
+      return -1;
+    }
+    return 0;
+  }
 }

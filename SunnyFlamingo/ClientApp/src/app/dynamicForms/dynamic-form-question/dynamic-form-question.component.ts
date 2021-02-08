@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { InputType } from '../../valueObjects/inputType';
+import { InputType } from '../../value-objects/input-type';
 
-import { QuestionBase } from '../../models/questionBase';
-import { ControlType } from '../../valueObjects/controlType';
+import { QuestionBase } from '../../models/question-base';
+import { ControlType } from '../../value-objects/control-type';
 import { QuestionService } from '../question.service';
 
 @Component({

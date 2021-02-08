@@ -1,5 +1,6 @@
 ﻿using SunnyFlamingo.Entities.Goods.ComputerTechnologies;
 using SunnyFlamingo.Models;
+using SunnyFlamingo.Models.Selectors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,58 +12,28 @@ namespace SunnyFlamingo.Services.Searchers
     {
         Task<List<QuestionsBase<string>>> GetComputerAccessoriesQuestions(
                IQueryable<ComputerAccessory> computerAccessories,
-               string[] producers,
-               string[] countries,
-               string[] materials,
-               string[] colors,
-               decimal? priceFrom,
-               decimal? priceTo);
+               ComputerAccessoriesSelector computerAccessoriesSelector);
 
         IQueryable<T> GetProducerComputerAccessories<T>(
             IQueryable<T> computerAccessories,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo) where T : ComputerAccessory;
+               ComputerAccessoriesSelector computerAccessoriesSelector) where T : ComputerAccessory;
 
         IQueryable<T> GetCountryComputerAccessories<T>(
             IQueryable<T> computerAccessories,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo) where T : ComputerAccessory;
+               ComputerAccessoriesSelector computerAccessoriesSelector) where T : ComputerAccessory;
         IQueryable<T> GetMaterialComputerAccessories<T>(
             IQueryable<T> computerAccessories,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo) where T : ComputerAccessory;
+               ComputerAccessoriesSelector computerAccessoriesSelector) where T : ComputerAccessory;
         IQueryable<T> GetColorComputerAccessories<T>(
             IQueryable<T> computerAccessories,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo) where T : ComputerAccessory;
+               ComputerAccessoriesSelector computerAccessoriesSelector) where T : ComputerAccessory;
         IQueryable<T> GetPriceComputerAccessories<T>(
             IQueryable<T> computerAccessories,
-            string[] producers,
-            string[] countries,
-            string[] materials,
-            string[] colors,
-            decimal? priceFrom,
-            decimal? priceTo) where T : ComputerAccessory;
-        Task<QuestionsBase<string>> GetProducerQuestion(IQueryable<ComputerAccessory> computerAccessories, string[] producers);
-        Task<QuestionsBase<string>> GetCountryQuestion(IQueryable<ComputerAccessory> computerAccessories, string[] countries);
-        Task<QuestionsBase<string>> GetMaterialQuestion(IQueryable<ComputerAccessory> computerAccessories, string[] materials);
-        Task<QuestionsBase<string>> GetColorQuestion(IQueryable<ComputerAccessory> computerAccessories, string[] colors);
-        Task<QuestionsBase<string>> GetPriceQuestion(IQueryable<ComputerAccessory> computerAccessories, decimal? selectedFrom, decimal? selectedTo);
+               ComputerAccessoriesSelector computerAccessoriesSelector) where T : ComputerAccessory;
+        IQueryable<QuestionBase<string>> GetProducerQuestion(IQueryable<ComputerAccessory> computerAccessories, string[] producers);
+        IQueryable<QuestionBase<string>> GetCountryQuestion(IQueryable<ComputerAccessory> computerAccessories, string[] countries);
+        IQueryable<QuestionBase<string>> GetMaterialQuestion(IQueryable<ComputerAccessory> computerAccessories, string[] materials);
+        IQueryable<QuestionBase<string>> GetColorQuestion(IQueryable<ComputerAccessory> computerAccessories, string[] colors);
+        IQueryable<QuestionBase<string>> GetPriceQuestion(IQueryable<ComputerAccessory> computerAccessories);
     }
 }

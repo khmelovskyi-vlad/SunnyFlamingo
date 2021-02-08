@@ -2,8 +2,8 @@ import { Location } from '@angular/common';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { GoodsInformation } from '../../models/goodsInformation';
-import { GoodService } from '../good.service';
+import { GoodsInformation } from '../../models/goods-information';
+import { GoodsService } from '../goods.service';
 
 @Component({
   selector: 'app-good-list',
@@ -17,7 +17,7 @@ export class GoodListComponent implements OnInit {
 
   showLoader: boolean = true;
 
-  constructor(private goodService: GoodService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private goodService: GoodsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     
@@ -26,7 +26,7 @@ export class GoodListComponent implements OnInit {
         if (val instanceof NavigationEnd) {
           if (val.url.split('?')[0].startsWith('/goods')) {
             this.showLoader = true;
-            this.goodService.getNewGoodsInformation(val.url)
+            this.goodService.getGoodsInformation(val.url)
               .subscribe(goodsInformation => {
                 this.showLoader = false;
                 this.goodsInformation = goodsInformation;

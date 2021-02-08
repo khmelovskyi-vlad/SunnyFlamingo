@@ -45,6 +45,16 @@ namespace SunnyFlamingo.Data
         public DbSet<Cooler> Coolers { get; set; }
         public DbSet<ComputerDrive> ComputerDrives { get; set; }
 
+
+        public DbSet<ComputerDriveType> ComputerDriveTypes { get; set; }
+        public DbSet<CPUSocketType> CPUSocketTypes { get; set; }
+        public DbSet<HeadphonesType> HeadphonesTypes { get; set; }
+        public DbSet<KeySwitchType> KeySwitchTypes { get; set; }
+        public DbSet<MauseType> MauseTypes { get; set; }
+        public DbSet<WirelessType> WirelessTypes { get; set; }
+        public DbSet<LaptopComputerDriveType> LaptopComputerDriveTypes { get; set; }
+        public DbSet<ComputerComputerDriveType> ComputerComputerDriveTypes { get; set; }
+
         public DbSet<Color> Colors { get; set; }
         public DbSet<ConnectorType> ConnectorTypes { get; set; }
         public DbSet<CoolerType> CoolerTypes { get; set; }

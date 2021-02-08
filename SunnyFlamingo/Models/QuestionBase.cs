@@ -18,8 +18,7 @@ namespace SunnyFlamingo.Models
         public InputType Type { get; set; }
         public List<QuestionOption> Options { get; set; }
         public bool? Checked { get; set; }
-        public int? AfterBox2 { get; set; }
-        public string AfterBox { get; set; }
+        public int? AfterBox { get; set; }
         public object SelectedFrom { get; set; }
         public object SelectedTo { get; set; }
         public object From { get; set; }

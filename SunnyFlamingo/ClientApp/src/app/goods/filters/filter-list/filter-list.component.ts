@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { QuestionsBase } from '../../../models/questionsBase';
+import { QuestionsBase } from '../../../models/questions-base';
 
 @Component({
   selector: 'app-filter-list',
@@ -13,7 +13,7 @@ export class FilterListComponent implements OnInit {
   constructor() { 
   }
 
-//
+
   ngOnInit(): void {
   }
 

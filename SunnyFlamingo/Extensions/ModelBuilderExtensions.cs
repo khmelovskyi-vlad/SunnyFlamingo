@@ -5,6 +5,7 @@ using SunnyFlamingo.Entities.Goods;
 using SunnyFlamingo.Entities.Goods.ComputerTechnologies;
 using SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerAccessories;
 using SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerParts;
+using SunnyFlamingo.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,11 +84,8 @@ namespace SunnyFlamingo.Extensions
                 .Property(l => l.HardDiskMemory)
                 .HasColumnName("HardDiskMemory");
             modelBuilder.Entity<Laptop>()
-                .Property(l => l.CPUSocketType)
+                .Property(l => l.CPUSocketTypeValue)
                 .HasColumnName("CPUSocketType");
-            modelBuilder.Entity<Laptop>()
-                .Property(l => l.ComputerDriveType)
-                .HasColumnName("ComputerDriveType");
             modelBuilder.Entity<Laptop>()
                 .Property(l => l.NumberOfCores)
                 .HasColumnName("NumberOfCores");
@@ -123,11 +121,8 @@ namespace SunnyFlamingo.Extensions
                 .Property(c => c.HardDiskMemory)
                 .HasColumnName("HardDiskMemory");
             modelBuilder.Entity<Computer>()
-                .Property(c => c.CPUSocketType)
+                .Property(c => c.CPUSocketTypeValue)
                 .HasColumnName("CPUSocketType");
-            modelBuilder.Entity<Computer>()
-                .Property(c => c.ComputerDriveType)
-                .HasColumnName("ComputerDriveType");
             modelBuilder.Entity<Computer>()
                 .Property(c => c.NumberOfCores)
                 .HasColumnName("NumberOfCores");
@@ -156,8 +151,8 @@ namespace SunnyFlamingo.Extensions
 
 
             modelBuilder.Entity<CPU>()
-                .Property(cpu => cpu.CPUSocketType)
-                .HasColumnName("Type");
+                .Property(cpu => cpu.CPUSocketTypeValue)
+                .HasColumnName("CPUSocketType");
             modelBuilder.Entity<CPU>()
                 .Property(cpu => cpu.ThermalDesignPower)
                 .HasColumnName("ThermalDesignPower");
@@ -177,29 +172,29 @@ namespace SunnyFlamingo.Extensions
                 .Property(cd => cd.Capacity)
                 .HasColumnName("Capacity");
             modelBuilder.Entity<ComputerDrive>()
-                .Property(cd => cd.Type)
-                .HasColumnName("Type");
+                .Property(cd => cd.TypeValue)
+                .HasColumnName("ComputerDriveType");
             modelBuilder.Entity<ComputerDrive>()
                 .Property(cd => cd.FormFactorTypeValue)
                 .HasColumnName("FormFactorType");
 
             modelBuilder.Entity<Headphones>()
-                .Property(h => h.Type)
-                .HasColumnName("Type");
+                .Property(h => h.TypeValue)
+                .HasColumnName("HeadphonesType");
             modelBuilder.Entity<Headphones>()
-                .Property(h => h.WirelessType)
+                .Property(h => h.WirelessTypeValue)
                 .HasColumnName("WirelessType");
             modelBuilder.Entity<Headphones>()
                 .Property(h => h.ConnectorTypeValue)
                 .HasColumnName("ConnectorType");
 
             modelBuilder.Entity<Keyboard>()
-                .Property(k => k.Type)
-                .HasColumnName("Type");
+                .Property(k => k.TypeValue)
+                .HasColumnName("KeyboardType");
 
             modelBuilder.Entity<Mause>()
-                .Property(m => m.Type)
-                .HasColumnName("Type");
+                .Property(m => m.TypeValue)
+                .HasColumnName("MauseType");
             modelBuilder.Entity<Mause>()
                 .Property(m => m.ButtonsCount)
                 .HasColumnName("ButtonsCount");
@@ -402,6 +397,10 @@ namespace SunnyFlamingo.Extensions
         {
             modelBuilder.Entity<UserIp>()
                 .HasKey(ui => new { ui.UserId, ui.IpId });
+            modelBuilder.Entity<LaptopComputerDriveType>()
+                .HasKey(ui => new { ui.LaptopId, ui.ComputerDriveTypeValue });
+            modelBuilder.Entity<ComputerComputerDriveType>()
+                .HasKey(ui => new { ui.ComputerId, ui.ComputerDriveTypeValue });
         }
         public static void AddForeignKeys(this ModelBuilder modelBuilder)
         {
@@ -443,6 +442,57 @@ namespace SunnyFlamingo.Extensions
                 .HasOne(cd => cd.FormFactorType)
                 .WithMany(fft => fft.ComputerDrives)
                 .HasForeignKey(cd => cd.FormFactorTypeValue);
+
+
+
+
+            modelBuilder.Entity<LaptopComputerDriveType>()
+                .HasOne(lcdt => lcdt.ComputerDriveType)
+                .WithMany(cdt => cdt.LaptopComputerDriveTypes)
+                .HasForeignKey(lcdt => lcdt.ComputerDriveTypeValue);
+            modelBuilder.Entity<ComputerComputerDriveType>()
+                .HasOne(ccdt => ccdt.ComputerDriveType)
+                .WithMany(cdt => cdt.ComputerComputerDriveTypes)
+                .HasForeignKey(ccdt => ccdt.ComputerDriveTypeValue);
+
+            modelBuilder.Entity<Laptop>()
+                .HasOne(l => l.CPUSocketType)
+                .WithMany(cpust => cpust.Laptops)
+                .HasForeignKey(l => l.CPUSocketTypeValue);
+            modelBuilder.Entity<Computer>()
+                .HasOne(c => c.CPUSocketType)
+                .WithMany(cpust => cpust.Computers)
+                .HasForeignKey(c => c.CPUSocketTypeValue);
+            modelBuilder.Entity<ComputerDrive>()
+                .HasOne(cd => cd.Type)
+                .WithMany(cdt => cdt.ComputerDrives)
+                .HasForeignKey(cd => cd.TypeValue);
+            modelBuilder.Entity<Headphones>()
+                .HasOne(h => h.WirelessType)
+                .WithMany(ht => ht.Headphones)
+                .HasForeignKey(h => h.WirelessTypeValue);
+            modelBuilder.Entity<Mause>()
+                .HasOne(m => m.Type)
+                .WithMany(mt => mt.Mice)
+                .HasForeignKey(m => m.TypeValue);
+            modelBuilder.Entity<Keyboard>()
+                .HasOne(k => k.Type)
+                .WithMany(kt => kt.Keyboards)
+                .HasForeignKey(k => k.TypeValue);
+            modelBuilder.Entity<Headphones>()
+                .HasOne(h => h.Type)
+                .WithMany(ht => ht.Headphones)
+                .HasForeignKey(h => h.TypeValue);
+            modelBuilder.Entity<CPU>()
+                .HasOne(cpu => cpu.CPUSocketType)
+                .WithMany(cpust => cpust.CPUs)
+                .HasForeignKey(cpu => cpu.CPUSocketTypeValue);
+
+
+
+
+
+
 
             modelBuilder.Entity<Good>()
                 .HasOne(g => g.Producer)
@@ -490,41 +540,41 @@ namespace SunnyFlamingo.Extensions
         }
         public static void AddConversion(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Laptop>()
-                .Property(l => l.CPUSocketType)
-                .HasConversion<string>();
-            modelBuilder.Entity<Laptop>()
-                .Property(l => l.ComputerDriveType)
-                .HasConversion<string>();
+            //modelBuilder.Entity<Laptop>()
+            //    .Property(l => l.CPUSocketType)
+            //    .HasConversion<string>();
+            //modelBuilder.Entity<Laptop>()
+            //    .Property(l => l.ComputerDriveType)
+            //    .HasConversion<string>();
 
-            modelBuilder.Entity<Computer>()
-                .Property(l => l.CPUSocketType)
-                .HasConversion<string>();
-            modelBuilder.Entity<Computer>()
-                .Property(l => l.ComputerDriveType)
-                .HasConversion<string>();
+            //modelBuilder.Entity<Computer>()
+            //    .Property(l => l.CPUSocketType)
+            //    .HasConversion<string>();
+            //modelBuilder.Entity<Computer>()
+            //    .Property(l => l.ComputerDriveType)
+            //    .HasConversion<string>();
 
-            modelBuilder.Entity<Headphones>()
-                .Property(l => l.Type)
-                .HasConversion<string>();
-            modelBuilder.Entity<Headphones>()
-                .Property(l => l.WirelessType)
-                .HasConversion<string>();
+            //modelBuilder.Entity<Headphones>()
+            //    .Property(l => l.Type)
+            //    .HasConversion<string>();
+            //modelBuilder.Entity<Headphones>()
+            //    .Property(l => l.WirelessType)
+            //    .HasConversion<string>();
 
-            modelBuilder.Entity<Keyboard>()
-                .Property(l => l.Type)
-                .HasConversion<string>();
+            //modelBuilder.Entity<Keyboard>()
+            //    .Property(l => l.Type)
+            //    .HasConversion<string>();
 
-            modelBuilder.Entity<Mause>()
-                .Property(l => l.Type)
-                .HasConversion<string>();
+            //modelBuilder.Entity<Mause>()
+            //    .Property(l => l.Type)
+            //    .HasConversion<string>();
 
-            modelBuilder.Entity<CPU>()
-                .Property(l => l.CPUSocketType)
-                .HasConversion<string>();
-            modelBuilder.Entity<ComputerDrive>()
-                .Property(l => l.Type)
-                .HasConversion<string>();
+            //modelBuilder.Entity<CPU>()
+            //    .Property(l => l.CPUSocketType)
+            //    .HasConversion<string>();
+            //modelBuilder.Entity<ComputerDrive>()
+            //    .Property(l => l.Type)
+            //    .HasConversion<string>();
         }
     }
 }
