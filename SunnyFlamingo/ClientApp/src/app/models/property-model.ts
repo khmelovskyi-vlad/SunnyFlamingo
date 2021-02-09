@@ -1,4 +1,4 @@
 export interface PropertyModel{
-  name: string;
+  key: string;
   value: string;
 }

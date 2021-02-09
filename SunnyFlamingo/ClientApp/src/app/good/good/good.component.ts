@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
+import { SelectedGoodsService } from '../../global-services/selected-goods.service';
 import { GoodInformation } from '../../models/good-information';
 import { ImageType } from '../../value-objects/image-type';
 import { GoodService } from '../good.service';
@@ -16,8 +17,13 @@ export class GoodComponent implements OnInit {
   goodInformation: GoodInformation;
   showLoader: boolean = true;
 
-  constructor(private goodService: GoodService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private goodService: GoodService, 
+    private router: Router, 
+    private route: ActivatedRoute
+    ) { }
 
+    
   ngOnInit(): void {
     this.goodService.getGoodInformation(this.router.url)
     .subscribe(goodInformation => {

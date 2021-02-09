@@ -1,0 +1,13 @@
+.basket:hover{
+  background-color: blueviolet;
+}
+
+div.gallery img {
+  flex: 0;
+  max-height: 99px;
+  max-width: 99px;
+}
+div.gallery {
+  width: 100px;
+  height: 100px;
+}

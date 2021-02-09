@@ -1,0 +1,14 @@
+<app-good-imgs *ngIf="goodInformation"  [imgIds]="goodInformation.imgIds"></app-good-imgs>
+<div class="row flex-column p-2">
+  <div class="about-main col py-2">
+    <ul>
+      <li>Country: {{goodInformation.country}}</li>
+      <li>Color: {{goodInformation.color}}</li>
+      <li>Material: {{goodInformation.material}}</li>
+      <li>Producer: {{goodInformation.producer}}</li>
+      <li>Description: {{goodInformation.description}}</li>
+    </ul>
+  </div>
+  <app-good-characteristic-list class="col" [characteristicList]="goodInformation.properties"></app-good-characteristic-list>
+  
+</div>

@@ -1,12 +1,15 @@
-<div class="row">
-  <div class="col-6 row">
-    <app-good-imgs imgIds="goodInformation.imgIds"></app-good-imgs>
-  </div>
-  <div class="col-6 row">
-    <div *ngIf="goodInformation">{{goodInformation.name}}</div>
-  </div>
+<app-good-about-top [goodInformation]="goodInformation"></app-good-about-top>
 
+<div class="row p-0 m-0">
 
+  <div class="col-6 m-0 p-0">
+    <div class="m-0 p-0">
+      <app-good-about-left [goodInformation]="goodInformation"></app-good-about-left>
+    </div>
+  </div>
+  <div class="col-6 row m-0 p-0">
+    <app-good-about-right [goodInformation]="goodInformation"></app-good-about-right>
+  </div>
 
 
 

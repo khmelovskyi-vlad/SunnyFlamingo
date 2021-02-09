@@ -18,7 +18,7 @@ export class GoodListComponent implements OnInit {
   showLoader: boolean = true;
 
   constructor(private goodService: GoodsService, private router: Router, private route: ActivatedRoute) { }
-
+  
   ngOnInit(): void {
     
     this.router.events

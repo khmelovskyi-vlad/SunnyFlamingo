@@ -13,9 +13,10 @@ import { GOODS } from './mock-goods';
   providedIn: 'root'
 })
 export class GoodsService {
+//
 
   constructor(private questionservice: QuestionService, private http: HttpClient, private route: ActivatedRoute) { }
-//
+
   getGoodsInformation(currentUrl: string): Observable<GoodsInformation<string>>{
     // currentUrl = currentUrl === "/" ? "/goods" : currentUrl;
     // const url = `api/Goods${currentUrl}${currentUrl.includes('?') ? '&' : '?'}getQuestions=false`

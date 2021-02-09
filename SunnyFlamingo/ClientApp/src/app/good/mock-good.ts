@@ -3,14 +3,14 @@ import { GoodInformation } from "../models/good-information";
 import { PropertyModel } from "../models/property-model";
 
 const properties: PropertyModel[] = [
-  {name: "prop1", value: "description"},
-  {name: "prop2", value: "description dfgdfbgfngndfgdfg"},
-  {name: "prop3", value: "description dfbfgnghn ghn ghntyntynty "},
-  {name: "prop4", value: "description dfgd dfgdfngm tjt j6hrhrthrtbcv hht"},
-  {name: "prop5", value: "description            hrthrthrthreh er gergwergwegwe         "},
-  {name: "prop6", value: "description wetwet we tergdf g"},
-  {name: "prop7", value: "description dfg dfgdfg dfg dfg "},
-  {name: "prop8", value: "description sdfehtytyj gdfgd gdfg dfgdfgfng"},
+  {key: "prop1", value: "description"},
+  {key: "prop2", value: "description dfgdfbgfngndfgdfg"},
+  {key: "prop3", value: "description dfbfgnghn ghn ghntyntynty "},
+  {key: "prop4", value: "description dfgd dfgdfngm tjt j6hrhrthrtbcv hht"},
+  {key: "prop5", value: "description            hrthrthrthreh er gergwergwegwe         "},
+  {key: "prop6", value: "description wetwet we tergdf g"},
+  {key: "prop7", value: "description dfg dfgdfg dfg dfg "},
+  {key: "prop8", value: "description sdfehtytyj gdfgd gdfg dfgdfgfng"},
 ];
 
 
