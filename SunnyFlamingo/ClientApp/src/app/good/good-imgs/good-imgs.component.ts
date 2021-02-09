@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Guid } from 'guid-typescript';
-import { ImageType } from '../../value-objects/image-type';
 import { GalleryItem, ImageItem } from 'ng-gallery';
+import { ImgService } from '../../services/img.service';
 
 @Component({
   selector: 'app-good-imgs',
@@ -15,20 +15,22 @@ export class GoodImgsComponent implements OnInit {
   someArray: number[] = [1,2,3,4,5,6,7,8];
   @Input() imgIds: Guid[];
 
-  getImgUrl(imgId: string): string {
-    return `/Images/GetImage?type=${ImageType.GoodImg}&id=${imgId}`;
-  }
-//
-  constructor() { }
+  
+  constructor(private imgService: ImgService) { }
 
   ngOnInit(): void {
-    this.images = [
-      new ImageItem({ src: this.getImgUrl('1'), thumb: this.getImgUrl('1') }),
-      new ImageItem({ src: this.getImgUrl('2'), thumb: this.getImgUrl('2') }),
-      new ImageItem({ src: this.getImgUrl('3'), thumb: this.getImgUrl('3') }),
-      new ImageItem({ src: this.getImgUrl('4'), thumb: this.getImgUrl('4') }),
-      new ImageItem({ src: this.getImgUrl('5'), thumb: this.getImgUrl('5') }),
-    ];
+    // TODO
+    // if (this.imgIds.length === 0) {
+    //   this.images = [new ImageItem({ src: 'assets/img/defaultGoodImg.jpg', thumb: 'assets/img/defaultGoodImg.jpg' })];
+    // }
+    // else{
+    //   this.images = this.imgIds.map(imgId => new ImageItem({ src: this.getImgUrl(imgId), thumb: this.getImgUrl(imgId) }));
+    // }
+    this.images = this.someArray.map(imgId => new ImageItem(
+      { 
+        src: this.imgService.getImgUrl(imgId), 
+        thumb: this.imgService.getImgUrl(imgId) 
+      }));
   }
 
 }

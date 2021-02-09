@@ -1,0 +1,7 @@
+<div *ngIf="characteristicList" class="about-properties">
+  <ul *ngFor="let characteristic of characteristicList">
+    <li>
+      <app-good-characteristic [characteristic]="characteristic"></app-good-characteristic>
+    </li>
+  </ul>
+</div>

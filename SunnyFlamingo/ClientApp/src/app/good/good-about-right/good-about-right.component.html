@@ -1,0 +1,14 @@
+<div *ngIf="goodInformation" class="row m-3">
+  <div class="col price">
+    <span>{{goodInformation.price | currency}}</span>
+  </div>
+  <div class="col">
+    <div *ngIf="goodInformation.isAvailable"  class="btn btn-success buy-btn" (click)="addGood()">
+      <img class="mx-md-2 basket" src="assets/img/basket3.png" alt="basket" width="40" height="40">
+      <span class="mx-md-2 buy">Buy</span>
+    </div>
+    <div *ngIf="!goodInformation.isAvailable" class="btn-light buy-btn">
+      <span class="mx-md-2 buy">Don't have</span>
+    </div>
+  </div>
+</div>

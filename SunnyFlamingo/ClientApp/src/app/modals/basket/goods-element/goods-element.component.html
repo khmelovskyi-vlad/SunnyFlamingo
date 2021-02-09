@@ -1,0 +1,26 @@
+<div *ngIf="goods">
+  <div class="row">
+    <div class="col-3">
+      <div class="col row align-items-center justify-content-center m-0 p-0 gallery">
+        <img class="p-0 m-0" [src]="getImgUrl(goods[0].id)" alt="goodImg">
+      </div>
+    </div>
+    <div class="col-8">
+      {{goods[0].name}}
+    </div>
+    <div class="col-1">
+      <button class="close" (click)="removeMultiplyValues(goods[0].id)">
+        <span>&times;</span>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-7">{{goods[0].name}}</div>
+    <div class="col-3">
+      <button (click)="removeOneValue(goods[0].id)">+</button>
+        {{goods[0].name}}
+      <button (click)="removeOneValue(goods[0].id)">-</button>
+    </div>
+    <div class="col-2">{{getPrice(goods) | currency }}</div>
+  </div>
+</div>
