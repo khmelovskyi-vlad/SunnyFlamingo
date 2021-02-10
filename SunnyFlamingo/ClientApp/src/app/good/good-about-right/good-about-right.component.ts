@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SelectedGoodsService } from 'src/app/global-services/selected-goods.service';
+import { BasketGoodModel } from 'src/app/models/basket-good-model';
 import { GoodInformation } from '../../models/good-information';
 
 @Component({
@@ -13,7 +14,12 @@ export class GoodAboutRightComponent implements OnInit {
 
 
   addGood(){
-    this.selectedGoodsService.goods = [this.goodInformation];
+    const basketGood: BasketGoodModel={
+      count: 1,
+      addDate: new Date(),
+      goodInformation: this.goodInformation
+    }
+    this.selectedGoodsService.basketGoods = [basketGood];
   }
 
   constructor(private selectedGoodsService: SelectedGoodsService,) { }

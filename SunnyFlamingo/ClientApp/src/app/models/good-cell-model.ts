@@ -1,7 +1,7 @@
 import { Guid } from "guid-typescript";
 
 export interface GoodCellModel{
-  id: Guid;
+  id: any;
   name: string;
   price: number;
   isAvailable: boolean;
