@@ -1,13 +1,23 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Basket</h4>
+    <h4 class="modal-title title" id="modal-basic-title">Basket</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <div *ngFor="let goodsArray of groupedGoods">
-       <app-goods-element [goods]="goodsArray"></app-goods-element>
+    <div *ngFor="let basketGood of basketGoods">
+       <app-goods-element [basketGood]="basketGood"></app-goods-element>
+    </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div class="row justify-content-center">
+          <span class="col price">{{getPrice() | currency}}</span> 
+          <button class="col btn btn-success btn-order">To order</button>
+        </div>
+      </div>
     </div>
     <form>
       <div class="form-group">
@@ -29,7 +39,7 @@
 <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
 <div class="position-relative text-align btn p-0 basket" (click)="open(content)">
   <img src="assets/img/basket3.png" alt="basket" width="40" height="40">
-  <span class="position-absolute" style="top: -5px; right: 0px; font-size: 0.8rem;">{{goods.length}}</span>
+  <span class="position-absolute" style="top: -5px; right: 0px; font-size: 0.8rem;">{{getCount()}}</span>
 </div>
 <!-- <hr> -->
 

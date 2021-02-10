@@ -11,3 +11,13 @@ div.gallery {
   width: 100px;
   height: 100px;
 }
+
+.price{
+  font-size: 2vw;
+}
+.btn-order{
+  font-size: 1.5vw;
+}
+.title{
+  font-size: 3vw;
+}

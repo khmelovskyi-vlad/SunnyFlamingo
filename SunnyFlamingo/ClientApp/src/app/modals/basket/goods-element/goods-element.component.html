@@ -1,26 +1,28 @@
-<div *ngIf="goods">
+<div *ngIf="basketGood" class="p-2 m-2 rounded border border-primary">
   <div class="row">
     <div class="col-3">
       <div class="col row align-items-center justify-content-center m-0 p-0 gallery">
-        <img class="p-0 m-0" [src]="getImgUrl(goods[0].id)" alt="goodImg">
+        <img class="p-0 m-0" [src]="getImgUrl(basketGood.goodInformation.id)" alt="goodImg">
       </div>
     </div>
     <div class="col-8">
-      {{goods[0].name}}
+      <span class="goodName">{{basketGood.goodInformation.name}}</span>
     </div>
     <div class="col-1">
-      <button class="close" (click)="removeMultiplyValues(goods[0].id)">
+      <button class="close" (click)="selectedGoodsService.removeMultiplyValues(basketGood.goodInformation.id)">
         <span>&times;</span>
       </button>
     </div>
   </div>
   <div class="row">
-    <div class="col-7">{{goods[0].name}}</div>
+    <div class="col-5">{{basketGood.goodInformation.name}}</div>
     <div class="col-3">
-      <button (click)="removeOneValue(goods[0].id)">+</button>
-        {{goods[0].name}}
-      <button (click)="removeOneValue(goods[0].id)">-</button>
+      <div class="row p-0">
+        <button class="col-3 p-0" (click)="selectedGoodsService.addOneElement(basketGood)">+</button>
+          <input class="col-6 p-0" min="1" max="1000" type="number" [value]="basketGood.count" (input)="changeGoods($event.target.value)">
+        <button class="col-3 p-0" (click)="selectedGoodsService.removeOneValue(basketGood.goodInformation.id)">-</button>
+      </div>
     </div>
-    <div class="col-2">{{getPrice(goods) | currency }}</div>
+    <div class="col-4 price">{{getPrice() | currency }}</div>
   </div>
 </div>

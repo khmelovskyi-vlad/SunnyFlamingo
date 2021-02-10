@@ -1,6 +1,6 @@
-import { Guid } from "guid-typescript";
 import { GoodInformation } from "../models/good-information";
 import { PropertyModel } from "../models/property-model";
+const { v4: uuidv4 } = require('uuid');
 
 const properties: PropertyModel[] = [
   {key: "prop1", value: "description"},
@@ -15,7 +15,7 @@ const properties: PropertyModel[] = [
 
 
 export const GOOD: GoodInformation = {
-  id: Guid.create(),
+  id: uuidv4(),
   name: "some good name",
   price: 24234.234,
   isAvailable: true,

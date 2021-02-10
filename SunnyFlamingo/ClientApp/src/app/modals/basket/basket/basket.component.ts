@@ -3,6 +3,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Guid } from 'guid-typescript';
 import { from, of, zip } from 'rxjs';
 import { groupBy, map, mergeMap, toArray } from 'rxjs/operators';
+import { BasketGoodModel } from '../../../models/basket-good-model';
 import { SelectedGoodsService } from '../../../global-services/selected-goods.service';
 import { GoodInformation } from '../../../models/good-information';
 import { ImgService } from '../../../services/img.service';
@@ -15,56 +16,37 @@ import { ImgService } from '../../../services/img.service';
 export class BasketComponent implements OnInit {
 
   closeResult = '';
-  goods: GoodInformation[];
-  groupedGoods: GoodInformation[][] = [];
-
+  // goods: GoodInformation[];
+  // groupedGoods: GoodInformation[][] = [];
+  basketGoods: BasketGoodModel[] = [];
+  
   constructor(
     private modalService: NgbModal, 
     private selectedGoodsService: SelectedGoodsService,
     private imgService: ImgService
     ) {}
-  
-  // removeMultiplyValues(id: Guid){
-  //   let newArray: GoodInformation[] = [];
-  //   for (let i = 0; i < this.goods.length; i++) {
-  //     if (this.goods[i].id === id) {
-  //       continue;
-  //     }
-  //     newArray.push(this.goods[i]);
-  //   }
-  //   this.selectedGoodsService.removeValue(newArray);
+  getCount(): number{
+    return this.basketGoods.map(basketGood => basketGood.count).reduce((a,b) => a + b, 0);
+  }
+  // groupGoods(goods: GoodInformation[]){
+  //   const newGrouped: GoodInformation[][] = [];
+  //   from(goods).pipe( 
+  //     groupBy(good => good.id),
+  //     mergeMap(group => group.pipe(toArray())),
+  //   )
+  //   .subscribe(res => 
+  //     {
+  //       newGrouped.push(res);
+  //     });
+  //   this.groupedGoods = newGrouped.sort((a, b) => (a[0].id > b[0].id ? -1 : 1));
   // }
 
-  // removeOneValue(id: Guid){
-  //   let newArray: GoodInformation[] = [];
-  //   let findItem = false;
-  //   for (let i = 0; i < this.goods.length; i++) {
-  //     if (!findItem) {
-  //       if (this.goods[i].id === id) {
-  //         findItem = true;
-  //         continue;
-  //       }
-  //     }
-  //     newArray.push(this.goods[i]);
-  //   }
-  //   this.selectedGoodsService.removeValue(newArray);
-  // }
-
-  // getPrice(goods: GoodInformation[]): number{
-  //   return goods.map(good => good.price).reduce((a, b) => a + b, 0);
-  // }
-
-  groupGoods(goods: GoodInformation[]){
-    const newGrouped: GoodInformation[][] = [];
-    from(goods).pipe( 
-      groupBy(good => good.name),
-      mergeMap(group => group.pipe(toArray())),
-    )
-    .subscribe(res => 
-      {
-        newGrouped.push(res);
-      });
-    this.groupedGoods = newGrouped;
+  getPrice(): number{
+    let price = 0;
+    for (let i = 0; i < this.basketGoods.length; i++) {
+      price += this.basketGoods[i].count * this.basketGoods[i].goodInformation.price;
+    }
+    return price;
   }
 
   i = 0;
@@ -74,10 +56,9 @@ export class BasketComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.selectedGoodsService.selectedGoods
-    .subscribe(goods => {
-      this.goods = goods;
-      this.groupGoods(goods);
+    this.selectedGoodsService.selectedBasketGoods
+    .subscribe(basketGoods => {
+      this.basketGoods = basketGoods.sort((a, b) => (a.addDate > b.addDate ? -1 : 1));
     });
   }
 

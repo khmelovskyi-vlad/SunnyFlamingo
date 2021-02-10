@@ -2,7 +2,7 @@ import { Guid } from "guid-typescript";
 import { PropertyModel } from "./property-model";
 
 export interface GoodInformation{
-  id: Guid;
+  id: any;
   name: string;
   price: number;
   isAvailable: boolean;
