@@ -16,7 +16,7 @@ export class GoodsElementComponent implements OnInit {
 
   // @Input() goods: GoodInformation[];
   @Input() basketGood: BasketGoodModel;
-  
+  //
   constructor(public selectedGoodsService: SelectedGoodsService,
     private imgService: ImgService) { }
 

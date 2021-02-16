@@ -13,6 +13,9 @@ namespace SunnyFlamingo.Extensions
         {
             services.AddScoped<IAllGoodsSearcher, AllGoodsSearcher>();
             services.AddScoped<IQuestionsGrouper, QuestionsGrouper>();
+            services.AddSingleton<IParametersCreator, ParametersCreator>();
+            services.AddScoped<IGoodsInformationCreator, GoodsInformationCreator>();
+            services.AddScoped<IQuestionsCreator, QuestionsCreator>();
 
             services.AddScoped<IGoodsSearcher, GoodsSearcher>();
             services.AddScoped<IGoodsQuestionsService, GoodsQuestionsService>();

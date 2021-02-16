@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SunnyFlamingo.ValueObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,5 +17,7 @@ namespace SunnyFlamingo.Models.Selectors
         public int From { get; set; }
         public int To { get; set; }
         public bool GetQuestions { get; set; }
+        public OrderType OrderType { get; set; }
+        public SortDir SortDir { get; set; }
     }
 }

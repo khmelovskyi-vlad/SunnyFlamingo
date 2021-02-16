@@ -8,6 +8,19 @@ namespace SunnyFlamingo.Models
 {
     public class QuestionBase<T>
     {
+        public QuestionBase()
+        {
+
+        }
+        public QuestionBase(DBQuestionBase dBQuestionBase)
+        {
+            AfterBox = dBQuestionBase.AfterBox;
+            Checked = dBQuestionBase.Checked;
+            Key = dBQuestionBase.Key;
+            Label = dBQuestionBase.Label;
+            From = dBQuestionBase.From;
+            To = dBQuestionBase.To;
+        }
         public string QuestionsKey { get; set; }
         public T Value { get; set; }
         public string Key { get; set; }

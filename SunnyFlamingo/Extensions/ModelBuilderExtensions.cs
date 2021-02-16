@@ -5,6 +5,7 @@ using SunnyFlamingo.Entities.Goods;
 using SunnyFlamingo.Entities.Goods.ComputerTechnologies;
 using SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerAccessories;
 using SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerParts;
+using SunnyFlamingo.Models;
 using SunnyFlamingo.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -401,6 +402,11 @@ namespace SunnyFlamingo.Extensions
                 .HasKey(ui => new { ui.LaptopId, ui.ComputerDriveTypeValue });
             modelBuilder.Entity<ComputerComputerDriveType>()
                 .HasKey(ui => new { ui.ComputerId, ui.ComputerDriveTypeValue });
+        }
+        public static void AddNoKeys(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<GoodCellModel>().HasNoKey();
+            modelBuilder.Entity<DBQuestionBase>().HasNoKey();
         }
         public static void AddForeignKeys(this ModelBuilder modelBuilder)
         {
