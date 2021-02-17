@@ -1,4 +1,5 @@
 ﻿using SunnyFlamingo.Models;
+using SunnyFlamingo.Models.Selectors;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -9,364 +10,154 @@ namespace SunnyFlamingo.Services.Searchers
 {
     public class QuestionsGrouper : IQuestionsGrouper
     {
-        public QuestionsBase<string> GroupProducers(List<QuestionBase<string>> questions)
+        private readonly IQuestionsCreator _questionsCreator;
+        public QuestionsGrouper(IQuestionsCreator questionsCreator)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "producer",
-                Value = "Select producer",
-                Order = 1,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "producer").ToList()
+            _questionsCreator = questionsCreator;
+        }
+        public List<QuestionsBase<string>> GroupGoods(GoodsSelector goodsSelector, List<DBQuestionBase> dBQuestions)
+        {
+            return new List<QuestionsBase<string>>() {
+                    _questionsCreator.GroupProducers(dBQuestions),
+                    _questionsCreator.GroupCountries(dBQuestions),
+                    _questionsCreator.GroupMaterials(dBQuestions),
+                    _questionsCreator.GroupColors(dBQuestions),
+                    _questionsCreator.GroupPrices(dBQuestions, goodsSelector.PriceFrom, goodsSelector.PriceTo)
             };
         }
-        public QuestionsBase<string> GroupCountries(List<QuestionBase<string>> questions)
+        public List<QuestionsBase<string>> GroupComputerTechnologies(ComputerTechnologiesSelector computerTechnologiesSelector, List<DBQuestionBase> dBQuestions)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "country",
-                Value = "Select country",
-                Order = 2,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "country").ToList()
-            };
+            return GroupGoods(computerTechnologiesSelector.GoodsSelector, dBQuestions);
         }
-        public QuestionsBase<string> GroupMaterials(List<QuestionBase<string>> questions)
+        public List<QuestionsBase<string>> GroupLaptops(LaptopsSelector laptopsSelector, List<DBQuestionBase> dBQuestions)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "material",
-                Value = "Select material",
-                Order = 3,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "material").ToList()
+            var questions = new List<QuestionsBase<string>>() {
+                _questionsCreator.GroupAmountOfRAMs(dBQuestions),
+                _questionsCreator.GroupCPUFrequencies(dBQuestions),
+                _questionsCreator.GroupHeight(dBQuestions),
+                _questionsCreator.GroupWidth(dBQuestions),
+                _questionsCreator.GroupLength(dBQuestions),
+                _questionsCreator.GroupHaveFloppyDrives(dBQuestions),
+                _questionsCreator.GroupSSDMemory(dBQuestions),
+                _questionsCreator.GroupHardDiskMemory(dBQuestions),
+                _questionsCreator.GroupCPUSocketTypes(dBQuestions),
+                _questionsCreator.GroupComputerDriveTypes(dBQuestions),
+                _questionsCreator.GroupNumberOfCores(dBQuestions),
+                _questionsCreator.GroupDisplays(dBQuestions)
             };
+            if (laptopsSelector.HaveFloppyDrives == null || laptopsSelector.HaveFloppyDrives.Contains(true))
+            {
+                questions.Add(_questionsCreator.GroupFloppyDrivesCount(dBQuestions));
+            }
+            questions.AddRange(GroupComputerTechnologies(laptopsSelector.ComputerTechnologiesSelector, dBQuestions));
+            return questions;
         }
-        public QuestionsBase<string> GroupColors(List<QuestionBase<string>> questions)
+        public List<QuestionsBase<string>> GroupComputers(ComputersSelector computersSelector, List<DBQuestionBase> dBQuestions)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "color",
-                Value = "Select color",
-                Order = 4,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "color").ToList()
+            var questions = new List<QuestionsBase<string>>() {
+                _questionsCreator.GroupAmountOfRAMs(dBQuestions),
+                _questionsCreator.GroupCPUFrequencies(dBQuestions),
+                _questionsCreator.GroupHeight(dBQuestions),
+                _questionsCreator.GroupWidth(dBQuestions),
+                _questionsCreator.GroupLength(dBQuestions),
+                _questionsCreator.GroupHaveFloppyDrives(dBQuestions),
+                _questionsCreator.GroupSSDMemory(dBQuestions),
+                _questionsCreator.GroupHardDiskMemory(dBQuestions),
+                _questionsCreator.GroupCPUSocketTypes(dBQuestions),
+                _questionsCreator.GroupComputerDriveTypes(dBQuestions),
+                _questionsCreator.GroupNumberOfCores(dBQuestions)
             };
-        }
-        public QuestionsBase<string> GroupPrices(List<QuestionBase<string>> questions, decimal? priceFrom, decimal? priceTo)
-        {
-            return new QuestionsBase<string>()
+            if (computersSelector.HaveFloppyDrives == null || computersSelector.HaveFloppyDrives.Contains(true))
             {
-                Key = "price",
-                Value = "Select price",
-                Order = 5,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "price")
-                .GroupBy(q => q.QuestionsKey)
-                .Select(q => new QuestionBase<string>()
-                {
-                    ControlType = q.First().ControlType,
-                    From = Convert.ToDecimal(q.First(el => el.Key == "minPrice").Label, new CultureInfo("en-US")),
-                    To = Convert.ToDecimal(q.First(el => el.Key == "maxPrice").Label, new CultureInfo("en-US")),
-                    SelectedFrom = priceFrom == null ? Convert.ToDecimal(q.First(el => el.Key == "minPrice").Label, new CultureInfo("en-US")) : priceFrom,
-                    SelectedTo = priceTo == null ? Convert.ToDecimal(q.First(el => el.Key == "maxPrice").Label, new CultureInfo("en-US")) : priceTo,
-                    Required = false,
-                }).ToList()
-            };
-        }
-        public QuestionsBase<string> GroupAmountOfRAMs(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "amountOfRAM",
-                Value = "Select amount of RAM",
-                Order = 10,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "amountOfRAM").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupCPUFrequencies(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "CPUFrequency",
-                Value = "Select CPU frequency",
-                Order = 11,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "CPUFrequency").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupHeight(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "height",
-                Value = "Select height",
-                Order = 12,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "height").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupWidth(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "width",
-                Value = "Select width",
-                Order = 13,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "width").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupLength(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "length",
-                Value = "Select length",
-                Order = 14,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "length").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupHaveFloppyDrives(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "haveFloppyDrives",
-                Value = "Have floppy drive",
-                Order = 15,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "haveFloppyDrives").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupSSDMemory(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "SSDMemory",
-                Value = "Select SSD memory",
-                Order = 16,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "SSDMemory").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupHardDiskMemory(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "hardDiskMemory",
-                Value = "Select hard disk memory",
-                Order = 17,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "hardDiskMemory").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupCPUSocketTypes(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "CPUSocketType",
-                Value = "Select CPU socket type",
-                Order = 18,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "CPUSocketType").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupComputerDriveTypes(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "computerDriveType",
-                Value = "Select computer drive type",
-                Order = 19,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "computerDriveType").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupNumberOfCores(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "numberOfCores",
-                Value = "Select number of cores",
-                Order = 20,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "numberOfCores").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupFloppyDrivesCount(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "floppyDrivesCount",
-                Value = "Select floppy drives count",
-                Order = 21,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "floppyDrivesCount").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupDisplays(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "display",
-                Value = "Select display",
-                Order = 22,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "display").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupCapacities(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "capacity",
-                Value = "Select capacity",
-                Order = 10,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "capacity").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupUSBSpecificationTypes(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "USBSpecificationType",
-                Value = "Select USB specification type",
-                Order = 11,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "USBSpecificationType").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupFormFactorTypes(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "formFactorType",
-                Value = "Select form factor type",
-                Order = 30,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "formFactorType").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupCoolerTypes(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "coolerType",
-                Value = "Select cooler type",
-                Order = 30,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "coolerType").ToList()
-            };
-        }
-        public QuestionsBase<string> GroupFanSizes(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "fanSize",
-                Value = "Select fan size",
-                Order = 31,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "fanSize").ToList()
-            };
+                questions.Add(_questionsCreator.GroupFloppyDrivesCount(dBQuestions));
+            }
+            questions.AddRange(GroupComputerTechnologies(computersSelector.ComputerTechnologiesSelector, dBQuestions));
+            return questions;
         }
 
-
-
-        public QuestionsBase<string> GroupThermalDesignPowers(List<QuestionBase<string>> questions)
+        public List<QuestionsBase<string>> GroupComputerAccessories(ComputerAccessoriesSelector computerAccessoriesSelector, List<DBQuestionBase> dBQuestions)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "thermalDesignPower",
-                Value = "Select thermal design power",
-                Order = 30,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "thermalDesignPower").ToList()
-            };
+            return GroupComputerTechnologies(computerAccessoriesSelector.ComputerTechnologiesSelector, dBQuestions);
         }
-        public QuestionsBase<string> GroupNumberOfThreads(List<QuestionBase<string>> questions)
+        public List<QuestionsBase<string>> GroupComputerParts(ComputerPartsSelector computerPartsSelector, List<DBQuestionBase> dBQuestions)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "numberOfThreads",
-                Value = "Select number of threads",
-                Order = 31,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "numberOfThreads").ToList()
-            };
+            return GroupComputerTechnologies(computerPartsSelector.ComputerTechnologiesSelector, dBQuestions);
         }
-
-        public QuestionsBase<string> GroupDriveInterfaces(List<QuestionBase<string>> questions)
+        public List<QuestionsBase<string>> GroupFlashDrives(FlashDrivesSelector flashDrivesSelector, List<DBQuestionBase> dBQuestions)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "driveInterface",
-                Value = "Select drive interface",
-                Order = 30,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "driveInterface").ToList()
+            var questions = new List<QuestionsBase<string>>() {
+                _questionsCreator.GroupCapacity(dBQuestions),
+                _questionsCreator.GroupUSBSpecificationTypes(dBQuestions),
             };
+            questions.AddRange(GroupComputerTechnologies(flashDrivesSelector.ComputerTechnologiesSelector, dBQuestions));
+            return questions;
         }
-        public QuestionsBase<string> GroupVideoSizes(List<QuestionBase<string>> questions)
+        public List<QuestionsBase<string>> GroupVideoCards(VideoCardsSelector videoCardsSelector, List<DBQuestionBase> dBQuestions)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "videoSize",
-                Value = "Select video size",
-                Order = 31,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "videoSize").ToList()
+            var questions = new List<QuestionsBase<string>>() {
+                _questionsCreator.GroupDriveInterfaces(dBQuestions),
+                _questionsCreator.GroupVideoSizes(dBQuestions),
+                _questionsCreator.GroupVideoMemoryCapacities(dBQuestions),
             };
+            questions.AddRange(GroupComputerParts(videoCardsSelector.ComputerPartsSelector, dBQuestions));
+            return questions;
         }
-        public QuestionsBase<string> GroupVideoMemoryCapacities(List<QuestionBase<string>> questions)
+        public List<QuestionsBase<string>> GroupCPUs(CPUsSelector cpusSelector, List<DBQuestionBase> dBQuestions)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "videoMemoryCapacity",
-                Value = "Select video memory capacity",
-                Order = 31,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "videoMemoryCapacity").ToList()
+            var questions = new List<QuestionsBase<string>>() {
+                _questionsCreator.GroupCPUSocketTypes(dBQuestions),
+                _questionsCreator.GroupThermalDesignPowers(dBQuestions),
+                _questionsCreator.GroupNumberOfCores(dBQuestions),
+                _questionsCreator.GroupNumberOfThreads(dBQuestions),
             };
+            questions.AddRange(GroupComputerParts(cpusSelector.ComputerPartsSelector, dBQuestions));
+            return questions;
         }
-
-
-
-
-
-        public QuestionsBase<string> GroupHeadphonesTypes(List<QuestionBase<string>> questions)
+        public List<QuestionsBase<string>> GroupCoolers(CoolersSelector coolersSelector, List<DBQuestionBase> dBQuestions)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "headphonesType",
-                Value = "Select headphones type",
-                Order = 30,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "headphonesType").ToList()
+            var questions = new List<QuestionsBase<string>>() {
+                _questionsCreator.GroupCoolerTypes(dBQuestions),
+                _questionsCreator.GroupFanSizes(dBQuestions),
             };
+            questions.AddRange(GroupComputerParts(coolersSelector.ComputerPartsSelector, dBQuestions));
+            return questions;
         }
-        public QuestionsBase<string> GroupWirelessTypes(List<QuestionBase<string>> questions)
+        public List<QuestionsBase<string>> GroupComputerDrives(ComputerDrivesSelector computerDrivesSelector, List<DBQuestionBase> dBQuestions)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "wirelessType",
-                Value = "Select wireless type",
-                Order = 31,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "wirelessType").ToList()
+            var questions = new List<QuestionsBase<string>>() {
+                _questionsCreator.GroupCapacity(dBQuestions),
+                _questionsCreator.GroupComputerDriveTypes(dBQuestions),
+                _questionsCreator.GroupFormFactorTypes(dBQuestions),
             };
+            questions.AddRange(GroupComputerParts(computerDrivesSelector.ComputerPartsSelector, dBQuestions));
+            return questions;
         }
-        public QuestionsBase<string> GroupConnectorTypes(List<QuestionBase<string>> questions)
+        public List<QuestionsBase<string>> GroupMice(MiceSelector miceSelector, List<DBQuestionBase> dBQuestions)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "connectorType",
-                Value = "Select connector type",
-                Order = 32,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "connectorType").ToList()
+            var questions = new List<QuestionsBase<string>>() {
+                _questionsCreator.GroupMauseTypes(dBQuestions),
+                _questionsCreator.GroupButtonsCount(dBQuestions),
             };
+            questions.AddRange(GroupComputerAccessories(miceSelector.ComputerAccessoriesSelector, dBQuestions));
+            return questions;
         }
-        public QuestionsBase<string> GroupKeyboardTypes(List<QuestionBase<string>> questions)
+        public List<QuestionsBase<string>> GroupKeyboards(KeyboardsSelector keyboardsSelector, List<DBQuestionBase> dBQuestions)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "keyboardType",
-                Value = "Select keyboard type",
-                Order = 30,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "keyboardType").ToList()
+            var questions = new List<QuestionsBase<string>>() {
+                _questionsCreator.GroupKeyboardTypes(dBQuestions),
             };
+            questions.AddRange(GroupComputerAccessories(keyboardsSelector.ComputerAccessoriesSelector, dBQuestions));
+            return questions;
         }
-        public QuestionsBase<string> GroupMauseTypes(List<QuestionBase<string>> questions)
+        public List<QuestionsBase<string>> GroupHeadphones(HeadphonesSelector headphonesSelector, List<DBQuestionBase> dBQuestions)
         {
-            return new QuestionsBase<string>()
-            {
-                Key = "mauseType",
-                Value = "Select mause type",
-                Order = 30,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "mauseType").ToList()
+            var questions = new List<QuestionsBase<string>>() {
+                _questionsCreator.GroupHeadphonesTypes(dBQuestions),
+                _questionsCreator.GroupWirelessTypes(dBQuestions),
+                _questionsCreator.GroupConnectorTypes(dBQuestions),
             };
-        }
-        public QuestionsBase<string> GroupButtonsCount(List<QuestionBase<string>> questions)
-        {
-            return new QuestionsBase<string>()
-            {
-                Key = "buttonsCount",
-                Value = "Select buttons count",
-                Order = 31,
-                QuestionBaseList = questions.Where(el => el.QuestionsKey == "buttonsCount").ToList()
-            };
+            questions.AddRange(GroupComputerAccessories(headphonesSelector.ComputerAccessoriesSelector, dBQuestions));
+            return questions;
         }
     }
 }

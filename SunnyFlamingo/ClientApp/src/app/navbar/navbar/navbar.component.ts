@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectedGoodsService } from 'src/app/global-services/selected-goods.service';
 
 @Component({
   selector: 'app-navbar',

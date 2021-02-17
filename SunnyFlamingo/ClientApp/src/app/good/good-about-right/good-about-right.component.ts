@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SelectedGoodsService } from 'src/app/global-services/selected-goods.service';
-import { BasketGoodModel } from 'src/app/models/basket-good-model';
+import { SelectedGoodsService } from '../../global-services/selected-goods.service';
+import { BasketGoodModel } from '../../models/basket-good-model';
 import { GoodInformation } from '../../models/good-information';
 
 @Component({

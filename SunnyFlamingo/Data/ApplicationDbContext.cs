@@ -11,6 +11,7 @@ using SunnyFlamingo.Entities.Goods.ComputerTechnologies;
 using SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerAccessories;
 using SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerParts;
 using SunnyFlamingo.Extensions;
+using SunnyFlamingo.Models;
 using SunnyFlamingo.ValueObjects;
 
 namespace SunnyFlamingo.Data
@@ -44,6 +45,8 @@ namespace SunnyFlamingo.Data
         public DbSet<CPU> CPUs { get; set; }
         public DbSet<Cooler> Coolers { get; set; }
         public DbSet<ComputerDrive> ComputerDrives { get; set; }
+        public DbSet<GoodCellModel> GoodCellModels { get; set; }
+        public DbSet<DBQuestionBase> QuestionBases { get; set; }
 
 
         public DbSet<ComputerDriveType> ComputerDriveTypes { get; set; }
@@ -68,6 +71,7 @@ namespace SunnyFlamingo.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.AddPrimaryKeys();
             modelBuilder.AddForeignKeys();
+            modelBuilder.AddNoKeys();
             modelBuilder.AddRequired();
             modelBuilder.AddConversion();
             modelBuilder.SetPrecisionsAndScales();

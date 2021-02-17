@@ -15,9 +15,6 @@ import { ImgService } from '../../../services/img.service';
 })
 export class BasketComponent implements OnInit {
 
-  closeResult = '';
-  // goods: GoodInformation[];
-  // groupedGoods: GoodInformation[][] = [];
   basketGoods: BasketGoodModel[] = [];
   
   constructor(
@@ -25,22 +22,10 @@ export class BasketComponent implements OnInit {
     private selectedGoodsService: SelectedGoodsService,
     private imgService: ImgService
     ) {}
+
   getCount(): number{
     return this.basketGoods.map(basketGood => basketGood.count).reduce((a,b) => a + b, 0);
   }
-  // groupGoods(goods: GoodInformation[]){
-  //   const newGrouped: GoodInformation[][] = [];
-  //   from(goods).pipe( 
-  //     groupBy(good => good.id),
-  //     mergeMap(group => group.pipe(toArray())),
-  //   )
-  //   .subscribe(res => 
-  //     {
-  //       newGrouped.push(res);
-  //     });
-  //   this.groupedGoods = newGrouped.sort((a, b) => (a[0].id > b[0].id ? -1 : 1));
-  // }
-
   getPrice(): number{
     let price = 0;
     for (let i = 0; i < this.basketGoods.length; i++) {
@@ -63,20 +48,7 @@ export class BasketComponent implements OnInit {
   }
 
   open(content: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result;
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
 }

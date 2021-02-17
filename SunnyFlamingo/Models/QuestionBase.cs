@@ -1,6 +1,7 @@
 ﻿using SunnyFlamingo.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +9,19 @@ namespace SunnyFlamingo.Models
 {
     public class QuestionBase<T>
     {
+        public QuestionBase()
+        {
+
+        }
+        public QuestionBase(DBQuestionBase dBQuestionBase)
+        {
+            AfterBox = dBQuestionBase.AfterBox;
+            Checked = dBQuestionBase.Checked;
+            Key = dBQuestionBase.Key;
+            Label = dBQuestionBase.Label;
+            From = Convert.ToDecimal(dBQuestionBase.From, new CultureInfo("en-US"));
+            To = Convert.ToDecimal(dBQuestionBase.To, new CultureInfo("en-US"));
+        }
         public string QuestionsKey { get; set; }
         public T Value { get; set; }
         public string Key { get; set; }

@@ -202,7 +202,7 @@ namespace SunnyFlamingo.Controllers
             bool getQuestions = true
             )
         {
-            return await _searcherGoods.SearchComputerAccessories(producer, country, material, color, priceFrom, priceTo, from, to, getQuestions);
+            return await _searcherGoods.SearchComputerParts(producer, country, material, color, priceFrom, priceTo, from, to, getQuestions);
         }
         [HttpGet]
         [Route("computerAccessories")]
@@ -218,7 +218,7 @@ namespace SunnyFlamingo.Controllers
             bool getQuestions = true
             )
         {
-            return await _searcherGoods.SearchComputerParts(producer, country, material, color, priceFrom, priceTo, from, to, getQuestions);
+            return await _searcherGoods.SearchComputerAccessories(producer, country, material, color, priceFrom, priceTo, from, to, getQuestions);
         }
         [HttpGet]
         [Route("computerDrives")]

@@ -77,7 +77,6 @@ export class SelectedGoodsService {
   //   localStorage.setItem('selectedGoods', JSON.stringify(newGoods));
   // }
 
-//
 
   selectedBasketGoods = new BehaviorSubject(this.basketGoods);
   
