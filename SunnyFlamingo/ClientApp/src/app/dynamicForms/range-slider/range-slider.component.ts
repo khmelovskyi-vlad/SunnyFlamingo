@@ -13,7 +13,7 @@ export class RangeSliderComponent implements OnInit {
   @Input() question: QuestionBase<string>;
   options: Options;
   constructor(private service: QuestionService) { }
-
+  
   searchGoods() {
     this.service.searchGoods(
       `${this.questionsKey}From`,

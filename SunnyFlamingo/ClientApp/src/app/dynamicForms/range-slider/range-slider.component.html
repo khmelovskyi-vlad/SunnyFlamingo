@@ -1,6 +1,6 @@
 <button (click)="searchGoods()">Okey</button>
-<label for="questionsKey+'From'">from:</label>
+<label [for]="questionsKey+'From'">from:</label>
 <input type="number" [id]="questionsKey+'From'" [(ngModel)]="question.selectedFrom"/>
-<label for="questionsKey+'To'">to:</label>
+<label [for]="questionsKey+'To'">to:</label>
 <input type="number" [id]="questionsKey+'To'" [(ngModel)]="question.selectedTo"/>
 <ngx-slider [(value)]="question.selectedFrom" [(highValue)]="question.selectedTo" [options]="options"></ngx-slider>

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PropertyModel } from 'src/app/models/property-model';
+import { PropertyModel } from '../../models/property-model';
 
 @Component({
   selector: 'app-good-characteristic-list',

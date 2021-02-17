@@ -14,11 +14,13 @@ import { DynamicFormModule } from './dynamicForms/dynamic-form.module';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { LoaderModule } from './loader/loader.module';
 import { GoodModule } from './good/good.module';
+import { CheckoutComponent } from './checkout/checkout/checkout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
