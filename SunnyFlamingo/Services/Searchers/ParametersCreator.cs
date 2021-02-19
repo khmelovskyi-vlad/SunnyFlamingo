@@ -47,8 +47,7 @@ namespace SunnyFlamingo.Services.Searchers
             {
                 sqlParameters.Add(CreatePriceToParameter(goodsSelector.PriceTo));
             }
-            sqlParameters.Add(CreateFromParameter(goodsSelector.From));
-            sqlParameters.Add(CreateToParameter(goodsSelector.To));
+            sqlParameters.AddRange(CreateFromToParameters(goodsSelector.Page, goodsSelector.ShowGoods));
             sqlParameters.Add(CreateOrderTypeParameter(goodsSelector.OrderType));
             sqlParameters.Add(CreateSortDirParameter(goodsSelector.SortDir));
             sqlParameters.Add(CreateCountParameter());
@@ -57,13 +56,13 @@ namespace SunnyFlamingo.Services.Searchers
         public List<SqlParameter> GetComputerTechnologiesParameters(ComputerTechnologiesSelector computerTechnologiesSelector)
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            sqlParameters.AddRange(GetGoodsParameters(computerTechnologiesSelector.GoodsSelector));
+            sqlParameters.AddRange(GetGoodsParameters(computerTechnologiesSelector));
             return sqlParameters;
         }
         public List<SqlParameter> GetLaptopsParameters(LaptopsSelector laptopsSelector)
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            sqlParameters.AddRange(GetComputerTechnologiesParameters(laptopsSelector.ComputerTechnologiesSelector));
+            sqlParameters.AddRange(GetComputerTechnologiesParameters(laptopsSelector));
             if (laptopsSelector.AmountOfRAMs != null)
             {
                 sqlParameters.Add(CreateAmountOfRAMParameter(laptopsSelector.AmountOfRAMs));
@@ -121,7 +120,7 @@ namespace SunnyFlamingo.Services.Searchers
         public List<SqlParameter> GetComputersParameters(ComputersSelector computersSelector)
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            sqlParameters.AddRange(GetComputerTechnologiesParameters(computersSelector.ComputerTechnologiesSelector));
+            sqlParameters.AddRange(GetComputerTechnologiesParameters(computersSelector));
             if (computersSelector.AmountOfRAMs != null)
             {
                 sqlParameters.Add(CreateAmountOfRAMParameter(computersSelector.AmountOfRAMs));
@@ -175,19 +174,19 @@ namespace SunnyFlamingo.Services.Searchers
         public List<SqlParameter> GetComputerAccessoriesParameters(ComputerAccessoriesSelector computerAccessoriesSelector)
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            sqlParameters.AddRange(GetComputerTechnologiesParameters(computerAccessoriesSelector.ComputerTechnologiesSelector));
+            sqlParameters.AddRange(GetComputerTechnologiesParameters(computerAccessoriesSelector));
             return sqlParameters;
         }
         public List<SqlParameter> GetComputerPartsParameters(ComputerPartsSelector computerPartsSelector)
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            sqlParameters.AddRange(GetComputerTechnologiesParameters(computerPartsSelector.ComputerTechnologiesSelector));
+            sqlParameters.AddRange(GetComputerTechnologiesParameters(computerPartsSelector));
             return sqlParameters;
         }
         public List<SqlParameter> GetFlashDrivesParameters(FlashDrivesSelector flashDrivesSelector)
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            sqlParameters.AddRange(GetComputerTechnologiesParameters(flashDrivesSelector.ComputerTechnologiesSelector));
+            sqlParameters.AddRange(GetComputerTechnologiesParameters(flashDrivesSelector));
             if (flashDrivesSelector.Capacities != null)
             {
                 sqlParameters.Add(CreateCapacitiesParameter(flashDrivesSelector.Capacities));
@@ -201,7 +200,7 @@ namespace SunnyFlamingo.Services.Searchers
         public List<SqlParameter> GetVideoCardsParameters(VideoCardsSelector videoCardsSelector)
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            sqlParameters.AddRange(GetComputerPartsParameters(videoCardsSelector.ComputerPartsSelector));
+            sqlParameters.AddRange(GetComputerPartsParameters(videoCardsSelector));
             if (videoCardsSelector.DriveInterfaces != null)
             {
                 sqlParameters.Add(CreateDriveInterfacesParameter(videoCardsSelector.DriveInterfaces));
@@ -219,7 +218,7 @@ namespace SunnyFlamingo.Services.Searchers
         public List<SqlParameter> GetCPUsParameters(CPUsSelector cpusSelector)
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            sqlParameters.AddRange(GetComputerPartsParameters(cpusSelector.ComputerPartsSelector));
+            sqlParameters.AddRange(GetComputerPartsParameters(cpusSelector));
             if (cpusSelector.CPUSocketTypes != null)
             {
                 sqlParameters.Add(CreateCPUSocketTypesParameter(cpusSelector.CPUSocketTypes));
@@ -241,7 +240,7 @@ namespace SunnyFlamingo.Services.Searchers
         public List<SqlParameter> GetCoolersParameters(CoolersSelector coolersSelector)
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            sqlParameters.AddRange(GetComputerPartsParameters(coolersSelector.ComputerPartsSelector));
+            sqlParameters.AddRange(GetComputerPartsParameters(coolersSelector));
             if (coolersSelector.Types != null)
             {
                 sqlParameters.Add(CreateCoolerTypesParameter(coolersSelector.Types));
@@ -255,7 +254,7 @@ namespace SunnyFlamingo.Services.Searchers
         public List<SqlParameter> GetComputerDrivesParameters(ComputerDrivesSelector computerDrivesSelector)
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            sqlParameters.AddRange(GetComputerPartsParameters(computerDrivesSelector.ComputerPartsSelector));
+            sqlParameters.AddRange(GetComputerPartsParameters(computerDrivesSelector));
             if (computerDrivesSelector.Capacities != null)
             {
                 sqlParameters.Add(CreateCapacitiesParameter(computerDrivesSelector.Capacities));
@@ -273,7 +272,7 @@ namespace SunnyFlamingo.Services.Searchers
         public List<SqlParameter> GetMiceParameters(MiceSelector miceSelector)
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            sqlParameters.AddRange(GetComputerAccessoriesParameters(miceSelector.ComputerAccessoriesSelector));
+            sqlParameters.AddRange(GetComputerAccessoriesParameters(miceSelector));
             if (miceSelector.Types != null)
             {
                 sqlParameters.Add(CreateMauseTypesParameter(miceSelector.Types));
@@ -287,7 +286,7 @@ namespace SunnyFlamingo.Services.Searchers
         public List<SqlParameter> GetKeyboardsParameters(KeyboardsSelector keyboardsSelector)
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            sqlParameters.AddRange(GetComputerAccessoriesParameters(keyboardsSelector.ComputerAccessoriesSelector));
+            sqlParameters.AddRange(GetComputerAccessoriesParameters(keyboardsSelector));
             if (keyboardsSelector.Types != null)
             {
                 sqlParameters.Add(CreateKeyboardTypesParameter(keyboardsSelector.Types));
@@ -297,7 +296,7 @@ namespace SunnyFlamingo.Services.Searchers
         public List<SqlParameter> GetHeadphonesParameters(HeadphonesSelector HeadphonesSelector)
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            sqlParameters.AddRange(GetComputerAccessoriesParameters(HeadphonesSelector.ComputerAccessoriesSelector));
+            sqlParameters.AddRange(GetComputerAccessoriesParameters(HeadphonesSelector));
             if (HeadphonesSelector.Types != null)
             {
                 sqlParameters.Add(CreateHeadphonesTypesParameter(HeadphonesSelector.Types));
@@ -456,13 +455,28 @@ namespace SunnyFlamingo.Services.Searchers
         {
             return CreateStringListParameter("@colors", CreateStringListTable(colors));
         }
-        private SqlParameter CreateFromParameter(int from)
+        private SqlParameter[] CreateFromToParameters(int page, int showGoods)
         {
-            return new SqlParameter("@from", from) { SqlDbType = SqlDbType.Int };
-        }
-        private SqlParameter CreateToParameter(int to)
-        {
-            return new SqlParameter("@to", to) { SqlDbType = SqlDbType.Int };
+            if (page < 1)
+            {
+                page = 1;
+            }
+            if (showGoods < 36)
+            {
+                showGoods = 36;
+            }
+            if (showGoods > 36 * 3)
+            {
+                showGoods = 36 * 3;
+            }
+            var asd = new SqlParameter[] {
+                new SqlParameter("@from", (page - 1) * showGoods) { SqlDbType = SqlDbType.Int },
+                new SqlParameter("@to", page * showGoods) { SqlDbType = SqlDbType.Int },
+            };
+            return new SqlParameter[] {
+                new SqlParameter("@from", (page - 1) * showGoods) { SqlDbType = SqlDbType.Int },
+                new SqlParameter("@to", showGoods) { SqlDbType = SqlDbType.Int },
+            };
         }
         private SqlParameter CreateOrderTypeParameter(OrderType orderType)
         {

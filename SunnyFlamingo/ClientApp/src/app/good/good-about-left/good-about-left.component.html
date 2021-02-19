@@ -9,6 +9,9 @@
       <li>Description: {{goodInformation.description}}</li>
     </ul>
   </div>
-  <app-good-characteristic-list class="col" [characteristicList]="goodInformation.properties"></app-good-characteristic-list>
+  <app-good-characteristic-list class="col" 
+  [characteristicList]="goodInformation.properties"
+  [characteristicLists]="goodInformation.propertyLists"
+  ></app-good-characteristic-list>
   
 </div>

@@ -3,3 +3,16 @@
     {{characteristic.key}}: {{characteristic.value}}
   </div>
 </div>
+<div *ngIf="characteristicList">
+  <div>
+    {{characteristicList.key}}: 
+    <div *ngIf="characteristicList.value.length > 0">
+      <div *ngFor="let value of characteristicList.value">
+        <span>{{value}}</span>
+      </div>
+    </div>
+    <div *ngIf="characteristicList.value.length <= 0">
+      <span>None</span>
+    </div>
+  </div>
+</div>

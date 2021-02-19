@@ -7,6 +7,7 @@ import { QuestionService } from '../dynamicForms/question.service';
 import { GoodCellModel } from '../models/good-cell-model';
 import { GoodsInformation as GoodsInformation } from '../models/goods-information';
 import { SearchModel } from '../models/searchModel';
+import { UrlParameterService } from '../services/url-parameter.service';
 import { GOODS } from './mock-goods';
 
 @Injectable({
@@ -14,17 +15,15 @@ import { GOODS } from './mock-goods';
 })
 export class GoodsService {
 
-
-  constructor(private questionservice: QuestionService, private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private urlParameterService: UrlParameterService, private http: HttpClient, private route: ActivatedRoute) { }
 
   getGoodsInformation(currentUrl: string): Observable<GoodsInformation<string>>{
-    // currentUrl = currentUrl === "/" ? "/goods" : currentUrl;
-    // const url = `api/Goods${currentUrl}${currentUrl.includes('?') ? '&' : '?'}getQuestions=false`
-    const url = `api${currentUrl}`
-    return this.http.get<GoodsInformation<string>>(url)
-      .pipe(
-        catchError(this.handleError<GoodsInformation<string>>('getGoodsInformation'))
-      );
+    let urlPart = `api${currentUrl.split('?')[0]}`;
+    const selector = this.urlParameterService.getSelector();
+    return this.http.post<GoodsInformation<string>>(urlPart, selector)
+    .pipe(
+      catchError(this.handleError<GoodsInformation<string>>('getGoodsInformation'))
+    );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

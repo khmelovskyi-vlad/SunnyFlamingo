@@ -1,0 +1,17 @@
+<div class="row" *ngIf="count && getMaxPages() !== getMinPages()">
+  <div class="col">
+    <button class="btn btn-warning" [disabled]="getMinPages()==currentPage" (click)="searchGoods(currentPage - 1)">
+      &#8592;
+    </button>
+  </div>
+  <div class="col" *ngFor="let pageModel of getPageNumbers()">
+    <button class="btn btn-warning" (click)="searchGoods(pageModel.value)" [class.active]="pageModel.value === currentPage">
+      {{pageModel.name}}
+    </button>
+  </div>
+  <div class="col">
+    <button class="btn btn-warning" [disabled]="getMaxPages()==currentPage" (click)="searchGoods(currentPage + 1)">
+      &#8594;
+    </button>
+  </div>
+</div>

@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace SunnyFlamingo.Models.Selectors
 {
-    public class ComputersSelector
+    public class ComputersSelector : ComputerTechnologiesSelector
     {
-        public ComputerTechnologiesSelector ComputerTechnologiesSelector { get; set; }
         public int[] AmountOfRAMs { get; set; }
         public int[] CPUFrequencies { get; set; }
         public float[] Length { get; set; }

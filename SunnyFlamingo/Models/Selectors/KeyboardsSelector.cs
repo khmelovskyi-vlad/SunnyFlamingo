@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace SunnyFlamingo.Models.Selectors
 {
-    public class KeyboardsSelector
+    public class KeyboardsSelector : ComputerAccessoriesSelector
     {
-        public ComputerAccessoriesSelector ComputerAccessoriesSelector { get; set; }
         public string[] Types { get; set; }
     }
 }

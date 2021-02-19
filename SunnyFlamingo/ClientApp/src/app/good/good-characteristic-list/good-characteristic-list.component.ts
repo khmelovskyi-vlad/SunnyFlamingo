@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PropertyListModel } from '../..//models/property-list-model';
 import { PropertyModel } from '../../models/property-model';
 
 @Component({
@@ -9,6 +10,7 @@ import { PropertyModel } from '../../models/property-model';
 export class GoodCharacteristicListComponent implements OnInit {
 
   @Input() characteristicList: PropertyModel[];
+  @Input() characteristicLists: PropertyListModel[];
 
   constructor() { }
 
