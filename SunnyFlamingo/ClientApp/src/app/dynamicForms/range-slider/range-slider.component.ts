@@ -1,7 +1,7 @@
 import { Options } from '@angular-slider/ngx-slider';
 import { Component, Input, OnInit } from '@angular/core';
+import { UrlParameterService } from '../../services/url-parameter.service';
 import { QuestionBase } from '../../models/question-base';
-import { QuestionService } from '../question.service';
 
 @Component({
   selector: 'app-range-slider',
@@ -12,7 +12,7 @@ export class RangeSliderComponent implements OnInit {
   @Input() questionsKey: string;
   @Input() question: QuestionBase<string>;
   options: Options;
-  constructor(private service: QuestionService) { }
+  constructor(private service: UrlParameterService) { }
   
   searchGoods() {
     this.service.searchGoods(

@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace SunnyFlamingo.Models.Selectors
 {
-    public class CoolersSelector
+    public class CoolersSelector : ComputerPartsSelector
     {
-        public ComputerPartsSelector ComputerPartsSelector { get; set; }
         public string[] Types { get; set; }
         public int[] FanSizes { get; set; }
     }

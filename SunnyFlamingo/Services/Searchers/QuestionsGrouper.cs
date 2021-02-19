@@ -27,7 +27,7 @@ namespace SunnyFlamingo.Services.Searchers
         }
         public List<QuestionsBase<string>> GroupComputerTechnologies(ComputerTechnologiesSelector computerTechnologiesSelector, List<DBQuestionBase> dBQuestions)
         {
-            return GroupGoods(computerTechnologiesSelector.GoodsSelector, dBQuestions);
+            return GroupGoods(computerTechnologiesSelector, dBQuestions);
         }
         public List<QuestionsBase<string>> GroupLaptops(LaptopsSelector laptopsSelector, List<DBQuestionBase> dBQuestions)
         {
@@ -49,7 +49,7 @@ namespace SunnyFlamingo.Services.Searchers
             {
                 questions.Add(_questionsCreator.GroupFloppyDrivesCount(dBQuestions));
             }
-            questions.AddRange(GroupComputerTechnologies(laptopsSelector.ComputerTechnologiesSelector, dBQuestions));
+            questions.AddRange(GroupComputerTechnologies(laptopsSelector, dBQuestions));
             return questions;
         }
         public List<QuestionsBase<string>> GroupComputers(ComputersSelector computersSelector, List<DBQuestionBase> dBQuestions)
@@ -71,17 +71,17 @@ namespace SunnyFlamingo.Services.Searchers
             {
                 questions.Add(_questionsCreator.GroupFloppyDrivesCount(dBQuestions));
             }
-            questions.AddRange(GroupComputerTechnologies(computersSelector.ComputerTechnologiesSelector, dBQuestions));
+            questions.AddRange(GroupComputerTechnologies(computersSelector, dBQuestions));
             return questions;
         }
 
         public List<QuestionsBase<string>> GroupComputerAccessories(ComputerAccessoriesSelector computerAccessoriesSelector, List<DBQuestionBase> dBQuestions)
         {
-            return GroupComputerTechnologies(computerAccessoriesSelector.ComputerTechnologiesSelector, dBQuestions);
+            return GroupComputerTechnologies(computerAccessoriesSelector, dBQuestions);
         }
         public List<QuestionsBase<string>> GroupComputerParts(ComputerPartsSelector computerPartsSelector, List<DBQuestionBase> dBQuestions)
         {
-            return GroupComputerTechnologies(computerPartsSelector.ComputerTechnologiesSelector, dBQuestions);
+            return GroupComputerTechnologies(computerPartsSelector, dBQuestions);
         }
         public List<QuestionsBase<string>> GroupFlashDrives(FlashDrivesSelector flashDrivesSelector, List<DBQuestionBase> dBQuestions)
         {
@@ -89,7 +89,7 @@ namespace SunnyFlamingo.Services.Searchers
                 _questionsCreator.GroupCapacity(dBQuestions),
                 _questionsCreator.GroupUSBSpecificationTypes(dBQuestions),
             };
-            questions.AddRange(GroupComputerTechnologies(flashDrivesSelector.ComputerTechnologiesSelector, dBQuestions));
+            questions.AddRange(GroupComputerTechnologies(flashDrivesSelector, dBQuestions));
             return questions;
         }
         public List<QuestionsBase<string>> GroupVideoCards(VideoCardsSelector videoCardsSelector, List<DBQuestionBase> dBQuestions)
@@ -99,7 +99,7 @@ namespace SunnyFlamingo.Services.Searchers
                 _questionsCreator.GroupVideoSizes(dBQuestions),
                 _questionsCreator.GroupVideoMemoryCapacities(dBQuestions),
             };
-            questions.AddRange(GroupComputerParts(videoCardsSelector.ComputerPartsSelector, dBQuestions));
+            questions.AddRange(GroupComputerParts(videoCardsSelector, dBQuestions));
             return questions;
         }
         public List<QuestionsBase<string>> GroupCPUs(CPUsSelector cpusSelector, List<DBQuestionBase> dBQuestions)
@@ -110,7 +110,7 @@ namespace SunnyFlamingo.Services.Searchers
                 _questionsCreator.GroupNumberOfCores(dBQuestions),
                 _questionsCreator.GroupNumberOfThreads(dBQuestions),
             };
-            questions.AddRange(GroupComputerParts(cpusSelector.ComputerPartsSelector, dBQuestions));
+            questions.AddRange(GroupComputerParts(cpusSelector, dBQuestions));
             return questions;
         }
         public List<QuestionsBase<string>> GroupCoolers(CoolersSelector coolersSelector, List<DBQuestionBase> dBQuestions)
@@ -119,7 +119,7 @@ namespace SunnyFlamingo.Services.Searchers
                 _questionsCreator.GroupCoolerTypes(dBQuestions),
                 _questionsCreator.GroupFanSizes(dBQuestions),
             };
-            questions.AddRange(GroupComputerParts(coolersSelector.ComputerPartsSelector, dBQuestions));
+            questions.AddRange(GroupComputerParts(coolersSelector, dBQuestions));
             return questions;
         }
         public List<QuestionsBase<string>> GroupComputerDrives(ComputerDrivesSelector computerDrivesSelector, List<DBQuestionBase> dBQuestions)
@@ -129,7 +129,7 @@ namespace SunnyFlamingo.Services.Searchers
                 _questionsCreator.GroupComputerDriveTypes(dBQuestions),
                 _questionsCreator.GroupFormFactorTypes(dBQuestions),
             };
-            questions.AddRange(GroupComputerParts(computerDrivesSelector.ComputerPartsSelector, dBQuestions));
+            questions.AddRange(GroupComputerParts(computerDrivesSelector, dBQuestions));
             return questions;
         }
         public List<QuestionsBase<string>> GroupMice(MiceSelector miceSelector, List<DBQuestionBase> dBQuestions)
@@ -138,7 +138,7 @@ namespace SunnyFlamingo.Services.Searchers
                 _questionsCreator.GroupMauseTypes(dBQuestions),
                 _questionsCreator.GroupButtonsCount(dBQuestions),
             };
-            questions.AddRange(GroupComputerAccessories(miceSelector.ComputerAccessoriesSelector, dBQuestions));
+            questions.AddRange(GroupComputerAccessories(miceSelector, dBQuestions));
             return questions;
         }
         public List<QuestionsBase<string>> GroupKeyboards(KeyboardsSelector keyboardsSelector, List<DBQuestionBase> dBQuestions)
@@ -146,7 +146,7 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = new List<QuestionsBase<string>>() {
                 _questionsCreator.GroupKeyboardTypes(dBQuestions),
             };
-            questions.AddRange(GroupComputerAccessories(keyboardsSelector.ComputerAccessoriesSelector, dBQuestions));
+            questions.AddRange(GroupComputerAccessories(keyboardsSelector, dBQuestions));
             return questions;
         }
         public List<QuestionsBase<string>> GroupHeadphones(HeadphonesSelector headphonesSelector, List<DBQuestionBase> dBQuestions)
@@ -156,7 +156,7 @@ namespace SunnyFlamingo.Services.Searchers
                 _questionsCreator.GroupWirelessTypes(dBQuestions),
                 _questionsCreator.GroupConnectorTypes(dBQuestions),
             };
-            questions.AddRange(GroupComputerAccessories(headphonesSelector.ComputerAccessoriesSelector, dBQuestions));
+            questions.AddRange(GroupComputerAccessories(headphonesSelector, dBQuestions));
             return questions;
         }
     }

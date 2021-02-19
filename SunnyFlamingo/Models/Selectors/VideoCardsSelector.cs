@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace SunnyFlamingo.Models.Selectors
 {
-    public class VideoCardsSelector
+    public class VideoCardsSelector : ComputerPartsSelector
     {
-        public ComputerPartsSelector ComputerPartsSelector { get; set; }
         public string[] DriveInterfaces { get; set; }
         public int[] VideoSizes { get; set; }
         public int[] VideoMemoryCapacities { get; set; }

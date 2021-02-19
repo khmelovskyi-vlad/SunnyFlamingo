@@ -22,6 +22,8 @@ import { GoodCellComponent } from './good-cell/good-cell.component';
 import { LoaderComponent } from '../loader/loader/loader.component';
 import { LoaderModule } from '../loader/loader.module';
 import { GoodsMenuComponent } from './goods-menu/goods-menu.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { CatalogSettingsComponent } from './catalog-settings/catalog-settings.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { GoodsMenuComponent } from './goods-menu/goods-menu.component';
     KeyboardListComponent,
     HeadphonesListComponent,
     GoodCellComponent,
-    GoodsMenuComponent],
+    GoodsMenuComponent,
+    PaginationComponent,
+    CatalogSettingsComponent],
   imports: [
     CommonModule,
     FiltersModule,

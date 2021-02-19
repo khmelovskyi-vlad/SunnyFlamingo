@@ -10,18 +10,11 @@ import { GoodService } from '../good.service';
 })
 export class GoodMainComponent implements OnInit {
 
-  showLoader = true;
-  goodInformation: GoodInformation;
 
-  constructor(private goodService: GoodService, private router: Router) { }
+  constructor() { }
 
 
   ngOnInit(): void {
-    this.goodService.getGoodInformation(this.router.url)
-      .subscribe(goodsInformation => {
-        this.goodInformation = goodsInformation;
-        this.showLoader = false;
-      });
   }
 
 }

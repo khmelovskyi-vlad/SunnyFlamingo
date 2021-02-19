@@ -1,4 +1,5 @@
 import { Guid } from "guid-typescript";
+import { PropertyListModel } from "./property-list-model";
 import { PropertyModel } from "./property-model";
 
 export interface GoodInformation{
@@ -14,4 +15,5 @@ export interface GoodInformation{
   material: string;
   color: string;
   properties: PropertyModel[];
+  propertyLists: PropertyListModel[];
 }

@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace SunnyFlamingo.Models.Selectors
 {
-    public class CPUsSelector
+    public class CPUsSelector : ComputerPartsSelector
     {
-        public ComputerPartsSelector ComputerPartsSelector { get; set; }
         public string[] CPUSocketTypes { get; set; }
         public int[] ThermalDesignPowers { get; set; }
         public int[] NumberOfCores { get; set; }

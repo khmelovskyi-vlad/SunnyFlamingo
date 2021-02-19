@@ -1,7 +1,7 @@
-import { Location } from '@angular/common';
-import { Component, OnChanges, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { UrlParameterService } from '../../services/url-parameter.service';
 import { GoodsInformation } from '../../models/goods-information';
 import { GoodsService } from '../goods.service';
 
@@ -10,18 +10,19 @@ import { GoodsService } from '../goods.service';
   templateUrl: './good-list.component.html',
   styleUrls: ['./good-list.component.css']
 })
-export class GoodListComponent implements OnInit {
+export class GoodListComponent implements OnInit, OnDestroy {
 
   goodsInformation: GoodsInformation<string>;
 
-
+  subscribes: Subscription[] = [];
+  
   showLoader: boolean = true;
 
-  constructor(private goodService: GoodsService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private goodService: GoodsService, private router: Router, public urlParameterService: UrlParameterService) { }
   
   ngOnInit(): void {
     
-    this.router.events
+    this.subscribes.push(this.router.events
       .subscribe((val) => {
         if (val instanceof NavigationEnd) {
           if (val.url.split('?')[0].startsWith('/goods')) {
@@ -33,12 +34,15 @@ export class GoodListComponent implements OnInit {
               });
           }
         }
-    });
-    this.goodService.getGoodsInformation(this.router.url)
+    }));
+    this.subscribes.push(this.goodService.getGoodsInformation(this.router.url)
       .subscribe(goodsInformation => {
         this.goodsInformation = goodsInformation;
         this.showLoader = false;
-      });
+      }));
+  }
+  ngOnDestroy(): void{
+    this.subscribes.forEach(subscribe => subscribe.unsubscribe());
   }
 
 }

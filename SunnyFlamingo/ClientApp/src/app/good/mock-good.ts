@@ -26,5 +26,6 @@ export const GOOD: GoodInformation = {
   country: "Ukraine",
   material: "leather",
   color: "blue",
-  properties: properties
+  properties: properties,
+  propertyLists: []
 };

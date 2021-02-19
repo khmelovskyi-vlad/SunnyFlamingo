@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace SunnyFlamingo.Models.Selectors
 {
-    public class FlashDrivesSelector
+    public class FlashDrivesSelector : ComputerTechnologiesSelector
     {
-        public ComputerTechnologiesSelector ComputerTechnologiesSelector { get; set; }
         public int[] Capacities { get; set; }
         public string[] USBSpecificationTypes { get; set; }
     }

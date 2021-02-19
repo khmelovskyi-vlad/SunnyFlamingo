@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SunnyFlamingo.Data;
 using SunnyFlamingo.Entities;
 using SunnyFlamingo.Models;
+using SunnyFlamingo.Models.Selectors;
 using SunnyFlamingo.Services;
 using SunnyFlamingo.Services.Searchers;
 using SunnyFlamingo.ValueObjects;
@@ -18,351 +21,94 @@ namespace SunnyFlamingo.Controllers
     [ApiController]
     public class GoodsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IAllGoodsSearcher _searcherGoods;
-        public GoodsController(
-            ApplicationDbContext context,
-            IAllGoodsSearcher searcherGoods)
+        private readonly IGoodsInformationCreator _goodsInformationCreator;
+        public GoodsController(IGoodsInformationCreator goodsInformationCreator)
         {
-            _context = context;
-            _searcherGoods = searcherGoods;
+            _goodsInformationCreator = goodsInformationCreator;
         }
-        [HttpGet]
+        [HttpPost]
         [Route("")]
-        public async Task<GoodsInformation<string>> GetGoodsInformation(
-            string producer = null,
-            string country = null,
-            string material = null,
-            string color = null,
-            decimal? priceFrom = null,
-            decimal? priceTo = null,
-            int from = 0,
-            int to = 20,
-            bool getQuestions = true
-            )
+        public async Task<GoodsInformation<string>> GetGoodsInformation([FromBody] GoodsSelector goodsSelector)
         {
-            return await _searcherGoods.SearchGoods(producer, country, material, color, priceFrom, priceTo, from, to, getQuestions);
+            return await _goodsInformationCreator.CreateGoodsInformation(goodsSelector);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("computerTechnologies")]
-        public async Task<GoodsInformation<string>> GetComputerTechnologiesInformation(
-            string producer = null,
-            string country = null,
-            string material = null,
-            string color = null,
-            decimal? priceFrom = null,
-            decimal? priceTo = null,
-            int from = 0,
-            int to = 20,
-            bool getQuestions = true
-            )
+        public async Task<GoodsInformation<string>> GetComputerTechnologiesInformation([FromBody] ComputerTechnologiesSelector computerTechnologiesSelector)
         {
-            return await _searcherGoods.SearchComputerTechnologies(producer, country, material, color, priceFrom, priceTo, from, to, getQuestions);
+            return await _goodsInformationCreator.CreateComputerTechnologiesInformation(computerTechnologiesSelector);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("laptops")]
-        public async Task<GoodsInformation<string>> GetLaptopsInformation(
-            string producer = null,
-            string country = null,
-            string material = null,
-            string color = null,
-            string amountOfRAM = null,
-            string CPUFrequency = null,
-            string length = null,
-            string height = null,
-            string width = null,
-            string haveFloppyDrives = null,
-            string SSDMemory = null,
-            string hardDiskMemory = null,
-            string CPUSocketType = null,
-            string computerDriveType = null,
-            string numberOfCores = null,
-            string floppyDrivesCount = null,
-            string display = null,
-            decimal? priceFrom = null,
-            decimal? priceTo = null,
-            int from = 0,
-            int to = 20,
-            bool getQuestions = true
-            )
+        public async Task<GoodsInformation<string>> GetLaptopsInformation([FromBody] LaptopsSelector laptopsSelector)
         {
-            return await _searcherGoods.SearchLaptops(
-            producer,
-            country,
-            material,
-            color,
-            amountOfRAM,
-            CPUFrequency,
-            length,
-            height,
-            width,
-            haveFloppyDrives,
-            SSDMemory,
-            hardDiskMemory,
-            CPUSocketType,
-            computerDriveType,
-            numberOfCores,
-            floppyDrivesCount,
-            display,
-            priceFrom,
-            priceTo,
-            from,
-            to,
-            getQuestions);
+            return await _goodsInformationCreator.CreateLaptopsInformation(laptopsSelector);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("computers")]
-        public async Task<GoodsInformation<string>> GetComputersInformation(
-            string producer = null,
-            string country = null,
-            string material = null,
-            string color = null,
-            string amountOfRAM = null,
-            string CPUFrequency = null,
-            string length = null,
-            string height = null,
-            string width = null,
-            string haveFloppyDrives = null,
-            string SSDMemory = null,
-            string hardDiskMemory = null,
-            string CPUSocketType = null,
-            string computerDriveType = null,
-            string numberOfCores = null,
-            string floppyDrivesCount = null,
-            decimal? priceFrom = null,
-            decimal? priceTo = null,
-            int from = 0,
-            int to = 20,
-            bool getQuestions = true
-            )
+        public async Task<GoodsInformation<string>> GetComputersInformation([FromBody] ComputersSelector computersSelector)
         {
-            return await _searcherGoods.SearchComputers(
-            producer,
-            country,
-            material,
-            color,
-            amountOfRAM,
-            CPUFrequency,
-            length,
-            height,
-            width,
-            haveFloppyDrives,
-            SSDMemory,
-            hardDiskMemory,
-            CPUSocketType,
-            computerDriveType,
-            numberOfCores,
-            floppyDrivesCount,
-            priceFrom,
-            priceTo,
-            from,
-            to,
-            getQuestions);
+            return await _goodsInformationCreator.CreateComputersInformation(computersSelector);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("flashDrives")]
-        public async Task<GoodsInformation<string>> GetFlashDrivesInformation(
-            string producer = null,
-            string country = null,
-            string material = null,
-            string color = null,
-            string capacity = null,
-            string USBSpecificationType = null,
-            decimal? priceFrom = null,
-            decimal? priceTo = null,
-            int from = 0,
-            int to = 20,
-            bool getQuestions = true
-            )
+        public async Task<GoodsInformation<string>> GetFlashDrivesInformation([FromBody] FlashDrivesSelector flashDrivesSelector)
         {
-            return await _searcherGoods.SearchFlashDrives(
-            producer,
-            country,
-            material,
-            color,
-            capacity,
-            USBSpecificationType,
-            priceFrom,
-            priceTo,
-            from,
-            to,
-            getQuestions);
+            return await _goodsInformationCreator.CreateFlashDrivesInformation(flashDrivesSelector);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("computerParts")]
-        public async Task<GoodsInformation<string>> GetComputerPartsInformation(
-            string producer = null,
-            string country = null,
-            string material = null,
-            string color = null,
-            decimal? priceFrom = null,
-            decimal? priceTo = null,
-            int from = 0,
-            int to = 20,
-            bool getQuestions = true
-            )
+        public async Task<GoodsInformation<string>> GetComputerPartsInformation([FromBody] ComputerPartsSelector computerPartsSelector)
         {
-            return await _searcherGoods.SearchComputerParts(producer, country, material, color, priceFrom, priceTo, from, to, getQuestions);
+            return await _goodsInformationCreator.CreateComputerPartsInformation(computerPartsSelector);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("computerAccessories")]
-        public async Task<GoodsInformation<string>> GetComputerAccessoriesInformation(
-            string producer = null,
-            string country = null,
-            string material = null,
-            string color = null,
-            decimal? priceFrom = null,
-            decimal? priceTo = null,
-            int from = 0,
-            int to = 20,
-            bool getQuestions = true
-            )
+        public async Task<GoodsInformation<string>> GetComputerAccessoriesInformation([FromBody] ComputerAccessoriesSelector computerAccessoriesSelector)
         {
-            return await _searcherGoods.SearchComputerAccessories(producer, country, material, color, priceFrom, priceTo, from, to, getQuestions);
+            return await _goodsInformationCreator.CreateComputerAccessoriesInformation(computerAccessoriesSelector);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("computerDrives")]
-        public async Task<GoodsInformation<string>> GetComputerDrivesInformation(
-            string producer = null,
-            string country = null,
-            string material = null,
-            string color = null,
-            string capacity = null,
-            string computerDriveType = null,
-            string formFactorType = null,
-            decimal? priceFrom = null,
-            decimal? priceTo = null,
-            int from = 0,
-            int to = 20,
-            bool getQuestions = true
-            )
+        public async Task<GoodsInformation<string>> GetComputerDrivesInformation([FromBody] ComputerDrivesSelector computerDrivesSelector)
         {
-            return await _searcherGoods.SearchComputerDrives(producer, country, material, color,
-                capacity, computerDriveType, formFactorType,
-                priceFrom, priceTo, from, to, getQuestions);
+            return await _goodsInformationCreator.CreateComputerDrivesInformation(computerDrivesSelector);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("coolers")]
-        public async Task<GoodsInformation<string>> GetCoolersInformation(
-            string producer = null,
-            string country = null,
-            string material = null,
-            string color = null,
-            string coolerType = null,
-            string fanSize = null,
-            decimal? priceFrom = null,
-            decimal? priceTo = null,
-            int from = 0,
-            int to = 20,
-            bool getQuestions = true
-            )
+        public async Task<GoodsInformation<string>> GetCoolersInformation([FromBody] CoolersSelector coolersSelector)
         {
-            return await _searcherGoods.SearchCoolers(producer, country, material, color,
-                coolerType, fanSize,
-                priceFrom, priceTo, from, to, getQuestions);
+            return await _goodsInformationCreator.CreateCoolersInformation(coolersSelector);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("CPUs")]
-        public async Task<GoodsInformation<string>> GetCPUsInformation(
-            string producer = null,
-            string country = null,
-            string material = null,
-            string color = null,
-            string CPUSocketType = null,
-            string thermalDesignPower = null,
-            string numberOfCores = null,
-            string numberOfThreads = null,
-            decimal? priceFrom = null,
-            decimal? priceTo = null,
-            int from = 0,
-            int to = 20,
-            bool getQuestions = true
-            )
+        public async Task<GoodsInformation<string>> GetCPUsInformation([FromBody] CPUsSelector cpusSelector)
         {
-            return await _searcherGoods.SearchCPUs(producer, country, material, color,
-                CPUSocketType, thermalDesignPower, numberOfCores, numberOfThreads,
-                priceFrom, priceTo, from, to, getQuestions);
+            return await _goodsInformationCreator.CreateCPUsInformation(cpusSelector);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("videoCards")]
-        public async Task<GoodsInformation<string>> GetVideoCardsInformation(
-            string producer = null,
-            string country = null,
-            string material = null,
-            string color = null,
-            string driveInterface = null,
-            string videoSize = null,
-            string videoMemoryCapacity = null,
-            decimal? priceFrom = null,
-            decimal? priceTo = null,
-            int from = 0,
-            int to = 20,
-            bool getQuestions = true
-            )
+        public async Task<GoodsInformation<string>> GetVideoCardsInformation([FromBody] VideoCardsSelector videoCardsSelector)
         {
-            return await _searcherGoods.SearchVideoCards(producer, country, material, color,
-                driveInterface, videoSize, videoMemoryCapacity,
-                priceFrom, priceTo, from, to, getQuestions);
+            return await _goodsInformationCreator.CreateVideoCardsInformation(videoCardsSelector);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("mice")]
-        public async Task<GoodsInformation<string>> GetMiceInformation(
-            string producer = null,
-            string country = null,
-            string material = null,
-            string color = null,
-            string mauseType = null,
-            string buttonsCount = null,
-            decimal? priceFrom = null,
-            decimal? priceTo = null,
-            int from = 0,
-            int to = 20,
-            bool getQuestions = true
-            )
+        public async Task<GoodsInformation<string>> GetMiceInformation([FromBody] MiceSelector miceSelector)
         {
-            return await _searcherGoods.SearchMice(producer, country, material, color,
-                mauseType, buttonsCount,
-                priceFrom, priceTo, from, to, getQuestions);
+            return await _goodsInformationCreator.CreateMiceInformation(miceSelector);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("keyboards")]
-        public async Task<GoodsInformation<string>> GetKeyboardsInformation(
-            string producer = null,
-            string country = null,
-            string material = null,
-            string color = null,
-            string keyboardType = null,
-            decimal? priceFrom = null,
-            decimal? priceTo = null,
-            int from = 0,
-            int to = 20,
-            bool getQuestions = true
-            )
+        public async Task<GoodsInformation<string>> GetKeyboardsInformation([FromBody] KeyboardsSelector keyboardsSelector)
         {
-            return await _searcherGoods.SearchKeyboards(producer, country, material, color,
-                keyboardType,
-                priceFrom, priceTo, from, to, getQuestions);
+            return await _goodsInformationCreator.CreateKeyboardsInformation(keyboardsSelector);
         }
-        [HttpGet]
+        [HttpPost]
         [Route("headphones")]
-        public async Task<GoodsInformation<string>> GetHeadphonesInformation(
-            string producer = null,
-            string country = null,
-            string material = null,
-            string color = null,
-            string headphonesType = null,
-            string wirelessType = null,
-            string connectorType = null,
-            decimal? priceFrom = null,
-            decimal? priceTo = null,
-            int from = 0,
-            int to = 20,
-            bool getQuestions = true
-            )
+        public async Task<GoodsInformation<string>> GetHeadphonesInformation([FromBody] HeadphonesSelector headphonesSelector)
         {
-            return await _searcherGoods.SearchHeadphones(producer, country, material, color,
-                headphonesType, wirelessType, connectorType,
-                priceFrom, priceTo, from, to, getQuestions);
+            return await _goodsInformationCreator.CreateHeadphonesInformation(headphonesSelector);
         }
     }
 }

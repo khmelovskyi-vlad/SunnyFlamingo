@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 namespace SunnyFlamingo.Models.Selectors
 {
-    public class ComputerAccessoriesSelector
+    public class ComputerAccessoriesSelector : ComputerTechnologiesSelector
     {
-        public ComputerTechnologiesSelector ComputerTechnologiesSelector { get; set; }
     }
 }
