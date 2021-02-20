@@ -44,5 +44,4 @@ export class GoodListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void{
     this.subscribes.forEach(subscribe => subscribe.unsubscribe());
   }
-
 }

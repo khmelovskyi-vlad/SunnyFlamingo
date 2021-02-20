@@ -42,6 +42,7 @@ namespace SunnyFlamingo
                 .AddDefaultTokenProviders();
 
             services.Configure<ImgOptions>(Configuration.GetSection("ImgPathes"));
+            services.Configure<NewGoodsExcelPathOption>(Configuration.GetSection("NewGoodsExcelPath"));
             var builder = services.AddIdentityServer(options =>
             {
                 options.Events.RaiseErrorEvents = true;
@@ -121,6 +122,7 @@ namespace SunnyFlamingo
         private SqlConnectionStringBuilder GetSqlConnectionStringBuilder()
         {
             SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder();
+            sqlConnectionStringBuilder.PersistSecurityInfo = true;
             sqlConnectionStringBuilder.DataSource = "DESKTOP-U3G7G64\\SQL_DEVELOPER";
             sqlConnectionStringBuilder.UserID = "SQLProjectsDB";
             sqlConnectionStringBuilder.Password = "Test1234";
