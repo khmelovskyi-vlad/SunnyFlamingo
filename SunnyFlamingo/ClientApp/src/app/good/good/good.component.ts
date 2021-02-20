@@ -20,7 +20,6 @@ export class GoodComponent implements OnInit, OnDestroy {
     private router: Router
     ) { }
 
-    
   ngOnInit(): void {
     this.subscribes.push(this.goodService.getGoodInformation(this.router.url)
     .subscribe(goodInformation => {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SunnyFlamingo.Services;
 using SunnyFlamingo.Services.Searchers;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace SunnyFlamingo.Extensions
             services.AddSingleton<IParametersCreator, ParametersCreator>();
             services.AddScoped<IGoodsInformationCreator, GoodsInformationCreator>();
             services.AddSingleton<IQuestionsCreator, QuestionsCreator>();
+            services.AddScoped<IExcelGoodsMaster, ExcelGoodsMaster>();
         }
     }
 }
