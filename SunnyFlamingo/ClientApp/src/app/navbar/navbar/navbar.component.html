@@ -39,7 +39,8 @@
           <app-basket></app-basket>
         </li>
       </ul>
-        <button class="btn btn-outline-warning" type="submit">Login</button>
+        <button *ngIf="!isLogin" class="btn btn-outline-warning" (click)="login()">Login</button>
+        <button *ngIf="isLogin" class="btn btn-outline-warning" (click)="logout()">Logout</button>
     </div>
   </div>
 </nav>

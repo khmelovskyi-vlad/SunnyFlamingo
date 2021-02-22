@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
   selector: 'app-navbar',
@@ -6,11 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  constructor(public oidcSecurityService: OidcSecurityService) {
+    this.oidcSecurityService.checkAuth().subscribe((auth) => this.isLogin = auth);
+  }
 
-
-  constructor() { }
+  isLogin: boolean = false;
 
   ngOnInit(): void {
   }
 
+  login() {
+    this.oidcSecurityService.authorize();
+  }
+
+  logout() {
+    this.oidcSecurityService.logoff();
+  }
 }

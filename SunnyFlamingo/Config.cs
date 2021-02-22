@@ -28,17 +28,16 @@ namespace SunnyFlamingo
             {
                 new Client
                 {
-                    ClientId = "js",
-                    ClientName = "JavaScript Client",
+                    ClientId = "angularClient",
+                    ClientName = "Angular Client",
                     RequireClientSecret = false,
                     AllowedGrantTypes = GrantTypes.Implicit,
                     RequirePkce = false,
                     AllowAccessTokensViaBrowser = true,
                     AlwaysIncludeUserClaimsInIdToken = true,
-
-                    RedirectUris = { "https://localhost:44370/callback.html" },
-                    PostLogoutRedirectUris = { "https://localhost:44370" },
-
+                    
+                    RedirectUris = { "https://localhost:44379" },
+                    PostLogoutRedirectUris = { "https://localhost:44379" },
 
                     AllowedScopes =
                     {
