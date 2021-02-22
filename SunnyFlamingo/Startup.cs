@@ -34,6 +34,7 @@ namespace SunnyFlamingo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(GetSqlConnectionStringBuilder().ConnectionString));
 
             services.AddIdentity<ApplicationUser, ApplicationRole>()
@@ -71,8 +72,8 @@ namespace SunnyFlamingo
             services.AddSpaStaticFiles(configuration =>
             {
                 //configuration.RootPath = "react-client/build";
-                //configuration.RootPath = "ClientApp/dist";
-                configuration.RootPath = "ClientApp/build";
+                configuration.RootPath = "ClientApp/dist";
+                //configuration.RootPath = "ClientApp/build";
             });
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -88,6 +89,7 @@ namespace SunnyFlamingo
             }
             else
             {
+                app.UseDeveloperExceptionPage();
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
