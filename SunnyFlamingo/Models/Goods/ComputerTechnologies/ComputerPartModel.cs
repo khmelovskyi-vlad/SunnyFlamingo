@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SunnyFlamingo.Services
+namespace SunnyFlamingo.Models
 {
-    public interface IExcelGoodsMaster
+    public class ComputerPartModel : ComputerTechnologyModel
     {
-        Task AddGoods();
     }
 }

@@ -16,6 +16,7 @@ import { LoaderModule } from './loader/loader.module';
 import { GoodModule } from './good/good.module';
 import { CheckoutComponent } from './checkout/checkout/checkout.component';
 import { AuthModule, LogLevel, OidcConfigService } from 'angular-auth-oidc-client';
+import { AddingGoodsModule } from './adding-goods/adding-goods.module';
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -46,6 +47,7 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     DynamicFormModule,
     NgxSliderModule,
     AuthModule.forRoot(),
+    AddingGoodsModule,
     LoaderModule,
     NavbarModule,
     GoodsModule,

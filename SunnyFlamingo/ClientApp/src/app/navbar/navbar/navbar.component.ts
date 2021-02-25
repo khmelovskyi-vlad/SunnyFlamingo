@@ -11,6 +11,8 @@ export class NavbarComponent implements OnInit {
     this.oidcSecurityService.checkAuth().subscribe((auth) => this.isLogin = auth);
   }
 
+  goods: string[] = ["first", "second", "third", "fourth"]
+
   isLogin: boolean = false;
 
   ngOnInit(): void {

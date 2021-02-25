@@ -1,4 +1,5 @@
-﻿using SunnyFlamingo.ValueObjects;
+﻿using SunnyFlamingo.Models;
+using SunnyFlamingo.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,6 +8,21 @@ namespace SunnyFlamingo.Entities
 {
     public class Good
     {
+        public Good()
+        {
+
+        }
+        public Good(GoodModel goodModel)
+        {
+            Name = goodModel.Name;
+            Price = goodModel.Price;
+            IsAvailable = goodModel.IsAvailable;
+            Description = goodModel.Description;
+            ProducerId = goodModel.ProducerId;
+            ManufacturerId = goodModel.ManufacturerId;
+            MaterialValue = goodModel.Material;
+            ColorValue = goodModel.Color;
+        }
         public Guid Id { get; set; }
         [MaxLength(500)]
         public string Name { get; set; }
@@ -28,5 +44,6 @@ namespace SunnyFlamingo.Entities
         public List<ImageInfo> ImageInfo { get; set; }
         public Guid? UserId { get; set; }
         public ApplicationUser User { get; set; }
+        public List<OrderGood> OrderGoods { get; set; }
     }
 }

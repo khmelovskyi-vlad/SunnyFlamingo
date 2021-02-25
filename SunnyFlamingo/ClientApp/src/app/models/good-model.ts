@@ -1,16 +1,37 @@
-import { Guid } from "guid-typescript";
-import { ManufacturerModel } from "./manufacturer-model";
-import { ProducerModel } from "./producer-model";
-
-export interface GoodModel{
-  id: Guid;
+export class GoodModel{
   name: string;
   price: number;
   isAvailable: boolean;
-  addTime: Date;
-  producer: ProducerModel;
-  manufacturer: ManufacturerModel;
+  description: string;
+  producerId: string;
+  manufacturerId: string;
   material: string;
   color: string;
-  imgIds: Guid[];
+  imageIds: string[];
+  constructor(options: {
+    name: string;
+    price: number;
+    isAvailable: string;
+    description: string;
+    producerId: string;
+    manufacturerId: string;
+    material: string;
+    color: string;
+    imageIds: string[];
+  }){
+    this.name = options.name;
+    this.price = +options.price;
+    if (options.isAvailable === "true") {
+      this.isAvailable = true;
+    }
+    else{
+      this.isAvailable = false;
+    }
+    this.description = options.description;
+    this.producerId = options.producerId;
+    this.manufacturerId = options.manufacturerId;
+    this.material = options.material;
+    this.color = options.color;
+    this.imageIds = options.imageIds;
+  }
 }

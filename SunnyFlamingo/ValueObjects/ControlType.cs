@@ -10,6 +10,10 @@ namespace SunnyFlamingo.ValueObjects
         Dropdown,
         Textbox,
         Checkbox,
-        RangeSlider
+        RangeSlider,
+        Searcher,
+        Switcher,
+        Image,
+        SearcherArray
     }
 }

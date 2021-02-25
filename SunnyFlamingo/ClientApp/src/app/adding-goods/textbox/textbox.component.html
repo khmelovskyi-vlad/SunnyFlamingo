@@ -1,0 +1,8 @@
+<div *ngIf="question && questionsKey && formGroup" [formGroup]="formGroup">
+  <label [attr.for]="question.key">{{question.label}}</label>
+  <input 
+  class="form-control"
+  [formControlName]="question.key" 
+  [id]="question.key+questionsKey" 
+  [type]="InputType[question.type]">
+</div>

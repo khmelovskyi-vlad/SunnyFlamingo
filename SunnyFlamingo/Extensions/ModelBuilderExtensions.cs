@@ -402,6 +402,8 @@ namespace SunnyFlamingo.Extensions
                 .HasKey(ui => new { ui.LaptopId, ui.ComputerDriveTypeValue });
             modelBuilder.Entity<ComputerComputerDriveType>()
                 .HasKey(ui => new { ui.ComputerId, ui.ComputerDriveTypeValue });
+            modelBuilder.Entity<OrderGood>()
+                .HasKey(og => new { og.OrderId, og.GoodId });
         }
         public static void AddNoKeys(this ModelBuilder modelBuilder)
         {
@@ -546,41 +548,6 @@ namespace SunnyFlamingo.Extensions
         }
         public static void AddConversion(this ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Laptop>()
-            //    .Property(l => l.CPUSocketType)
-            //    .HasConversion<string>();
-            //modelBuilder.Entity<Laptop>()
-            //    .Property(l => l.ComputerDriveType)
-            //    .HasConversion<string>();
-
-            //modelBuilder.Entity<Computer>()
-            //    .Property(l => l.CPUSocketType)
-            //    .HasConversion<string>();
-            //modelBuilder.Entity<Computer>()
-            //    .Property(l => l.ComputerDriveType)
-            //    .HasConversion<string>();
-
-            //modelBuilder.Entity<Headphones>()
-            //    .Property(l => l.Type)
-            //    .HasConversion<string>();
-            //modelBuilder.Entity<Headphones>()
-            //    .Property(l => l.WirelessType)
-            //    .HasConversion<string>();
-
-            //modelBuilder.Entity<Keyboard>()
-            //    .Property(l => l.Type)
-            //    .HasConversion<string>();
-
-            //modelBuilder.Entity<Mause>()
-            //    .Property(l => l.Type)
-            //    .HasConversion<string>();
-
-            //modelBuilder.Entity<CPU>()
-            //    .Property(l => l.CPUSocketType)
-            //    .HasConversion<string>();
-            //modelBuilder.Entity<ComputerDrive>()
-            //    .Property(l => l.Type)
-            //    .HasConversion<string>();
         }
     }
 }

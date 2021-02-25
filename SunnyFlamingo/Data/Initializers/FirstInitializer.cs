@@ -36,6 +36,8 @@ namespace SunnyFlamingo.Data.Initializers
             var mauseTypes = GetMauseTypes();
             var wirelessTypes = GetWirelessTypes();
 
+
+
             modelBuilder.Entity<Country>().HasData(countries);
             modelBuilder.Entity<Color>().HasData(colors);
             modelBuilder.Entity<Material>().HasData(materials);

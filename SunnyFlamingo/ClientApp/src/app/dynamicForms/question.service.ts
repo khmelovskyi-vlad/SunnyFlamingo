@@ -195,7 +195,6 @@ export class QuestionService {
             key: 'firstName',
             label: 'First name',
             value: 'Bombasto',
-            required: true,
             order: 1
           })
         ]

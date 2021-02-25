@@ -24,9 +24,22 @@ namespace SunnyFlamingo.Controllers
     public class GoodsController : ControllerBase
     {
         private readonly IGoodsInformationCreator _goodsInformationCreator;
-        public GoodsController(IGoodsInformationCreator goodsInformationCreator)
+        private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
+        public GoodsController(IGoodsInformationCreator goodsInformationCreator, ApplicationDbContext context, IMapper mapper)
         {
             _goodsInformationCreator = goodsInformationCreator;
+            _context = context;
+            _mapper = mapper;
+        }
+        [HttpGet]
+        [Route("GoodName")]
+        public async Task<List<GoodCellModel>> GetGoodByName(string part)
+        {
+            return await _context.Goods.Where(good => part == null || good.Name.Contains(part))
+                .Take(10)
+                .ProjectTo<GoodCellModel>(_mapper.ConfigurationProvider)
+                .ToListAsync();
         }
         [HttpPost]
         [Route("")]

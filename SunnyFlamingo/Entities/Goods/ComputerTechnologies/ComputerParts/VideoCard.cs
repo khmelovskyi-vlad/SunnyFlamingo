@@ -1,4 +1,5 @@
-﻿using SunnyFlamingo.ValueObjects;
+﻿using SunnyFlamingo.Models;
+using SunnyFlamingo.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,6 +8,24 @@ namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerParts
 {
     public class VideoCard : ComputerPart
     {
+        public VideoCard()
+        {
+
+        }
+        public VideoCard(VideoCardModel videoCardModel)
+        {
+            Name = videoCardModel.Name;
+            Price = videoCardModel.Price;
+            IsAvailable = videoCardModel.IsAvailable;
+            Description = videoCardModel.Description;
+            ProducerId = videoCardModel.ProducerId;
+            ManufacturerId = videoCardModel.ManufacturerId;
+            MaterialValue = videoCardModel.Material;
+            ColorValue = videoCardModel.Color;
+            VideoSize = videoCardModel.VideoSize;
+            DriveInterfaceValue = videoCardModel.DriveInterface;
+            VideoMemoryCapacity = videoCardModel.VideoMemoryCapacity;
+        }
         public int VideoSize { get; set; }
         [MaxLength(500)]
         public string DriveInterfaceValue { get; set; }

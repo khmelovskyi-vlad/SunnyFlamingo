@@ -49,6 +49,12 @@ namespace SunnyFlamingo.Data
         public DbSet<DBQuestionBase> QuestionBases { get; set; }
 
 
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderStatus> OrderStatuses { get; set; }
+        public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
+        public DbSet<OrderGood> OrderGoods { get; set; }
+
+
         public DbSet<ComputerDriveType> ComputerDriveTypes { get; set; }
         public DbSet<CPUSocketType> CPUSocketTypes { get; set; }
         public DbSet<HeadphonesType> HeadphonesTypes { get; set; }
@@ -77,7 +83,8 @@ namespace SunnyFlamingo.Data
             modelBuilder.SetPrecisionsAndScales();
             modelBuilder.AddIdentityNavigation();
             modelBuilder.AddColumnNames();
-            modelBuilder.Seed(new FirstInitializer());
+            modelBuilder.Seed(new SecondInitializer());
+            //modelBuilder.Seed(new FirstInitializer());
         }
 
     }

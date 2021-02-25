@@ -4915,6 +4915,7 @@ namespace SunnyFlamingo.Migrations
 
             migrationBuilder.DropTable(
                 name: "Countries");
+
         }
     }
 }

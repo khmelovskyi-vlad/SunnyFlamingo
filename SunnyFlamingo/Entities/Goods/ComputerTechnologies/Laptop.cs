@@ -1,4 +1,5 @@
-﻿using SunnyFlamingo.ValueObjects;
+﻿using SunnyFlamingo.Models;
+using SunnyFlamingo.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,6 +11,36 @@ namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies
 {
     public class Laptop : ComputerTechnology
     {
+        public Laptop()
+        {
+
+        }
+        public Laptop(LaptopModel laptopModel)
+        {
+            Name = laptopModel.Name;
+            Price = laptopModel.Price;
+            IsAvailable = laptopModel.IsAvailable;
+            Description = laptopModel.Description;
+            ProducerId = laptopModel.ProducerId;
+            ManufacturerId = laptopModel.ManufacturerId;
+            MaterialValue = laptopModel.Material;
+            ColorValue = laptopModel.Color;
+            AmountOfRAM = laptopModel.AmountOfRAM;
+            CPUFrequency = laptopModel.CPUFrequency;
+            Length = laptopModel.Length;
+            Height = laptopModel.Height;
+            Width = laptopModel.Width;
+            HaveFloppyDrives = laptopModel.HaveFloppyDrives;
+            SSDMemory = laptopModel.SSDMemory;
+            HardDiskMemory = laptopModel.HardDiskMemory;
+            CPUSocketTypeValue = laptopModel.CPUSocketType;
+            NumberOfCores = laptopModel.NumberOfCores;
+            if (HaveFloppyDrives)
+            {
+                FloppyDrivesCount = laptopModel.FloppyDrivesCount;
+            }
+            Display = laptopModel.Display;
+        }
         public int AmountOfRAM { get; set; }
         public int CPUFrequency { get; set; }
         public float Length { get; set; }
