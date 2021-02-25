@@ -2,5 +2,9 @@ export enum ControlType{
   dropdown,
   textbox,
   checkbox,
-  rangeSlider
+  rangeSlider,
+  searcher,
+  switcher,
+  image,
+  searcherArray
 }

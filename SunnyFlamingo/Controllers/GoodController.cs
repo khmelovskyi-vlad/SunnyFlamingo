@@ -20,7 +20,7 @@ namespace SunnyFlamingo.Controllers
 
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
-        public GoodController(ApplicationDbContext context, IParametersCreator parametersCreator, IQuestionsGrouper questionsGrouper, IMapper mapper)
+        public GoodController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

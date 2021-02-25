@@ -8,6 +8,9 @@ namespace SunnyFlamingo.ValueObjects
     public enum InputType
     {
         Email,
-        Checkbox
+        Checkbox,
+        Search,
+        Number,
+        File
     }
 }

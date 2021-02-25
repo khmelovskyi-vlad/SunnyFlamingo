@@ -7,8 +7,7 @@ import { QuestionControlService } from '../question-control.service';
 
 @Component({
   selector: 'app-dynamic-form',
-  templateUrl: './dynamic-form.component.html',
-  providers: [ QuestionControlService ]
+  templateUrl: './dynamic-form.component.html'
 })
 export class DynamicFormComponent implements OnChanges {
 
@@ -19,7 +18,7 @@ export class DynamicFormComponent implements OnChanges {
   constructor(private qcs: QuestionControlService) { }
 
   ngOnChanges() {
-    this.form = this.qcs.toFormGroup(this.questions);
+    this.form = this.qcs.questionsArrayToFormGroup(this.questions);
     this.forms = this.getForms();
   }
   

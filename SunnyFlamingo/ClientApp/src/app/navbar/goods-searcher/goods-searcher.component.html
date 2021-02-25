@@ -1,0 +1,20 @@
+<form class="d-flex" [formGroup]="goodForm" (ngSubmit)="onSubmit()">
+  <input 
+  class="form-control me-2" 
+  list="navbar-serach-goods-options" 
+  type="search" 
+  placeholder="Search"
+  aria-label="Search"
+  formControlName="namePart"
+  >
+  <button class="btn btn-success" type="submit">Search</button>
+</form>
+<div style="position: absolute; z-index: 5;">
+  <div style="background-color: yellow;">
+    <ul>
+      <li *ngFor="let good of goods" [value]="good.name" class="mt-1 goodName">
+        <button class="btn btn-block" [routerLink]="['/good', good.type]" [queryParams]="{id: good.id}">{{good.name}}</button>
+      </li>
+    </ul>
+  </div>
+</div>

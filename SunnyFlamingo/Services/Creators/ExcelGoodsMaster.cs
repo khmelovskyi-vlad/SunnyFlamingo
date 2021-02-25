@@ -16,7 +16,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SunnyFlamingo.Services.Searchers
+namespace SunnyFlamingo.Services.Creators
 {
     public class ExcelGoodsMaster : IExcelGoodsMaster
     {

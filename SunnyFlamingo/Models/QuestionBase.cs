@@ -26,7 +26,6 @@ namespace SunnyFlamingo.Models
         public T Value { get; set; }
         public string Key { get; set; }
         public string Label { get; set; }
-        public bool Required { get; set; }
         public int? Order { get; set; }
         public ControlType ControlType { get; set; }
         public InputType Type { get; set; }
@@ -37,5 +36,7 @@ namespace SunnyFlamingo.Models
         public object SelectedTo { get; set; }
         public object From { get; set; }
         public object To { get; set; }
+        public QuestionValidator Validator { get; set; }
+        public string MethodName { get; set; }
     }
 }

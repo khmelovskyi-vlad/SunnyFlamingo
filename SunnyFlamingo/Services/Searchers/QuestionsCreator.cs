@@ -16,7 +16,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "producer")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -33,7 +32,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "country")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -50,7 +48,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "material")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -67,7 +64,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "color")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -84,7 +80,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "price")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.RangeSlider,
                     Key = "price",
                     SelectedFrom = priceFrom == null ? Convert.ToDecimal(question.From, new CultureInfo("en-US")) : priceFrom,
@@ -103,7 +98,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "amountOfRAM")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -120,7 +114,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "CPUFrequency")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -137,7 +130,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "height")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -154,7 +146,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "width")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -171,7 +162,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "length")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -190,7 +180,6 @@ namespace SunnyFlamingo.Services.Searchers
                 {
                     Key = question.Key == "1" ? "true" : "false",
                     Label = question.Key == "1" ? "true" : "false",
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -207,7 +196,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "SSDMemory")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -224,7 +212,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "hardDiskMemory")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -241,7 +228,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "CPUSocketType")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -258,7 +244,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "computerDriveType")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -275,7 +260,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "numberOfCores")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -292,7 +276,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "floppyDrivesCount")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -309,7 +292,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "display")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -327,7 +309,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "capacity")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -345,7 +326,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "USBSpecificationType")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -363,7 +343,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "driveInterface")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -380,7 +359,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "videoSize")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -397,7 +375,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "videoMemoryCapacity")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -414,7 +391,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "thermalDesignPower")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -431,7 +407,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "numberOfThreads")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -448,7 +423,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "coolerType")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -465,7 +439,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "fanSize")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -482,7 +455,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "formFactorType")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -499,7 +471,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "mauseType")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -516,7 +487,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "buttonsCount")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -533,7 +503,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "keyboardType")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -550,7 +519,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "headphonesType")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -567,7 +535,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "wirelessType")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();
@@ -584,7 +551,6 @@ namespace SunnyFlamingo.Services.Searchers
             var questions = dBQuestions.Where(el => el.QuestionsKey == "connectorType")
                 .Select(question => new QuestionBase<string>(question)
                 {
-                    Required = false,
                     ControlType = ControlType.Checkbox,
                     Type = InputType.Checkbox
                 }).ToList();

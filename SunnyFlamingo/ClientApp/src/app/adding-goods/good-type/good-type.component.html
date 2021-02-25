@@ -1,0 +1,8 @@
+<form [formGroup]="goodTypeForm" (ngSubmit)="onSelectType()">
+  <label for="good-type-input" class="form-label">Datalist example</label>
+  <input formControlName="goodType" type="search" class="form-control" list="found-good-types" id="good-type-input" placeholder="Type to search...">
+  <datalist id="found-good-types">
+    <option *ngFor="let goodType of foundGoodTypes" [value]="goodType">
+  </datalist>
+  <button type="submit" [disabled]="!goodTypeForm.valid">Submit</button>
+</form>

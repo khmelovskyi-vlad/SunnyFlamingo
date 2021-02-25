@@ -1,0 +1,9 @@
+<div *ngIf="question && questionsKey && formGroup" [formGroup]="formGroup">
+  <input 
+  [formControlName]="question.key" 
+  [id]="question.key+questionsKey" 
+  [type]="InputType[question.type]" 
+  [checked]="question.checked">
+  
+  <label [attr.for]="question.key">{{question.label}}</label>
+</div>

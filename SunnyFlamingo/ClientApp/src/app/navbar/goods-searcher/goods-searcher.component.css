@@ -1,0 +1,6 @@
+.goodName{
+  background-color: white;
+}
+.goodName :hover{
+  background-color: gray;
+}

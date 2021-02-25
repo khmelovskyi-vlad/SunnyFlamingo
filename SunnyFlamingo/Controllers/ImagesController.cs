@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -13,6 +14,7 @@ using SunnyFlamingo.Entities;
 using SunnyFlamingo.Entities.Goods;
 using SunnyFlamingo.Models;
 using SunnyFlamingo.Services;
+using SunnyFlamingo.Services.FileMasters;
 using SunnyFlamingo.Services.Searchers;
 using SunnyFlamingo.ValueObjects;
 
@@ -22,17 +24,20 @@ namespace SunnyFlamingo.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly ImgOptions _imageOptions;
+        private readonly IFileMaster _fileMaster;
         public ImagesController(
-            ApplicationDbContext context, 
-            IOptions<ImgOptions> imageOptions)
+            ApplicationDbContext context,
+            IOptions<ImgOptions> imageOptions,
+            IFileMaster fileMaster)
         {
             _context = context;
             _imageOptions = imageOptions.Value;
+            _fileMaster = fileMaster;
         }
         [HttpGet]
         public async Task<IActionResult> GetImage(ImageType type, Guid id)
         {
-            var path = await Task.Run(()=> GetPath(type, id));
+            var path = await Task.Run(() => GetPath(type, id));
             //await Test();
             if (path == null)
             {
@@ -52,11 +57,11 @@ namespace SunnyFlamingo.Controllers
             switch (type)
             {
                 case ImageType.Avatar:
-                    //return Path.Combine(_imageOptions.ImagePartPathes.Avatars, imageName);
+                //return Path.Combine(_imageOptions.ImagePartPathes.Avatars, imageName);
                 case ImageType.GoodImg:
                     var partPath = $"{GetRandomNum()}.jpg";
                     return Path.Combine(_imageOptions.ImgPartPathes.GoodImg, partPath);
-                    //return Path.Combine(_imageOptions.ImagePartPathes.GoodImg, imageName);
+                //return Path.Combine(_imageOptions.ImagePartPathes.GoodImg, imageName);
                 default:
                     return null;
             }

@@ -69,6 +69,8 @@ namespace SunnyFlamingo
 
             services.AddAutoMapper(typeof(Startup));
             services.AddSearchers();
+            services.AddCreators();
+            services.AddFileMasters();
             services.AddSpaStaticFiles(configuration =>
             {
                 //configuration.RootPath = "react-client/build";

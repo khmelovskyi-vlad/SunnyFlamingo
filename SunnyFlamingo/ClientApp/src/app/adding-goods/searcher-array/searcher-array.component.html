@@ -1,0 +1,26 @@
+<div *ngIf="question && questionsKey && formGroup">
+  <form>
+    <label [attr.for]="question.key">{{question.label}}</label>
+    <input 
+    class="form-control"
+    [value]="value"
+    (input)="onChange($event)"
+    [id]="question.key+questionsKey" 
+    [type]="InputType[question.type]"
+    [attr.list]="question.key+questionsKey+'-list'">
+    <datalist [id]="question.key+questionsKey+'-list'">
+      <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
+    </datalist>
+    <input type="submit" (click)="onSubmit()">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" [id]="question.key+questionsKey+'dropdown'" 
+       data-bs-toggle="dropdown" aria-expanded="false">
+        {{getValues().length}}
+      </button>
+      <ul class="dropdown-menu" [attr.aria-labelledby]="question.key+questionsKey+'dropdown'">
+        <li style="cursor: pointer;" *ngFor="let res of getValues(); index as i" 
+        (click)="onDropdownClick(i)">remove: {{res}}</li>
+      </ul>
+    </div>
+  </form>
+</div>

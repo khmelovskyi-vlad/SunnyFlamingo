@@ -6,6 +6,15 @@ namespace SunnyFlamingo.ValueObjects
 {
     public class LaptopComputerDriveType
     {
+        public LaptopComputerDriveType()
+        {
+
+        }
+        public LaptopComputerDriveType(Guid laptopId, string computerDriveTypeValue)
+        {
+            LaptopId = laptopId;
+            ComputerDriveTypeValue = computerDriveTypeValue;
+        }
         public Guid LaptopId { get; set; }
         public Laptop Laptop { get; set; }
         [MaxLength(500)]

@@ -1,0 +1,8 @@
+<div *ngIf="question && questionsKey && formGroup" class="custom-control custom-switch" [formGroup]="formGroup">
+  <input [formControlName]="question.key"
+  [type]="InputType[question.type]" 
+  class="custom-control-input" 
+  [id]="question.key+questionsKey"
+  (click)="onClick()">
+  <label class="custom-control-label" [for]="question.key+questionsKey">{{question.label}}</label>
+</div>
