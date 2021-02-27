@@ -36,6 +36,10 @@ namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies
             {
                 FloppyDrivesCount = computerModel.FloppyDrivesCount;
             }
+            if (computerModel.UserId != null && computerModel.UserId != new Guid())
+            {
+                UserId = computerModel.UserId;
+            }
         }
         public int AmountOfRAM { get; set; }
         public int CPUFrequency { get; set; }

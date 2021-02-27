@@ -188,10 +188,11 @@ namespace SunnyFlamingo.Services.Creators
 
 
 
-        public async Task<int> AddGood(GoodModel goodModel)
+        public async Task<int> AddGood(GoodModel goodModel, string email)
         {
             try
             {
+                goodModel.UserId = (await _context.Users.FirstOrDefaultAsync(user => user.Email == email)).Id;
                 var good = new Good(goodModel);
                 await AddGoodData(goodModel.ImageIds, good);
                 await _context.Goods.AddAsync(good);
@@ -203,10 +204,11 @@ namespace SunnyFlamingo.Services.Creators
                 throw;
             }
         }
-        public async Task<int> AddComputerTechnology(ComputerTechnologyModel computerTechnologyModel)
+        public async Task<int> AddComputerTechnology(ComputerTechnologyModel computerTechnologyModel, string email)
         {
             try
             {
+                computerTechnologyModel.UserId = (await _context.Users.FirstOrDefaultAsync(user => user.Email == email)).Id;
                 var computerTechnology = new ComputerTechnology(computerTechnologyModel);
                 await AddGoodData(computerTechnologyModel.ImageIds, computerTechnology);
                 await _context.Goods.AddAsync(computerTechnology);
@@ -218,10 +220,11 @@ namespace SunnyFlamingo.Services.Creators
                 throw;
             }
         }
-        public async Task<int> AddComputerPart(ComputerPartModel computerPartModel)
+        public async Task<int> AddComputerPart(ComputerPartModel computerPartModel, string email)
         {
             try
             {
+                computerPartModel.UserId = (await _context.Users.FirstOrDefaultAsync(user => user.Email == email)).Id;
                 var computerPart = new ComputerPart(computerPartModel);
                 await AddGoodData(computerPartModel.ImageIds, computerPart);
                 await _context.ComputerParts.AddAsync(computerPart);
@@ -233,10 +236,11 @@ namespace SunnyFlamingo.Services.Creators
                 throw;
             }
         }
-        public async Task<int> AddComputerAccessory(ComputerAccessoryModel computerAccessoryModel)
+        public async Task<int> AddComputerAccessory(ComputerAccessoryModel computerAccessoryModel, string email)
         {
             try
             {
+                computerAccessoryModel.UserId = (await _context.Users.FirstOrDefaultAsync(user => user.Email == email)).Id;
                 var computerAccessory = new ComputerAccessory(computerAccessoryModel);
                 await AddGoodData(computerAccessoryModel.ImageIds, computerAccessory);
                 await _context.ComputerAccessories.AddAsync(computerAccessory);
@@ -248,10 +252,11 @@ namespace SunnyFlamingo.Services.Creators
                 throw;
             }
         }
-        public async Task<int> AddComputer(ComputerModel computerModel)
+        public async Task<int> AddComputer(ComputerModel computerModel, string email)
         {
             try
             {
+                computerModel.UserId = (await _context.Users.FirstOrDefaultAsync(user => user.Email == email)).Id;
                 var computer = new Computer(computerModel);
                 var id = await AddGoodData(computerModel.ImageIds, computer);
                 await AddComputerComputerDriveType(computerModel.ComputerDriveTypes, id);
@@ -264,10 +269,11 @@ namespace SunnyFlamingo.Services.Creators
                 throw;
             }
         }
-        public async Task<int> AddLaptop(LaptopModel laptopModel)
+        public async Task<int> AddLaptop(LaptopModel laptopModel, string email)
         {
             try
             {
+                laptopModel.UserId = (await _context.Users.FirstOrDefaultAsync(user => user.Email == email)).Id;
                 var laptop = new Laptop(laptopModel);
                 var id = await AddGoodData(laptopModel.ImageIds, laptop);
                 await AddLaptopComputerDriveType(laptopModel.ComputerDriveTypes, id);
@@ -280,10 +286,11 @@ namespace SunnyFlamingo.Services.Creators
                 throw;
             }
         }
-        public async Task<int> AddFlashDrive(FlashDriveModel flashDriveModel)
+        public async Task<int> AddFlashDrive(FlashDriveModel flashDriveModel, string email)
         {
             try
             {
+                flashDriveModel.UserId = (await _context.Users.FirstOrDefaultAsync(user => user.Email == email)).Id;
                 var flashDrive = new FlashDrive(flashDriveModel);
                 await AddGoodData(flashDriveModel.ImageIds, flashDrive);
                 await _context.FlashDrives.AddAsync(flashDrive);
@@ -295,10 +302,11 @@ namespace SunnyFlamingo.Services.Creators
                 throw;
             }
         }
-        public async Task<int> AddVideoCard(VideoCardModel videoCardModel)
+        public async Task<int> AddVideoCard(VideoCardModel videoCardModel, string email)
         {
             try
             {
+                videoCardModel.UserId = (await _context.Users.FirstOrDefaultAsync(user => user.Email == email)).Id;
                 var videoCard = new VideoCard(videoCardModel);
                 await AddGoodData(videoCardModel.ImageIds, videoCard);
                 await _context.VideoCards.AddAsync(videoCard);
@@ -310,10 +318,11 @@ namespace SunnyFlamingo.Services.Creators
                 throw;
             }
         }
-        public async Task<int> AddCPU(CPUModel cpuModel)
+        public async Task<int> AddCPU(CPUModel cpuModel, string email)
         {
             try
             {
+                cpuModel.UserId = (await _context.Users.FirstOrDefaultAsync(user => user.Email == email)).Id;
                 var cpu = new CPU(cpuModel);
                 await AddGoodData(cpuModel.ImageIds, cpu);
                 await _context.CPUs.AddAsync(cpu);
@@ -325,10 +334,11 @@ namespace SunnyFlamingo.Services.Creators
                 throw;
             }
         }
-        public async Task<int> AddCooler(CoolerModel coolerModel)
+        public async Task<int> AddCooler(CoolerModel coolerModel, string email)
         {
             try
             {
+                coolerModel.UserId = (await _context.Users.FirstOrDefaultAsync(user => user.Email == email)).Id;
                 var cooler = new Cooler(coolerModel);
                 await AddGoodData(coolerModel.ImageIds, cooler);
                 await _context.Coolers.AddAsync(cooler);
@@ -340,10 +350,11 @@ namespace SunnyFlamingo.Services.Creators
                 throw;
             }
         }
-        public async Task<int> AddComputerDrive(ComputerDriveModel computerDriveModel)
+        public async Task<int> AddComputerDrive(ComputerDriveModel computerDriveModel, string email)
         {
             try
             {
+                computerDriveModel.UserId = (await _context.Users.FirstOrDefaultAsync(user => user.Email == email)).Id;
                 var computerDrive = new ComputerDrive(computerDriveModel);
                 await AddGoodData(computerDriveModel.ImageIds, computerDrive);
                 await _context.ComputerDrives.AddAsync(computerDrive);
@@ -355,10 +366,11 @@ namespace SunnyFlamingo.Services.Creators
                 throw;
             }
         }
-        public async Task<int> AddMause(MauseModel mauseModel)
+        public async Task<int> AddMause(MauseModel mauseModel, string email)
         {
             try
             {
+                mauseModel.UserId = (await _context.Users.FirstOrDefaultAsync(user => user.Email == email)).Id;
                 var mause = new Mause(mauseModel);
                 await AddGoodData(mauseModel.ImageIds, mause);
                 await _context.Mice.AddAsync(mause);
@@ -370,10 +382,11 @@ namespace SunnyFlamingo.Services.Creators
                 throw;
             }
         }
-        public async Task<int> AddKeyboard(KeyboardModel keyboardModel)
+        public async Task<int> AddKeyboard(KeyboardModel keyboardModel, string email)
         {
             try
             {
+                keyboardModel.UserId = (await _context.Users.FirstOrDefaultAsync(user => user.Email == email)).Id;
                 var keyboard = new Keyboard(keyboardModel);
                 await AddGoodData(keyboardModel.ImageIds, keyboard);
                 await _context.Keyboards.AddAsync(keyboard);
@@ -385,10 +398,11 @@ namespace SunnyFlamingo.Services.Creators
                 throw;
             }
         }
-        public async Task<int> AddHeadphones(HeadphonesModel headphonesModel)
+        public async Task<int> AddHeadphones(HeadphonesModel headphonesModel, string email)
         {
             try
             {
+                headphonesModel.UserId = (await _context.Users.FirstOrDefaultAsync(user => user.Email == email)).Id;
                 var headphones = new Headphones(headphonesModel);
                 await AddGoodData(headphonesModel.ImageIds, headphones);
                 await _context.Headphones.AddAsync(headphones);

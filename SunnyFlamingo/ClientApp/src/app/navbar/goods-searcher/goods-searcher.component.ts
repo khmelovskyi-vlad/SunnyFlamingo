@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
 import { GoodCellModel } from '../../models/good-cell-model';
 import { GoodSearcherService } from '../../services/good-searcher.service';
 
@@ -9,7 +10,7 @@ import { GoodSearcherService } from '../../services/good-searcher.service';
   styleUrls: ['./goods-searcher.component.css']
 })
 export class GoodsSearcherComponent implements OnInit {
-// style="cursor: pointer;"
+
   
   goodForm = this.fb.group({
     namePart: []
@@ -21,9 +22,17 @@ export class GoodsSearcherComponent implements OnInit {
     console.log(this.goodForm.get("namePart")?.value);
   }
 
-  constructor(private service: GoodSearcherService, private fb: FormBuilder) { }
-
+  constructor(private service: GoodSearcherService, private fb: FormBuilder, private router: Router) { }
   ngOnInit(): void {
+
+    this.router.events
+      .subscribe((val) => {
+        if (val instanceof NavigationEnd) {
+          this.goods = [];
+          this.goodForm.reset();
+        }
+    });
+
     this.goodForm.valueChanges
     .subscribe(() => this.service.searchGoodByName(this.goodForm.get("namePart")?.value)
     .subscribe(goods => this.goods = goods));

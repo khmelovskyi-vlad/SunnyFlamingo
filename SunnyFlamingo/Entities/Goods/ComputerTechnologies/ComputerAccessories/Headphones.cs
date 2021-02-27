@@ -1,5 +1,6 @@
 ﻿using SunnyFlamingo.Models;
 using SunnyFlamingo.ValueObjects;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerAccessories
@@ -23,6 +24,10 @@ namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerAccessories
             TypeValue = headphonesModel.Type;
             WirelessTypeValue = headphonesModel.WirelessType;
             ConnectorTypeValue = headphonesModel.ConnectorType;
+            if (headphonesModel.UserId != null && headphonesModel.UserId != new Guid())
+            {
+                UserId = headphonesModel.UserId;
+            }
         }
         [MaxLength(500)]
         public string TypeValue { get; set; }

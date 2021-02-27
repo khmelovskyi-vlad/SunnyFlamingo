@@ -7,6 +7,7 @@ namespace SunnyFlamingo.Entities
 {
     public class OrderGood
     {
+        public int GoodCount { get; set; }
         public Guid OrderId { get; set; }
         public Order Order { get; set; }
         public Guid GoodId { get; set; }

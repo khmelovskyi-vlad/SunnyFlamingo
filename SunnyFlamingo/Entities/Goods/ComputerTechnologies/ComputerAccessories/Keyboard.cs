@@ -1,5 +1,6 @@
 ﻿using SunnyFlamingo.Models;
 using SunnyFlamingo.ValueObjects;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerAccessories
@@ -21,6 +22,10 @@ namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerAccessories
             MaterialValue = keyboardModel.Material;
             ColorValue = keyboardModel.Color;
             TypeValue = keyboardModel.Type;
+            if (keyboardModel.UserId != null && keyboardModel.UserId != new Guid())
+            {
+                UserId = keyboardModel.UserId;
+            }
         }
         [MaxLength(500)]
         public string TypeValue { get; set; }

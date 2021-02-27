@@ -1,5 +1,6 @@
 ﻿using SunnyFlamingo.Models;
 using SunnyFlamingo.ValueObjects;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerParts
@@ -24,6 +25,10 @@ namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerParts
             ThermalDesignPower = cpuModel.ThermalDesignPower;
             NumberOfCores = cpuModel.NumberOfCores;
             NumberOfThreads = cpuModel.NumberOfThreads;
+            if (cpuModel.UserId != null && cpuModel.UserId != new Guid())
+            {
+                UserId = cpuModel.UserId;
+            }
         }
         [MaxLength(500)]
         public string CPUSocketTypeValue { get; set; }

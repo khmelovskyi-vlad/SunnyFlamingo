@@ -7,15 +7,6 @@ using System.Threading.Tasks;
 
 namespace SunnyFlamingo.ValueObjects
 {
-    //public enum HeadphonesType
-    //{
-    //    Accessories,
-    //    BehindTheNeck,
-    //    Headphone,
-    //    Headset,
-    //    MonitorHeadphone,
-    //    Earbud
-    //}
     public class HeadphonesType
     {
         [Key]

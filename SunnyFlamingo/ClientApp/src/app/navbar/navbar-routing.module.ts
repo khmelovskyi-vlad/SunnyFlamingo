@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 
-const appRoutes: Routes = [
-  // { path: 'nav', component: NavbarComponent },
-];
+const appRoutes: Routes = [];
 
 @NgModule({
   declarations: [],

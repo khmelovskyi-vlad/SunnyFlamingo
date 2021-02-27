@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SelectedGoodsService } from '../../global-services/selected-goods.service';
+import { SelectedGoodsService } from '../../services/selected-goods.service';
 import { BasketGoodModel } from '../../models/basket-good-model';
 import { GoodInformation } from '../../models/good-information';
 

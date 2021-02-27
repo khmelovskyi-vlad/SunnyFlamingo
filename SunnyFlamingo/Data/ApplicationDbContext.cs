@@ -83,8 +83,7 @@ namespace SunnyFlamingo.Data
             modelBuilder.SetPrecisionsAndScales();
             modelBuilder.AddIdentityNavigation();
             modelBuilder.AddColumnNames();
-            modelBuilder.Seed(new SecondInitializer());
-            //modelBuilder.Seed(new FirstInitializer());
+            modelBuilder.Seed(new FirstInitializer());
         }
 
     }

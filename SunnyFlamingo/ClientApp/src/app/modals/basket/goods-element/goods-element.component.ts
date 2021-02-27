@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Guid } from 'guid-typescript';
 import { from } from 'rxjs';
 import { groupBy, mergeMap, toArray } from 'rxjs/operators';
-import { SelectedGoodsService } from '../../../global-services/selected-goods.service';
+import { SelectedGoodsService } from '../../../services/selected-goods.service';
 import { BasketGoodModel } from '../../../models/basket-good-model';
 import { ImgService } from '../../../services/img.service';
 import { GoodInformation } from '../../../models/good-information';
@@ -14,9 +14,8 @@ import { GoodInformation } from '../../../models/good-information';
 })
 export class GoodsElementComponent implements OnInit {
 
-  // @Input() goods: GoodInformation[];
   @Input() basketGood: BasketGoodModel;
-  //
+  
   constructor(public selectedGoodsService: SelectedGoodsService,
     private imgService: ImgService) { }
 
@@ -29,7 +28,7 @@ export class GoodsElementComponent implements OnInit {
   }
 
   getImgUrl(id: string): string{
-    return this.imgService.getImgUrl(id);
+    return this.imgService.getGoodImgUrl(id);
   }
 
   getPrice(): number{

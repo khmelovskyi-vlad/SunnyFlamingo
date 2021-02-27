@@ -40,6 +40,10 @@ namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies
                 FloppyDrivesCount = laptopModel.FloppyDrivesCount;
             }
             Display = laptopModel.Display;
+            if (laptopModel.UserId != null && laptopModel.UserId != new Guid())
+            {
+                UserId = laptopModel.UserId;
+            }
         }
         public int AmountOfRAM { get; set; }
         public int CPUFrequency { get; set; }

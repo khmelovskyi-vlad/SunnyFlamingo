@@ -28,8 +28,8 @@ export class GoodImgsComponent implements OnInit {
     // }
     this.images = this.someArray.map(imgId => new ImageItem(
       { 
-        src: this.imgService.getImgUrl(imgId), 
-        thumb: this.imgService.getImgUrl(imgId) 
+        src: this.imgService.getGoodImgUrl(imgId), 
+        thumb: this.imgService.getGoodImgUrl(imgId) 
       }));
   }
 

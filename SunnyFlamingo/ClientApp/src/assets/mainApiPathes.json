@@ -1,0 +1,31 @@
+{
+  "StartPath": "api",
+  "AddingGoods": {
+    "Path": "adding-goods",
+    "GetQuestions": "getQuestions",
+    "GetTypes": "getTypes"
+  },
+  "Image": {
+    "Path": "ImagesCreator",
+    "SentImages": "sentImages"
+  },
+  "Goods": {
+    "Path": "Goods",
+    "SearchByName": "GoodName"
+  },
+  "Orders": {
+    "Path": "Orders",
+    "SaveOrder": "SaveOrder",
+    "GetDeliveryMethods": "GetDeliveryMethods"
+  },
+  "Images": {
+    "Path": "Images",
+    "GetImage": "GetImage",
+    "type": "type",
+    "id": "id"
+  },
+  "Users": {
+    "Path": "Users",
+    "GetUserModel": "GetUserModel"
+  }
+}

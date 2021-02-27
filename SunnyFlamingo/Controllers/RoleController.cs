@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +26,7 @@ namespace SunnyFlamingo.Controllers
             _context = context;
         }
 
-        //[Authorize(Policy = "ManageUsers")]
+        [Authorize(Policy = "ManageUsers")]
         public async Task<ViewResult> Index()
         {
             var roles = await GetRoles();
@@ -54,18 +55,17 @@ namespace SunnyFlamingo.Controllers
             }
             return roleModels;
         }
-        //public ViewResult Index() => View(_roleManager.Roles);
         private void Errors(IdentityResult result)
         {
             foreach (IdentityError error in result.Errors)
                 ModelState.AddModelError("", error.Description);
         }
 
-        //[Authorize(Policy = "ManageAllRoles")]
+        [Authorize(Policy = "ManageAllRoles")]
         public IActionResult Create() => View();
 
         [HttpPost]
-        //[Authorize(Policy = "ManageAllRoles")]
+        [Authorize(Policy = "ManageAllRoles")]
         public async Task<IActionResult> Create([Required] string name)
         {
             if (ModelState.IsValid)
@@ -79,7 +79,7 @@ namespace SunnyFlamingo.Controllers
             return View(name);
         }
         [HttpPost]
-        //[Authorize(Policy = "ManageAllRoles")]
+        [Authorize(Policy = "ManageAllRoles")]
         public async Task<IActionResult> Delete(string id)
         {
             ApplicationRole role = await _roleManager.FindByIdAsync(id);
@@ -95,33 +95,33 @@ namespace SunnyFlamingo.Controllers
                 ModelState.AddModelError("", "No role found");
             return View("Index", _roleManager.Roles);
         }
-        //[Authorize(Policy = "ManageUsers")]
+        [Authorize(Policy = "ManageUsers")]
         public async Task<IActionResult> Update(string id)
         {
             ApplicationRole role = await _roleManager.FindByIdAsync(id);
-            //if (CheckPermissionsToUpdate(role.Name))
-            //{
-            List<ApplicationUser> members = new List<ApplicationUser>();
-            List<ApplicationUser> nonMembers = new List<ApplicationUser>();
-            foreach (ApplicationUser user in await _userManager.Users.ToListAsync())
+            if (CheckPermissionsToUpdate(role.Name))
             {
-                var list = await _userManager.IsInRoleAsync(user, role.Name) ? members : nonMembers;
-                list.Add(user);
+                List<ApplicationUser> members = new List<ApplicationUser>();
+                List<ApplicationUser> nonMembers = new List<ApplicationUser>();
+                foreach (ApplicationUser user in await _userManager.Users.ToListAsync())
+                {
+                    var list = await _userManager.IsInRoleAsync(user, role.Name) ? members : nonMembers;
+                    list.Add(user);
+                }
+                return View(new RoleEdit
+                {
+                    Role = role,
+                    Members = members,
+                    NonMembers = nonMembers
+                });
             }
-            return View(new RoleEdit
+            else
             {
-                Role = role,
-                Members = members,
-                NonMembers = nonMembers
-            });
-            //}
-            //else
-            //{
-            //    return View("Index", await GetRoles());
-            //}
+                return View("Index", await GetRoles());
+            }
         }
 
-        //[Authorize(Policy = "ManageUsers")]
+        [Authorize(Policy = "ManageUsers")]
         public bool CheckPermissionsToUpdate(string roleName)
         {
             if (roleName == "User")
@@ -146,51 +146,51 @@ namespace SunnyFlamingo.Controllers
             }
         }
         [HttpPost]
-        //[Authorize(Policy = "ManageUsers")]
+        [Authorize(Policy = "ManageUsers")]
         public async Task<IActionResult> Update(RoleModification model)
         {
-            //if (CheckPermissionsToUpdate(model.RoleName))
-            //{
-            IdentityResult result;
-            if (ModelState.IsValid)
+            if (CheckPermissionsToUpdate(model.RoleName))
             {
-                foreach (string userId in model.AddIds ?? new string[] { })
+                IdentityResult result;
+                if (ModelState.IsValid)
                 {
-                    ApplicationUser user = await _userManager.FindByIdAsync(userId);
-                    if (user != null)
+                    foreach (string userId in model.AddIds ?? new string[] { })
                     {
-                        result = await _userManager.AddToRoleAsync(user, model.RoleName);
-                        if (!result.Succeeded)
-                            Errors(result);
+                        ApplicationUser user = await _userManager.FindByIdAsync(userId);
+                        if (user != null)
+                        {
+                            result = await _userManager.AddToRoleAsync(user, model.RoleName);
+                            if (!result.Succeeded)
+                                Errors(result);
+                        }
+                    }
+                    foreach (string userId in model.DeleteIds ?? new string[] { })
+                    {
+                        ApplicationUser user = await _userManager.FindByIdAsync(userId);
+                        if (user != null)
+                        {
+                            result = await _userManager.RemoveFromRoleAsync(user, model.RoleName);
+                            if (!result.Succeeded)
+                                Errors(result);
+                        }
                     }
                 }
-                foreach (string userId in model.DeleteIds ?? new string[] { })
-                {
-                    ApplicationUser user = await _userManager.FindByIdAsync(userId);
-                    if (user != null)
-                    {
-                        result = await _userManager.RemoveFromRoleAsync(user, model.RoleName);
-                        if (!result.Succeeded)
-                            Errors(result);
-                    }
-                }
-            }
 
-            if (ModelState.IsValid)
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                    return RedirectToAction(nameof(Index));
+                else
+                    return await Update(model.RoleId);
+            }
             else
-                return await Update(model.RoleId);
-            //}
-            //else
-            //{
-            //    return View("Index", await GetRoles());
-            //}
+            {
+                return View("Index", await GetRoles());
+            }
         }
-        //[Authorize(Policy = "ManageAllRoles")]
+        [Authorize(Policy = "ManageAllRoles")]
         public IActionResult CreateClaim() => View();
         [HttpPost]
         [ActionName("CreateClaim")]
-        //[Authorize(Policy = "ManageAllRoles")]
+        [Authorize(Policy = "ManageAllRoles")]
         public async Task<IActionResult> CreateClaim(string claimType, string claimValue, string roleName)
         {
             ApplicationRole role = await _roleManager.FindByNameAsync(roleName);
@@ -208,11 +208,9 @@ namespace SunnyFlamingo.Controllers
             return View();
         }
         [HttpPost]
-        //[Authorize(Policy = "ManageUsers")]
+        [Authorize(Policy = "ManageUsers")]
         public async Task<IActionResult> BanUser(BanModification model)
         {
-            //if (CheckPermissionsToUpdate(model.RoleName))
-            //{
             if (ModelState.IsValid)
             {
                 var users = await _context.Users
@@ -240,11 +238,6 @@ namespace SunnyFlamingo.Controllers
                 return RedirectToAction(nameof(Index));
             else
                 return await BanUser();
-            //}
-            //else
-            //{
-            //    return View("Index", await GetRoles());
-            //}
         }
         public async Task<IActionResult> BanUser(string emailPart = "")
         {

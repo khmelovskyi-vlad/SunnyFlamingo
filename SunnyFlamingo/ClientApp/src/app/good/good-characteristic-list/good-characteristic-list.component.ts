@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PropertyListModel } from '../..//models/property-list-model';
+import { PropertyListModel } from '../../models/property-list-model';
 import { PropertyModel } from '../../models/property-model';
 
 @Component({

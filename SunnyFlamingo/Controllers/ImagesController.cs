@@ -37,34 +37,38 @@ namespace SunnyFlamingo.Controllers
         [HttpGet]
         public async Task<IActionResult> GetImage(ImageType type, Guid id)
         {
-            var path = await Task.Run(() => GetPath(type, id));
-            //await Test();
+            //var imageInfo = await GetImageInfo(id);
+            //if (imageInfo == null)
+            //{
+            //    return NotFound();
+            //}
+            //var path = await Task.Run(() => GetPath(type, imageInfo.Name));
+            var path = await Task.Run(() => GetPath(type, ""));
             if (path == null)
             {
                 return NotFound();
             }
-            //var fileInformation = await GetFileInformation(type, name);
-            //if (fileInformation == null)
-            //{
-            //    return NotFound();
-            //}
             var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
-            //return File(stream, fileInformation.MimeType);
+            //return File(stream, imageInfo.MimeType);
             return File(stream, "image/jpeg");
         }
-        private string GetPath(ImageType type, Guid id)
+        private string GetPath(ImageType type, string imageName)
         {
             switch (type)
             {
                 case ImageType.Avatar:
-                //return Path.Combine(_imageOptions.ImagePartPathes.Avatars, imageName);
+                    //return Path.Combine(_imageOptions.Avatars, imageName);
                 case ImageType.GoodImg:
                     var partPath = $"{GetRandomNum()}.jpg";
                     return Path.Combine(_imageOptions.ImgPartPathes.GoodImg, partPath);
-                //return Path.Combine(_imageOptions.ImagePartPathes.GoodImg, imageName);
+                    //return Path.Combine(_imageOptions.GoodImages, imageName);
                 default:
                     return null;
             }
+        }
+        private async Task<ImageInfo> GetImageInfo(Guid id)
+        {
+            return await _context.ImageInfo.FirstOrDefaultAsync(ii => ii.Id == id);
         }
         private int GetRandomNum()
         {

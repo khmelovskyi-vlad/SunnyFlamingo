@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { GoodModel } from '../models/good-model';
 import { QuestionOption } from '../models/question-option';
 import { QuestionsBase } from '../models/questions-base';
+import { ImgService } from '../services/img.service';
 import { LaptopModel } from '../models/goods/computerTechnologies/laptopModel';
 import { ComputerTechnologyModel } from '../models/goods/computerTechnologyModel';
 import { ComputerModel } from '../models/goods/computerTechnologies/computerModel';
@@ -18,59 +19,48 @@ import { ComputerDriveModel } from '../models/goods/computerTechnologies/compute
 import { MauseModel } from '../models/goods/computerTechnologies/computerAccessories/mauseModel';
 import { KeyboardModel } from '../models/goods/computerTechnologies/computerAccessories/keyboardModel';
 import { HeadphonesModel } from '../models/goods/computerTechnologies/computerAccessories/headphonesModel';
+import * as mainApiPathes from '../../assets/mainApiPathes.json';
+import { HandlerErrorsService } from '../services/handler-errors.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddingGoodsService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, 
+    private imgService: ImgService,
+    private handlerErrorsService: HandlerErrorsService) { }
 
   getQuestions(type: string): Observable<QuestionsBase<string>>{
-    const url = 'api/adding-goods/getQuestions';
+    const url = `${mainApiPathes.StartPath}/${mainApiPathes.AddingGoods.Path}/${mainApiPathes.AddingGoods.GetQuestions}`;
     const params = new HttpParams().set("type", type);
     return this.http.get<QuestionsBase<string>>(url, {params: params})
     .pipe(
-      catchError(this.handleError<QuestionsBase<string>>('getGoodsInformation'))
+      catchError(this.handlerErrorsService.handleError<QuestionsBase<string>>('getGoodsInformation'))
     );
   }
   getGoodTypes(part: string): Observable<string[]>{
-    const url = 'api/adding-goods/getTypes';
+    const url = `${mainApiPathes.StartPath}/${mainApiPathes.AddingGoods.Path}/${mainApiPathes.AddingGoods.GetTypes}`;
     const params = new HttpParams().set("part", part);
     return this.http.get<string[]>(url, {params: params})
     .pipe(
-      catchError(this.handleError<string[]>('getGoodsInformation'))
+      catchError(this.handlerErrorsService.handleError<string[]>('getGoodsInformation'))
     );
   }
-  sendGood(result: GoodModel, questionsKey: string): Observable<number>{
-    const url = `api/adding-goods/${questionsKey}`;
+  private sendGood(result: GoodModel, questionsKey: string): Observable<number>{
+    const url = `${mainApiPathes.StartPath}/${mainApiPathes.AddingGoods.Path}/${questionsKey}`;
     return this.http.post<number>(url, result)
     .pipe(
-      catchError(this.handleError<number>('getGoodsInformation'))
+      catchError(this.handlerErrorsService.handleError<number>('getGoodsInformation'))
     );
   }
   getOptions(part: string, questionKey: string): Observable<QuestionOption[]>{
-    const url = `api/adding-goods/${questionKey}`;
+    const url = `${mainApiPathes.StartPath}/${mainApiPathes.AddingGoods.Path}/${questionKey}`;
     const params = new HttpParams().set("part", part);
     return this.http.get<QuestionOption[]>(url, {params: params})
     .pipe(
-      catchError(this.handleError<QuestionOption[]>('getGoodsInformation'))
+      catchError(this.handlerErrorsService.handleError<QuestionOption[]>('getGoodsInformation'))
     );
-  }
-  sentImages(files: File[]): Observable<string[]>{
-    const url = 'api/ImagesCreator/sentImages';
-    const formData = this.createFormData(files);
-    return this.http.post<string[]>(url, formData)
-    .pipe(
-      catchError(this.handleError<string[]>('getGoodsInformation'))
-    );
-  }
-  createFormData(files: File[]): FormData{
-    const formData = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      formData.append('files', files[i]);
-    }
-    return formData;
   }
 
   addGood(questionsKey: string, imageFiles: File[], formGroupValue: any, goodType: string){
@@ -126,17 +116,10 @@ export class AddingGoodsService {
       this.sendGood(good, questionsKey).subscribe(res => console.log(res));
     }
     else{
-      this.sentImages(imageFiles).subscribe(imageIds => {
+      this.imgService.saveImages(imageFiles).subscribe(imageIds => {
         good.imageIds = imageIds;
         this.sendGood(good, questionsKey).subscribe(res => console.log(res));
       });
-    }
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T);
     }
   }
 }

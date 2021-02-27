@@ -3,26 +3,20 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { GoodInformation } from '../models/good-information';
-import { GOOD } from './mock-good';
+import * as mainApiPathes from '../../assets/mainApiPathes.json';
+import { HandlerErrorsService } from '../services/handler-errors.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GoodService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private handlerErrorsService: HandlerErrorsService) { }
 
   getGoodInformation(url: string): Observable<GoodInformation> {
-    return this.http.get<GoodInformation>(`api${url}`)
+    return this.http.get<GoodInformation>(`${mainApiPathes.StartPath}${url}`)
     .pipe(
-      catchError(this.handleError<GoodInformation>('getGoodsInformation'))
+      catchError(this.handlerErrorsService.handleError<GoodInformation>('getGoodsInformation'))
     );
-    // return of(GOOD);
-  }
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T);
-    }
   }
 }

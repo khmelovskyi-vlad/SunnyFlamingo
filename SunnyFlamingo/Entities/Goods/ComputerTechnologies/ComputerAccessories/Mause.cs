@@ -1,5 +1,6 @@
 ﻿using SunnyFlamingo.Models;
 using SunnyFlamingo.ValueObjects;
+using System;
 using System.ComponentModel.DataAnnotations;
 namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerAccessories
 {
@@ -21,6 +22,10 @@ namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerAccessories
             ColorValue = mauseModel.Color;
             TypeValue = mauseModel.Type;
             ButtonsCount = mauseModel.ButtonsCount;
+            if (mauseModel.UserId != null && mauseModel.UserId != new Guid())
+            {
+                UserId = mauseModel.UserId;
+            }
         }
         [MaxLength(500)]
         public string TypeValue { get; set; }

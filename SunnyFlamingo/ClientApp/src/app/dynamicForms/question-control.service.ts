@@ -4,17 +4,19 @@ import { QuestionBase } from '../models/question-base';
 import { QuestionValidator } from '../models/question-validator';
 
 import { QuestionsBase } from '../models/questions-base';
+import { QuestionService } from './question.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionControlService {
-  constructor() { }
+  constructor(private questionService: QuestionService) { }
 
   questionsArrayToFormGroup(questions: QuestionsBase<string>[] ) {
+    const sordedQuestions = this.questionService.sortQuestionsArray(questions);
     const group: any = {};
 
-    questions.forEach(questions2 => {
+    sordedQuestions.forEach(questions2 => {
       group[questions2.key] = new FormGroup({});
       questions2.questionBaseList.forEach(question => {
         group[questions2.key].addControl(question.key, this.getFormControl(question));
@@ -24,8 +26,9 @@ export class QuestionControlService {
     return new FormGroup(group);
   }
   questionsToFormGroup(questions: QuestionsBase<string>): FormGroup {
+    const sordedQuestions = this.questionService.sortQuestions(questions);
     const group = new FormGroup({});
-    questions.questionBaseList.forEach(question => {
+    sordedQuestions.questionBaseList.forEach(question => {
       group.addControl(question.key, this.getFormControl(question));
     });
     
