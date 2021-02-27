@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ImgService } from '../../services/img.service';
 import { GoodCellModel } from '../../models/good-cell-model';
-import { ImageType } from '../../value-objects/image-type';
 
 @Component({
   selector: 'app-good-cell',
@@ -12,10 +12,10 @@ export class GoodCellComponent implements OnInit {
   @Input() goodCell: GoodCellModel;
 
   getImgUrl(): string {
-    return `/Images/GetImage?type=${ImageType.GoodImg}&id=${this.goodCell.imgId}`;
+    return this.imgService.getGoodImgUrl(this.goodCell.imgId);
   }
 
-  constructor() { }
+  constructor(private imgService: ImgService) { }
 
   ngOnInit(): void {
   }

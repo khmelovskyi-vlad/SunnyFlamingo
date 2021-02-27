@@ -1,5 +1,6 @@
 ﻿using SunnyFlamingo.Models;
 using SunnyFlamingo.ValueObjects;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerParts
@@ -22,6 +23,10 @@ namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerParts
             ColorValue = coolerModel.Color;
             TypeValue = coolerModel.Type;
             FanSize = coolerModel.FanSize;
+            if (coolerModel.UserId != null && coolerModel.UserId != new Guid())
+            {
+                UserId = coolerModel.UserId;
+            }
         }
         [MaxLength(500)]
         public string TypeValue { get; set; }

@@ -8,11 +8,6 @@ using System.Threading.Tasks;
 
 namespace SunnyFlamingo.ValueObjects
 {
-    //public enum CPUSocketType
-    //{
-    //    Intel,
-    //    AMD
-    //}
     public class CPUSocketType
     {
         [Key]

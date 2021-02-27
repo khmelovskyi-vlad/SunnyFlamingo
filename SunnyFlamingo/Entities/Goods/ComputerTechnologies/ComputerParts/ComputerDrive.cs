@@ -1,5 +1,6 @@
 ﻿using SunnyFlamingo.Models;
 using SunnyFlamingo.ValueObjects;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerParts
@@ -23,6 +24,10 @@ namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerParts
             Capacity = computerDriveModel.Capacity;
             TypeValue = computerDriveModel.Type;
             FormFactorTypeValue = computerDriveModel.FormFactorType;
+            if (computerDriveModel.UserId != null && computerDriveModel.UserId != new Guid())
+            {
+                UserId = computerDriveModel.UserId;
+            }
         }
         public int Capacity { get; set; }
         [MaxLength(500)]

@@ -22,6 +22,10 @@ namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies
             ManufacturerId = computerAccessoryModel.ManufacturerId;
             MaterialValue = computerAccessoryModel.Material;
             ColorValue = computerAccessoryModel.Color;
+            if (computerAccessoryModel.UserId != null && computerAccessoryModel.UserId != new Guid())
+            {
+                UserId = computerAccessoryModel.UserId;
+            }
         }
     }
 }

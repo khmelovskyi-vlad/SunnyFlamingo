@@ -22,6 +22,10 @@ namespace SunnyFlamingo.Entities
             ManufacturerId = goodModel.ManufacturerId;
             MaterialValue = goodModel.Material;
             ColorValue = goodModel.Color;
+            if (goodModel.UserId != null && goodModel.UserId != new Guid())
+            {
+                UserId = goodModel.UserId;
+            }
         }
         public Guid Id { get; set; }
         [MaxLength(500)]

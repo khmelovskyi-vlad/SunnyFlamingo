@@ -2,82 +2,11 @@ import { Injectable } from '@angular/core';
 import { Guid } from 'guid-typescript';
 import { BehaviorSubject } from 'rxjs';
 import { BasketGoodModel } from '../models/basket-good-model';
-import { GoodInformation } from '../models/good-information';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SelectedGoodsService {
-
-  // selectedGoods = new BehaviorSubject(this.goods);
-
-  // set goods(value: GoodInformation[]) {
-  //   const goodsString = localStorage.getItem('selectedGoods');
-  //   if (goodsString != undefined) {
-  //     const goods = JSON.parse(goodsString) as GoodInformation[];
-  //     value.push.apply(value, goods);
-  //   }
-  //   this.selectedGoods.next(value);
-  //   localStorage.setItem('selectedGoods', JSON.stringify(value));
-  // }
- 
-  // get goods(): GoodInformation[] {
-  //   const goods = localStorage.getItem('selectedGoods');
-  //   if (goods != undefined) {
-  //     return JSON.parse(goods) as GoodInformation[];
-  //   }
-  //   else{
-  //     return [];
-  //   }
-  // }
-
-  // removeValue(value: GoodInformation[]){
-  //   this.selectedGoods.next(value);
-  //   localStorage.setItem('selectedGoods', JSON.stringify(value));
-  // }
-
-  // removeMultiplyValues(id: Guid){
-  //   console.log("okey");
-  //   let newArray: GoodInformation[] = [];
-  //   for (let i = 0; i < this.goods.length; i++) {
-  //     if (this.goods[i].id === id) {
-  //       continue;
-  //     }
-  //     newArray.push(this.goods[i]);
-  //   }
-  //   this.removeValue(newArray);
-  // }
-
-  // removeOneValue(id: Guid){
-  //   console.log("okey");
-    
-  //   let newArray: GoodInformation[] = [];
-  //   let findItem = false;
-  //   for (let i = 0; i < this.goods.length; i++) {
-  //     console.log("okey");
-      
-  //     if (!findItem) {
-  //       if (this.goods[i].id === id) {
-  //         findItem = true;
-  //         continue;
-  //       }
-  //     }
-  //     newArray.push(this.goods[i]);
-  //   }
-  //   this.removeValue(newArray);
-  // }
-
-  // changeValueByCount(value: GoodInformation, count: number){
-  //   console.log("okey");
-  //   const newGoods = this.goods.filter(good => good.id !== value.id);
-  //   for (let i = 0; i < count; i++) {
-  //     newGoods.push(value);
-  //   }
-  //   this.selectedGoods.next(newGoods);
-  //   localStorage.setItem('selectedGoods', JSON.stringify(newGoods));
-  // }
-
-
   selectedBasketGoods = new BehaviorSubject(this.basketGoods);
   
   set basketGoods(value: BasketGoodModel[]) {

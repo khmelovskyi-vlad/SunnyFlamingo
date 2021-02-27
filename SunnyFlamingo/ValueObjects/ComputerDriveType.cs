@@ -8,12 +8,6 @@ using System.Threading.Tasks;
 
 namespace SunnyFlamingo.ValueObjects
 {
-    //public enum ComputerDriveType
-    //{
-    //    HDD,
-    //    SSD,
-    //    HDDAndSDD
-    //}
     public class ComputerDriveType
     {
         [Key]

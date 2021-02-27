@@ -76,9 +76,30 @@ namespace SunnyFlamingo.Data.Initializers
             modelBuilder.Entity<Mause>().HasData(GetMice(random, colors, materials, manufacturers, producers, mauseTypes));
             modelBuilder.Entity<Keyboard>().HasData(GetKeyboards(random, colors, materials, manufacturers, producers, keySwitchTypes));
             modelBuilder.Entity<Headphones>().HasData(GetHeadphones(random, colors, materials, manufacturers, producers, connectorTypes, headphonesTypes, wirelessTypes));
+
+            modelBuilder.Entity<OrderStatus>().HasData(GetOrderStatuses());
+            modelBuilder.Entity<DeliveryMethod>().HasData(GetDeliveryMethods());
         }
 
-
+        private List<OrderStatus> GetOrderStatuses()
+        {
+            return new List<OrderStatus>()
+            {
+                new OrderStatus(){ Id = Guid.NewGuid(), Value = "In processing" },
+                new OrderStatus(){ Id = Guid.NewGuid(), Value = "Complete" },
+                new OrderStatus(){ Id = Guid.NewGuid(), Value = "In the way" },
+            };
+        }
+        private List<DeliveryMethod> GetDeliveryMethods()
+        {
+            return new List<DeliveryMethod>()
+            {
+                new DeliveryMethod(){ Id = Guid.NewGuid(), Value = "Nova poshta global" },
+                new DeliveryMethod(){ Id = Guid.NewGuid(), Value = "Ukraine's national post" },
+                new DeliveryMethod(){ Id = Guid.NewGuid(), Value = "Meest" },
+                new DeliveryMethod(){ Id = Guid.NewGuid(), Value = "DHL Express" },
+            };
+        }
         private List<ComputerComputerDriveType> GetComputerComputerDriveTypes(Random random, List<Computer> computers, List<ComputerDriveType> computerDriveTypes)
         {
             List<ComputerComputerDriveType> laptopComputerDriveTypes = new List<ComputerComputerDriveType>();
@@ -824,17 +845,10 @@ namespace SunnyFlamingo.Data.Initializers
         private decimal CreateRandomDecimal(Random random)
         {
             return (decimal)random.NextDouble() * 100000;
-            //return new decimal(NextInt32(random),
-            //                   NextInt32(random),
-            //                   NextInt32(random),
-            //                   false,
-            //                   (byte)random.Next(5));
         }
         public static int NextInt32(Random random)
         {
             var a = (int)(1000 * random.NextDouble());
-            //int firstBits = random.Next(0, 1 << 4) << 28;
-            //int lastBits = random.Next(0, 1 << 28);
             return a;
         }
         private bool CreateRandomBool(Random random)

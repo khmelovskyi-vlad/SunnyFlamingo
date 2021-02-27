@@ -3,25 +3,22 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { GoodCellModel } from '../models/good-cell-model';
+import * as mainApiPathes from '../../assets/mainApiPathes.json';
+import { HandlerErrorsService } from './handler-errors.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GoodSearcherService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private handlerErrorsService: HandlerErrorsService) { }
 
   searchGoodByName(part: string): Observable<GoodCellModel[]>{
     const params = new HttpParams().set("part", part);
-    return this.http.get<GoodCellModel[]>(`api/goods/GoodName`, {params: params})
+    const url = `${mainApiPathes.StartPath}/${mainApiPathes.Goods.Path}/${mainApiPathes.Goods.SearchByName}`;
+    return this.http.get<GoodCellModel[]>(url, {params: params})
     .pipe(
-      catchError(this.handleError<GoodCellModel[]>('getGoodsInformation'))
+      catchError(this.handlerErrorsService.handleError<GoodCellModel[]>('getGoodsInformation'))
     );
-  }
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T);
-    }
   }
 }

@@ -7,15 +7,6 @@ using System.Threading.Tasks;
 
 namespace SunnyFlamingo.ValueObjects
 {
-    //public enum MauseType
-    //{
-    //    BluetoothWireless,
-    //    DualIsLIGHTSPEEDOrBluetoothWireless,
-    //    DualIsRFOrBluetoothWireless,
-    //    FastRFWireless,
-    //    IRWireless,
-    //    RFWireless
-    //}
     public class MauseType
     {
         [Key]

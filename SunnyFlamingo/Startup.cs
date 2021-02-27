@@ -19,6 +19,8 @@ using SunnyFlamingo.ValueObjects;
 using AutoMapper;
 using SunnyFlamingo.Services;
 using SunnyFlamingo.Extensions;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.IdentityModel.Tokens;
 
 namespace SunnyFlamingo
 {
@@ -67,10 +69,15 @@ namespace SunnyFlamingo
                 options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
             });
 
+
+
+
+
             services.AddAutoMapper(typeof(Startup));
             services.AddSearchers();
             services.AddCreators();
             services.AddFileMasters();
+            services.AddPermissions();
             services.AddSpaStaticFiles(configuration =>
             {
                 //configuration.RootPath = "react-client/build";

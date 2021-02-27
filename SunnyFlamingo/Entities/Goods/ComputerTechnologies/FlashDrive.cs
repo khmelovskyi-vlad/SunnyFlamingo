@@ -23,6 +23,10 @@ namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies
             ColorValue = flashDriveModel.Color;
             Capacity = flashDriveModel.Capacity;
             USBSpecificationTypeValue = flashDriveModel.USBSpecificationType;
+            if (flashDriveModel.UserId != null && flashDriveModel.UserId != new Guid())
+            {
+                UserId = flashDriveModel.UserId;
+            }
         }
         public int Capacity { get; set; }
         [MaxLength(500)]

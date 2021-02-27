@@ -7,15 +7,6 @@ using System.Threading.Tasks;
 
 namespace SunnyFlamingo.ValueObjects
 {
-    //public enum WirelessType
-    //{
-    //    Bluetooth,
-    //    IR,
-    //    Kleer,
-    //    RF,
-    //    Infrared,
-    //    No
-    //}
     public class WirelessType
     {
         [Key]

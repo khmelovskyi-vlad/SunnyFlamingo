@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SunnyFlamingo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +8,15 @@ namespace SunnyFlamingo.Entities
 {
     public class Order
     {
+        public Order()
+        {
+
+        }
+        public Order(OrderModel orderModel)
+        {
+            Address = orderModel.Address;
+            DeliveryMethodId = orderModel.DeliveryMethod.Id;
+        }
         public Guid Id { get; set; }
         public DateTime RegistrationTime { get; set; }
         public string Address { get; set; }

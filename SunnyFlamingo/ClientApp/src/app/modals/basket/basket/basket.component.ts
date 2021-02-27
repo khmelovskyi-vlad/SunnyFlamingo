@@ -4,7 +4,7 @@ import { Guid } from 'guid-typescript';
 import { from, of, zip } from 'rxjs';
 import { groupBy, map, mergeMap, toArray } from 'rxjs/operators';
 import { BasketGoodModel } from '../../../models/basket-good-model';
-import { SelectedGoodsService } from '../../../global-services/selected-goods.service';
+import { SelectedGoodsService } from '../../../services/selected-goods.service';
 import { GoodInformation } from '../../../models/good-information';
 import { ImgService } from '../../../services/img.service';
 
@@ -37,7 +37,7 @@ export class BasketComponent implements OnInit {
   i = 0;
   getImgUrl(id: string): string{
     this.i = this.i+1;
-    return this.imgService.getImgUrl(id);
+    return this.imgService.getGoodImgUrl(id);
   }
 
   ngOnInit(): void {

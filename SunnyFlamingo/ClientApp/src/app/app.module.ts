@@ -17,6 +17,7 @@ import { GoodModule } from './good/good.module';
 import { CheckoutComponent } from './checkout/checkout/checkout.component';
 import { AuthModule, LogLevel, OidcConfigService } from 'angular-auth-oidc-client';
 import { AddingGoodsModule } from './adding-goods/adding-goods.module';
+import { PermissionNotFoundComponent } from './auth/permission-not-found/permission-not-found.component';
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -28,16 +29,16 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
       silentRenew: true,
       silentRenewUrl: `${window.location.origin}/silent-renew.html`,
       clientId: 'angularClient',
-      scope: 'openid profile',
+      scope: 'openid profile permissions',
       logLevel: LogLevel.Debug,
     });
 }
-
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     CheckoutComponent,
+    PermissionNotFoundComponent,
   ],
   imports: [
     BrowserModule,

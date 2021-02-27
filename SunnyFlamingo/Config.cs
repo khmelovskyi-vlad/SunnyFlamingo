@@ -14,6 +14,8 @@ namespace SunnyFlamingo
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
+                new IdentityResource("permissions", new string[] { "Permission" }),
+                new IdentityResource("roles", new[] { "role" })
             };
 
 
@@ -43,7 +45,7 @@ namespace SunnyFlamingo
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "api1"
+                        "permissions"
                     }
                 },
                 new Client
@@ -57,10 +59,10 @@ namespace SunnyFlamingo
                     AlwaysSendClientClaims = true,
                     RequireConsent = false,
 
-                    RedirectUris = { "https://localhost:44392/signin-oidc" },
+                    RedirectUris = { "https://localhost:44379/signin-oidc" },
 
 
-                    PostLogoutRedirectUris = { "https://localhost:44392/signout-callback-oidc" },
+                    PostLogoutRedirectUris = { "https://localhost:44379/signout-callback-oidc" },
 
                     AllowedScopes = new List<string>
                     {

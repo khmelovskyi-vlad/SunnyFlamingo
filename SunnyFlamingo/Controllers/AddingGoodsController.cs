@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 
 namespace SunnyFlamingo.Controllers
 {
+    [Authorize(Policy = "AddGoods")]
     [Route("api/adding-goods")]
     [ApiController]
     public class AddingGoodsController : ControllerBase
@@ -185,86 +187,72 @@ namespace SunnyFlamingo.Controllers
         [HttpPost("add-good")]
         public async Task<int> AddGood([FromBody] GoodModel goodModel)
         {
-            return await _goodsCreator.AddGood(goodModel);
-            //return 1;
+            return await _goodsCreator.AddGood(goodModel, User.Identity.Name);
         }
         [HttpPost("add-computer-technology")]
         public async Task<int> AddComputerTechnology([FromBody] ComputerTechnologyModel computerTechnologyModel)
         {
-            return await _goodsCreator.AddComputerTechnology(computerTechnologyModel);
-            //return 1;
+            return await _goodsCreator.AddComputerTechnology(computerTechnologyModel, User.Identity.Name);
         }
         [HttpPost("add-computer-part")]
         public async Task<int> AddComputerPart([FromBody] ComputerPartModel computerPartModel)
         {
-            return await _goodsCreator.AddComputerPart(computerPartModel);
-            //return 1;
+            return await _goodsCreator.AddComputerPart(computerPartModel, User.Identity.Name);
         }
         [HttpPost("add-computer-accessory")]
         public async Task<int> AddComputerAccessory([FromBody] ComputerAccessoryModel computerAccessoryModel)
         {
-            return await _goodsCreator.AddComputerAccessory(computerAccessoryModel);
-            //return 1;
+            return await _goodsCreator.AddComputerAccessory(computerAccessoryModel, User.Identity.Name);
         }
         [HttpPost("add-computer")]
         public async Task<int> AddComputer([FromBody] ComputerModel computerModel)
         {
-            return await _goodsCreator.AddComputer(computerModel);
-            //return 1;
+            return await _goodsCreator.AddComputer(computerModel, User.Identity.Name);
         }
         [HttpPost("add-laptop")]
         public async Task<int> AddLaptop([FromBody] LaptopModel laptopModel)
         {
-            return await _goodsCreator.AddLaptop(laptopModel);
-            //return 1;
+            return await _goodsCreator.AddLaptop(laptopModel, User.Identity.Name);
         }
         [HttpPost("add-flash-drive")]
         public async Task<int> AddFlashDrive([FromBody] FlashDriveModel flashDriveModel)
         {
-            return await _goodsCreator.AddFlashDrive(flashDriveModel);
-            //return 1;
+            return await _goodsCreator.AddFlashDrive(flashDriveModel, User.Identity.Name);
         }
         [HttpPost("add-video-card")]
         public async Task<int> AddVideoCard([FromBody] VideoCardModel videoCardModel)
         {
-            return await _goodsCreator.AddVideoCard(videoCardModel);
-            //return 1;
+            return await _goodsCreator.AddVideoCard(videoCardModel, User.Identity.Name);
         }
         [HttpPost("add-cpu")]
         public async Task<int> AddCPU([FromBody] CPUModel cpuModel)
         {
-            return await _goodsCreator.AddCPU(cpuModel);
-            //return 1;
+            return await _goodsCreator.AddCPU(cpuModel, User.Identity.Name);
         }
         [HttpPost("add-cooler")]
         public async Task<int> AddCooler([FromBody] CoolerModel coolerModel)
         {
-            return await _goodsCreator.AddCooler(coolerModel);
-            //return 1;
+            return await _goodsCreator.AddCooler(coolerModel, User.Identity.Name);
         }
         [HttpPost("add-computer-drives")]
         public async Task<int> AddComputerDrive([FromBody] ComputerDriveModel computerDriveModel)
         {
-            return await _goodsCreator.AddComputerDrive(computerDriveModel);
-            //return 1;
+            return await _goodsCreator.AddComputerDrive(computerDriveModel, User.Identity.Name);
         }
         [HttpPost("add-mause")]
         public async Task<int> AddMause([FromBody] MauseModel mauseModel)
         {
-            return await _goodsCreator.AddMause(mauseModel);
-            //return 1;
+            return await _goodsCreator.AddMause(mauseModel, User.Identity.Name);
         }
         [HttpPost("add-keyboard")]
         public async Task<int> AddKeyboard([FromBody] KeyboardModel keyboardModel)
         {
-            return await _goodsCreator.AddKeyboard(keyboardModel);
-            //return 1;
+            return await _goodsCreator.AddKeyboard(keyboardModel, User.Identity.Name);
         }
         [HttpPost("add-headphones")]
         public async Task<int> AddHeadphones([FromBody] HeadphonesModel headphonesModel)
         {
-            return await _goodsCreator.AddHeadphones(headphonesModel);
-            //return 1;
+            return await _goodsCreator.AddHeadphones(headphonesModel, User.Identity.Name);
         }
     }
 }

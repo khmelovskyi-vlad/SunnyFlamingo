@@ -7,35 +7,16 @@ const routes: Routes = [
   {
     path: 'good',
     component: GoodMainComponent,
-    children: [
-      {
-        matcher: matcherFunction,
-        component: GoodComponent
-      }
-    ]
+    children: returnChildren()
   }
 ];
-function matcherFunction(url: UrlSegment[]) {
-  if (url.length === 1) {
-      const path = url[0].path;
-       if(path.startsWith('Good') 
-         || path.startsWith('ComputerTechnology')
-         || path.startsWith('Laptop')
-         || path.startsWith('Computer')
-         || path.startsWith('FlashDrive')
-         || path.startsWith('ComputerPart')
-         || path.startsWith('ComputerAccessory')
-         || path.startsWith('ComputerDrive')
-         || path.startsWith('Cooler')
-         || path.startsWith('CPU')
-         || path.startsWith('VideoCard')
-         || path.startsWith('Mause')
-         || path.startsWith('Keyboard')
-         || path.startsWith('Headphones')){
-        return {consumed: url};
-      }
-  }
-  return null;
+function returnChildren(){
+  const result: {path: string, component: any}[] = [];
+  const types = ["Good", "ComputerTechnology", "Laptop", "Computer", "FlashDrive", "ComputerPart", "ComputerAccessory", "ComputerDrive", "Cooler", "CPU", "VideoCard", "Mause", "Keyboard", "Headphones"]
+  types.forEach(type => {
+    result.push({path: `${type}/:id`, component: GoodComponent})
+  });
+  return result;
 }
 
 @NgModule({

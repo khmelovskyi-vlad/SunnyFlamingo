@@ -25,6 +25,10 @@ namespace SunnyFlamingo.Entities.Goods.ComputerTechnologies.ComputerParts
             VideoSize = videoCardModel.VideoSize;
             DriveInterfaceValue = videoCardModel.DriveInterface;
             VideoMemoryCapacity = videoCardModel.VideoMemoryCapacity;
+            if (videoCardModel.UserId != null && videoCardModel.UserId != new Guid())
+            {
+                UserId = videoCardModel.UserId;
+            }
         }
         public int VideoSize { get; set; }
         [MaxLength(500)]

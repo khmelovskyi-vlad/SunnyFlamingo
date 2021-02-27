@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { GoodInformation } from '../../models/good-information';
 import { GoodService } from '../good.service';
@@ -21,6 +21,20 @@ export class GoodComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
+    this.subscribes.push(this.router.events
+      .subscribe((val) => {
+        if (val instanceof NavigationEnd) {
+          if (val.url.split('?')[0].startsWith('/good')) {
+            this.showLoader = true;
+            this.goodService.getGoodInformation(this.router.url)
+              .subscribe(goodInformation => {
+                this.showLoader = false;
+                this.goodInformation = goodInformation;
+              });
+          }
+        }
+    }));
+    
     this.subscribes.push(this.goodService.getGoodInformation(this.router.url)
     .subscribe(goodInformation => {
       this.goodInformation = goodInformation;

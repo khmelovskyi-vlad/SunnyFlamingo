@@ -13,7 +13,7 @@
   <div style="background-color: yellow;">
     <ul>
       <li *ngFor="let good of goods" [value]="good.name" class="mt-1 goodName">
-        <button class="btn btn-block" [routerLink]="['/good', good.type]" [queryParams]="{id: good.id}">{{good.name}}</button>
+        <a class="btn btn-block" [routerLink]="['/good', good.type, good.id]">{{good.name}}</a>
       </li>
     </ul>
   </div>
