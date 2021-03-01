@@ -24,14 +24,10 @@ export class BasketComponent implements OnInit {
     ) {}
 
   getCount(): number{
-    return this.basketGoods.map(basketGood => basketGood.count).reduce((a,b) => a + b, 0);
+    return this.selectedGoodsService.getCount();
   }
   getPrice(): number{
-    let price = 0;
-    for (let i = 0; i < this.basketGoods.length; i++) {
-      price += this.basketGoods[i].count * this.basketGoods[i].goodInformation.price;
-    }
-    return price;
+    return this.selectedGoodsService.getPrice();
   }
 
   i = 0;

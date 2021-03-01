@@ -109,8 +109,6 @@ C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\goods\goods.mo
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\goods\goods.module.js.map
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\auth\permission-not-found\permission-not-found.component.js
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\auth\permission-not-found\permission-not-found.component.js.map
-C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\models\user-model.js
-C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\models\user-model.js.map
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\models\property-list-model.js
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\models\property-list-model.js.map
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\models\property-model.js
@@ -121,6 +119,10 @@ C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\models\basket-
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\models\basket-good-model.js.map
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\services\selected-goods.service.js
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\services\selected-goods.service.js.map
+C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\checkout\checkout.guard.js
+C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\checkout\checkout.guard.js.map
+C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\models\user-model.js
+C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\models\user-model.js.map
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\models\delivery-method-model.js
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\models\delivery-method-model.js.map
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\models\order-model.js
@@ -231,6 +233,12 @@ C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\adding-goods\g
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\adding-goods\good-type\good-type.component.js.map
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\adding-goods\adding-goods.module.js
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\adding-goods\adding-goods.module.js.map
+C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\server-errors\internal-server-error\internal-server-error.component.js
+C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\server-errors\internal-server-error\internal-server-error.component.js.map
+C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\server-errors\server-error-routing.module.js
+C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\server-errors\server-error-routing.module.js.map
+C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\server-errors\server-error.module.js
+C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\server-errors\server-error.module.js.map
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\app.module.js
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\app.module.js.map
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\environments\environment.js
@@ -269,6 +277,8 @@ C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\auth\auth.serv
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\auth\auth.service.spec.js.map
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\auth\permission-not-found\permission-not-found.component.spec.js
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\auth\permission-not-found\permission-not-found.component.spec.js.map
+C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\checkout\checkout.guard.spec.js
+C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\checkout\checkout.guard.spec.js.map
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\checkout\checkout.module.js
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\checkout\checkout.module.js.map
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\checkout\checkout\checkout.component.spec.js
@@ -383,6 +393,8 @@ C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\navbar\navbar\
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\navbar\navbar\navbar.component.spec.js.map
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\page-not-found\page-not-found.component.spec.js
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\page-not-found\page-not-found.component.spec.js.map
+C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\server-errors\internal-server-error\internal-server-error.component.spec.js
+C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\server-errors\internal-server-error\internal-server-error.component.spec.js.map
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\services\good-searcher.service.spec.js
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\services\good-searcher.service.spec.js.map
 C:\GIT\SunnyFlamingo\SunnyFlamingo\ClientApp\dist\out-tsc\src\app\services\handler-errors.service.spec.js

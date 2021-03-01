@@ -17,10 +17,9 @@ namespace SunnyFlamingo.Models.Selectors
         public decimal? PriceTo { get; set; }
         public int Page { get; set; } = 1;
         public int ShowGoods { get; set; } = 36;
-        public int From { get; set; }
-        public int To { get; set; }
         public bool GetQuestions { get; set; } = true;
         public OrderType OrderType { get; set; } = OrderType.name;
         public SortDir SortDir { get; set; } = SortDir.desc;
+        public string Name { get; set; }
     }
 }

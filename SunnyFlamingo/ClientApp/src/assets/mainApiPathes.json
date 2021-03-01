@@ -3,7 +3,8 @@
   "AddingGoods": {
     "Path": "adding-goods",
     "GetQuestions": "getQuestions",
-    "GetTypes": "getTypes"
+    "GetTypes": "getTypes",
+    "AddExcelGoods": "add-excel-goods"
   },
   "Image": {
     "Path": "ImagesCreator",

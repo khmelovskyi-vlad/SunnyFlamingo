@@ -25,11 +25,11 @@ namespace SunnyFlamingo.Controllers
         {
             return (await _context.DeliveryMethods.ToListAsync()).Select(dm => new DeliveryMethodModel() { Id = dm.Id, Value = dm.Value }).ToList();
         }
-        //
+
         [HttpPost("SaveOrder")]
         public async Task<int> SaveOrder([FromBody] OrderModel orderModel)
         {
-            try
+            if (orderModel.BasketGoods.Count > 0)
             {
                 var order = new Order(orderModel);
                 var id = Guid.NewGuid();
@@ -45,9 +45,9 @@ namespace SunnyFlamingo.Controllers
                 await _context.SaveChangesAsync();
                 return 1;
             }
-            catch (Exception ex)
+            else
             {
-                throw;
+                throw new Exception();
             }
         }
         private async Task AddOrderGoods(Guid orderId, List<BasketGoodModel> basketGoods)

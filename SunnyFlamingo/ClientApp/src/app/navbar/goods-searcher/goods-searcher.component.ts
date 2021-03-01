@@ -11,20 +11,13 @@ import { GoodSearcherService } from '../../services/good-searcher.service';
 })
 export class GoodsSearcherComponent implements OnInit {
 
-  
   goodForm = this.fb.group({
     namePart: []
   });
-
   goods: GoodCellModel[];
-
-  onSubmit(){
-    console.log(this.goodForm.get("namePart")?.value);
-  }
 
   constructor(private service: GoodSearcherService, private fb: FormBuilder, private router: Router) { }
   ngOnInit(): void {
-
     this.router.events
       .subscribe((val) => {
         if (val instanceof NavigationEnd) {
@@ -32,10 +25,14 @@ export class GoodsSearcherComponent implements OnInit {
           this.goodForm.reset();
         }
     });
-
     this.goodForm.valueChanges
     .subscribe(() => this.service.searchGoodByName(this.goodForm.get("namePart")?.value)
     .subscribe(goods => this.goods = goods));
+  }
+
+
+  onSubmit(): void{
+    this.service.searchGoodsByName(this.goodForm.get("namePart")?.value);
   }
 
 }

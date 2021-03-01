@@ -25,6 +25,13 @@ namespace SunnyFlamingo.Services.Searchers
             _parametersCreator = parametersCreator;
             _questionsGrouper = questionsGrouper;
         }
+        public async Task<GoodsInformation<string>> CreateGoodsInformationByName(GoodsSelector goodsSelector)
+        {
+            var parameters = _parametersCreator.GetGoodsParametersByName(goodsSelector).ToArray();
+            var goodsDbInformation = await _context.GetGoodsDbInformation("GetGoodsByName", parameters);
+            var questions = _questionsGrouper.GroupGoods(goodsSelector, goodsDbInformation.DBQuestions);
+            return new GoodsInformation<string>(GetCount(parameters), goodsDbInformation.GoodCells, questions);
+        }
         public async Task<GoodsInformation<string>> CreateGoodsInformation(GoodsSelector goodsSelector)
         {
             var parameters = _parametersCreator.GetGoodsParameters(goodsSelector).ToArray();

@@ -36,6 +36,11 @@ namespace SunnyFlamingo.Extensions
                     policy.RequireClaim(permission, "AddGoods");
                 });
             });
+            services.AddAuthorization(opts => {
+                opts.AddPolicy("AddExcelGoods", policy => {
+                    policy.RequireClaim(permission, "AddExcelGoods");
+                });
+            });
         }
     }
 }

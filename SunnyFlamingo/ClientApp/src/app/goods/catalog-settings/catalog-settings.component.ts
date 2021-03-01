@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderType } from 'src/app/value-objects/order-type';
-import { SortDir } from 'src/app/value-objects/sort-dir';
+import { OrderType } from '../../value-objects/order-type';
+import { SortDir } from '../../value-objects/sort-dir';
 import { UrlParameterService } from '../../services/url-parameter.service';
 
 @Component({

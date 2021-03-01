@@ -24,7 +24,7 @@
   </div>
 </ng-template>
 
-<div class="position-relative text-align btn p-0 basket" (click)="open(content)">
+<button [disabled]="basketGoods.length<1" class="position-relative text-align btn p-0 basket" (click)="open(content)">
   <img src="assets/img/basket3.png" alt="basket" width="40" height="40">
   <span class="position-absolute" style="top: -5px; right: 0px; font-size: 0.8rem;">{{getCount()}}</span>
-</div>
+</button>

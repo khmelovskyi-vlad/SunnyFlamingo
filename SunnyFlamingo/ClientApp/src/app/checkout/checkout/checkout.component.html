@@ -1,24 +1,46 @@
-<div class="row m-0 p-0">
+<form *ngIf="!orderAdded" class="row m-0 p-0" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
   <div class="col">
-    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
-      <label for="address">Address:</label>
-      <input class="form-control" type="text" formControlName="address" id="address" required>
-      <label for="deliveryMethod">Delivery method:</label>
-      <br>
-      <select id="deliveryMethod" formControlName="deliveryMethod" required>
-        <option *ngFor="let deliveryMethod of deliveryMethods">{{deliveryMethod.value}}</option>
-      </select>
-      <br>
-      <label for="deliveryMethod">First name:</label>
-      <input class="form-control" type="text" formControlName="firstName" id="firstName" required>
-      <label for="deliveryMethod">Last name:</label>
-      <input class="form-control" type="text" formControlName="lastName" id="lastName" required>
-      <label for="email">Email:</label>
-      <input class="form-control" type="email" formControlName="email" id="email" required>
-      <input class="btn" type="submit">
-    </form>
+    <label for="address">Address:</label>
+    <input class="form-control" 
+    [class]="{'is-valid': getFormControl('address').valid && showValidation, 
+    'is-invalid': getFormControl('address').invalid && showValidation}" 
+    type="text" formControlName="address" id="address" required>
+    <label for="deliveryMethod">Delivery method:</label>
+    <br>
+    <select 
+    class="form-select"
+    [class]="{'is-valid': getFormControl('deliveryMethod').valid && showValidation, 
+    'is-invalid': getFormControl('deliveryMethod').invalid && showValidation}"
+     id="deliveryMethod" formControlName="deliveryMethod" required>
+      <option *ngFor="let deliveryMethod of deliveryMethods">{{deliveryMethod.value}}</option>
+    </select>
+    <br>
+    <label for="deliveryMethod">First name:</label>
+    <input class="form-control"
+    [class]="{'is-valid': getFormControl('firstName').valid && showValidation, 
+    'is-invalid': getFormControl('firstName').invalid && showValidation}"
+     type="text" formControlName="firstName" id="firstName" required>
+    <label for="deliveryMethod">Last name:</label>
+    <input class="form-control"
+    [class]="{'is-valid': getFormControl('lastName').valid && showValidation, 
+    'is-invalid': getFormControl('lastName').invalid && showValidation}"
+     type="text" formControlName="lastName" id="lastName" required>
+    <label for="email">Email:</label>
+    <input class="form-control"
+    [class]="{'is-valid': getFormControl('email').valid && showValidation, 
+    'is-invalid': getFormControl('email').invalid && showValidation}"
+     type="email" formControlName="email" id="email" required>
   </div>
   <div class="col">
-
+    <h4>Total</h4>
+    <ul>
+      <li><span>{{getCount()}} goods price: </span>{{getPrice() | currency}}</li>
+      <li><span>Cost of delivery: </span>At carrier rates</li>
+      <li><h5>Total price: {{getPrice() | currency}}</h5></li>
+      <input class="form-control btn-success" type="submit">
+    </ul>
   </div>
+</form>
+<div *ngIf="orderAdded">
+  Thank you for the order. Bye!
 </div>

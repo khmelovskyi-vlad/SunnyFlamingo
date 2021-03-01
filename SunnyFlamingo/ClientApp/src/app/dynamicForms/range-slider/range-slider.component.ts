@@ -14,7 +14,14 @@ export class RangeSliderComponent implements OnInit {
   options: Options;
   constructor(private service: UrlParameterService) { }
   
-  searchGoods() {
+  ngOnInit(): void {
+    this.options = {
+      floor: this.question.from,
+      ceil: this.question.to
+    };
+  }
+
+  searchGoods(): void {
     this.service.searchGoods(
       `${this.questionsKey}From`,
       this.question.selectedFrom,
@@ -22,10 +29,22 @@ export class RangeSliderComponent implements OnInit {
       this.question.selectedTo);
   }
 
-  ngOnInit(): void {
-    this.options = {
-      floor: this.question.from,
-      ceil: this.question.to
-    };
+  removeParams(): void{
+    this.service.searchGoods(
+      `${this.questionsKey}From`,
+      this.question.selectedFrom,
+      `${this.questionsKey}To`,
+      this.question.selectedTo,
+      undefined,
+      true);
+  }
+
+  haveParams(): boolean{
+    return this.service.checkHavingParam(`${this.questionsKey}From`) 
+    && this.service.checkHavingParam(`${this.questionsKey}To`);
+  }
+
+  isToFromEqual(): boolean{
+    return this.question.selectedFrom == this.question.selectedTo;
   }
 }

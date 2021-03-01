@@ -27,7 +27,7 @@ namespace SunnyFlamingo.Services.Creators
             _context = context;
             _newGoodsExcelPath = newGoodsExcelPath.Value;
         }
-        public async Task AddGoods()
+        public async Task<int> AddGoods()
         {
             try
             {
@@ -38,12 +38,12 @@ namespace SunnyFlamingo.Services.Creators
                     CreateColumnMappings(bulkCopy, dtDestination, dtSource);
                     bulkCopy.DestinationTableName = "Goods";
                     await bulkCopy.WriteToServerAsync(dtDestination);
-                    
                 }
+                return 1;
             }
             catch (Exception)
             {
-                throw;
+                return 2;
             }
         }
         private void CreateColumnMappings(SqlBulkCopy bulkCopy, DataTable dtDestination, DataTable dtSource)

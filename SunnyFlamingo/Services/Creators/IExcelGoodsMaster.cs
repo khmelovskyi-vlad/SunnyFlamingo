@@ -7,6 +7,6 @@ namespace SunnyFlamingo.Services.Creators
 {
     public interface IExcelGoodsMaster
     {
-        Task AddGoods();
+        Task<int> AddGoods();
     }
 }

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { InputType } from '../../value-objects/input-type';
 import { QuestionBase } from '../../models/question-base';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-switcher',
@@ -13,7 +13,9 @@ export class SwitcherComponent implements OnInit {
   @Input()questionsKey: string;
   @Input()question: QuestionBase<string>;
   @Input()formGroup: FormGroup;
+  @Input()showValidation: boolean;
   InputType = InputType;
+  formControl: FormControl;
   constructor() { }
 
   onClick(){
@@ -27,6 +29,7 @@ export class SwitcherComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.formControl = this.formGroup.get(this.question.key) as FormControl;
   }
 
 }

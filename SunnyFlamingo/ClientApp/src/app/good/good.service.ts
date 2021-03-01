@@ -16,7 +16,7 @@ export class GoodService {
   getGoodInformation(url: string): Observable<GoodInformation> {
     return this.http.get<GoodInformation>(`${mainApiPathes.StartPath}${url}`)
     .pipe(
-      catchError(this.handlerErrorsService.handleError<GoodInformation>('getGoodsInformation'))
+      catchError(this.handlerErrorsService.handleError<GoodInformation>('getGoodInformation'))
     );
   }
 }
