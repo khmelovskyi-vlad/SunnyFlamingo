@@ -8,12 +8,11 @@ export class ParameterSelector {
   colors: string[];
   priceFrom?: number;
   priceTo?: number;
-  from: number = 0;
-  to: number = 20;
   orderType: OrderType = OrderType.name;
   sortDir: SortDir = SortDir.asc;
   page: number = 1;
   showGoods: number = 36;
+  name: string | undefined;
   
   amountOfRAMs: number[];
   cpuFrequencies: number[];

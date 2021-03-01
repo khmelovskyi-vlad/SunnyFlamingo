@@ -1,6 +1,12 @@
-<button (click)="searchGoods()">Okey</button>
-<label [for]="questionsKey+'From'">from:</label>
-<input type="number" [id]="questionsKey+'From'" [(ngModel)]="question.selectedFrom"/>
-<label [for]="questionsKey+'To'">to:</label>
-<input type="number" [id]="questionsKey+'To'" [(ngModel)]="question.selectedTo"/>
-<ngx-slider [(value)]="question.selectedFrom" [(highValue)]="question.selectedTo" [options]="options"></ngx-slider>
+<div *ngIf="!isToFromEqual()">
+  <button (click)="searchGoods()">Okey</button>
+  <label [for]="questionsKey+'From'">from:</label>
+  <input type="number" [id]="questionsKey+'From'" [(ngModel)]="question.selectedFrom"/>
+  <label [for]="questionsKey+'To'">to:</label>
+  <input type="number" [id]="questionsKey+'To'" [(ngModel)]="question.selectedTo"/>
+  <ngx-slider [(value)]="question.selectedFrom" [(highValue)]="question.selectedTo" [options]="options"></ngx-slider>
+</div>
+<div *ngIf="isToFromEqual()">
+  <h5>Can't select</h5>
+</div>
+<button *ngIf="haveParams()" class="form-control" (click)="removeParams()">clear</button>

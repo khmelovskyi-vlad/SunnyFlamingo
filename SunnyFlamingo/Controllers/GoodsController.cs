@@ -34,7 +34,7 @@ namespace SunnyFlamingo.Controllers
         }
         [HttpGet]
         [Route("GoodName")]
-        public async Task<List<GoodCellModel>> GetGoodByName(string part)
+        public async Task<List<GoodCellModel>> GetGoodsByName(string part)
         {
             return await _context.Goods.Where(good => part == null || good.Name.Contains(part))
                 .Take(10)
@@ -45,7 +45,14 @@ namespace SunnyFlamingo.Controllers
         [Route("")]
         public async Task<GoodsInformation<string>> GetGoodsInformation([FromBody] GoodsSelector goodsSelector)
         {
-            return await _goodsInformationCreator.CreateGoodsInformation(goodsSelector);
+            if (goodsSelector.Name == null)
+            {
+                return await _goodsInformationCreator.CreateGoodsInformation(goodsSelector);
+            }
+            else
+            {
+                return await _goodsInformationCreator.CreateGoodsInformationByName(goodsSelector);
+            }
         }
         [HttpPost]
         [Route("computerTechnologies")]

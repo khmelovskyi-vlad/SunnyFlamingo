@@ -22,7 +22,7 @@ export class ImgService {
     const formData = this.createFormData(files);
     return this.http.post<string[]>(url, formData)
     .pipe(
-      catchError(this.handlerErrorsService.handleError<string[]>('getGoodsInformation'))
+      catchError(this.handlerErrorsService.handleError<string[]>('saveImages'))
     );
   }
   private createFormData(files: File[]): FormData{

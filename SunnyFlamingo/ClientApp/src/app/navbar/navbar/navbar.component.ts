@@ -12,6 +12,8 @@ export class NavbarComponent implements OnInit {
   ManageRole = ManageRole;
   constructor(public oidcSecurityService: OidcSecurityService, private authService: AuthService) {
     this.authService.checkLogin().subscribe((isLogin) => this.isLogin = isLogin);
+    this.authService.checkPermission('AddGoods').subscribe(res => this.showAddGoods = res);
+    this.authService.checkManage().subscribe(manageRole => this.manageRole = manageRole);
   }
 
   isLogin: boolean = false;
@@ -19,8 +21,6 @@ export class NavbarComponent implements OnInit {
   manageRole: ManageRole | undefined;
 
   ngOnInit(): void {
-    this.authService.checkPermission('AddGoods').subscribe(res => this.showAddGoods = res);
-    this.authService.checkManage().subscribe(manageRole => this.manageRole = manageRole);
   }
 
   login() {

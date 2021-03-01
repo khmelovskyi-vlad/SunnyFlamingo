@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { QuestionBase } from '../../models/question-base';
 import { InputType } from '../../value-objects/input-type';
 
@@ -13,7 +13,9 @@ export class ImageMasterComponent implements OnInit {
   @Input()questionsKey: string;
   @Input()question: QuestionBase<string>;
   @Input()formGroup: FormGroup;
+  @Input()showValidation: boolean;
   InputType = InputType;
+  formControl: FormControl;
   @Output() addImagesEvent = new EventEmitter<File[]>();
   
   addImages(event: any){
@@ -28,6 +30,8 @@ export class ImageMasterComponent implements OnInit {
 
   constructor() { }
   
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.formControl = this.formGroup.get(this.question.key) as FormControl;
+  }
 
 }

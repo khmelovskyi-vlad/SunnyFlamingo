@@ -1,6 +1,7 @@
 <div [formGroup]="form">
   <div [formGroupName]="formName">
-    <label *ngIf="question.controlType!==ControlType.checkbox" [attr.for]="question.key">{{question.label}}</label>
+    <label *ngIf="question.controlType!==ControlType.checkbox ||
+      question.controlType!==ControlType.rangeSlider" [attr.for]="question.key">{{question.label}}</label>
     
     
     <div [ngSwitch]="question.controlType">

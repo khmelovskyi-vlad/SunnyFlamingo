@@ -3,6 +3,8 @@
   [type]="InputType[question.type]" 
   class="custom-control-input" 
   [id]="question.key+questionsKey"
-  (click)="onClick()">
+  (click)="onClick()"
+  [class]="{'is-valid': formControl.valid && showValidation, 
+  'is-invalid': formControl.invalid && showValidation}">
   <label class="custom-control-label" [for]="question.key+questionsKey">{{question.label}}</label>
 </div>

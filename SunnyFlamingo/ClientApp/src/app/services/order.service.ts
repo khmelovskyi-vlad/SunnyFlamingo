@@ -1,9 +1,8 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { SelectedGoodsService } from '../services/selected-goods.service';
 import { BasketGoodModel } from '../models/basket-good-model';
 import { DeliveryMethodModel } from '../models/delivery-method-model';
 import { OrderModel } from '../models/order-model';
@@ -16,9 +15,7 @@ import { HandlerErrorsService } from './handler-errors.service';
 })
 export class OrderService {
 
-  constructor(private http: HttpClient, 
-    private selectedGoodsService: SelectedGoodsService, 
-    private handlerErrorsService: HandlerErrorsService) { }
+  constructor(private http: HttpClient, private handlerErrorsService: HandlerErrorsService) { }
   
   addOrder(orderForm: FormGroup, 
     deliveryMethodModels: DeliveryMethodModel[], 
@@ -27,7 +24,7 @@ export class OrderService {
     const url = `${mainApiPathes.StartPath}/${mainApiPathes.Orders.Path}/${mainApiPathes.Orders.SaveOrder}`;
     return this.http.post<number>(url, orderModel)
     .pipe(
-      catchError(this.handlerErrorsService.handleError<number>('getGoodsInformation'))
+      catchError(this.handlerErrorsService.handleError<number>('addOrder'))
     );
   }
   createOrderModel(
@@ -52,14 +49,11 @@ export class OrderService {
     const deliveryMethod = orderForm.get("deliveryMethod")?.value;
     return deliveryMethodModels.find(dmm => dmm.value === deliveryMethod);
   }
-  getBasketGoods(): Observable<BasketGoodModel[]>{
-    return this.selectedGoodsService.selectedBasketGoods;
-  }
   searchDeliveryMethods(): Observable<DeliveryMethodModel[]>{
     const url = `${mainApiPathes.StartPath}/${mainApiPathes.Orders.Path}/${mainApiPathes.Orders.GetDeliveryMethods}`;
     return this.http.get<DeliveryMethodModel[]>(url)
     .pipe(
-      catchError(this.handlerErrorsService.handleError<DeliveryMethodModel[]>('getGoodsInformation'))
+      catchError(this.handlerErrorsService.handleError<DeliveryMethodModel[]>('searchDeliveryMethods'))
     );
   }
 }

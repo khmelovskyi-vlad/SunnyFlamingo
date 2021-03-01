@@ -1,50 +1,63 @@
 <div class="row m-0 p-0">
   <div class="col">
-      <app-good-type (onSelectTypeEvent)="onSelectType($event)"></app-good-type>
-      <form *ngIf="formGroup && questions" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-        <h3>{{questions.value}}</h3>
-        <ul [id]="questions.key">
-          <li *ngFor="let question of questions.questionBaseList">
-            <div [ngSwitch]="question.controlType">
-              <app-searcher *ngSwitchCase="ControlType.searcher" 
-              [question]="question" 
-              [questionsKey]="questions.key"
-              [formGroup]="formGroup">
-              </app-searcher>
-              <app-searcher-array *ngSwitchCase="ControlType.searcherArray" 
-              [question]="question" 
-              [questionsKey]="questions.key"
-              [formGroup]="formGroup">
-              </app-searcher-array>
-              <app-switcher *ngSwitchCase="ControlType.switcher" 
-              [question]="question" 
-              [questionsKey]="questions.key"
-              [formGroup]="formGroup"></app-switcher>
-              <app-image-master *ngSwitchCase="ControlType.image"
-              [question]="question" 
-              [questionsKey]="questions.key"
-              [formGroup]="formGroup"
-              (addImagesEvent)="addImages($event)">
-              </app-image-master>
-              <app-textbox  *ngSwitchCase="ControlType.textbox"
-              [question]="question" 
-              [questionsKey]="questions.key"
-              [formGroup]="formGroup">
-              </app-textbox>
-              <app-dropdown *ngSwitchCase="ControlType.dropdown"
-              [question]="question" 
-              [questionsKey]="questions.key"
-              [formGroup]="formGroup"></app-dropdown>
-              <app-checkbox *ngSwitchCase="ControlType.checkbox"
-              [question]="question" 
-              [questionsKey]="questions.key"
-              [formGroup]="formGroup">
-              </app-checkbox>
-              <span *ngIf="question.afterBox">({{question.afterBox}})</span>
-            </div>
-          </li>
-          <li><input class="form-control" type="submit"></li>
-        </ul>
-      </form>
+    <h1 *ngIf="showSuccessAdding" style="color: green;">Success adding</h1>
+    <button *ngIf="showSuccessAdding" 
+    class="form-control btn-success" 
+    (click)="showSuccessAdding=!showSuccessAdding">close adding result</button>
+    
+    <button *ngIf="canAddExcelGoods" class="form-control my-3" (click)="addExcelGoods()">Add excel goods</button>
+    <app-good-type (onSelectTypeEvent)="onSelectType($event)"></app-good-type>
+    <form *ngIf="formGroup && questions" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+      <h3>{{questions.value}}</h3>
+      <ul [id]="questions.key">
+        <li *ngFor="let question of questions.questionBaseList">
+          <div [ngSwitch]="question.controlType">
+            <app-searcher *ngSwitchCase="ControlType.searcher" 
+            [question]="question" 
+            [questionsKey]="questions.key"
+            [formGroup]="formGroup"
+            [showValidation]="showValidation">
+            </app-searcher>
+            <app-searcher-array *ngSwitchCase="ControlType.searcherArray" 
+            [question]="question" 
+            [questionsKey]="questions.key"
+            [formGroup]="formGroup"
+            [showValidation]="showValidation">
+            </app-searcher-array>
+            <app-switcher *ngSwitchCase="ControlType.switcher" 
+            [question]="question" 
+            [questionsKey]="questions.key"
+            [formGroup]="formGroup"
+            [showValidation]="showValidation"></app-switcher>
+            <app-image-master *ngSwitchCase="ControlType.image"
+            [question]="question" 
+            [questionsKey]="questions.key"
+            [formGroup]="formGroup"
+            (addImagesEvent)="addImages($event)"
+            [showValidation]="showValidation">
+            </app-image-master>
+            <app-textbox  *ngSwitchCase="ControlType.textbox"
+            [question]="question" 
+            [questionsKey]="questions.key"
+            [formGroup]="formGroup"
+            [showValidation]="showValidation">
+            </app-textbox>
+            <app-dropdown *ngSwitchCase="ControlType.dropdown"
+            [question]="question" 
+            [questionsKey]="questions.key"
+            [formGroup]="formGroup"
+            [showValidation]="showValidation"></app-dropdown>
+            <app-checkbox *ngSwitchCase="ControlType.checkbox"
+            [question]="question" 
+            [questionsKey]="questions.key"
+            [formGroup]="formGroup"
+            [showValidation]="showValidation">
+            </app-checkbox>
+            <span *ngIf="question.afterBox">({{question.afterBox}})</span>
+          </div>
+        </li>
+        <li><input class="form-control" type="submit"></li>
+      </ul>
+    </form>
   </div>
 </div>

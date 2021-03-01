@@ -18,6 +18,7 @@ import { CheckoutComponent } from './checkout/checkout/checkout.component';
 import { AuthModule, LogLevel, OidcConfigService } from 'angular-auth-oidc-client';
 import { AddingGoodsModule } from './adding-goods/adding-goods.module';
 import { PermissionNotFoundComponent } from './auth/permission-not-found/permission-not-found.component';
+import { ServerErrorModule } from './server-errors/server-error.module';
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -48,6 +49,7 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     DynamicFormModule,
     NgxSliderModule,
     AuthModule.forRoot(),
+    ServerErrorModule,
     AddingGoodsModule,
     LoaderModule,
     NavbarModule,

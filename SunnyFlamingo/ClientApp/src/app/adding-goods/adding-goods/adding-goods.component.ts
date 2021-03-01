@@ -19,29 +19,45 @@ export class AddingGoodsComponent implements OnInit {
   ControlType = ControlType;
   InputType = InputType;
   goodType: string;
+  showValidation: boolean = false;
+  canAddExcelGoods: boolean = false;
+  showSuccessAdding: boolean = false;
 
   constructor(
     private service: AddingGoodsService, 
     private questionControlService: QuestionControlService
     ) {}
 
+
   addImages(files: File[]){
     this.imageFiles = files;
   }
   onSubmit(){
-    this.service.addGood(this.questions.key, 
-      this.imageFiles, 
-      this.formGroup.value,
-      this.goodType
-      );
+    if (this.formGroup.invalid) {
+      this.showValidation = true;
+    }
+    else{
+      this.service.addGood(this.questions.key, 
+        this.imageFiles, 
+        this.formGroup.value,
+        this.goodType
+        );
+    }
   }
   onSelectType(obj: any){
+    this.showValidation = false;
     this.goodType = obj['type'];
     this.questions = obj['questions'];
     this.formGroup = this.questionControlService.questionsToFormGroup(this.questions);
   }
+  addExcelGoods(): void{
+    if (this.canAddExcelGoods) {
+      this.service.addExcelGoods().subscribe(() => this.showSuccessAdding = true);
+    }
+  }
 
   ngOnInit(): void {
+    this.service.checkAddExcelGoods().subscribe(canAddExcelGoods => this.canAddExcelGoods = canAddExcelGoods);
   }
 
 }

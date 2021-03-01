@@ -140,16 +140,22 @@ export class UrlParameterService {
       case "dir":
         selector.sortDir = +values[0];
         break;
+      case "name":
+        selector.name = values[0];
+        break;
       default:
         break;
     }
+  }
+  checkHavingParam(key: string): boolean{
+    return Object.keys(this.getParams()).includes(key);
   }
   searchGoods(key: string, value: any, key2?: string, value2?: any, isNew?: boolean, remove?: boolean, ignorePage = true) {
     let params = this.getParams();
     if (isNew || remove) {
       let newParams: any = {};
       for (const [parKey, parValue] of Object.entries(params)) {
-        if ((parKey === 'page' && ignorePage) || parKey === key ) {
+        if ((parKey === 'page' && ignorePage) || parKey === key || (key2 && parKey == key2) ) {
           continue;
         }
         newParams[parKey] = parValue;

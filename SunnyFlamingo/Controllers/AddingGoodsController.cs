@@ -22,12 +22,12 @@ namespace SunnyFlamingo.Controllers
     public class AddingGoodsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly IMapper _mapper;
+        private readonly IExcelGoodsMaster _excelGoodsMaster;
         private readonly IGoodsCreator _goodsCreator;
-        public AddingGoodsController(ApplicationDbContext context, IMapper mapper, IGoodsCreator goodsCreator)
+        public AddingGoodsController(ApplicationDbContext context, IExcelGoodsMaster excelGoodsMaster, IGoodsCreator goodsCreator)
         {
             _context = context;
-            _mapper = mapper;
+            _excelGoodsMaster = excelGoodsMaster;
             _goodsCreator = goodsCreator;
         }
         [HttpGet("getTypes")]
@@ -184,6 +184,12 @@ namespace SunnyFlamingo.Controllers
 
 
 
+        [Authorize(Policy = "AddExcelGoods")]
+        [HttpPost("add-excel-goods")]
+        public async Task AddGoods()
+        {
+            await _excelGoodsMaster.AddGoods();
+        }
         [HttpPost("add-good")]
         public async Task<int> AddGood([FromBody] GoodModel goodModel)
         {

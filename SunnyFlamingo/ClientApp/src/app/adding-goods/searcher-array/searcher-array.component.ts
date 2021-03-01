@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { QuestionBase } from '../../models/question-base';
 import { InputType } from '../../value-objects/input-type';
 import { AddingGoodsService } from '../adding-goods.service';
@@ -16,6 +16,8 @@ export class SearcherArrayComponent implements OnInit {
   @Input()formGroup: FormGroup;
   InputType = InputType;
   value: string = "";
+  @Input()showValidation: boolean;
+  formControl: FormControl;
   onChange(res: any){
     this.value = res.target.value;
     this.service.getOptions(this.value, this.question.methodName).subscribe(res => this.question.options = res);
@@ -61,5 +63,7 @@ export class SearcherArrayComponent implements OnInit {
 
   constructor(private service: AddingGoodsService) { }
   
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.formControl = this.formGroup.get(this.question.key) as FormControl;
+  }
 }

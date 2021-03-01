@@ -9,6 +9,7 @@ namespace SunnyFlamingo.Services.Searchers
 {
     public interface IGoodsInformationCreator
     {
+        Task<GoodsInformation<string>> CreateGoodsInformationByName(GoodsSelector goodsSelector);
         Task<GoodsInformation<string>> CreateGoodsInformation(GoodsSelector goodsSelector);
         Task<GoodsInformation<string>> CreateComputerTechnologiesInformation(ComputerTechnologiesSelector computerTechnologiesSelector);
         Task<GoodsInformation<string>> CreateLaptopsInformation(LaptopsSelector laptopsSelector);

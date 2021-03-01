@@ -85,6 +85,11 @@ export class SelectedGoodsService {
     this.changeValue(newArray);
   }
 
+  removeAllValues(){
+    this.selectedBasketGoods.next([]);
+    localStorage.removeItem('basketGoods');
+  }
+
   addOneElement(value: BasketGoodModel){
     value.count = 1;
     this.basketGoods = [value];
@@ -97,4 +102,15 @@ export class SelectedGoodsService {
     this.changeValue(newGoods)
   }
 
+  getCount(): number{
+    return this.basketGoods.map(basketGood => basketGood.count).reduce((a,b) => a + b, 0);
+  }
+  
+  getPrice(): number{
+    let price = 0;
+    for (let i = 0; i < this.basketGoods.length; i++) {
+      price += this.basketGoods[i].count * this.basketGoods[i].goodInformation.price;
+    }
+    return price;
+  }
 }

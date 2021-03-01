@@ -19,7 +19,7 @@ export class UsersService {
     const url = `${mainApiPathes.StartPath}/${mainApiPathes.Users.Path}/${mainApiPathes.Users.GetUserModel}`;
     return this.http.get<UserModel>(url)
     .pipe(
-      catchError(this.handlerErrorsService.handleError<UserModel>('getGoodsInformation'))
+      catchError(this.handlerErrorsService.handleError<UserModel>('getUserModel'))
     );
   }
 }

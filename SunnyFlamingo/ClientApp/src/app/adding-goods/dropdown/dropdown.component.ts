@@ -1,6 +1,6 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { QuestionBase } from '../../models/question-base';
 import { InputType } from '../../value-objects/input-type';
 
@@ -14,10 +14,13 @@ export class DropdownComponent implements OnInit {
   @Input()questionsKey: string;
   @Input()question: QuestionBase<string>;
   @Input()formGroup: FormGroup;
+  @Input()showValidation: boolean;
   InputType = InputType;
+  formControl: FormControl;
   constructor() { }
 
   ngOnInit(): void {
+    this.formControl = this.formGroup.get(this.question.key) as FormControl;
   }
 
 }

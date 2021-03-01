@@ -1,6 +1,8 @@
 <div *ngIf="question && questionsKey && formGroup" [formGroup]="formGroup">
   <label [attr.for]="question.key">{{question.label}}</label>
-  <select [id]="question.key+questionsKey" [formControlName]="question.key">
+  <select [id]="question.key+questionsKey" [formControlName]="question.key"
+  [class]="{'is-valid': formControl.valid && showValidation, 
+  'is-invalid': formControl.invalid && showValidation}">
     <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
   </select>
 </div>

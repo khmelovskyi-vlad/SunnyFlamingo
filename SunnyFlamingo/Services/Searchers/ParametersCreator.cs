@@ -20,6 +20,17 @@ namespace SunnyFlamingo.Services.Searchers
                        .ToArray();
             return CreateStringListParameter("@discriminators", CreateStringListTable(discriminators));
         }
+        public List<SqlParameter> GetGoodsParametersByName(GoodsSelector goodsSelector)
+        {
+            List<SqlParameter> sqlParameters = new List<SqlParameter>();
+            sqlParameters.AddRange(GetGoodsParameters(goodsSelector));
+            if (goodsSelector.Name != null)
+            {
+                sqlParameters.Add(CreateNameParameter(goodsSelector.Name));
+            }
+            return sqlParameters;
+        }
+
         public List<SqlParameter> GetGoodsParameters(GoodsSelector goodsSelector)
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
@@ -431,7 +442,10 @@ namespace SunnyFlamingo.Services.Searchers
         {
             return CreateIntListParameter("@displays", CreateIntListTable(displays));
         }
-
+        private SqlParameter CreateNameParameter(string name)
+        {
+            return new SqlParameter() { ParameterName = "@name", SqlDbType = SqlDbType.NVarChar, Value = $"%{name}%" };
+        }
 
 
 

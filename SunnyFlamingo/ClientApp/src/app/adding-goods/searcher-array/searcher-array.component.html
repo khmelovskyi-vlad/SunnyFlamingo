@@ -3,6 +3,8 @@
     <label [attr.for]="question.key">{{question.label}}</label>
     <input 
     class="form-control"
+    [class]="{'is-valid': formControl.valid && showValidation, 
+    'is-invalid': formControl.invalid && showValidation}"
     [value]="value"
     (input)="onChange($event)"
     [id]="question.key+questionsKey" 
