@@ -9,8 +9,9 @@ namespace SunnyFlamingo.Services.Searchers
 {
     public interface IParametersCreator
     {
+        int GetCount(SqlParameter[] sqlParameters);
         SqlParameter CreateDiscriminatorParameter<T>();
-        List<SqlParameter> GetGoodsParametersByName(GoodsSelector goodsSelector);
+        List<SqlParameter> GetGoodsParametersByName(GoodsSelectorName goodsSelectorName);
         List<SqlParameter> GetGoodsParameters(GoodsSelector goodsSelector);
         List<SqlParameter> GetComputerTechnologiesParameters(ComputerTechnologiesSelector computerTechnologiesSelector);
         List<SqlParameter> GetLaptopsParameters(LaptopsSelector laptopsSelector);

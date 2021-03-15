@@ -14,15 +14,46 @@ export class GoodsSearcherComponent implements OnInit {
   goodForm = this.fb.group({
     namePart: []
   });
-  goods: GoodCellModel[];
+  goods: GoodCellModel[] = [];
 
   constructor(private service: GoodSearcherService, private fb: FormBuilder, private router: Router) { }
   ngOnInit(): void {
     this.router.events
       .subscribe((val) => {
         if (val instanceof NavigationEnd) {
-          this.goods = [];
-          this.goodForm.reset();
+          if (this.goods != undefined && this.goods.length !== 0) {
+            console.log(this.goods);
+            console.log("okey");
+            console.log(this.goods);
+            console.log("okey");
+            console.log(this.goods);
+            console.log("okey");
+            console.log(this.goods);
+            console.log("okey");
+            console.log(this.goods);
+            console.log("okey");
+            console.log(this.goods);
+            console.log("okey");
+            console.log(this.goods);
+            console.log("okey");
+            console.log(this.goods);
+            console.log("okey");
+            console.log(this.goods);
+            console.log("okey");
+            console.log(this.goods);
+            console.log("okey");
+            console.log(this.goods);
+            console.log("okey");
+            console.log(this.goods);
+            console.log("okey");
+            console.log(this.goods);
+            console.log("okey");
+            console.log(this.goods);
+            console.log("okey");
+            
+            this.goods = [];
+            this.goodForm.reset();
+          }
         }
     });
     this.goodForm.valueChanges

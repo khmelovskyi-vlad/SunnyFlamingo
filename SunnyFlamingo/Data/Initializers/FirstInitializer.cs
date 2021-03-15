@@ -66,7 +66,9 @@ namespace SunnyFlamingo.Data.Initializers
             modelBuilder.Entity<ComputerComputerDriveType>().HasData(GetComputerComputerDriveTypes(random, computers, computerDriveTypes));
             modelBuilder.Entity<Good>().HasData(GetGoods(random, colors, materials, manufacturers, producers));
             modelBuilder.Entity<ComputerTechnology>().HasData(GetComputerTechnologies(random, colors, materials, manufacturers, producers));
+
             modelBuilder.Entity<FlashDrive>().HasData(GetFlashDrives(random, colors, materials, manufacturers, producers, USBSpecificationTypes));
+
             modelBuilder.Entity<ComputerPart>().HasData(GetComputerParts(random, colors, materials, manufacturers, producers));
             modelBuilder.Entity<ComputerAccessory>().HasData(GetComputerAccessories(random, colors, materials, manufacturers, producers));
             modelBuilder.Entity<VideoCard>().HasData(GetVideoCards(random, colors, materials, manufacturers, producers, driveInterfaces));
@@ -79,8 +81,43 @@ namespace SunnyFlamingo.Data.Initializers
 
             modelBuilder.Entity<OrderStatus>().HasData(GetOrderStatuses());
             modelBuilder.Entity<DeliveryMethod>().HasData(GetDeliveryMethods());
+            var roles = GetRoles();
+            modelBuilder.Entity<ApplicationRole>().HasData(roles);
+            modelBuilder.Entity<ApplicationRoleClaim>().HasData(GetRoleClaims(roles));
         }
 
+        private List<ApplicationRole> GetRoles()
+        {
+            return new List<ApplicationRole>()
+            {
+                new ApplicationRole(){ Id = Guid.NewGuid(), Name = "ChiefAdmin", NormalizedName = "CHIEFADMIN", ConcurrencyStamp = Guid.NewGuid().ToString(), Description = "Some chiefAdmin description" },
+                new ApplicationRole(){ Id = Guid.NewGuid(), Name = "Admin", NormalizedName = "ADMIN", ConcurrencyStamp = Guid.NewGuid().ToString(), Description = "Some admin description" },
+                new ApplicationRole(){ Id = Guid.NewGuid(), Name = "Manager", NormalizedName = "MANAGER", ConcurrencyStamp = Guid.NewGuid().ToString(), Description = "Some manager description" },
+                new ApplicationRole(){ Id = Guid.NewGuid(), Name = "User", NormalizedName = "USER", ConcurrencyStamp = Guid.NewGuid().ToString(), Description = "Some user description" },
+                new ApplicationRole(){ Id = Guid.NewGuid(), Name = "Guest", NormalizedName = "GUEST", ConcurrencyStamp = Guid.NewGuid().ToString(), Description = "Some guest description" },
+            };
+        }
+        private List<ApplicationRoleClaim> GetRoleClaims(List<ApplicationRole> roles)
+        {
+            return new List<ApplicationRoleClaim>()
+            {
+                new ApplicationRoleClaim(){ Id = 1, ClaimType = "Permission", ClaimValue = "AddGoods", RoleId = roles.SingleOrDefault(r => r.Name == "ChiefAdmin").Id  },
+                new ApplicationRoleClaim(){ Id = 2, ClaimType = "Permission", ClaimValue = "AddGoods", RoleId = roles.SingleOrDefault(r => r.Name == "Admin").Id  },
+                new ApplicationRoleClaim(){ Id = 3, ClaimType = "Permission", ClaimValue = "AddGoods", RoleId = roles.SingleOrDefault(r => r.Name == "Manager").Id  },
+                new ApplicationRoleClaim(){ Id = 4, ClaimType = "Permission", ClaimValue = "ManageAllRoles", RoleId = roles.SingleOrDefault(r => r.Name == "ChiefAdmin").Id  },
+                new ApplicationRoleClaim(){ Id = 5, ClaimType = "Permission", ClaimValue = "ManageManagers", RoleId = roles.SingleOrDefault(r => r.Name == "ChiefAdmin").Id  },
+                new ApplicationRoleClaim(){ Id = 6, ClaimType = "Permission", ClaimValue = "ManageManagers", RoleId = roles.SingleOrDefault(r => r.Name == "Admin").Id  },
+                new ApplicationRoleClaim(){ Id = 7, ClaimType = "Permission", ClaimValue = "ManageUsers", RoleId = roles.SingleOrDefault(r => r.Name == "ChiefAdmin").Id  },
+                new ApplicationRoleClaim(){ Id = 8, ClaimType = "Permission", ClaimValue = "ManageUsers", RoleId = roles.SingleOrDefault(r => r.Name == "Admin").Id  },
+                new ApplicationRoleClaim(){ Id = 9, ClaimType = "Permission", ClaimValue = "ManageUsers", RoleId = roles.SingleOrDefault(r => r.Name == "Manager").Id  },
+                new ApplicationRoleClaim(){ Id = 10, ClaimType = "Permission", ClaimValue = "AddExcelGoods", RoleId = roles.SingleOrDefault(r => r.Name == "ChiefAdmin").Id  },
+                new ApplicationRoleClaim(){ Id = 11, ClaimType = "Permission", ClaimValue = "AddExcelGoods", RoleId = roles.SingleOrDefault(r => r.Name == "Admin").Id  },
+                new ApplicationRoleClaim(){ Id = 12, ClaimType = "Permission", ClaimValue = "GetBasicData", RoleId = roles.SingleOrDefault(r => r.Name == "ChiefAdmin").Id  },
+                new ApplicationRoleClaim(){ Id = 13, ClaimType = "Permission", ClaimValue = "GetBasicData", RoleId = roles.SingleOrDefault(r => r.Name == "Admin").Id  },
+                new ApplicationRoleClaim(){ Id = 14, ClaimType = "Permission", ClaimValue = "GetBasicData", RoleId = roles.SingleOrDefault(r => r.Name == "User").Id  },
+                new ApplicationRoleClaim(){ Id = 15, ClaimType = "Permission", ClaimValue = "GetBasicData", RoleId = roles.SingleOrDefault(r => r.Name == "Guest").Id  },
+            };
+        }
         private List<OrderStatus> GetOrderStatuses()
         {
             return new List<OrderStatus>()

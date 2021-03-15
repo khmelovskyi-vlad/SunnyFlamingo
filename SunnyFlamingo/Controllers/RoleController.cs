@@ -25,7 +25,7 @@ namespace SunnyFlamingo.Controllers
             _userManager = userManager;
             _context = context;
         }
-        
+
         [Authorize(Policy = "ManageUsers")]
         public async Task<ViewResult> Index()
         {

@@ -34,7 +34,8 @@ function matcherFunction(url: UrlSegment[]) {
          || path.startsWith('computerDrives')
          || path.startsWith('mice')
          || path.startsWith('keyboards')
-         || path.startsWith('headphones')){
+         || path.startsWith('headphones')
+         || path.startsWith('goodsName')){
         return {consumed: url};
       }
   }
