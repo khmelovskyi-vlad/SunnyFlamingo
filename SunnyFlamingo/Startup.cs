@@ -38,11 +38,16 @@ namespace SunnyFlamingo
         {
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(GetSqlConnectionStringBuilder().ConnectionString));
-
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
+
+            services.AddStackExchangeRedisCache(options => 
+            {
+                options.Configuration = "localhost:6379";
+                options.InstanceName = "SunnyFlamingo";
+            });
 
             services.Configure<ImgOptions>(Configuration.GetSection("ImgPathes"));
             services.Configure<NewGoodsExcelPathOption>(Configuration.GetSection("NewGoodsExcelPath"));
@@ -71,13 +76,11 @@ namespace SunnyFlamingo
 
 
 
+            services.AddCustomServices();
 
 
             services.AddAutoMapper(typeof(Startup));
-            services.AddSearchers();
-            services.AddCreators();
-            services.AddFileMasters();
-            services.AddPermissions();
+
             services.AddSpaStaticFiles(configuration =>
             {
                 //configuration.RootPath = "react-client/build";
@@ -122,7 +125,6 @@ namespace SunnyFlamingo
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
-                //spa.Options.StartupTimeout = new TimeSpan(0, 5, 0);
 
                 if (env.IsDevelopment())
                 {

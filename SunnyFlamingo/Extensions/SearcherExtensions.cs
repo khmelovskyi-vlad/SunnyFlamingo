@@ -16,6 +16,8 @@ namespace SunnyFlamingo.Extensions
             services.AddSingleton<IParametersCreator, ParametersCreator>();
             services.AddScoped<IGoodsInformationCreator, GoodsInformationCreator>();
             services.AddSingleton<IQuestionsCreator, QuestionsCreator>();
+            services.AddScoped<IGoodCellsSearcher, GoodCellsSearcher>();
+            services.AddScoped<IGoodsInformationSearcher, GoodsInformationSearcher>();
         }
     }
 }

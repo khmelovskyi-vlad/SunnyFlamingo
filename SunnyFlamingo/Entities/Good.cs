@@ -49,5 +49,6 @@ namespace SunnyFlamingo.Entities
         public Guid? UserId { get; set; }
         public ApplicationUser User { get; set; }
         public List<OrderGood> OrderGoods { get; set; }
+        public string Discriminator { get; set; }
     }
 }

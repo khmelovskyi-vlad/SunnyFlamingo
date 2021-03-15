@@ -170,6 +170,9 @@ export class UrlParameterService {
     if (url === '/') {
       url = '/goods';
     }
+    else if (Object.keys(params).includes('name')){
+      url = '/goods/goodsName';
+    }
     this.router.navigate([url], { queryParams: params });
   }
   getPage(): number{

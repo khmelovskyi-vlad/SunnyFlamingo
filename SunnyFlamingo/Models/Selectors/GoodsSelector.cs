@@ -19,7 +19,6 @@ namespace SunnyFlamingo.Models.Selectors
         public int ShowGoods { get; set; } = 36;
         public bool GetQuestions { get; set; } = true;
         public OrderType OrderType { get; set; } = OrderType.name;
-        public SortDir SortDir { get; set; } = SortDir.desc;
-        public string Name { get; set; }
+        public SortDir SortDir { get; set; } = SortDir.asc;
     }
 }

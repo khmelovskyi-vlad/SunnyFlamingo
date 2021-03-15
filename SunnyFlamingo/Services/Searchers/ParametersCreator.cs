@@ -11,6 +11,10 @@ namespace SunnyFlamingo.Services.Searchers
 {
     public class ParametersCreator : IParametersCreator
     {
+        public int GetCount(SqlParameter[] sqlParameters)
+        {
+            return Convert.ToInt32(sqlParameters.FirstOrDefault(par => par.ParameterName == "@count").Value);
+        }
         public SqlParameter CreateDiscriminatorParameter<T>()
         {
             var discriminators = AppDomain.CurrentDomain.GetAssemblies()
@@ -20,13 +24,13 @@ namespace SunnyFlamingo.Services.Searchers
                        .ToArray();
             return CreateStringListParameter("@discriminators", CreateStringListTable(discriminators));
         }
-        public List<SqlParameter> GetGoodsParametersByName(GoodsSelector goodsSelector)
+        public List<SqlParameter> GetGoodsParametersByName(GoodsSelectorName goodsSelectorName)
         {
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            sqlParameters.AddRange(GetGoodsParameters(goodsSelector));
-            if (goodsSelector.Name != null)
+            sqlParameters.AddRange(GetGoodsParameters(goodsSelectorName));
+            if (goodsSelectorName.Name != null)
             {
-                sqlParameters.Add(CreateNameParameter(goodsSelector.Name));
+                sqlParameters.Add(CreateNameParameter(goodsSelectorName.Name));
             }
             return sqlParameters;
         }
