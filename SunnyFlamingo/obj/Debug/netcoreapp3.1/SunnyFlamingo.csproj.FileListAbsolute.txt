@@ -245,3 +245,8 @@ C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Pipelines.Sockets.Uno
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\StackExchange.Redis.dll
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\System.Diagnostics.PerformanceCounter.dll
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll
+C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Grpc.Core.Api.dll
+C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Grpc.Net.Client.dll
+C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Grpc.Net.ClientFactory.dll
+C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Grpc.Net.Common.dll
+C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Google.Protobuf.dll

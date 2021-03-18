@@ -1,0 +1,116 @@
+syntax = "proto3";
+import "google/protobuf/any.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "SunnyFlamingo";
+
+package goodsInformationCache;
+import "customTypes.proto";
+
+// The greeting service definition.
+service GrpcGoodsInformationCache {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply);
+  rpc AddGoodsInformation (GrpcCacheGoodsInformation) returns (google.protobuf.Empty);
+  rpc GetGoodsInformation (Key) returns (GrpcCacheGoodsInformation);
+}
+
+ enum GrpcControlType {
+  DROPDOWN = 0;
+  TEXTBOX = 1;
+  CHECKBOX = 2;
+  RANGESLIDER = 3;
+  SEARCHER = 4;
+  SWITCHER = 5;
+  IMAGE = 6;
+  SEARCHERARRAY = 7;
+ }
+ enum GrpcInputType {
+  EMAIL = 0;
+  _CHECKBOX = 1;
+  SEARCH = 2;
+  NUMBER = 3;
+  FILE = 4;
+ }
+message Key {
+  string key = 1;
+}
+message GrpcCacheGoodsInformation {
+  Key key = 1;
+  GrpcGoodsInformation goodsInformation = 2;
+}
+message GrpcGoodsInformation {
+  int32 count = 2;
+  repeated GrpcGoodCellModel goodCells = 3;
+  repeated GrpcQuestionsBase questions = 4;
+}
+message GrpcGoodCellModel {
+  string id = 1;
+  string name = 2;
+  customTypes.DecimalValue price = 3;
+  bool isAvailable = 4;
+  string imgId = 5;
+  string type = 6;
+ }
+ message GrpcQuestionsBase {
+  string value = 1;
+  string key = 2;
+  int32 order = 3;
+  repeated GrpcQuestionBase questionBaseList = 4;
+ }
+ message GrpcQuestionBase {
+  string questionsKey = 1;
+  string value = 2;
+  string key = 3;
+  string label = 4;
+  google.protobuf.Int32Value order = 5;
+  GrpcControlType controlType = 6;
+  GrpcInputType type = 7;
+  repeated GrpcQuestionOption options = 8;
+  google.protobuf.BoolValue checked = 9;
+  google.protobuf.Int32Value afterBox = 10;
+  oneof selectedFrom {
+    int32 selectedFromInt = 101;
+    double selectedFromDouble = 102;
+    customTypes.DecimalValue selectedFromDecimal = 103;
+  }
+  oneof selectedTo {
+    int32 selectedToInt = 111;
+    double selectedToDouble = 112;
+    customTypes.DecimalValue selectedToDecimal = 113;
+  }
+  oneof from {
+    int32 fromInt = 121;
+    double fromDouble = 122;
+    customTypes.DecimalValue fromDecimal = 123;
+  }
+  oneof to {
+    int32 toInt = 131;
+    double toDouble = 132;
+    customTypes.DecimalValue toDecimal = 133;
+  }
+  GrpcQuestionValidator validator = 15;
+  string methodName = 16;
+ }
+ message GrpcQuestionOption {
+  string key = 1;
+  string value = 2;
+ }
+ message GrpcQuestionValidator {
+  google.protobuf.Int32Value max = 1;
+  google.protobuf.Int32Value min = 2;
+  google.protobuf.Int32Value maxLength = 3;
+  google.protobuf.Int32Value minLength = 4;
+  bool required = 5;
+ }
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings.
+message HelloReply {
+  string message = 1;
+}
