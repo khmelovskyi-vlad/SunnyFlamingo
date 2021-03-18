@@ -74,6 +74,10 @@ namespace SunnyFlamingo
                 options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
             });
 
+            services.AddGrpcClient<GrpcGoodsInformationCache.GrpcGoodsInformationCacheClient>(o =>
+            {
+                o.Address = new Uri("https://localhost:5001");
+            });
 
 
             services.AddCustomServices();
