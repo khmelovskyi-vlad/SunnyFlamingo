@@ -12,9 +12,13 @@ export class RangeSliderComponent implements OnInit {
   @Input() questionsKey: string;
   @Input() question: QuestionBase<string>;
   options: Options;
+  value: number = 0;
+  highValue: number = 0;
   constructor(private service: UrlParameterService) { }
   
   ngOnInit(): void {
+    this.value = this.question.selectedFrom || 0;
+    this.value = this.question.selectedTo || 0;
     this.options = {
       floor: this.question.from,
       ceil: this.question.to

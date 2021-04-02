@@ -20,23 +20,6 @@ namespace GrpcCache
             _cache = cache;
         }
 
-        public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
-        {
-            try
-            {
-                return Task.FromResult(new HelloReply
-                {
-                    Message = "Hello " + request.Name
-                });
-            }
-            catch (Exception ex)
-            {
-                return Task.FromResult(new HelloReply
-                {
-                    Message = "Hello " + ex.Message
-                });
-            }
-        }
         public override async Task<Empty> AddGoodsInformation(GrpcCacheGoodsInformation goodsInformation, ServerCallContext context)
         {
             await _cache.AddGoodsInformationAsync(goodsInformation.Key, goodsInformation);

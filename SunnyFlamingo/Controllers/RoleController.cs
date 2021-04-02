@@ -250,5 +250,62 @@ namespace SunnyFlamingo.Controllers
                 NoBannedUsers = noBannedUsers,
             });
         }
+        [HttpPost]
+        [Authorize(Policy = "ManageUsers")]
+        public async Task<IActionResult> BanIp(BanModification model)
+        {
+            if (ModelState.IsValid)
+            {
+                var users = await _context.Users
+                    .Where(user => (model.BanIds == null ? false : model.BanIds.Contains(user.Id))
+                    || (model.UnbanIds == null ? false : model.UnbanIds.Contains(user.Id))).Include(u => u.UserIps).ThenInclude(ui => ui.Ip)
+                    .ToListAsync() ?? new List<ApplicationUser>();
+                var usersToBan = users
+                    .Where(user => model.BanIds == null ? false : model.BanIds.Contains(user.Id))
+                    .ToList() ?? new List<ApplicationUser>();
+                var usersFromBan = users
+                    .Where(user => model.UnbanIds == null ? false : model.UnbanIds.Contains(user.Id))
+                    .ToList() ?? new List<ApplicationUser>();
+                foreach (var user in usersToBan)
+                {
+                    user.IsInBan = true;
+                    if (user.UserIps != null)
+                    {
+                        foreach (var userIp in user.UserIps)
+                        {
+                            userIp.Ip.IsInBan = true;
+                        }
+                    }
+                }
+                foreach (var user in usersFromBan)
+                {
+                    user.IsInBan = false;
+                    if (user.UserIps != null)
+                    {
+                        foreach (var userIp in user.UserIps)
+                        {
+                            userIp.Ip.IsInBan = false;
+                        }
+                    }
+                }
+                await _context.SaveChangesAsync();
+            }
+
+            if (ModelState.IsValid)
+                return RedirectToAction(nameof(Index));
+            else
+                return await BanUser();
+        }
+        public async Task<IActionResult> BanIp(string emailPart = "")
+        {
+            var userBanModel = new UserBanModel();
+            var bannedUsers = await _context.Users.Where(user => user.IsInBan && user.Email.Contains(emailPart)).Take(10).ToListAsync();
+            var noBannedUsers = await _context.Users.Where(user => !user.IsInBan && user.Email.Contains(emailPart)).Take(10).ToListAsync();
+            return View(new UserBanModel()
+            {
+                BannedUsers = bannedUsers,
+                NoBannedUsers = noBannedUsers,
+            });
+        }
     }
 }

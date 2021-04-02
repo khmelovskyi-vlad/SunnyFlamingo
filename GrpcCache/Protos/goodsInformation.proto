@@ -8,31 +8,11 @@ option csharp_namespace = "GrpcCache";
 package goodsInformationCache;
 import "customTypes.proto";
 
-// The greeting service definition.
 service GrpcGoodsInformationCache {
-  // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply);
   rpc AddGoodsInformation (GrpcCacheGoodsInformation) returns (google.protobuf.Empty);
   rpc GetGoodsInformation (Key) returns (GrpcCacheGoodsInformation);
 }
-/*
- enum GrpcControlType {
-  Dropdown = 0;
-  Textbox = 1;
-  checkbox = 2;
-  RangeSlider = 3;
-  Searcher = 4;
-  Switcher = 5;
-  Image = 6;
-  SearcherArray = 7;
- }
- enum GrpcInputType {
-  Email = 0;
-  Checkbox = 1;
-  Search = 2;
-  Number = 3;
-  File = 4;
- }*/
+
  enum GrpcControlType {
   DROPDOWN = 0;
   TEXTBOX = 1;
@@ -121,13 +101,3 @@ message GrpcGoodCellModel {
   google.protobuf.Int32Value minLength = 4;
   bool required = 5;
  }
-
-// The request message containing the user's name.
-message HelloRequest {
-  string name = 1;
-}
-
-// The response message containing the greetings.
-message HelloReply {
-  string message = 1;
-}

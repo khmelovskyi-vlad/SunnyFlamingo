@@ -87,9 +87,7 @@ namespace SunnyFlamingo
 
             services.AddSpaStaticFiles(configuration =>
             {
-                //configuration.RootPath = "react-client/build";
                 configuration.RootPath = "ClientApp/dist";
-                //configuration.RootPath = "ClientApp/build";
             });
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -118,6 +116,8 @@ namespace SunnyFlamingo
 
             app.UseIdentityServer();
             app.UseAuthorization();
+
+            app.UseIpBanMiddleware();
 
             app.UseEndpoints(endpoints =>
             {
