@@ -8,10 +8,7 @@ option csharp_namespace = "SunnyFlamingo";
 package goodsInformationCache;
 import "customTypes.proto";
 
-// The greeting service definition.
 service GrpcGoodsInformationCache {
-  // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply);
   rpc AddGoodsInformation (GrpcCacheGoodsInformation) returns (google.protobuf.Empty);
   rpc GetGoodsInformation (Key) returns (GrpcCacheGoodsInformation);
 }
@@ -104,13 +101,3 @@ message GrpcGoodCellModel {
   google.protobuf.Int32Value minLength = 4;
   bool required = 5;
  }
-
-// The request message containing the user's name.
-message HelloRequest {
-  string name = 1;
-}
-
-// The response message containing the greetings.
-message HelloReply {
-  string message = 1;
-}

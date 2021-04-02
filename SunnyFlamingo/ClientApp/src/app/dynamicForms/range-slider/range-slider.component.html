@@ -4,7 +4,7 @@
   <input type="number" [id]="questionsKey+'From'" [(ngModel)]="question.selectedFrom"/>
   <label [for]="questionsKey+'To'">to:</label>
   <input type="number" [id]="questionsKey+'To'" [(ngModel)]="question.selectedTo"/>
-  <ngx-slider [(value)]="question.selectedFrom" [(highValue)]="question.selectedTo" [options]="options"></ngx-slider>
+  <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider>
 </div>
 <div *ngIf="isToFromEqual()">
   <h5>Can't select</h5>

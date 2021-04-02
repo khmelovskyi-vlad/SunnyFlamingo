@@ -20,12 +20,18 @@ export class GoodsElementComponent implements OnInit {
     private imgService: ImgService) { }
 
 
-  changeGoods(count: string){
-    const parsed = parseInt(count);
+  changeGoods(event: any){
+    const parsed = parseInt(event.target.value);
     if (parsed != undefined && !isNaN(parsed) && parsed > 0) {
       this.selectedGoodsService.changeValueByCount(this.basketGood, parsed);
     }
   }
+  // changeGoods(count: string){
+  //   const parsed = parseInt(count);
+  //   if (parsed != undefined && !isNaN(parsed) && parsed > 0) {
+  //     this.selectedGoodsService.changeValueByCount(this.basketGood, parsed);
+  //   }
+  // }
 
   getImgUrl(id: string): string{
     return this.imgService.getGoodImgUrl(id);

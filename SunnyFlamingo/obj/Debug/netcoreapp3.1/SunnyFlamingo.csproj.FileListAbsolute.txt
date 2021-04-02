@@ -239,7 +239,6 @@ C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\runtimes\win\lib\netc
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Text.Encoding.CodePages.dll
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\ClientApp\dist\out-tsc\src\assets\appsettings.json
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\ClientApp\src\assets\mainApiPathes.json
-C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\ClientApp\dist\out-tsc\src\assets\mainApiPathes.json
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.StackExchangeRedis.dll
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Pipelines.Sockets.Unofficial.dll
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\StackExchange.Redis.dll
@@ -250,3 +249,5 @@ C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Grpc.Net.Client.dll
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Grpc.Net.ClientFactory.dll
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Grpc.Net.Common.dll
 C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\Google.Protobuf.dll
+C:\GIT\SunnyFlamingo\SunnyFlamingo\bin\Debug\netcoreapp3.1\ClientApp\dist\out-tsc\src\assets\mainApiPathes.json
+C:\GIT\SunnyFlamingo\SunnyFlamingo\obj\Debug\netcoreapp3.1\Razor\Views\Role\BanIp.cshtml.g.cs

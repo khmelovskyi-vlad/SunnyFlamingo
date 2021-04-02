@@ -9,7 +9,7 @@ export class QuestionBase<T> {
   label: string;
   order: number;
   controlType?: ControlType;
-  type?: InputType;
+  type: InputType;
   options: QuestionOption[];
   checked?: boolean;
   afterBox?: number;
@@ -42,7 +42,7 @@ export class QuestionBase<T> {
     this.label = options.label || '';
     this.order = options.order === undefined ? 1 : options.order;
     this.controlType = options.controlType;
-    this.type = options.type;
+    this.type = options.type || InputType.search;
     this.options = options.options || [];
     this.checked = options.checked;
     this.afterBox = options.afterBox;

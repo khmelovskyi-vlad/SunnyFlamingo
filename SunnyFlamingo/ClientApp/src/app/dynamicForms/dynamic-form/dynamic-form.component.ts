@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormGroupWithName } from '../../models/form-group-with-name';
 import { QuestionsBase } from '../../models/questions-base';
@@ -32,7 +32,7 @@ export class DynamicFormComponent implements OnChanges {
     }
     return forms;
   }
-  getQuestions(key: string): QuestionsBase<string> | undefined {
-    return this.questions.find(qb => qb.key === key);
+  getQuestions(key: string): QuestionsBase<string> {
+    return this.questions.find(qb => qb.key === key) || new QuestionsBase<string>();
   }
 }
